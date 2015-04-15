@@ -77,7 +77,7 @@ define(
 
             lib.addClass(
                 this.main,
-                'ui-tree-richselector'
+                this.helper.getPrefixClass('treerichselector')
             );
 
             if (this.onlyLeafSelect) {

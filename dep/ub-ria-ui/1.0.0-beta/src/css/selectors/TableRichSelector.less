@@ -3,7 +3,7 @@
 @esui-table-richselector-td-cell-padding: 0 0 0 .75em;
 @esui-table-richselector-td-line-height: 2em;
 
-.@{ui-class-prefix}-table-richselector {
+.@{ui-class-prefix}-tablerichselector {
     .@{ui-class-prefix}-richselector-query-list {
         table {
             border-collapse: collapse;
@@ -84,5 +84,15 @@
                 }
             }
         }
+    }
+}
+
+.@{ui-class-prefix}-richselector-with-filter {
+    .@{ui-class-prefix}-richselector-content-wrapper {
+        height:
+            @esui-richselector-body-height
+            - @esf-textbox-height
+            - 2*@esui-richselector-searchbox-wrapper-padding
+            - @esui-table-richselector-th-line-height;
     }
 }

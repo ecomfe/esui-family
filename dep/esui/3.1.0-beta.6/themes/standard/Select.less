@@ -12,7 +12,7 @@
 @esui-select-primary-active-background: @esf-palette-primary-shadow-color;
 
 @esui-select-item-selected-color: @esf-palette-color;
-@esui-select-item-background-selected: @esf-palette-neutral-highlight-color;
+@esui-select-item-selected-background: @esf-palette-neutral-highlight-color;
 
 @esui-select-compact-color: @esf-palette-color;
 @esui-select-compact-background: @esf-palette-white;
@@ -103,4 +103,9 @@
     &.@{ui-state-prefix}-active {
         background: @select-active-color;
     }
+}
+
+.esui-select-item-selected-theme() {
+    background: @esui-select-item-selected-background;
+    color: @esui-select-item-selected-color !important;
 }
