@@ -138,5 +138,7 @@ $(function () {
         $code.text(targetArr.join('\n'));
     });
     // 语法高亮
-    Prism.highlightAll();
+    if (typeof(Prism) !== 'undefined') {
+        Prism.highlightAll();
+    }
 });
