@@ -1,0 +1,112 @@
+@esui-carousel-padding: 0 2em;
+
+@esui-carousel-toolbar-pageColor: #DDD;
+@esui-carousel-toolbar-currentPageColor: #6CCDC0;
+
+@esui-carousel-selected-color: #6CCDC0;
+@esui-carousel-selected-text-color: #FFFFFF;
+@esui-carousel-pointer-color: #6CCDC0;
+@esui-carousel-pointer-hover-color: lighten(#6CCDC0, 5%);
+
+.@{ui-class-prefix}-carousel-content {
+    position: relative;
+    padding: @esui-carousel-padding;
+}
+
+.@{ui-class-prefix}-carousel-pointer {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    margin-top: -.5em;
+    color: @esui-carousel-pointer-color;
+    &:hover {
+        color: @esui-carousel-pointer-hover-color;
+    }
+}
+
+.@{ui-class-prefix}-carousel-pointer-active-l {
+    left: 0;
+}
+
+.@{ui-class-prefix}-carousel-pointer-disable {
+    .esf-disabled();
+}
+
+.@{ui-class-prefix}-carousel-pointer-active-r {
+    right: 0;
+}
+
+.@{ui-class-prefix}-carouse-list-wrap {
+    position: relative;
+    overflow: hidden;
+}
+
+.@{ui-class-prefix}-carousel-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    .transition(.4s all ease);
+    padding: 0;
+    margin: 0;
+}
+
+.@{ui-class-prefix}-carousel-item {
+    float: left;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    display: inline-block;
+    .box-sizing(border-box);
+}
+
+.@{ui-class-prefix}-carousel-item img {
+    width: 100%;
+}
+
+.@{ui-class-prefix}-carousel-selected-item {
+    cursor: auto;
+}
+
+.@{ui-class-prefix}-carousel-item .@{ui-class-prefix}-carousel-check {
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom:0;
+    background: @esui-carousel-selected-color;
+    color: @esui-carousel-selected-text-color;
+}
+
+.@{ui-class-prefix}-carousel-selected-item .@{ui-class-prefix}-carousel-check {
+    display: inline-block;
+}
+
+.@{ui-class-prefix}-carousel-toolbar {
+    margin: 0.625em 0;
+    position: relative;
+    height: 0.5em;
+}
+
+.@{ui-class-prefix}-carousel-toolbar ul {
+    text-align: center;
+}
+
+.@{ui-class-prefix}-carousel-toolbar .@{ui-class-prefix}-carousel-page {
+    margin: 0 0.375em;
+    width: 0.5em;
+    height: 0.5em;
+    background: @esui-carousel-toolbar-pageColor;
+    display: inline-block;
+    cursor: pointer;
+    .esf-circular();
+}
+
+.@{ui-class-prefix}-carousel-toolbar .@{ui-class-prefix}-carousel-current-page {
+    background: @esui-carousel-toolbar-currentPageColor;
+    cursor: auto;
+}
+
+.@{ui-class-prefix}-carousel.@{ui-state-prefix}-disabled {
+    .@{ui-class-prefix}-carousel-item {
+        cursor: not-allowed;
+    }
+}

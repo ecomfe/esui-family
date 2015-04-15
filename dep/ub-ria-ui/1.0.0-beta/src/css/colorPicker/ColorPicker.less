@@ -1,0 +1,103 @@
+@esui-color-picker-main-height: 2.5em;
+
+@esui-color-picker-head-height: 2em;
+@esui-color-picker-header-padding-horizontal: 1em;
+
+@esui-color-picker-color-block-border: 1px solid #DDD;
+@esui-color-picker-color-block-width: @esui-color-picker-main-height;
+@esui-color-picker-color-block-height: @esui-color-picker-main-height;
+@esui-color-picker-color-block-border-radius: 5px;
+@esui-color-picker-color-block-margin: 0 .5em 0 0;
+
+@esui-color-picker-color-input-width: 5em;
+@esui-color-picker-color-input-right-margin: .5em;
+@esui-color-picker-alpha-input-width: 3em;
+
+@esui-color-picker-layer-top-margin: 1px;
+
+// 色彩信息描述区
+.@{ui-class-prefix}-colorpicker {
+    display: inline-block;
+    height: @esui-color-picker-main-height;
+    line-height: @esui-color-picker-main-height;
+    vertical-align: middle;
+}
+
+.@{ui-class-prefix}-colorpicker-color-block-frame {
+    float: left;
+    margin: @esui-color-picker-color-block-margin;
+}
+
+.@{ui-class-prefix}-colorpicker-color-block {
+    .border-radius(@esui-color-picker-color-block-border-radius);
+    border: @esui-color-picker-color-block-border;
+    width: @esui-color-picker-color-block-width;
+    height: @esui-color-picker-color-block-height;
+    cursor: pointer;
+    .user-select(none);
+    .box-sizing(border-box);
+}
+
+.@{ui-class-prefix}-colorpicker-color-input {
+    float: left;
+    margin-right: @esui-color-picker-color-input-right-margin;
+    input {
+        width: @esui-color-picker-color-input-width;
+    }
+}
+
+.@{ui-class-prefix}-colorpicker-alpha-input {
+    float: left;
+    input {
+        width: @esui-color-picker-alpha-input-width;
+    }
+}
+
+// 拾色器浮层
+.@{ui-class-prefix}-colorpicker-layer {
+    margin-top: @esui-color-picker-layer-top-margin;
+    .esui-colorpicker-layer-theme();
+
+    .@{ui-class-prefix}-fullcolorpicker {
+        border: none;
+    }
+
+    &.@{ui-class-prefix}-overlay-dialog {
+        .@{ui-class-prefix}-fullcolorpicker {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+
+        .@{ui-class-prefix}-colorpicker-head {
+            height: @esui-color-picker-head-height;
+            line-height: @esui-color-picker-head-height;
+            padding: 0 @esui-color-picker-header-padding-horizontal;
+        }
+
+        .@{ui-class-prefix}-colorpicker-title {
+            float: left;
+            text-align: left;
+        }
+
+        .@{ui-class-prefix}-colorpicker-close-btn {
+            float: right;
+            text-align: right;
+            cursor: pointer;
+        }
+
+        .@{ui-class-prefix}-colorpicker-foot-frame {
+            padding: @esui-color-picker-header-padding-horizontal;
+
+            .@{ui-class-prefix}-colorpicker-foot {
+                text-align: right;
+            }
+        }
+    }
+
+    &.@{ui-class-prefix}-overlay-attached {
+        .@{ui-class-prefix}-colorpicker-head,
+        .@{ui-class-prefix}-colorpicker-foot-frame {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>LightBox - ESUI Demo</title>
+    <link rel="stylesheet" href="../assets/themes/standard.css" />
+    <link rel="stylesheet" href="../assets/3rd-party/prism.css" />
+    <script src="../assets/loader/esl.js"></script>
+    <script src="../assets/loader/config.js"></script>
+    <script src="../assets/build/ui.js"></script>
+    <script src="../assets/3rd-party/jquery-1.11.1.min.js"></script>
+    <script src="../assets/3rd-party/prism.js"></script>
+    <script src="../assets/demo.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header id="header">
+    <div class="ui-navbar ui-navbar-mordern">
+        <h1 id="branding" class="ui-navbar-content">
+            <a class="ui-navbar-content-link">ESUI Family</a>
+        </h1>
+        <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+            <script>
+            mainNav('../');
+            </script>
+        </ul>
+    </div>
+</header>
+<div class="ui-g main-container">
+    <div id="side-bar" class="ui-u-1-5">
+        <ul id="navigator" class="ui-sidebar">
+        </ul>
+    </div>
+    <div id="content" class="ui-u-4-5">
+        <h2>LightBox</h2>
+        <p>LightBox媒体预览窗。</p>
+        <hr />
+        <div id="main">
+            <h3>展开图标位置</h3>
+            <p>可以设置展开图标位置。</p>
+            <div class="example">
+            <div id="image-container">
+                <a href="http://getuikit.com/docs/images/placeholder_800x600_2.jpg" data-lightbox-group="group-1">
+                    <img src="http://getuikit.com/docs/images/placeholder_800x600_2.jpg" width="100" height="100"/>
+                </a>
+                <a href="http://getuikit.com/docs/images/placeholder_800x600_1.jpg" data-lightbox-group="group-1">
+                    <img src="http://getuikit.com/docs/images/placeholder_800x600_1.jpg" width="100" height="100"/>
+                </a>
+                <a href="http://file.ynet.com/2/1503/23/9928834.jpg" data-lightbox-group="group-1">
+                    <img src="http://file.ynet.com/2/1503/23/9928834.jpg" width="100" height="100"/>
+                </a>
+            </div>
+
+            <div data-ui-type="LightBox"
+                data-ui-id="box3"
+                data-ui-title="Hi Baby, this is multiple media."
+                data-ui-group="group-1"
+                data-ui-group-container-id="image-container",
+                data-ui-swf-path="../resource/video-preview-player.swf"
+                ></div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <script>
+        footer();
+    </script>
+</footer>
+<script>
+    require(
+        [
+            'esui',
+            'ub-ria-ui/LightBox'
+        ],
+        function (ui) {
+
+            ui.init();
+    });
+</script>
+</body>
+</html>

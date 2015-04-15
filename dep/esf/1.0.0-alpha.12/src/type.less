@@ -1,0 +1,340 @@
+@import "base.less";
+
+// global colors
+@esf-type-body-text-color: #444;
+@esf-type-body-background: #FFF;
+@esf-type-body-font-family: 'Helvetica Neue', Helvetica, Arial, '宋体', SimSun, sans-serif;
+@esf-type-body-line-height: 1.3;
+@esf-type-body-font-weight: normal;
+
+// link
+@esf-type-link-color: #6CCDC0;
+@esf-type-link-text-decoration: none;
+@esf-type-link-hover-color: lighten(#6CCDC0, 15%);
+@esf-type-link-hover-text-decoration: underline;
+
+@esf-type-link-contrast-color: #FFF;
+@esf-type-link-contrast-hover-color: #FFF;
+
+// code element
+@esf-type-code-font-family: Monaco, Consolas, monospace;
+@esf-type-code-text-color: #444;
+@esf-type-code-border-color: #ddd;
+@esf-type-code-background-color: #EFF0F2;
+@esf-type-code-padding: 0 0.3em;
+@esf-type-code-border-radius: 2px;
+
+// headings
+@esf-type-headings-font-family: 'Helvetica Neue', Helvetica, Arial, '微软雅黑', 'Microsoft YaHei', '黑体', SimHei, sans-serif;
+@esf-type-headings-font-weight: bold;
+@esf-type-headings-color: #444;
+@esf-type-headings-small-color: #999;
+@esf-type-headings-margin: 0.67em 0;
+
+@esf-type-h1-font-size: @esf-xxxx-large-font-size;
+@esf-type-h1-line-height: 1.2;
+@esf-type-h2-font-size: @esf-xxx-large-font-size;
+@esf-type-h2-line-height: 1.2;
+@esf-type-h3-font-size: @esf-large-font-size;
+@esf-type-h3-line-height: 1.2;
+@esf-type-h4-font-size: @esf-medium-font-size;
+@esf-type-h4-line-height: 1.2;
+@esf-type-h5-font-size: @esf-small-font-size;
+@esf-type-h5-line-height: 1.2;
+@esf-type-h6-font-size: @esf-x-small-font-size;
+@esf-type-h6-line-height: 1.2;
+
+// hr bar
+@esf-type-hr-color: #ddd;
+
+@esf-type-quote-margin: 0 1.5em 1.5em;
+@esf-type-quote-foot-text-color: #999;
+
+// table element
+@esf-type-table-border-color: #ddd;
+@esf-type-table-caption-text-color: #444;
+@esf-type-table-caption-font-size: @esf-medium-font-size;
+@esf-type-table-caption-padding: 1em 0;
+@esf-type-table-cell-padding: 0.5em 1em;
+@esf-type-table-cell-font-size: @esf-medium-font-size;
+@esf-type-table-head-background-color: #FFF;
+@esf-type-table-head-text-color: #444;
+@esf-type-table-hover-line-background-color: #FAFAFA;
+@esf-type-table-hover-line-text-color: #444;
+@esf-type-table-striped-background-color: #EFF0F2;
+@esf-type-table-striped-text-color: #444;
+
+// html, body
+// `font-size` is set in `html` element to support the `rem` unit for font-sizes
+html {
+    font-size: @esf-medium-font-size;
+}
+
+body {
+    background: @esf-type-body-background;
+    font-family:  @esf-type-body-font-family;
+    font-weight:  @esf-type-body-font-weight;
+    line-height: @esf-type-body-line-height;
+    color: @esf-type-body-text-color;
+    .esf-type-body-theme();
+}
+
+// links
+a {
+    .esf-make-link(
+        @esf-type-link-color,
+        @esf-type-link-hover-color,
+        @esf-type-link-text-decoration,
+        @esf-type-link-hover-text-decoration
+    );
+    &.@{ui-class-prefix}-link-static {
+        .esf-make-link(
+            @esf-type-body-text-color,
+            @esf-type-body-text-color
+        );
+    }
+}
+
+// dfn underline and cusor
+abbr[title],
+dfn[title] { cursor: help; }
+
+dfn[title] {
+    border-bottom: 1px dotted;
+    font-style: normal;
+}
+
+// code and keyboard key
+code, kbd {
+    color: @esf-type-code-text-color;
+    white-space: nowrap;
+    border: 1px solid @esf-type-code-border-color;
+    .esf-border-radius(
+        @esf-type-code-border-radius,
+        @esf-type-code-border-radius
+    );
+    background: @esf-type-code-background-color;
+    font-family: @esf-type-code-font-family;
+    padding: @esf-type-code-padding;
+}
+
+// resest background color and other style when wrapped in pre
+pre code {
+    color: inherit;
+    white-space: inherit;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: @esf-type-headings-font-family;
+    font-weight: @esf-type-headings-font-weight;
+    color: @esf-type-headings-color;
+    margin: @esf-type-headings-margin;
+
+    small {
+        font-weight: normal;
+        color: @esf-type-headings-small-color;
+    }
+}
+
+h1, h2, h3 {
+    small {
+        font-size: 65%;
+    }
+}
+
+h4, h5, h6 {
+    small {
+        font-size: 75%;
+    }
+}
+
+h1, .@{ui-class-prefix}-h1 {
+    font-size: @esf-type-h1-font-size;
+    line-height: @esf-type-h1-line-height;
+}
+
+h2, .@{ui-class-prefix}-h2 {
+    font-size: @esf-type-h2-font-size;
+    line-height: @esf-type-h2-line-height;
+}
+
+h3, .@{ui-class-prefix}-h3 {
+    font-size: @esf-type-h3-font-size;
+    line-height: @esf-type-h3-line-height;
+}
+
+h4, .@{ui-class-prefix}-h4 {
+    font-size: @esf-type-h4-font-size;
+    line-height: @esf-type-h4-line-height;
+}
+
+h5, .@{ui-class-prefix}-h5 {
+    font-size: @esf-type-h5-font-size;
+    line-height: @esf-type-h5-line-height;
+}
+
+h6, .@{ui-class-prefix}-h6 {
+    font-size: @esf-type-h6-font-size;
+    line-height: @esf-type-h6-line-height;
+}
+
+// quotes
+blockquote {
+    font-style: italic;
+    margin: @esf-type-quote-margin;
+    footer {
+        color: @esf-type-quote-foot-text-color;
+    }
+}
+
+// description list
+dt {
+  font-weight: bold;
+}
+dd {
+  margin-left: 0;
+}
+
+.@{ui-class-prefix}-divider, hr {
+    border: 0;
+    border-top: 1px solid @esf-type-hr-color;
+    height: 0;
+    overflow:hidden;
+    color: @esf-type-hr-color;
+}
+
+.@{ui-class-prefix}-list-unstyled,
+.@{ui-class-prefix}-list-inline {
+    padding-left: 0;
+    .reset-list-style();
+}
+
+// Inline turns list items into inline-block
+.@{ui-class-prefix}-list-inline {
+    margin-left: -0.5em;
+
+    > li {
+        display: inline-block;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+}
+
+// table
+.@{ui-class-prefix}-raw-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    caption {
+        text-align: center;
+        font-weight: bold;
+    }
+    td, th {
+        border-width: 0 0 0 1px;
+        margin: 0;
+        // to make ths where the title is really long work
+        overflow: visible; 
+    }
+    thead {
+        text-align: left;
+    }
+
+    .esf-table-variant(
+        @esf-type-table-caption-text-color,
+        @esf-type-table-border-color,
+        @esf-type-table-head-background-color,
+        @esf-type-table-head-text-color,
+        @esf-type-table-striped-background-color,
+        @esf-type-table-striped-text-color,
+        @esf-type-table-hover-line-background-color,
+        @esf-type-table-hover-line-text-color
+    );
+    .esf-table-size(
+        @esf-type-table-caption-padding,
+        @esf-type-table-caption-font-size,
+        @esf-type-table-cell-padding,
+        @esf-type-table-cell-font-size
+    );
+}
+
+.esf-table-variant(
+    @caption-text-color,
+    @border-color,
+    @head-background-color,
+    @head-text-color,
+    @striped-background-color,
+    @striped-text-color,
+    @hover-line-background-color,
+    @hover-line-text-color
+) {
+    border: 1px solid @border-color;
+    caption {
+        color: @caption-text-color;
+    }
+    td, th {
+        border-left: 1px solid @border-color;
+    }
+    thead {
+        background: @head-background-color;
+        color: @head-text-color;
+        .esf-table-thead-theme();
+    }
+    &.@{ui-class-prefix}-raw-table-striped {
+        tr:nth-child(2n-1) td {
+            background-color: @striped-background-color;
+            color: @striped-text-color;
+        }
+    }
+    &.@{ui-class-prefix}-raw-table-bordered {
+        td, th {
+            border-bottom: 1px solid @border-color;
+        }
+    }
+    &.@{ui-class-prefix}-raw-table-horizontal {
+        th, td {
+            border-width: 0 0 1px 0;
+            border-bottom: 1px solid @border-color;
+        }
+    }
+    &.@{ui-class-prefix}-raw-table-hoverable {
+        > tbody > tr:hover {
+            > td,
+            > th {
+                background-color: @hover-line-background-color !important;
+                color: @hover-line-text-color; 
+            }
+        }
+    }
+}
+
+.esf-table-size(
+    @esf-table-caption-padding,
+    @esf-table-caption-font-size,
+    @esf-table-cell-padding,
+    @esf-table-cell-font-size
+) {
+    caption {
+        padding: @esf-table-caption-padding;
+        font-size: @esf-table-caption-font-size;
+    }
+    td, th {
+        padding: @esf-table-cell-padding;
+        font-size: @esf-table-cell-font-size
+    }
+}
+
+.esf-make-link(@color, @hoverColor, @decoration: none, @hoverDecoration: none) {
+    color: @color;
+    text-decoration: @decoration;
+
+    &:hover {
+        color: @hoverColor;
+        text-decoration: @hoverDecoration;
+    }
+}
+
+.esf-type-body-theme() {};
+.esf-table-thead-theme() {};

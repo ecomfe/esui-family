@@ -1,0 +1,129 @@
+ /**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 区间日历样式
+ * @author dbear
+ */
+
+@import "Variable.less";
+
+
+@esui-range-calendar-height: 2.4em;
+@esui-range-calendar-padding: 1em;
+@esui-range-calendar-border-radius: 5px;
+
+@esui-range-calendar-start-date-label-padding: 1em 0;
+@esui-range-calendar-start-date-label-font-size: 1em;
+@esui-range-calendar-spacing: 1em;
+@esui-range-calendar-shortcut-item-spacing: .5em;
+@esui-range-calendar-footer-padding: 1em 0 0 0;
+
+.@{ui-class-prefix}-rangecalendar {
+    height: @esui-range-calendar-height;
+    line-height: @esui-range-calendar-height;
+    cursor: pointer;
+    .user-select(none);
+    display: inline-block;
+    .box-sizing(border-box);
+    vertical-align: middle;
+    padding: 0 @esui-range-calendar-padding;
+    position: relative;
+    .esf-border-radius(
+        @esui-range-calendar-border-radius,
+        @esui-range-calendar-border-radius
+    );
+
+    .esui-rangecalendar-theme();
+}
+
+.@{ui-class-prefix}-rangecalendar-text {
+    display: inline-block;
+    padding-right: 2em;
+}
+
+.@{ui-class-prefix}-rangecalendar-arrow {
+    position: absolute;
+    top: 0;
+    right: @esui-range-calendar-padding;
+    display: inline-block;
+}
+
+.@{ui-class-prefix}-rangecalendar-layer {
+    .esui-rangecalendar-layer-theme();
+}
+
+.@{ui-class-prefix}-rangecalendar-body {
+    .clearfix();
+}
+
+.@{ui-class-prefix}-rangecalendar-foot {
+    padding: @esui-range-calendar-footer-padding;
+}
+
+.@{ui-class-prefix}-rangecalendar-close-icon-container {
+    position: absolute;
+    right: 11px;
+    top: 0;
+    padding: 0;
+}
+
+.@{ui-class-prefix}-rangecalendar-label {
+    padding: @esui-range-calendar-start-date-label-padding;
+    overflow: hidden;
+
+    h3 {
+        float: left;
+        margin: 0;
+        font-weight: normal;
+        font-size: @esui-range-calendar-start-date-label-font-size;
+    }
+
+    .@{ui-class-prefix}-checkbox {
+        float: right;
+    }
+}
+
+.@{ui-class-prefix}-rangecalendar-begin,
+.@{ui-class-prefix}-rangecalendar-end {
+    float: left;
+}
+
+.@{ui-class-prefix}-rangecalendar-begin {
+    margin-right: @esui-range-calendar-spacing;
+}
+
+.@{ui-class-prefix}-rangecalendar-shortcut-item {
+    margin-left: @esui-range-calendar-shortcut-item-spacing;
+    padding-left: @esui-range-calendar-shortcut-item-spacing;
+    text-decoration: none;
+    cursor: pointer;
+
+    .esui-rangecalendar-shortcut-item-theme();
+}
+
+.@{ui-class-prefix}-rangecalendar-shortcut-item-first {
+    border-left: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.@{ui-class-prefix}-rangecalendar-shortcut-item-selected {
+    cursor: default;
+
+    .esui-rangecalendar-shortcut-item-selected-theme();
+}
+
+.@{ui-class-prefix}-rangecalendar-shortcut-disabled .@{ui-class-prefix}-rangecalendar-shortcut-item ,
+.@{ui-class-prefix}-rangecalendar-shortcut-item-disabled {
+    cursor: default;
+
+    .esui-rangecalendar-shortcut-item-disabled-theme();
+}
+
+// mixins
+.esui-rangecalendar-theme() {}
+.esui-rangecalendar-layer-theme() {}
+.esui-rangecalendar-shortcut-item-theme() {}
+.esui-rangecalendar-shortcut-item-selected-theme() {}
+.esui-rangecalendar-shortcut-item-disabled-theme() {}

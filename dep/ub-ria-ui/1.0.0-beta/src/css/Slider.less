@@ -1,0 +1,118 @@
+/* 滑动杆控件开始 */
+@esui-slider-padding: 0.5em 0;
+
+/* 滑动杆的头 */
+@esui-slider-head-line-height: 2.5em;
+@esui-slider-head-margin-bottom: 1em;
+@esui-slider-head-unit-margin-left: 0.25em;
+@esui-slider-head-color: #444;
+
+/* 横向滑动杆体 */
+@esui-slider-body-height: .8em;
+
+/* 纵向滑动杆体 */
+@esui-slider-vertical-body-heigth: 400px;
+@esui-slider-vertical-body-margin: 1em 0.5em;
+
+/* 滑块 */
+@esui-slider-body-cursor-width: 1.4em;
+@esui-slider-body-cursor-height: 1.4em;
+
+/* 滑块腿 */
+@esui-slider-foot-color: #444;
+
+.@{ui-class-prefix}-slider {
+    padding: @esui-slider-padding;
+    .box-sizing(border-box);
+    .user-select(none);
+}
+
+.@{ui-class-prefix}-slider-body {
+    position: relative;
+    height: @esui-slider-body-height;
+    margin: 0.5em 0;
+    .esui-slider-body-theme();
+}
+
+.@{ui-class-prefix}-slider-body-cursor {
+    position: absolute;
+    cursor: pointer;
+    top: -(@esui-slider-body-cursor-height - @esui-slider-body-height)/2;
+    width: @esui-slider-body-cursor-width;
+    height: @esui-slider-body-cursor-height;
+    z-index: 2;
+    .esui-slider-cursor-theme();
+}
+
+.@{ui-class-prefix}-slider-body-cursortwo {
+    z-index: 3;
+}
+
+.@{ui-class-prefix}-slider-body-selected {
+    position: absolute;
+    height: @esui-slider-body-height;
+    z-index: 1;
+    .esui-slider-body-selected-theme();
+}
+
+.@{ui-class-prefix}-slider-head {
+    color: @esui-slider-head-color;
+    height: @esui-slider-head-line-height;
+    margin-bottom: @esui-slider-head-margin-bottom;
+}
+
+.@{ui-class-prefix}-slider-head-label {
+    display: inline-block;
+    line-height: @esui-slider-head-line-height;
+}
+
+.@{ui-class-prefix}-slider-head-value,
+.@{ui-class-prefix}-slider-head-unit{
+    display: inline-block;
+}
+
+.@{ui-class-prefix}-slider-head-select {
+    z-index: 3;
+}
+
+.@{ui-class-prefix}-slider-head-span,
+.@{ui-class-prefix}-slider-head-unit {
+    line-height: @esui-slider-head-line-height;
+}
+
+.@{ui-class-prefix}-slider-head-unit {
+    margin-left: @esui-slider-head-unit-margin-left;
+}
+
+.@{ui-class-prefix}-slider-foot {
+    color: @esui-slider-foot-color;
+    position: relative;
+    padding-bottom: 0.5em;
+}
+
+.@{ui-class-prefix}-slider-foot li{
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+}
+
+.@{ui-class-prefix}-slider-vertical {
+    .@{ui-class-prefix}-slider-body {
+        width: @esui-slider-body-height;
+        height: @esui-slider-vertical-body-heigth;
+        margin: @esui-slider-vertical-body-margin;
+    }
+
+    .@{ui-class-prefix}-slider-body-cursor {
+        left: -(@esui-slider-body-cursor-height - @esui-slider-body-height)/2;
+    }
+
+    .@{ui-class-prefix}-slider-body-selected {
+        width: @esui-slider-body-height;
+    }
+}
+
+.esui-slider-body-theme() {}
+.esui-slider-cursor-theme() {}
+.esui-slider-body-selected-theme() {}
+/* 滑动杆控件结束 */

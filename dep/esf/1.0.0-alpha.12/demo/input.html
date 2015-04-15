@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>UI - ESUI Demo</title>
+        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/prism.css" />
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+        <script src="assets/prism.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </head>
+    <body class="ui-m3">
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#input-standard">普通输入框</a></li>
+                    <li><a href="#input-states">输入框状态</a></li>
+                    <li><a href="#input-with-icon">输入框和图标</a></li>
+                    <li><a href="#input-fluid">Block输入框</a></li>
+                    <li><a href="#input-sizes">输入框尺寸</a></li>
+                    <li><a href="#input-widths">输入框宽度尺寸</a></li>
+                    <li><a href="#input-textarea">Textarea</a></li>
+                    <li><a href="#input-buttons">输入框和按钮</a></li>
+                    <li><a href="#input-buttons-group">输入框和按钮组合</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main" class="content ui-p2 ui-pt0">
+                    <h2 class="no-mt">输入框</h2>
+                    <hr />
+                    <div>
+                        <h3 id="input-standard">普通输入框</h3>
+                        <div class="example">
+                            <div class="ui-textbox">
+                              <input type="text" placeholder="请输入你的手机号码" />
+                            </div>
+                        </div>
+                        <h3 id="input-states">输入框状态</h3>
+                        <div class="example">
+                            <h4>Focus</h4>
+                            <div class="ui-textbox state-focus">
+                                <input type="text" placeholder="I am a focused textbox" />
+                            </div>
+                            <h4>Error</h4>
+                            <div class="ui-textbox state-error">
+                                <input type="text" placeholder="I am error textbox" />
+                            </div>
+                            <h4>Successful</h4>
+                            <div class="ui-textbox state-success">
+                                <input type="text" placeholder="I am successive textbox" />
+                            </div>
+                            <h4>Warning</h4>
+                            <div class="ui-textbox state-warning">
+                                <input type="text" placeholder="I am warning textbox" />
+                            </div>
+                            <h4>Disabled</h4>
+                            <div class="ui-textbox">
+                                <input disabled="disabled" type="text" placeholder="I am disabled textbox" />
+                            </div>
+                            <h4>Read Only</h4>
+                            <div class="ui-textbox">
+                                <input readonly="readonly" type="text" placeholder="I am readonly textbox" />
+                            </div>
+                        </div>
+                        <h3 id="input-with-icon">输入框和图标</h3>
+                        <div class="example">
+                            <h4>Left</h4>
+                            <div class="ui-textbox ui-textbox-icon-left">
+                                <span class="ui-textbox-icon ui-icon-user"></span>
+                                <input type="text" placeholder="Search users...">
+                            </div>
+                            <h4>Right</h4>
+                            <div class="ui-textbox ui-textbox-icon-right">
+                                <span class="ui-textbox-icon ui-icon-search"></span>
+                                <input type="text" placeholder="Search users...">
+                            </div> 
+                            <h4>Link Icon</h4>
+                            <div class="ui-textbox ui-textbox-icon-left">
+                                <a href="#" class="ui-textbox-icon ui-icon-search ui-link-static"></a>
+                                <input type="text" placeholder="Search users...">
+                            </div>
+                        </div>
+                        <h3 id="input-fluid">Block输入框</h3>
+                        <div class="example">
+                            <div class="ui-textbox ui-textbox-fluid ui-textbox-icon-left">
+                                <span class="ui-textbox-icon ui-icon-search"></span>
+                                <input type="text" placeholder="Search users...">
+                            </div>
+                        </div>
+                        <h3 id="input-sizes">输入框尺寸</h3>
+                        <div class="example">
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-x-small ui-textbox-icon-left">
+                                    <span class="ui-textbox-icon ui-icon-search"></span>
+                                    <input type="text" placeholder="x-small">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-small ui-textbox-icon-left">
+                                    <i class="ui-textbox-icon ui-icon-search"></i>
+                                    <input type="text" placeholder="small">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-medium ui-textbox-icon-left">
+                                    <i class="ui-textbox-icon ui-icon-search"></i>
+                                    <input type="text" placeholder="medium">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-large ui-textbox-icon-left">
+                                    <i class="ui-textbox-icon ui-icon-search"></i>
+                                    <input type="text" placeholder="large">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-x-large ui-textbox-icon-left">
+                                    <i class="ui-textbox-icon ui-icon-search"></i>
+                                    <input type="text" placeholder="x-large">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-xx-large ui-textbox-icon-left">
+                                    <i class="ui-textbox-icon ui-icon-search"></i>
+                                    <input type="text" placeholder="xx-large">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-xxx-large ui-textbox-icon-left">
+                                    <i class="ui-textbox-icon ui-icon-search"></i>
+                                    <input type="text" placeholder="xxx-large">
+                                </div>
+                            </div>
+                        </div>
+                        <h3 id="input-widths">输入框宽度尺寸</h3>
+                        <div class="example">
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-size1">
+                                    <input type="text" placeholder="size1">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-size2">
+                                    <input type="text" placeholder="size2">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-size3">
+                                    <input type="text" placeholder="size3">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-size4">
+                                    <input type="text" placeholder="size4">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-size5">
+                                    <input type="text" placeholder="size5">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-size6">
+                                    <input type="text" placeholder="size6">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-size7">
+                                    <input type="text" placeholder="size7">
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-size8">
+                                    <input type="text" placeholder="size8">
+                                </div>
+                            </div>
+                        </div>
+                        <h3 id="input-textarea">Textarea</h3>
+                        <div class="example">
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox ui-textbox-fluid">
+                                    <textarea placeholder="Textarea" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 id="input-buttons">输入框和按钮</h3>
+                        <div class="example">
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox-wrapper">
+                                    <div class="ui-textbox-addon">
+                                        <button class="ui-button ui-button-icon ui-button-primary">
+                                            <span class="ui-icon-users"></span>
+                                        </button>
+                                    </div>
+                                    <div class="ui-textbox">
+                                        <input placeholder="massive" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox-wrapper">
+                                    <div class="ui-textbox">
+                                        <input placeholder="massive" />
+                                    </div>
+                                    <div class="ui-textbox-addon">
+                                        <button class="ui-button ui-button-success">
+                                            <span class="ui-icon-search"></span> Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 id="input-buttons-group">输入框和按钮组合</h3>
+                        <div class="example">
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox-wrapper">
+                                    <div class="ui-textbox">
+                                        <input placeholder="massive" />
+                                    </div>
+                                    <div class="ui-textbox-addon">
+                                        <div class="ui-button-group">
+                                            <button type="button" class="ui-button ui-button-icon">
+                                                <span class="ui-icon-caret-down"></span>
+                                            </button><!--
+                                         --><button type="button" class="ui-button">Right</button>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox-wrapper">
+                                    <div class="ui-textbox-addon">
+                                        <div class="ui-button-group">
+                                            <button type="button" class="ui-button">Left</button><!--
+                                         --><button type="button" class="ui-button ui-button-icon">
+                                                <span class="ui-icon-caret-down"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="ui-textbox">
+                                        <input placeholder="massive" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div class="ui-textbox-wrapper">
+                                    <div class="ui-textbox-addon">
+                                        <div class="ui-button-group">
+                                            <button type="button" class="ui-button">Left</button><!--
+                                         --><button type="button" class="ui-button">Middle</button><!--
+                                         --><button type="button" class="ui-button ui-button-icon">
+                                                <span class="ui-icon-caret-down"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="ui-textbox">
+                                        <input placeholder="massive" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div id="border-button" class="ui-textbox-wrapper">
+                                    <div class="ui-textbox-addon">
+                                        <button  onclick="alert('button')" type="button" class="ui-button ui-button-icon ui-icon-search ui-button-text-border ui-textbox-addon"></button>
+                                    </div>
+                                    <div class="ui-textbox ui-textbox-icon-right">
+                                        <input onblur="document.getElementById('border-button').className='ui-textbox-wrapper'" onfocus="document.getElementById('border-button').className='ui-textbox-wrapper state-focus'" placeholder="TextBorder" />
+                                        <span class="ui-textbox-icon ui-icon-close"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-demo-row">
+                                <div id="border-button2" class="ui-textbox-wrapper">
+                                    <div  class="ui-textbox ui-textbox-icon-right">
+                                        <input onblur="document.getElementById('border-button2').className='ui-textbox-wrapper'" onfocus="document.getElementById('border-button2').className='ui-textbox-wrapper state-focus'" placeholder="TextBorder" />
+                                        <span class="ui-textbox-icon ui-icon-close"></span>
+                                    </div>
+                                    <div class="ui-textbox-addon">
+                                        <button onclick="alert('button')" type="button" class="ui-button ui-button-icon ui-icon-search ui-button-text-border ui-textbox-addon"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

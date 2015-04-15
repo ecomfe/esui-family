@@ -1,0 +1,166 @@
+@import "base.less";
+
+@esf-img-round-border-radius: 5px;
+
+@esf-img-frame-border: 1px solid #ddd;
+@esf-img-frame-border-hover: 1px solid #6CCDC0;
+@esf-img-frame-padding: 0.3em;
+
+@esf-img-frame-figcaption-padding: 0.5em;
+@esf-img-frame-slide-in-figcaption-color: #FFFFFF;
+@esf-img-frame-font-size: 75%;
+
+@esf-img-frame-background: #FFFFFF;
+@esf-img-frame-caption-background: #000000;
+
+.@{ui-class-prefix}-img-responsive {
+    .esf-img-responsive();
+}
+
+.@{ui-class-prefix}-img-rounded {
+    .border-radius(@esf-img-round-border-radius);
+}
+
+.@{ui-class-prefix}-img-circle {
+    .esf-circular();
+}
+
+.@{ui-class-prefix}-img-frame {
+    padding: @esf-img-frame-padding;
+    border: @esf-img-frame-border;
+    display: inline-block;
+    .transition(all .2s ease-in-out);
+    background: @esf-img-frame-background;
+    vertical-align: middle;
+
+    &figure {
+        margin: 0;
+    }
+    img {
+        width: 100%;
+        height: auto;
+        vertical-align: bottom;
+    }
+    figcaption {
+        padding: @esf-img-frame-figcaption-padding;
+        font-size: @esf-img-frame-font-size;
+        .box-sizing(border-box);
+    }
+}
+
+.@{ui-class-prefix}-img-frame-hover:hover {
+    border: @esf-img-frame-border-hover;
+}
+
+.@{ui-class-prefix}-caption-slide-in {
+    position: relative;
+    overflow: hidden;
+    figcaption {
+        min-height: 3em;
+        .transition(all .4s ease);
+        .translateY(100%);
+        color: @esf-img-frame-slide-in-figcaption-color;
+        background: @esf-img-frame-caption-background;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        .translateY(100%);
+    }
+    &:hover {
+        figcaption {
+            .opacity(70);
+            .translateY(0);
+        }
+    }
+}
+
+.@{ui-class-prefix}-img-shadow {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border: none;
+}
+
+.@{ui-class-prefix}-img-stack {
+    display: inline-block;
+    position: relative;
+    .@{ui-class-prefix}-img-frame {
+        position: relative;
+        z-index: 7;
+    }
+    &:before,
+    &:after {
+        position: absolute; 
+        left: 0;
+        width: 100%; 
+        height: 100%;
+        content: ""; 
+        padding: @esf-img-frame-padding;
+        border: @esf-img-frame-border;
+        .box-sizing(border-box);
+        .transition(all .2s ease-in-out);
+        background: @esf-img-frame-background;
+    }
+
+    // 1st element in stack (behind image)
+    &:before {
+        top: 5px;
+        z-index: 6;
+    }
+
+    // 2nd element in stack (behind image)
+    &:after {
+        top: 10px;
+        z-index: 5;
+    }
+}
+
+// Second stack example (rotated to the right from the bottom left)
+.@{ui-class-prefix}-img-stack-rotated {
+    &:before { 
+        .transform-origin(bottom left);
+        .rotate(2deg);
+    }
+
+    &:after { 
+        .transform-origin(bottom left);
+        .rotate(4deg);
+    }
+}
+
+// 1. Force IE10 and below to size SVG images correctly;
+// 2. Set a maximum relative to the parent;
+// 3. Scale the height according to the width,
+//    otherwise you get stretching.
+.esf-img-responsive(@display: block) {
+    display: @display;
+    // 1
+    width: 100% \9;
+    // 2
+    max-width: 100%;
+    // 3
+    height: auto;
+}
+
+// Third stack example (One stack element rotated in the opposite direction)
+.esf-img-stack-twisted() {
+    &:before {
+        .rotate(4deg);
+    }
+
+    &:after {
+        .rotate(-4deg);
+    }
+}
+
+// Fourth stack example (Similar to the second but rotated left)
+.esf-img-stack-left-rotated() {
+    &:before {
+        .transform-origin(bottom left);
+        .rotate(-3deg);
+    }
+
+    &:after {
+        .transform-origin(bottom left);
+        .rotate(-6deg);
+    }
+}

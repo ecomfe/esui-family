@@ -1,0 +1,43 @@
+{
+    "name": "eoo",
+    "version": "0.1.1",
+    "description": "A powerful Javascript Class Factory (Object oriented)",
+    "main": "main.js",
+    "maintainers": {
+        "name": "Exodia",
+        "email": "d_xinxin@163.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/ecomfe/oo.git"
+    },
+    "scripts": {
+        "test": "cd test && karma start --singleRun"
+    },
+    "keywords": [
+        "class",
+        "Class",
+        "Constructor",
+        "prototype",
+        "inheritance",
+        "class",
+        "inheritance"
+    ],
+    "author": {
+        "name": "Exodia",
+        "email": "d_xinxin@163.com"
+    },
+    "license": "GPL",
+    "bugs": {
+        "url": "https://github.com/ecomfe/oo/issues"
+    },
+    "homepage": "https://github.com/ecomfe/oo",
+    "devDependencies": {
+        "karma": "^0.12.23",
+        "karma-chrome-launcher": "^0.1.4",
+        "karma-coverage": "^0.2.4",
+        "karma-ie-launcher": "^0.1.5",
+        "karma-jasmine": "^0.2.2",
+        "karma-phantomjs-launcher": "^0.1.4"
+    }
+}

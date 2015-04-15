@@ -1,0 +1,61 @@
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ * 
+ * @file 手风琴样式
+ * @author wangfj(wangfengjiao01@baidu.com)
+ */
+
+@esui-accordion-panel-bottom-margin: .2em;
+@esui-accordion-panel-padding: 1em;
+@esui-accordion-panel-header-padding: .5em .5em .5em 2em;
+@esui-accordion-panel-header-icon-right-padding: .5em 2em .5em .5em;
+@esui-accordion-panel-header-icon-spacing: 1em;
+@esui-accordion-panel-header-border-radius: 5px;
+
+.@{ui-class-prefix}-accordion {
+    display: block;
+}
+
+.@{ui-class-prefix}-accordion-panel {
+    margin-bottom: @esui-accordion-panel-bottom-margin;
+}
+
+.@{ui-class-prefix}-accordion-header {
+    cursor: pointer;
+    padding: @esui-accordion-panel-header-padding;
+    position: relative;
+    .esf-border-radius(
+        @esui-accordion-panel-header-border-radius,
+        @esui-accordion-panel-header-border-radius
+    );
+    .esui-accordion-header-theme();
+}
+
+.@{ui-class-prefix}-accordion-header-icon {
+    position: absolute;
+    left: @esui-accordion-panel-header-icon-spacing;
+    top: 50%;
+    margin-top: -.5em;
+}
+
+.@{ui-class-prefix}-accordion-icon-right {
+    .@{ui-class-prefix}-accordion-header {
+        padding: @esui-accordion-panel-header-icon-right-padding;
+    }
+    .@{ui-class-prefix}-accordion-header-icon {
+        left: auto;
+        right: @esui-accordion-panel-header-icon-spacing;
+    }
+}
+
+.@{ui-class-prefix}-accordion-content {
+    padding: @esui-accordion-panel-padding;
+    display: none;
+}
+
+.@{ui-class-prefix}-accordion-panel-active {
+    .@{ui-class-prefix}-accordion-content {
+        display: block;
+    }
+}

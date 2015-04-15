@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Progress - ESUI Demo</title>
+        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/prism.css" />
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+        <script src="assets/prism.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </head>
+    <body>
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#default">Default Wizard</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main" class="content ui-p2 ui-pt0">
+                    <h2>Wizard Progress Tracker</h2>
+                    <hr />
+                    <h3 id="default">Default progress bar</h3>
+                    <div class="example">
+                        <ol class="ui-wizard">
+                            <li class="ui-wizard-node ui-wizard-node-done">
+                                <span class="ui-wizard-node-number">1</span>
+                                <span class="ui-wizard-node-text">基本</span>
+                            </li>
+                            <li class="ui-wizard-node ui-wizard-node-active">
+                                <span class="ui-wizard-node-number">2</span>
+                                <span class="ui-wizard-node-text">受众</span>
+                            </li>
+                            <li class="ui-wizard-node">
+                                <span class="ui-wizard-node-number">3</span>
+                                <span class="ui-wizard-node-text">媒体</span>
+                            </li>
+                            <li class="ui-wizard-node ui-wizard-node-last">
+                                <span class="ui-wizard-node-number">4</span>
+                                <span class="ui-wizard-node-text">创意</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

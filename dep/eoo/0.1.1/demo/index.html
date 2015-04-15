@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-0/esl.min.js"></script>
+</head>
+<body>
+<style>
+    p {
+        text-align: center;
+    }
+</style>
+<script>
+require.config({
+    baseUrl: '../src'
+});
+
+require(['main'], function (Class) {
+    var Super = Class({
+        superProp1: 'superProp1',
+        superProp2: 'superProp2',
+        method: function () {
+            print(this.superProp1);
+        },
+        superMethod: function () {
+            print(this.superProp2);
+        }
+    });
+
+    var Sub = Class(Super, {
+        // constructor 会在实例化时调用
+        constructor: function (prop) {
+            // $super 会自动调用父类的同名方法
+            this.$super(arguments);
+            this.subProp = prop;
+            print('Sub init')
+        },
+        method: function () {
+            this.$super(arguments);
+            print(this.subProp);
+        }
+    });
+
+    var Sub1 = Class(Sub, {
+        constructor: function (prop1, prop2) {
+            this.$super(arguments);
+            this.sub1Prop = prop2;
+            print('Sub1 init')
+        },
+        method: function () {
+            this.$super(arguments);
+            print(this.sub1Prop)
+        }
+    });
+
+    function print(content) {
+        var p = document.createElement('p');
+        p.innerHTML = content;
+        document.body.appendChild(p);
+    }
+
+    function printLine(content) {
+        content = '<span style="color:red">' + content + '</span>';
+        print(Array(20).join('=') + content + Array(20).join('='));
+    }
+
+    var superIns = new Super();
+    var sub = new Sub('Sub'); // print: Sub init
+    var sub1 = new Sub1('Sub', 'Sub1'); // print: Sub init, Sub1 init
+    superIns.method(); // print: superProp1
+    sub.method(); // print: superProp1, Sub
+    sub1.method(); // print: superProp1, Sub, Sub1
+    sub.superMethod(); // print: superProp2
+    sub1.superMethod(); // print: superProp2
+
+    ///output:
+
+    // Sub init
+    // Sub init
+    // Sub1 init
+
+    // superProp1
+    // superProp1
+    // Sub
+    // superProp1
+    // Sub
+    // Sub1
+    // superProp2
+    // superProp2
+
+    var staticObj = Class.static({ print: print, printLine: printLine, prop: 'staticProp' });
+
+    staticObj.printLine('staticObj.print');
+    staticObj.print(staticObj.prop);
+
+    function OtherClass() {
+        printLine('OtherClass constructor called!');
+    }
+
+    OtherClass.prototype.say = function (content) {
+        print('OtherClass.prototype.say called!');
+        print('say: ' + content);
+    };
+
+    var OtherSub = Class(OtherClass, {
+        constructor: function () {
+            this.$super(arguments);
+            print('OtherSub constructor called!');
+        },
+        say: function () {
+            print('OtherSub.prototype.say called!');
+            this.$super(arguments);
+        }
+    });
+
+    var os = new OtherSub();
+    os.say('otherSub');
+
+    /// output
+
+    // ===================OtherClass constructor called!===================
+    // OtherSub constructor called!
+    // OtherSub.prototype.say called!
+    // OtherClass.prototype.say called!
+    // say: otherSub
+
+    /**
+     * 设置继承关系
+     *
+     * @param {Function} type 子类
+     * @param {Function} superType 父类
+     * @return {Function} 子类
+     */
+    var normalInherits = function (type, superType) {
+        var dontEnumBug = !(({ toString: 1 }).propertyIsEnumerable('toString'));
+        var Empty = function () {};
+        Empty.prototype = superType.prototype;
+        var proto = new Empty();
+
+        var originalPrototype = type.prototype;
+        type.prototype = proto;
+
+        for (var key in originalPrototype) {
+            proto[key] = originalPrototype[key];
+        }
+        if (dontEnumBug) {
+            // 其实还有好多其它的，但应该不会撞上吧(╯‵□′)╯︵┻━┻
+            if (originalPrototype.hasOwnProperty('toString')) {
+                proto.toString = originalPrototype.toString;
+            }
+            if (originalPrototype.hasOwnProperty('valueOf')) {
+                proto.valueOf = originalPrototype.valueOf;
+            }
+        }
+        type.prototype.constructor = type;
+
+        return type;
+    };
+
+    function NoEooClass() {
+        print('NoEooClass constructor called');
+        OtherSub.apply(this, arguments);
+    }
+
+    NoEooClass.prototype.say = function (content) {
+        print('NoEooClass.prototype.say called!');
+        OtherSub.prototype.say.apply(this, arguments);
+    };
+
+    normalInherits(NoEooClass, OtherSub);
+
+    printLine('非 eoo 类继承 eoo 类测试');
+    /// output:
+
+    // NoEooClass constructor called
+    // == OtherClass constructor called! ==
+    // OtherSub constructor called!
+
+    // NoEooClass.prototype.say called!
+    // OtherSub.prototype.say called!
+    // OtherClass.prototype.say called!
+    // say: noEooClass
+
+    var ne = new NoEooClass();
+    ne.say('noEooClass');
+
+
+    printLine('非 eoo 类继承 eoo 类测试2');
+    /// output:
+
+    // MoreNoEooClass constructor called
+    // Sub init
+    // Sub1 init
+
+    // MoreNoEooClass.prototype.test
+    // superProp1
+    // prop1
+    // prop2
+
+    function MoreNoEooClass() {
+        print('MoreNoEooClass constructor called');
+        Sub1.apply(this, arguments);
+    }
+
+    normalInherits(MoreNoEooClass, Sub1);
+
+    MoreNoEooClass.prototype.test = function () {
+        print('MoreNoEooClass.prototype.test');
+        this.method();
+    };
+    var more = new MoreNoEooClass('prop1', 'prop2');
+    more.test();
+
+    printLine('非 eoo 类继承 eoo 类测试3');
+    /// output:
+
+    // EooClass2 constructor called
+    // MoreNoEooClass constructor called
+    // Sub init
+    // Sub1 init
+
+    // EooClass2.prototype.test
+    // MoreNoEooClass.prototype.test
+    // superProp1
+    // prop1
+    // prop2
+
+    function EooClass2() {
+        print('EooClass2 constructor called');
+        MoreNoEooClass.apply(this, arguments);
+    }
+
+
+    EooClass2.prototype.test = function () {
+        print('EooClass2.prototype.test');
+        MoreNoEooClass.prototype.test.apply(this, arguments);
+    };
+
+    normalInherits(EooClass2, MoreNoEooClass);
+
+    var e2 = new EooClass2('prop1', 'prop2');
+    e2.test();
+
+    Class.defineAccessor(Sub.prototype, 'testProp');
+    window.accessorSub = new Sub();
+    console.log(accessorSub.setTestProp);
+    console.log(accessorSub.getTestProp);
+
+    accessorSub.setTestProp('test');
+    printLine(accessorSub.getTestProp());
+    accessorSub.setTestProp('test1');
+    printLine(accessorSub.getTestProp());
+
+});
+</script>
+</body>
+</html>

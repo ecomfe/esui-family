@@ -1,0 +1,69 @@
+@esui-lightbox-loading-message-padding: .5em;
+@esui-lightbox-load-failure-size: 15em;
+@esui-lightbox-load-failure-padding: 7em;
+@esui-lightbox-nav-position: 1.5em;
+
+.@{ui-class-prefix}-dialog-lightbox {
+    .@{ui-class-prefix}-dialog-title,
+    .@{ui-class-prefix}-dialog-foot-panel {
+        display: none;
+    }
+    .@{ui-class-prefix}-dialog-close-icon {
+        .esui-lightbox-close-theme();
+    }
+}
+
+.@{ui-class-prefix}-dialog-lightbox-content-media {
+    img {
+        vertical-align: top
+    }
+}
+
+.@{ui-class-prefix}-lightbox-loading:before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    padding: @esui-lightbox-loading-message-padding;
+    .esui-lightbox-loading-message-theme();
+}
+
+.@{ui-class-prefix}-lightbox-media-loaded-failture {
+    .size(@esui-lightbox-load-failure-size);
+    padding: @esui-lightbox-load-failure-padding;
+    text-align: center;
+}
+
+.@{ui-class-prefix}-dialog-lightbox-content-link-left,
+.@{ui-class-prefix}-dialog-lightbox-content-link-right {
+    position: absolute;
+    font-size: 2em;
+    top: 50%;
+    text-decoration: none !important;
+    z-index: 1;
+    margin-top: -1em;
+    display: none;
+
+    .esui-lightbox-nav-theme();
+}
+
+.@{ui-class-prefix}-dialog-lightbox-content-link-left {
+    .eicons-icon(chevron-left);
+    left: @esui-lightbox-nav-position;
+}
+
+.@{ui-class-prefix}-dialog-lightbox-content-link-right {
+    .eicons-icon(chevron-right);
+    right: @esui-lightbox-nav-position;
+}
+
+.@{ui-class-prefix}-dialog-lightbox:hover {
+    .@{ui-class-prefix}-dialog-lightbox-content-link-left,
+    .@{ui-class-prefix}-dialog-lightbox-content-link-right {
+        display: block;
+    }
+}
+
+.esui-lightbox-close-theme() {}
+.esui-lightbox-loading-message-theme() {}
+.esui-lightbox-nav-theme() {}

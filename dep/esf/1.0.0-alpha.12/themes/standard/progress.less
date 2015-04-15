@@ -1,0 +1,71 @@
+// button core
+@import "../../src/progress.less";
+
+// theme variable
+@import "variable.less";
+
+// theme
+@esf-progress-background: @esf-palette-neutral-color;
+@esf-progress-bar-background: @esf-palette-primary-color;
+@esf-progress-bar-font-color: @esf-palette-white;
+@esf-progress-bar-font-size: 1em;
+@esf-progress-bar-success-background: @esf-palette-success-color;
+@esf-progress-bar-info-background: @esf-palette-info-color;
+@esf-progress-bar-warning-background: @esf-palette-warning-color;
+@esf-progress-bar-danger-background: @esf-palette-danger-color;
+
+.esf-progress-theme() {
+    .box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+    background: @esf-progress-background;
+}
+
+.esf-progress-bar-theme() {
+    color: @esf-progress-bar-font-color;
+    background: @esf-progress-bar-background;
+    .box-shadow(inset 0 -1px 0 rgba(0,0,0,.15));
+    &.@{ui-class-prefix}-progress-bar-success {
+        background: @esf-progress-bar-success-background;
+    }
+    &.@{ui-class-prefix}-progress-bar-info {
+        background: @esf-progress-bar-info-background;
+    }
+    &.@{ui-class-prefix}-progress-bar-warning {
+        background: @esf-progress-bar-warning-background;
+    }
+    &.@{ui-class-prefix}-progress-bar-danger {
+        background: @esf-progress-bar-danger-background;
+    }
+    &.@{ui-class-prefix}-progress-bar-striped {
+        .linear-gradient(
+            -45deg,
+            rgba(255, 255, 255, .15) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, .15) 50%,
+            rgba(255, 255, 255, .15) 75%,
+            transparent 75%,
+            transparent
+        );
+        background-size: 40px 40px;
+    }
+    &.@{ui-class-prefix}-progress-bar-animated {
+        .animation(esf-progress-bar-stripes 2s linear infinite);
+    }
+}
+
+@-webkit-keyframes esf-progress-bar-stripes {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 0;
+    }
+}
+@keyframes esf-progress-bar-stripes {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 0;
+    }
+}

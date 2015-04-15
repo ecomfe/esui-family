@@ -1,0 +1,75 @@
+// button core
+@import "../../src/label.less";
+
+// theme variable
+@import "variable.less";
+
+// theme variables
+@esf-label-color: @esf-palette-color;
+@esf-label-background: @esf-palette-neutral-color;
+
+@esf-label-primary-color: @esf-palette-contrast-color;
+@esf-label-primary-background: @esf-palette-primary-color;
+
+@esf-label-success-color: @esf-palette-contrast-color;
+@esf-label-success-background: @esf-palette-success-color;
+
+@esf-label-warning-color: @esf-palette-contrast-color;
+@esf-label-warning-background: @esf-palette-warning-color;
+
+@esf-label-danger-color: @esf-palette-contrast-color;
+@esf-label-danger-background: @esf-palette-danger-color;
+
+@esf-label-info-color: @esf-palette-contrast-color;
+@esf-label-info-background: @esf-palette-info-color;
+
+.esf-label-theme() {
+    background: @esf-label-background;
+    color: @esf-label-color;
+}
+
+.esf-label-primary-theme() {
+    background: @esf-label-primary-background;
+    color: @esf-label-primary-color;
+    .esf-label-pointer-variant-color(@esf-label-primary-background);
+}
+
+.esf-label-success-theme() {
+    background: @esf-label-success-background;
+    color: @esf-label-success-color;
+    .esf-label-pointer-variant-color(@esf-label-success-background);
+}
+
+.esf-label-warning-theme() {
+    background: @esf-label-warning-background;
+    color: @esf-label-warning-color;
+    .esf-label-pointer-variant-color(@esf-label-warning-background);
+}
+
+.esf-label-danger-theme() {
+    background: @esf-label-danger-background;
+    color: @esf-label-danger-color;
+    .esf-label-pointer-variant-color(@esf-label-danger-background);
+}
+
+.esf-label-info-theme() {
+    background: @esf-label-info-background;
+    color: @esf-label-info-color;
+    .esf-label-pointer-variant-color(@esf-label-info-background);
+}
+
+// theme used mixin
+.esf-label-pointer-variant-color(@bg-color) {
+    &.@{ui-class-prefix}-label-pointer:before {
+        border-bottom-color: @bg-color;
+    }
+    &.@{ui-class-prefix}-label-pointer-bottom:before {
+        border-top-color: @bg-color;
+    }
+    &.@{ui-class-prefix}-label-pointer-left:before {
+        border-right-color: @bg-color;
+    }
+    &.@{ui-class-prefix}-label-pointer-right:before {
+        border-left-color: @bg-color;
+    }
+}

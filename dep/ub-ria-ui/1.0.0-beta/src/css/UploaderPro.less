@@ -1,0 +1,88 @@
+@esui-uploadpro-dialog-text-done: #ff0000;
+@esui-uploadpro-dialog-text-avaliable: #00ff00;
+
+
+.@{ui-class-prefix}-uploaderpro {
+    position: relative;
+    margin: 0; // 重置IE6-7
+    overflow: hidden;
+    vertical-align: middle;
+    .inline-block();
+}
+
+.skin-uploader-dialog {
+
+    .@{ui-class-prefix}-dialog-head {
+        height: 2em;
+
+        .@{ui-class-prefix}-dialog-title {
+            line-height: 2em;
+        }
+
+        .@{ui-class-prefix}-dialog-close-icon {
+            top: 0.5em;
+        }
+    }
+
+    .@{ui-class-prefix}-dialog-info {
+        line-height: 1.5em;
+        padding: 0.5em;
+        margin: 0.25em 0;
+
+        span {
+            margin: auto 0.25em;
+        }
+
+        .@{ui-class-prefix}-dialog-info-done {
+            color: @esui-uploadpro-dialog-text-done;
+        }
+
+        .@{ui-class-prefix}-dialog-info-avaliable {
+            color: @esui-uploadpro-dialog-text-avaliable;
+        }
+    }
+
+    .@{ui-class-prefix}-table {
+        height: 200px;
+        overflow-x: hidden;
+
+        td, th {
+            padding: 0 1em;
+        }
+
+        .@{ui-class-prefix}-table-cell, .@{ui-class-prefix}-table-hcell {
+            .box-sizing(border-box);
+        }
+
+        .@{ui-class-prefix}-icon-unlink, .@{ui-class-prefix}-icon-close {
+            cursor: pointer;
+        }
+    }
+
+    .@{ui-class-prefix}-dialog-foot-panel {
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+
+        .@{ui-class-prefix}-dialog-foot {
+            float: right;
+            height: 1.25em;
+            margin-top: 0.5em;
+
+            .@{ui-class-prefix}-progress {
+                width: 250px;
+                float: left;
+                margin-right: 2em;
+                .inline-block();
+            }
+        }
+    }
+
+    .@{ui-class-prefix}-uploader {
+        vertical-align: middle;
+        margin-right: 0.5em;
+    }
+
+    .@{ui-class-prefix}-dialog-progress, .@{ui-class-prefix}-dialog-size {
+        margin-right: 0.5em;
+    }
+}

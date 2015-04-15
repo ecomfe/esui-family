@@ -1,0 +1,85 @@
+/**
+  * UB-RIA-UI 1.0
+  * Copyright 2014 Baidu Inc. All rights reserved.
+  *
+  * @ignore
+  * @file 富选择器
+  * @author lixiang
+  */
+
+@esui-richselector-width: 20em;
+
+/** 标题栏 */
+@esui-richselector-head-height: 2em;
+@esui-richselector-head-padding: 0 .75em;
+
+/** 主体 */
+@esui-richselector-body-height: 25em;
+@esui-richselector-empty-text-padding: .75em;
+
+/** 搜索框 */
+@esui-richselector-searchbox-wrapper-padding: .75em;
+
+/** 底部状态栏 */
+@esui-richselector-foot-line-height: 2em;
+@esui-richselector-foot-padding: 0 .75em;
+
+.@{ui-class-prefix}-richselector {
+    .box-sizing(border-box);
+    display: inline-block;
+    width: @esui-richselector-width;
+
+    .esui-richselector-theme();
+}
+
+.@{ui-class-prefix}-richselector-head {
+    line-height: @esui-richselector-head-height;
+    padding: @esui-richselector-head-padding;
+
+    .esui-richselector-head-theme();
+}
+
+.@{ui-class-prefix}-richselector-body {
+    overflow-x: hidden;
+
+    .esui-richselector-body-theme();
+}
+
+.@{ui-class-prefix}-richselector-search-wrapper {
+    padding: @esui-richselector-searchbox-wrapper-padding;
+}
+
+.@{ui-class-prefix}-richselector-content-wrapper {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: @esui-richselector-body-height;
+}
+
+.@{ui-class-prefix}-richselector-has-search .@{ui-class-prefix}-richselector-content-wrapper {
+    height: @esui-richselector-body-height - @esf-textbox-height - 2*@esui-richselector-searchbox-wrapper-padding;
+}
+
+// 无结果状态
+.@{ui-class-prefix}-richselector-empty {
+    .@{ui-class-prefix}-richselector-empty-text {
+        display: block;
+    }
+}
+
+.@{ui-class-prefix}-richselector-empty-text {
+    padding: @esui-richselector-empty-text-padding;
+    display: none;
+    text-align: center;
+}
+
+.@{ui-class-prefix}-richselector-foot {
+    line-height: @esui-richselector-foot-line-height;
+    padding: @esui-richselector-foot-padding;
+
+    .esui-richselector-foot-theme();
+}
+
+.esui-richselector-theme() {}
+.esui-richselector-head-theme() {}
+.esui-richselector-body-theme() {}
+.esui-richselector-foot-theme() {}

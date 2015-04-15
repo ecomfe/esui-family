@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Panel - ESUI Demo</title>
+        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/prism.css" />
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+        <script src="assets/prism.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+        <style>
+            .ui-panel-custom {
+                width: 40%;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#basic">Basic Panel</a></li>
+                    <li><a href="#header">Panel Header</a></li>
+                    <li><a href="#footer">Panel Footer</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main" class="content">
+                    <h2>Panel</h2>
+                    <hr />
+
+                    <h3 id="basic">Basic panel</h3>
+                    <div class="example">
+                        <div class="ui-panel-custom">
+                            <div class="ui-panel-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 id="header">Panel with header</h3>
+                    <div class="example">
+                        <div class="ui-panel-custom">
+                            <div class="ui-panel-header">
+                                <div class="ui-panel-left">
+                                    Panel heading without title
+                                </div>
+                                <div class="ui-panel-right">
+                                    <span class="ui-icon-search ui-hover-fade-in"></span>
+                                    <span class="ui-icon-close ui-hover-fade-in"></span>
+                                </div>
+                            </div>
+                            <div class="ui-panel-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                        <div class="ui-panel-custom">
+                            <div class="ui-panel-header">
+                                <div class="ui-panel-left">
+                                    Panel heading without title
+                                </div>
+                                <div class="ui-panel-right">
+                                    <span class="ui-text-danger">HOT</span>
+                                </div>
+                            </div>
+                            <div class="ui-panel-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 id="footer">Panel with footer</h3>
+                    <div class="example">
+                        <div class="ui-panel-custom">
+                            <div class="ui-panel-body">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                            </div>
+                            <div class="ui-panel-footer">
+                                <div class="ui-panel-right">Panel footer</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

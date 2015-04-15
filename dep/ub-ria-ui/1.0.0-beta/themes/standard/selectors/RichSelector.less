@@ -1,0 +1,43 @@
+@import "../../../src/css/selectors/RichSelector.less";
+
+@esui-richselector-border: 1px solid @esf-palette-border;
+@esui-richselector-head-background: @esf-palette-neutral-color;
+@esui-richselector-head-bottom-border: 1px solid @esf-palette-border;
+@esui-richselector-head-title-font-weight: bold;
+@esui-richselector-head-title-color: @esf-palette-color;
+
+@esui-richselector-head-count-color: @esf-palette-muted-color;
+@esui-richselector-body-background: lighten(@esf-palette-neutral-color, 5%);
+
+@esui-richselector-foot-background: @esf-palette-neutral-color;
+@esui-richselector-foot-color: @esf-palette-color;
+
+.esui-richselector-theme() {
+    border: @esui-richselector-border;
+}
+
+.esui-richselector-head-theme() {
+    border-bottom: @esui-richselector-head-bottom-border;
+    background: @esui-richselector-head-background;
+    .@{ui-class-prefix}-richselector-head-title {
+        font-weight: @esui-richselector-head-title-font-weight;
+        color: @esui-richselector-head-title-color;
+    }
+    .@{ui-class-prefix}-richselector-head-count {
+        font-weight: bold;
+        color: @esui-richselector-head-count-color;
+    }
+    .@{ui-class-prefix}-richselector-batch-action-link {
+        float: right;
+        cursor: pointer;
+    }
+}
+
+.esui-richselector-body-theme() {
+    background: @esui-richselector-body-background;
+}
+
+.esui-richselector-foot-theme() {
+    background: @esui-richselector-foot-background;
+    color: @esui-richselector-foot-color;
+}

@@ -1,0 +1,121 @@
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 下拉选择样式
+ * @author dbear
+ */
+
+@import "Variable.less";
+
+
+// Select
+@esui-select-radius: 5px;
+@esui-select-height: 2.4em;
+@esui-select-line-height: 2.4em;
+@esui-select-horizontal-padding: 1em;
+@esui-select-text-right-padding: 2em;
+
+// Select-toolbar-style
+@esui-select-color-toolbar-style: #666;
+@esui-select-background-toolbar-style: #f1f1f1;
+@esui-select-background-toolbar-style-hover: #e0e0e0;
+@esui-select-background-toolbar-style-active: @esui-select-background-toolbar-style-hover;
+
+// Layer
+@esui-select-layer-background: #f1f1f1;
+@esui-select-layer-border: none;
+@esui-select-item-color: #666;
+@esui-select-item-hover-color: #666;
+@esui-select-item-background-hover: #e1e1e1;
+@esui-select-item-disabled-color: #d1d1d1;
+@esui-select-item-selected-color: #6CCDC0;
+@esui-select-item-background-selected: #e1e1e1;
+
+.@{ui-class-prefix}-select {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    outline: 0;
+    .user-select(none);
+}
+
+.@{ui-class-prefix}-select-inner {
+    padding: 0 @esui-select-horizontal-padding;
+    border-radius: @esui-select-radius;
+    height: @esui-select-height;
+    line-height: @esui-select-line-height;
+    .box-sizing(border-box);
+    .esf-transition(background-color 0.3s ease);
+    .esui-select-theme();
+}
+
+.@{ui-class-prefix}-select.@{ui-state-prefix}-active {
+    .@{ui-class-prefix}-select-arrow {
+        .transform(rotate(180deg));
+        .transition(transform 0.3s ease);
+    }
+}
+
+.@{ui-class-prefix}-select-text {
+    padding-right: @esui-select-text-right-padding;
+    display: block;
+    .ellipsis();
+}
+
+.@{ui-class-prefix}-select-arrow {
+    position: absolute;
+    right: @esui-select-horizontal-padding;
+    top: 0;
+    line-height: @esui-select-line-height !important;
+    width: 1em;
+    text-align: center;
+    .eicons-icon(caret-down);
+}
+
+.@{ui-class-prefix}-select-layer {
+    max-height: 13em;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.@{ui-class-prefix}-select-item-disabled {
+    .esf-disabled();
+    &:hover {
+        background: none;
+    }
+}
+
+.@{ui-class-prefix}-select-item-selected > :first-child {
+    background: @esui-select-item-background-selected;
+    color: @esui-select-item-selected-color !important;
+
+    &:hover {
+        background: @esui-select-item-background-selected;
+    }
+}
+
+// variants
+.@{ui-class-prefix}-select-primary {
+    .@{ui-class-prefix}-select-inner {
+        .esui-select-primary-theme();
+    }
+}
+
+// compact
+.@{ui-class-prefix}-select-compact {
+    .@{ui-class-prefix}-select-inner {
+        .esui-select-compact-theme();
+    }
+}
+
+.@{ui-class-prefix}-select-layer-compact {
+    .esui-select-layer-compact-theme();
+}
+
+// hooks
+.esui-select-theme() {}
+.esui-select-primary-theme() {}
+.esui-select-compact-theme() {}
+.esui-select-layer-compact-theme() {}

@@ -1,0 +1,72 @@
+@import "Variable.less";
+
+@esui-boxgroup-horizontal-space: 0 1em 0 0;
+@esui-boxgroup-vertical-space: .5em 0;
+
+.@{ui-class-prefix}-boxgroup-horizontal .@{ui-class-prefix}-boxgroup-wrapper {
+    display: inline-block;
+    margin: @esui-boxgroup-horizontal-space;
+}
+
+.@{ui-class-prefix}-boxgroup-vertical .@{ui-class-prefix}-boxgroup-wrapper {
+    display: block;
+    margin: @esui-boxgroup-vertical-space;
+}
+
+// button style variant
+.@{ui-class-prefix}-boxgroup-button-style {
+    .@{ui-class-prefix}-boxgroup-wrapper {
+        .esui-boxgroup-button-style-border();
+        margin: 0;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+        display: none;
+    }
+    .esui-boxgroup-button-style-theme();
+}
+
+.@{ui-class-prefix}-boxgroup-button-style-primary {
+    .esui-boxgroup-button-style-primary-theme();
+}
+
+.@{ui-class-prefix}-boxgroup-button-style-success {
+    .esui-boxgroup-button-style-success-theme();
+}
+
+.@{ui-class-prefix}-boxgroup-button-style-info {
+    .esui-boxgroup-button-style-info-theme();
+}
+
+.@{ui-class-prefix}-boxgroup-button-style-warning {
+    .esui-boxgroup-button-style-warning-theme();
+}
+
+.@{ui-class-prefix}-boxgroup-button-style-danger {
+    .esui-boxgroup-button-style-danger-theme();
+}
+
+.esui-boxgroup-button-style-border() when (@esf-button-radius > 0) {
+    &:not(:first-child):not(:last-child) label {
+        .border-radius(0);
+    }
+    &:first-child:not(:last-child) label {
+        .border-right-radius(0);
+    }
+    &:last-child:not(:first-child) label {
+        .border-left-radius(0);
+    }
+}
+
+.esui-boxgroup-button-style-border() {}
+
+esui-box-group {
+    display: block;
+}
+
+.esui-boxgroup-button-style-theme() {}
+.esui-boxgroup-button-style-primary-theme () {}
+.esui-boxgroup-button-style-success-theme() {}
+.esui-boxgroup-button-style-info-theme() {}
+.esui-boxgroup-button-style-warning-theme() {}
+.esui-boxgroup-button-style-danger-theme() {}

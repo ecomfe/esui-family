@@ -1,0 +1,132 @@
+/**
+ * UB-RIA UI Library
+ * Copyright 2015 Baidu Inc. All rights reserved.
+ *
+ * @file Alert样式
+ * @author zhangyujie(zhangyujie@baidu.com)
+ */
+
+@esui-alert-margin: 0 0 .5em 0;
+@esui-alert-left-padding: 1em;
+@esui-alert-right-padding: 1em;
+@esui-alert-vertical-padding: 1em;
+@esui-alert-icon-font-size: 2em;
+
+@esui-alert-icon-right-margin: .5em;
+@esui-alert-close-icon-right: 1em;
+@esui-alert-close-icon-top: @esui-alert-vertical-padding;
+@esui-alert-pager-width: 6em;
+@esui-alert-pager-right: 3em;
+@esui-alert-pager-top: @esui-alert-vertical-padding;
+@esui-alert-pager-number-margin: 0 .5em;
+
+@esui-alert-border-radius: 5px;
+
+.@{ui-class-prefix}-alert {
+    display: block;
+    padding: @esui-alert-vertical-padding @esui-alert-right-padding @esui-alert-vertical-padding @esui-alert-left-padding;
+    position: relative;
+    margin: @esui-alert-margin;
+    .esf-border-radius(
+        @esui-alert-border-radius,
+        @esui-alert-border-radius
+    );
+}
+
+.@{ui-class-prefix}-alert-has-icon {
+    padding-left: @esui-alert-left-padding + @esui-alert-icon-font-size + @esui-alert-icon-right-margin;
+}
+
+.@{ui-class-prefix}-alert-has-pager {
+    padding-right: @esui-alert-right-padding + @esui-alert-pager-width;
+}
+
+.@{ui-class-prefix}-alert-icon {
+    > .@{ui-class-prefix}-alert-icon-content {
+        font-size: @esui-alert-icon-font-size;
+    }
+    left: @esui-alert-left-padding;
+    top: 50%;
+    margin-top: -@esui-alert-icon-font-size/2;
+    position: absolute;
+}
+
+.@{ui-class-prefix}-alert-item {
+    display: none;
+}
+
+.@{ui-class-prefix}-alert-item-active {
+    display: inline;
+}
+
+//成功消息
+.@{ui-class-prefix}-alert-success {
+    .esui-alert-success-theme();
+}
+
+.esui-alert-success-theme() {}
+
+//通知类消息
+.@{ui-class-prefix}-alert-info {
+    .esui-alert-info-theme();
+}
+
+.esui-alert-info-theme() {}
+
+//警告类消息
+.@{ui-class-prefix}-alert-warning {
+    .esui-alert-warning-theme();
+}
+
+.esui-alert-warning-theme() {}
+
+.@{ui-class-prefix}-alert-error {
+    .esui-alert-error-theme();
+}
+
+.esui-alert-error-theme() {}
+
+.@{ui-class-prefix}-alert-pager {
+    .user-select(none);
+    position: absolute;
+    right: @esui-alert-pager-right;
+    top: @esui-alert-pager-top;
+    div {
+        display: inline-block;
+    }
+    .@{ui-class-prefix}-icon {
+        cursor: pointer;
+    }
+}
+
+.@{ui-class-prefix}-alert-index {
+    margin: @esui-alert-pager-number-margin;
+}
+
+.@{ui-class-prefix}-alert-prev {
+    .@{ui-class-prefix}-alert-icon-content {
+        .eicons-icon(caret-left);
+    }
+}
+
+.@{ui-class-prefix}-alert-next {
+    .@{ui-class-prefix}-alert-icon-content {
+        .eicons-icon(caret-right);
+    }
+}
+
+.@{ui-class-prefix}-alert-prev-disabled,
+.@{ui-class-prefix}-alert-next-disabled {
+    .esf-disabled();
+}
+
+.@{ui-class-prefix}-alert-close {
+    .user-select(none);
+    cursor: pointer;
+    position: absolute;
+    right: @esui-alert-close-icon-right;
+    top: @esui-alert-close-icon-top;
+    .@{ui-class-prefix}-alert-icon-content {
+        .eicons-icon(close);
+    }
+}

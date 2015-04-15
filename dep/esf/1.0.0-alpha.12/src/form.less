@@ -1,0 +1,106 @@
+@import "base.less";
+
+@esf-form-row-bottom-margin: 1em;
+
+@esf-form-hint-font-size: 1em;
+@esf-form-hint-font-color: #999;
+
+@esf-form-validity-font-color: #D9534F;
+@esf-form-buttons-background: none;
+@esf-form-buttons-padding: 1.5em 0;
+@esf-form-buttons-border-top: 1px solid #ddd;
+
+@esf-form-fieldset-padding: 0.35em 0.625em 0.75em;
+@esf-form-fieldset-margin: 0 .2em;
+@esf-form-fieldset-border-color: #ddd;
+
+.@{ui-class-prefix}-form {
+    margin-bottom: 1em;
+    fieldset {
+        border: 0;
+        border-top: 1px solid @esf-form-fieldset-border-color;
+        margin: @esf-form-fieldset-margin;
+        padding: @esf-form-fieldset-padding;
+    }
+
+    legend {
+        margin-left: -1em;
+        border: 0;
+        padding: 0;
+        white-space: normal;
+        *margin-left: -7px;
+        font-weight: bold;
+    }
+}
+
+.@{ui-class-prefix}-form-row {
+    margin-bottom: @esf-form-row-bottom-margin;
+}
+
+.@{ui-class-prefix}-form-key {
+    padding-right: 1em;
+    .box-sizing(border-box);
+}
+
+.@{ui-class-prefix}-form-field,
+.@{ui-class-prefix}-form-key,
+.@{ui-class-prefix}-form-value {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.@{ui-class-prefix}-form-required {
+    position: relative;
+    &:after {
+        content: '*';
+        color: @esf-form-validity-font-color;
+        display: block;
+        right: 0;
+        top: 50%;
+        position: absolute;
+        line-height: 1;
+        margin-top: -.1em;
+    }
+}
+
+.@{ui-class-prefix}-form-key,
+.@{ui-class-prefix}-form-valign {
+    padding-top: .5em;
+}
+
+.@{ui-class-prefix}-form-hint {
+    display: inline-block;
+    font-size: @esf-form-hint-font-size;
+    color: @esf-form-hint-font-color;
+}
+
+.@{ui-class-prefix}-form-wrap-hint .@{ui-class-prefix}-form-hint {
+    display: block;
+    margin-top: .5em;
+}
+
+.@{ui-class-prefix}-form-stack {
+    .@{ui-class-prefix}-form-key,
+    .@{ui-class-prefix}-form-value {
+        display: block;
+        margin-left: 0;
+    }
+    .@{ui-class-prefix}-form-key {
+        padding-top: 0;
+        padding-bottom: .3em;
+    }
+    .@{ui-class-prefix}-form-required {
+        &:after {
+            display: inline-block;
+            position: static;
+            margin-top: .3em;
+            margin-left: .5em;
+        }
+    }
+}
+
+.@{ui-class-prefix}-form-buttons {
+    padding: @esf-form-buttons-padding;
+    background: @esf-form-buttons-background;
+    border-top: @esf-form-buttons-border-top;
+}

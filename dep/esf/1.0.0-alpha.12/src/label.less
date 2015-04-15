@@ -1,0 +1,120 @@
+@import "base.less";
+
+@esf-label-padding: .5em .8em;
+@esf-label-circular-padding: .5em;
+@esf-label-border-radius: 5px;
+
+.@{ui-class-prefix}-label-custom {
+    display: inline-block;
+    vertical-align: middle;
+    padding: @esf-label-padding;
+
+    .esf-border-radius(
+        @esf-label-border-radius,
+        @esf-label-border-radius
+    );
+    .esf-label-theme();
+}
+
+.@{ui-class-prefix}-label-primary {
+    .esf-label-primary-theme();
+}
+
+.@{ui-class-prefix}-label-success {
+    .esf-label-success-theme();
+}
+
+.@{ui-class-prefix}-label-warning {
+    .esf-label-warning-theme();
+}
+
+.@{ui-class-prefix}-label-danger {
+    .esf-label-danger-theme();
+}
+
+.@{ui-class-prefix}-label-info {
+    .esf-label-info-theme();
+}
+
+.@{ui-class-prefix}-label-pointer {
+    position: relative;
+    margin-top: .8em;
+    &:before {
+        .triangle(top, 1em, @esf-label-background, side);
+        border-width: 0.7em;
+        content: '';
+        left: 50%;
+        margin-top: 0;
+        top: -0.5em;
+        border-top: 0;
+    }
+}
+
+.@{ui-class-prefix}-label-pointer-bottom {
+    position: relative;
+    margin-bottom: .8em;
+    &:before {
+        .triangle(bottom, 1em, @esf-label-background, side);
+        border-width: 0.7em;
+        content: '';
+        left: 50%;
+        margin-top: 0;
+        bottom: -.5em;
+        border-bottom: 0;
+    }
+}
+
+.@{ui-class-prefix}-label-pointer-left {
+    position: relative;
+    margin-left: .8em;
+    &:before {
+        .triangle(left, 1em, @esf-label-background, side);
+        border-width: 0.7em;
+        content: '';
+        left: -0.5em;
+        margin-top: 0;
+        border-left: 0;
+        margin-left: 0;
+    }
+}
+
+.@{ui-class-prefix}-label-pointer-right {
+    position: relative;
+    margin-right: .8em;
+    &:before {
+        .triangle(right, 1em, @esf-label-background, side);
+        border-width: 0.7em;
+        content: '';
+        right: 0;
+        margin-top: 0;
+        border-right: 0;
+        right: -.5em;
+    }
+}
+
+.@{ui-class-prefix}-label-transparent {
+    background: none;
+}
+
+.@{ui-class-prefix}-label-circular {
+    min-width: 1em;
+    min-height: 1em;
+
+    line-height: 1;
+    text-align: center;
+    padding: @esf-label-circular-padding;
+
+    .esf-circular();
+}
+
+.@{ui-class-prefix}-label-slim {
+    padding: 0 .2em;
+}
+
+// themes
+.esf-label-theme() {}
+.esf-label-primary-theme() {}
+.esf-label-success-theme() {}
+.esf-label-warning-theme() {}
+.esf-label-danger-theme() {}
+.esf-label-info-theme() {}

@@ -1,0 +1,576 @@
+
+// icon style definition
+[class*='@{eicons-css-prefix}-icon'] {
+    .eicons-font-style();
+}
+
+.eicons-font-style() {
+    font-family: @eicons-font-family;
+    display: inline-block;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.eicons-icon(@icon) {
+    &:before {
+        .eicons-icon-content(@icon);
+    }
+}
+
+.eicons-icon-content(@icon) {
+    @content-name: ~"eicons-var-@{icon}";
+    content: @@content-name;
+}
+
+.@{eicons-css-prefix}-icon-glass { .eicons-icon(glass); }
+.@{eicons-css-prefix}-icon-music { .eicons-icon(music); }
+.@{eicons-css-prefix}-icon-search { .eicons-icon(search); }
+.@{eicons-css-prefix}-icon-envelope-o { .eicons-icon(envelope-o); }
+.@{eicons-css-prefix}-icon-heart { .eicons-icon(heart); }
+.@{eicons-css-prefix}-icon-star { .eicons-icon(star); }
+.@{eicons-css-prefix}-icon-star-o { .eicons-icon(star-o); }
+.@{eicons-css-prefix}-icon-user { .eicons-icon(user); }
+.@{eicons-css-prefix}-icon-film { .eicons-icon(film); }
+.@{eicons-css-prefix}-icon-th-large { .eicons-icon(th-large); }
+.@{eicons-css-prefix}-icon-th { .eicons-icon(th); }
+.@{eicons-css-prefix}-icon-th-list { .eicons-icon(th-list); }
+.@{eicons-css-prefix}-icon-check { .eicons-icon(check); }
+.@{eicons-css-prefix}-icon-remove,
+.@{eicons-css-prefix}-icon-close,
+.@{eicons-css-prefix}-icon-times { .eicons-icon(times); }
+.@{eicons-css-prefix}-icon-search-plus { .eicons-icon(search-plus); }
+.@{eicons-css-prefix}-icon-search-minus { .eicons-icon(search-minus); }
+.@{eicons-css-prefix}-icon-power-off { .eicons-icon(power-off); }
+.@{eicons-css-prefix}-icon-signal { .eicons-icon(signal); }
+.@{eicons-css-prefix}-icon-gear,
+.@{eicons-css-prefix}-icon-cog { .eicons-icon(cog); }
+.@{eicons-css-prefix}-icon-trash-o { .eicons-icon(trash-o); }
+.@{eicons-css-prefix}-icon-home { .eicons-icon(home); }
+.@{eicons-css-prefix}-icon-file-o { .eicons-icon(file-o); }
+.@{eicons-css-prefix}-icon-clock-o { .eicons-icon(clock-o); }
+.@{eicons-css-prefix}-icon-road { .eicons-icon(road); }
+.@{eicons-css-prefix}-icon-download { .eicons-icon(download); }
+.@{eicons-css-prefix}-icon-arrow-circle-o-down { .eicons-icon(arrow-circle-o-down); }
+.@{eicons-css-prefix}-icon-arrow-circle-o-up { .eicons-icon(arrow-circle-o-up); }
+.@{eicons-css-prefix}-icon-inbox { .eicons-icon(inbox); }
+.@{eicons-css-prefix}-icon-play-circle-o { .eicons-icon(play-circle-o); }
+.@{eicons-css-prefix}-icon-rotate-right,
+.@{eicons-css-prefix}-icon-repeat { .eicons-icon(repeat); }
+.@{eicons-css-prefix}-icon-refresh { .eicons-icon(refresh); }
+.@{eicons-css-prefix}-icon-list-alt { .eicons-icon(list-alt); }
+.@{eicons-css-prefix}-icon-lock { .eicons-icon(lock); }
+.@{eicons-css-prefix}-icon-flag { .eicons-icon(flag); }
+.@{eicons-css-prefix}-icon-headphones { .eicons-icon(headphones); }
+.@{eicons-css-prefix}-icon-volume-off { .eicons-icon(volume-off); }
+.@{eicons-css-prefix}-icon-volume-down { .eicons-icon(volume-down); }
+.@{eicons-css-prefix}-icon-volume-up { .eicons-icon(volume-up); }
+.@{eicons-css-prefix}-icon-qrcode { .eicons-icon(qrcode); }
+.@{eicons-css-prefix}-icon-barcode { .eicons-icon(barcode); }
+.@{eicons-css-prefix}-icon-tag { .eicons-icon(tag); }
+.@{eicons-css-prefix}-icon-tags { .eicons-icon(tags); }
+.@{eicons-css-prefix}-icon-book { .eicons-icon(book); }
+.@{eicons-css-prefix}-icon-bookmark { .eicons-icon(bookmark); }
+.@{eicons-css-prefix}-icon-print { .eicons-icon(print); }
+.@{eicons-css-prefix}-icon-camera { .eicons-icon(camera); }
+.@{eicons-css-prefix}-icon-font { .eicons-icon(font); }
+.@{eicons-css-prefix}-icon-bold { .eicons-icon(bold); }
+.@{eicons-css-prefix}-icon-italic { .eicons-icon(italic); }
+.@{eicons-css-prefix}-icon-text-height { .eicons-icon(text-height); }
+.@{eicons-css-prefix}-icon-text-width { .eicons-icon(text-width); }
+.@{eicons-css-prefix}-icon-align-left { .eicons-icon(align-left); }
+.@{eicons-css-prefix}-icon-align-center { .eicons-icon(align-center); }
+.@{eicons-css-prefix}-icon-align-right { .eicons-icon(align-right); }
+.@{eicons-css-prefix}-icon-align-justify { .eicons-icon(align-justify); }
+.@{eicons-css-prefix}-icon-list { .eicons-icon(list); }
+.@{eicons-css-prefix}-icon-dedent,
+.@{eicons-css-prefix}-icon-outdent { .eicons-icon(outdent); }
+.@{eicons-css-prefix}-icon-indent { .eicons-icon(indent); }
+.@{eicons-css-prefix}-icon-video-camera { .eicons-icon(video-camera); }
+.@{eicons-css-prefix}-icon-photo,
+.@{eicons-css-prefix}-icon-image,
+.@{eicons-css-prefix}-icon-picture-o { .eicons-icon(picture-o); }
+.@{eicons-css-prefix}-icon-pencil { .eicons-icon(pencil); }
+.@{eicons-css-prefix}-icon-map-marker { .eicons-icon(map-marker); }
+.@{eicons-css-prefix}-icon-adjust { .eicons-icon(adjust); }
+.@{eicons-css-prefix}-icon-tint { .eicons-icon(tint); }
+.@{eicons-css-prefix}-icon-edit,
+.@{eicons-css-prefix}-icon-pencil-square-o { .eicons-icon(pencil-square-o); }
+.@{eicons-css-prefix}-icon-share-square-o { .eicons-icon(share-square-o); }
+.@{eicons-css-prefix}-icon-check-square-o { .eicons-icon(check-square-o); }
+.@{eicons-css-prefix}-icon-arrows { .eicons-icon(arrows); }
+.@{eicons-css-prefix}-icon-step-backward { .eicons-icon(step-backward); }
+.@{eicons-css-prefix}-icon-fast-backward { .eicons-icon(fast-backward); }
+.@{eicons-css-prefix}-icon-backward { .eicons-icon(backward); }
+.@{eicons-css-prefix}-icon-play { .eicons-icon(play); }
+.@{eicons-css-prefix}-icon-pause { .eicons-icon(pause); }
+.@{eicons-css-prefix}-icon-stop { .eicons-icon(stop); }
+.@{eicons-css-prefix}-icon-forward { .eicons-icon(forward); }
+.@{eicons-css-prefix}-icon-fast-forward { .eicons-icon(fast-forward); }
+.@{eicons-css-prefix}-icon-step-forward { .eicons-icon(step-forward); }
+.@{eicons-css-prefix}-icon-eject { .eicons-icon(eject); }
+.@{eicons-css-prefix}-icon-chevron-left { .eicons-icon(chevron-left); }
+.@{eicons-css-prefix}-icon-chevron-right { .eicons-icon(chevron-right); }
+.@{eicons-css-prefix}-icon-plus-circle { .eicons-icon(plus-circle); }
+.@{eicons-css-prefix}-icon-minus-circle { .eicons-icon(minus-circle); }
+.@{eicons-css-prefix}-icon-times-circle { .eicons-icon(times-circle); }
+.@{eicons-css-prefix}-icon-check-circle { .eicons-icon(check-circle); }
+.@{eicons-css-prefix}-icon-question-circle { .eicons-icon(question-circle); }
+.@{eicons-css-prefix}-icon-info-circle { .eicons-icon(info-circle); }
+.@{eicons-css-prefix}-icon-crosshairs { .eicons-icon(crosshairs); }
+.@{eicons-css-prefix}-icon-times-circle-o { .eicons-icon(times-circle-o); }
+.@{eicons-css-prefix}-icon-check-circle-o { .eicons-icon(check-circle-o); }
+.@{eicons-css-prefix}-icon-ban { .eicons-icon(ban); }
+.@{eicons-css-prefix}-icon-arrow-left { .eicons-icon(arrow-left); }
+.@{eicons-css-prefix}-icon-arrow-right { .eicons-icon(arrow-right); }
+.@{eicons-css-prefix}-icon-arrow-up { .eicons-icon(arrow-up); }
+.@{eicons-css-prefix}-icon-arrow-down { .eicons-icon(arrow-down); }
+.@{eicons-css-prefix}-icon-mail-forward,
+.@{eicons-css-prefix}-icon-share { .eicons-icon(share); }
+.@{eicons-css-prefix}-icon-expand { .eicons-icon(expand); }
+.@{eicons-css-prefix}-icon-compress { .eicons-icon(compress); }
+.@{eicons-css-prefix}-icon-plus { .eicons-icon(plus); }
+.@{eicons-css-prefix}-icon-minus { .eicons-icon(minus); }
+.@{eicons-css-prefix}-icon-asterisk { .eicons-icon(asterisk); }
+.@{eicons-css-prefix}-icon-exclamation-circle { .eicons-icon(exclamation-circle); }
+.@{eicons-css-prefix}-icon-gift { .eicons-icon(gift); }
+.@{eicons-css-prefix}-icon-leaf { .eicons-icon(leaf); }
+.@{eicons-css-prefix}-icon-fire { .eicons-icon(fire); }
+.@{eicons-css-prefix}-icon-eye { .eicons-icon(eye); }
+.@{eicons-css-prefix}-icon-eye-slash { .eicons-icon(eye-slash); }
+.@{eicons-css-prefix}-icon-warning,
+.@{eicons-css-prefix}-icon-exclamation-triangle { .eicons-icon(exclamation-triangle); }
+.@{eicons-css-prefix}-icon-plane { .eicons-icon(plane); }
+.@{eicons-css-prefix}-icon-calendar { .eicons-icon(calendar); }
+.@{eicons-css-prefix}-icon-random { .eicons-icon(random); }
+.@{eicons-css-prefix}-icon-comment { .eicons-icon(comment); }
+.@{eicons-css-prefix}-icon-magnet { .eicons-icon(magnet); }
+.@{eicons-css-prefix}-icon-chevron-up { .eicons-icon(chevron-up); }
+.@{eicons-css-prefix}-icon-chevron-down { .eicons-icon(chevron-down); }
+.@{eicons-css-prefix}-icon-retweet { .eicons-icon(retweet); }
+.@{eicons-css-prefix}-icon-shopping-cart { .eicons-icon(shopping-cart); }
+.@{eicons-css-prefix}-icon-folder { .eicons-icon(folder); }
+.@{eicons-css-prefix}-icon-folder-open { .eicons-icon(folder-open); }
+.@{eicons-css-prefix}-icon-arrows-v { .eicons-icon(arrows-v); }
+.@{eicons-css-prefix}-icon-arrows-h { .eicons-icon(arrows-h); }
+.@{eicons-css-prefix}-icon-bar-chart-o,
+.@{eicons-css-prefix}-icon-bar-chart { .eicons-icon(bar-chart); }
+.@{eicons-css-prefix}-icon-twitter-square { .eicons-icon(twitter-square); }
+.@{eicons-css-prefix}-icon-facebook-square { .eicons-icon(facebook-square); }
+.@{eicons-css-prefix}-icon-camera-retro { .eicons-icon(camera-retro); }
+.@{eicons-css-prefix}-icon-key { .eicons-icon(key); }
+.@{eicons-css-prefix}-icon-gears,
+.@{eicons-css-prefix}-icon-cogs { .eicons-icon(cogs); }
+.@{eicons-css-prefix}-icon-comments { .eicons-icon(comments); }
+.@{eicons-css-prefix}-icon-thumbs-o-up { .eicons-icon(thumbs-o-up); }
+.@{eicons-css-prefix}-icon-thumbs-o-down { .eicons-icon(thumbs-o-down); }
+.@{eicons-css-prefix}-icon-star-half { .eicons-icon(star-half); }
+.@{eicons-css-prefix}-icon-heart-o { .eicons-icon(heart-o); }
+.@{eicons-css-prefix}-icon-sign-out { .eicons-icon(sign-out); }
+.@{eicons-css-prefix}-icon-linkedin-square { .eicons-icon(linkedin-square); }
+.@{eicons-css-prefix}-icon-thumb-tack { .eicons-icon(thumb-tack); }
+.@{eicons-css-prefix}-icon-external-link { .eicons-icon(external-link); }
+.@{eicons-css-prefix}-icon-sign-in { .eicons-icon(sign-in); }
+.@{eicons-css-prefix}-icon-trophy { .eicons-icon(trophy); }
+.@{eicons-css-prefix}-icon-github-square { .eicons-icon(github-square); }
+.@{eicons-css-prefix}-icon-upload { .eicons-icon(upload); }
+.@{eicons-css-prefix}-icon-lemon-o { .eicons-icon(lemon-o); }
+.@{eicons-css-prefix}-icon-phone { .eicons-icon(phone); }
+.@{eicons-css-prefix}-icon-square-o { .eicons-icon(square-o); }
+.@{eicons-css-prefix}-icon-bookmark-o { .eicons-icon(bookmark-o); }
+.@{eicons-css-prefix}-icon-phone-square { .eicons-icon(phone-square); }
+.@{eicons-css-prefix}-icon-twitter { .eicons-icon(twitter); }
+.@{eicons-css-prefix}-icon-facebook { .eicons-icon(facebook); }
+.@{eicons-css-prefix}-icon-github { .eicons-icon(github); }
+.@{eicons-css-prefix}-icon-unlock { .eicons-icon(unlock); }
+.@{eicons-css-prefix}-icon-credit-card { .eicons-icon(credit-card); }
+.@{eicons-css-prefix}-icon-rss { .eicons-icon(rss); }
+.@{eicons-css-prefix}-icon-hdd-o { .eicons-icon(hdd-o); }
+.@{eicons-css-prefix}-icon-bullhorn { .eicons-icon(bullhorn); }
+.@{eicons-css-prefix}-icon-bell { .eicons-icon(bell); }
+.@{eicons-css-prefix}-icon-certificate { .eicons-icon(certificate); }
+.@{eicons-css-prefix}-icon-hand-o-right { .eicons-icon(hand-o-right); }
+.@{eicons-css-prefix}-icon-hand-o-left { .eicons-icon(hand-o-left); }
+.@{eicons-css-prefix}-icon-hand-o-up { .eicons-icon(hand-o-up); }
+.@{eicons-css-prefix}-icon-hand-o-down { .eicons-icon(hand-o-down); }
+.@{eicons-css-prefix}-icon-arrow-circle-left { .eicons-icon(arrow-circle-left); }
+.@{eicons-css-prefix}-icon-arrow-circle-right { .eicons-icon(arrow-circle-right); }
+.@{eicons-css-prefix}-icon-arrow-circle-up { .eicons-icon(arrow-circle-up); }
+.@{eicons-css-prefix}-icon-arrow-circle-down { .eicons-icon(arrow-circle-down); }
+.@{eicons-css-prefix}-icon-globe { .eicons-icon(globe); }
+.@{eicons-css-prefix}-icon-wrench { .eicons-icon(wrench); }
+.@{eicons-css-prefix}-icon-tasks { .eicons-icon(tasks); }
+.@{eicons-css-prefix}-icon-filter { .eicons-icon(filter); }
+.@{eicons-css-prefix}-icon-briefcase { .eicons-icon(briefcase); }
+.@{eicons-css-prefix}-icon-arrows-alt { .eicons-icon(arrows-alt); }
+.@{eicons-css-prefix}-icon-group,
+.@{eicons-css-prefix}-icon-users { .eicons-icon(users); }
+.@{eicons-css-prefix}-icon-chain,
+.@{eicons-css-prefix}-icon-link { .eicons-icon(link); }
+.@{eicons-css-prefix}-icon-cloud { .eicons-icon(cloud); }
+.@{eicons-css-prefix}-icon-flask { .eicons-icon(flask); }
+.@{eicons-css-prefix}-icon-cut,
+.@{eicons-css-prefix}-icon-scissors { .eicons-icon(scissors); }
+.@{eicons-css-prefix}-icon-copy,
+.@{eicons-css-prefix}-icon-files-o { .eicons-icon(files-o); }
+.@{eicons-css-prefix}-icon-paperclip { .eicons-icon(paperclip); }
+.@{eicons-css-prefix}-icon-save,
+.@{eicons-css-prefix}-icon-floppy-o { .eicons-icon(floppy-o); }
+.@{eicons-css-prefix}-icon-square { .eicons-icon(square); }
+.@{eicons-css-prefix}-icon-navicon,
+.@{eicons-css-prefix}-icon-reorder,
+.@{eicons-css-prefix}-icon-bars { .eicons-icon(bars); }
+.@{eicons-css-prefix}-icon-list-ul { .eicons-icon(list-ul); }
+.@{eicons-css-prefix}-icon-list-ol { .eicons-icon(list-ol); }
+.@{eicons-css-prefix}-icon-strikethrough { .eicons-icon(strikethrough); }
+.@{eicons-css-prefix}-icon-underline { .eicons-icon(underline); }
+.@{eicons-css-prefix}-icon-table { .eicons-icon(table); }
+.@{eicons-css-prefix}-icon-magic { .eicons-icon(magic); }
+.@{eicons-css-prefix}-icon-truck { .eicons-icon(truck); }
+.@{eicons-css-prefix}-icon-pinterest { .eicons-icon(pinterest); }
+.@{eicons-css-prefix}-icon-pinterest-square { .eicons-icon(pinterest-square); }
+.@{eicons-css-prefix}-icon-google-plus-square { .eicons-icon(google-plus-square); }
+.@{eicons-css-prefix}-icon-google-plus { .eicons-icon(google-plus); }
+.@{eicons-css-prefix}-icon-money { .eicons-icon(money); }
+.@{eicons-css-prefix}-icon-caret-down { .eicons-icon(caret-down); }
+.@{eicons-css-prefix}-icon-caret-up { .eicons-icon(caret-up); }
+.@{eicons-css-prefix}-icon-caret-left { .eicons-icon(caret-left); }
+.@{eicons-css-prefix}-icon-caret-right { .eicons-icon(caret-right); }
+.@{eicons-css-prefix}-icon-columns { .eicons-icon(columns); }
+.@{eicons-css-prefix}-icon-unsorted,
+.@{eicons-css-prefix}-icon-sort { .eicons-icon(sort); }
+.@{eicons-css-prefix}-icon-sort-down,
+.@{eicons-css-prefix}-icon-sort-desc { .eicons-icon(sort-desc); }
+.@{eicons-css-prefix}-icon-sort-up,
+.@{eicons-css-prefix}-icon-sort-asc { .eicons-icon(sort-asc); }
+.@{eicons-css-prefix}-icon-envelope { .eicons-icon(envelope); }
+.@{eicons-css-prefix}-icon-linkedin { .eicons-icon(linkedin); }
+.@{eicons-css-prefix}-icon-rotate-left,
+.@{eicons-css-prefix}-icon-undo { .eicons-icon(undo); }
+.@{eicons-css-prefix}-icon-legal,
+.@{eicons-css-prefix}-icon-gavel { .eicons-icon(gavel); }
+.@{eicons-css-prefix}-icon-dashboard,
+.@{eicons-css-prefix}-icon-tachometer { .eicons-icon(tachometer); }
+.@{eicons-css-prefix}-icon-comment-o { .eicons-icon(comment-o); }
+.@{eicons-css-prefix}-icon-comments-o { .eicons-icon(comments-o); }
+.@{eicons-css-prefix}-icon-flash,
+.@{eicons-css-prefix}-icon-bolt { .eicons-icon(bolt); }
+.@{eicons-css-prefix}-icon-sitemap { .eicons-icon(sitemap); }
+.@{eicons-css-prefix}-icon-umbrella { .eicons-icon(umbrella); }
+.@{eicons-css-prefix}-icon-paste,
+.@{eicons-css-prefix}-icon-clipboard { .eicons-icon(clipboard); }
+.@{eicons-css-prefix}-icon-lightbulb-o { .eicons-icon(lightbulb-o); }
+.@{eicons-css-prefix}-icon-exchange { .eicons-icon(exchange); }
+.@{eicons-css-prefix}-icon-cloud-download { .eicons-icon(cloud-download); }
+.@{eicons-css-prefix}-icon-cloud-upload { .eicons-icon(cloud-upload); }
+.@{eicons-css-prefix}-icon-user-md { .eicons-icon(user-md); }
+.@{eicons-css-prefix}-icon-stethoscope { .eicons-icon(stethoscope); }
+.@{eicons-css-prefix}-icon-suitcase { .eicons-icon(suitcase); }
+.@{eicons-css-prefix}-icon-bell-o { .eicons-icon(bell-o); }
+.@{eicons-css-prefix}-icon-coffee { .eicons-icon(coffee); }
+.@{eicons-css-prefix}-icon-cutlery { .eicons-icon(cutlery); }
+.@{eicons-css-prefix}-icon-file-text-o { .eicons-icon(file-text-o); }
+.@{eicons-css-prefix}-icon-building-o { .eicons-icon(building-o); }
+.@{eicons-css-prefix}-icon-hospital-o { .eicons-icon(hospital-o); }
+.@{eicons-css-prefix}-icon-ambulance { .eicons-icon(ambulance); }
+.@{eicons-css-prefix}-icon-medkit { .eicons-icon(medkit); }
+.@{eicons-css-prefix}-icon-fighter-jet { .eicons-icon(fighter-jet); }
+.@{eicons-css-prefix}-icon-beer { .eicons-icon(beer); }
+.@{eicons-css-prefix}-icon-h-square { .eicons-icon(h-square); }
+.@{eicons-css-prefix}-icon-plus-square { .eicons-icon(plus-square); }
+.@{eicons-css-prefix}-icon-angle-double-left { .eicons-icon(angle-double-left); }
+.@{eicons-css-prefix}-icon-angle-double-right { .eicons-icon(angle-double-right); }
+.@{eicons-css-prefix}-icon-angle-double-up { .eicons-icon(angle-double-up); }
+.@{eicons-css-prefix}-icon-angle-double-down { .eicons-icon(angle-double-down); }
+.@{eicons-css-prefix}-icon-angle-left { .eicons-icon(angle-left); }
+.@{eicons-css-prefix}-icon-angle-right { .eicons-icon(angle-right); }
+.@{eicons-css-prefix}-icon-angle-up { .eicons-icon(angle-up); }
+.@{eicons-css-prefix}-icon-angle-down { .eicons-icon(angle-down); }
+.@{eicons-css-prefix}-icon-desktop { .eicons-icon(desktop); }
+.@{eicons-css-prefix}-icon-laptop { .eicons-icon(laptop); }
+.@{eicons-css-prefix}-icon-tablet { .eicons-icon(tablet); }
+.@{eicons-css-prefix}-icon-mobile-phone,
+.@{eicons-css-prefix}-icon-mobile { .eicons-icon(mobile); }
+.@{eicons-css-prefix}-icon-circle-o { .eicons-icon(circle-o); }
+.@{eicons-css-prefix}-icon-quote-left { .eicons-icon(quote-left); }
+.@{eicons-css-prefix}-icon-quote-right { .eicons-icon(quote-right); }
+.@{eicons-css-prefix}-icon-spinner { .eicons-icon(spinner); }
+.@{eicons-css-prefix}-icon-circle { .eicons-icon(circle); }
+.@{eicons-css-prefix}-icon-mail-reply,
+.@{eicons-css-prefix}-icon-reply { .eicons-icon(reply); }
+.@{eicons-css-prefix}-icon-github-alt { .eicons-icon(github-alt); }
+.@{eicons-css-prefix}-icon-folder-o { .eicons-icon(folder-o); }
+.@{eicons-css-prefix}-icon-folder-open-o { .eicons-icon(folder-open-o); }
+.@{eicons-css-prefix}-icon-smile-o { .eicons-icon(smile-o); }
+.@{eicons-css-prefix}-icon-frown-o { .eicons-icon(frown-o); }
+.@{eicons-css-prefix}-icon-meh-o { .eicons-icon(meh-o); }
+.@{eicons-css-prefix}-icon-gamepad { .eicons-icon(gamepad); }
+.@{eicons-css-prefix}-icon-keyboard-o { .eicons-icon(keyboard-o); }
+.@{eicons-css-prefix}-icon-flag-o { .eicons-icon(flag-o); }
+.@{eicons-css-prefix}-icon-flag-checkered { .eicons-icon(flag-checkered); }
+.@{eicons-css-prefix}-icon-terminal { .eicons-icon(terminal); }
+.@{eicons-css-prefix}-icon-code { .eicons-icon(code); }
+.@{eicons-css-prefix}-icon-mail-reply-all,
+.@{eicons-css-prefix}-icon-reply-all { .eicons-icon(reply-all); }
+.@{eicons-css-prefix}-icon-star-half-empty,
+.@{eicons-css-prefix}-icon-star-half-full,
+.@{eicons-css-prefix}-icon-star-half-o { .eicons-icon(star-half-o); }
+.@{eicons-css-prefix}-icon-location-arrow { .eicons-icon(location-arrow); }
+.@{eicons-css-prefix}-icon-crop { .eicons-icon(crop); }
+.@{eicons-css-prefix}-icon-code-fork { .eicons-icon(code-fork); }
+.@{eicons-css-prefix}-icon-unlink,
+.@{eicons-css-prefix}-icon-chain-broken { .eicons-icon(chain-broken); }
+.@{eicons-css-prefix}-icon-question { .eicons-icon(question); }
+.@{eicons-css-prefix}-icon-info { .eicons-icon(info); }
+.@{eicons-css-prefix}-icon-exclamation { .eicons-icon(exclamation); }
+.@{eicons-css-prefix}-icon-superscript { .eicons-icon(superscript); }
+.@{eicons-css-prefix}-icon-subscript { .eicons-icon(subscript); }
+.@{eicons-css-prefix}-icon-eraser { .eicons-icon(eraser); }
+.@{eicons-css-prefix}-icon-puzzle-piece { .eicons-icon(puzzle-piece); }
+.@{eicons-css-prefix}-icon-microphone { .eicons-icon(microphone); }
+.@{eicons-css-prefix}-icon-microphone-slash { .eicons-icon(microphone-slash); }
+.@{eicons-css-prefix}-icon-shield { .eicons-icon(shield); }
+.@{eicons-css-prefix}-icon-calendar-o { .eicons-icon(calendar-o); }
+.@{eicons-css-prefix}-icon-fire-extinguisher { .eicons-icon(fire-extinguisher); }
+.@{eicons-css-prefix}-icon-rocket { .eicons-icon(rocket); }
+.@{eicons-css-prefix}-icon-maxcdn { .eicons-icon(maxcdn); }
+.@{eicons-css-prefix}-icon-chevron-circle-left { .eicons-icon(chevron-circle-left); }
+.@{eicons-css-prefix}-icon-chevron-circle-right { .eicons-icon(chevron-circle-right); }
+.@{eicons-css-prefix}-icon-chevron-circle-up { .eicons-icon(chevron-circle-up); }
+.@{eicons-css-prefix}-icon-chevron-circle-down { .eicons-icon(chevron-circle-down); }
+.@{eicons-css-prefix}-icon-html5 { .eicons-icon(html5); }
+.@{eicons-css-prefix}-icon-css3 { .eicons-icon(css3); }
+.@{eicons-css-prefix}-icon-anchor { .eicons-icon(anchor); }
+.@{eicons-css-prefix}-icon-unlock-alt { .eicons-icon(unlock-alt); }
+.@{eicons-css-prefix}-icon-bullseye { .eicons-icon(bullseye); }
+.@{eicons-css-prefix}-icon-ellipsis-h { .eicons-icon(ellipsis-h); }
+.@{eicons-css-prefix}-icon-ellipsis-v { .eicons-icon(ellipsis-v); }
+.@{eicons-css-prefix}-icon-rss-square { .eicons-icon(rss-square); }
+.@{eicons-css-prefix}-icon-play-circle { .eicons-icon(play-circle); }
+.@{eicons-css-prefix}-icon-ticket { .eicons-icon(ticket); }
+.@{eicons-css-prefix}-icon-minus-square { .eicons-icon(minus-square); }
+.@{eicons-css-prefix}-icon-minus-square-o { .eicons-icon(minus-square-o); }
+.@{eicons-css-prefix}-icon-level-up { .eicons-icon(level-up); }
+.@{eicons-css-prefix}-icon-level-down { .eicons-icon(level-down); }
+.@{eicons-css-prefix}-icon-check-square { .eicons-icon(check-square); }
+.@{eicons-css-prefix}-icon-pencil-square { .eicons-icon(pencil-square); }
+.@{eicons-css-prefix}-icon-external-link-square { .eicons-icon(external-link-square); }
+.@{eicons-css-prefix}-icon-share-square { .eicons-icon(share-square); }
+.@{eicons-css-prefix}-icon-compass { .eicons-icon(compass); }
+.@{eicons-css-prefix}-icon-toggle-down,
+.@{eicons-css-prefix}-icon-caret-square-o-down { .eicons-icon(caret-square-o-down); }
+.@{eicons-css-prefix}-icon-toggle-up,
+.@{eicons-css-prefix}-icon-caret-square-o-up { .eicons-icon(caret-square-o-up); }
+.@{eicons-css-prefix}-icon-toggle-right,
+.@{eicons-css-prefix}-icon-caret-square-o-right { .eicons-icon(caret-square-o-right); }
+.@{eicons-css-prefix}-icon-euro,
+.@{eicons-css-prefix}-icon-eur { .eicons-icon(eur); }
+.@{eicons-css-prefix}-icon-gbp { .eicons-icon(gbp); }
+.@{eicons-css-prefix}-icon-dollar,
+.@{eicons-css-prefix}-icon-usd { .eicons-icon(usd); }
+.@{eicons-css-prefix}-icon-rupee,
+.@{eicons-css-prefix}-icon-inr { .eicons-icon(inr); }
+.@{eicons-css-prefix}-icon-cny,
+.@{eicons-css-prefix}-icon-rmb,
+.@{eicons-css-prefix}-icon-yen,
+.@{eicons-css-prefix}-icon-jpy { .eicons-icon(jpy); }
+.@{eicons-css-prefix}-icon-ruble,
+.@{eicons-css-prefix}-icon-rouble,
+.@{eicons-css-prefix}-icon-rub { .eicons-icon(rub); }
+.@{eicons-css-prefix}-icon-won,
+.@{eicons-css-prefix}-icon-krw { .eicons-icon(krw); }
+.@{eicons-css-prefix}-icon-bitcoin,
+.@{eicons-css-prefix}-icon-btc { .eicons-icon(btc); }
+.@{eicons-css-prefix}-icon-file { .eicons-icon(file); }
+.@{eicons-css-prefix}-icon-file-text { .eicons-icon(file-text); }
+.@{eicons-css-prefix}-icon-sort-alpha-asc { .eicons-icon(sort-alpha-asc); }
+.@{eicons-css-prefix}-icon-sort-alpha-desc { .eicons-icon(sort-alpha-desc); }
+.@{eicons-css-prefix}-icon-sort-amount-asc { .eicons-icon(sort-amount-asc); }
+.@{eicons-css-prefix}-icon-sort-amount-desc { .eicons-icon(sort-amount-desc); }
+.@{eicons-css-prefix}-icon-sort-numeric-asc { .eicons-icon(sort-numeric-asc); }
+.@{eicons-css-prefix}-icon-sort-numeric-desc { .eicons-icon(sort-numeric-desc); }
+.@{eicons-css-prefix}-icon-thumbs-up { .eicons-icon(thumbs-up); }
+.@{eicons-css-prefix}-icon-thumbs-down { .eicons-icon(thumbs-down); }
+.@{eicons-css-prefix}-icon-youtube-square { .eicons-icon(youtube-square); }
+.@{eicons-css-prefix}-icon-youtube { .eicons-icon(youtube); }
+.@{eicons-css-prefix}-icon-xing { .eicons-icon(xing); }
+.@{eicons-css-prefix}-icon-xing-square { .eicons-icon(xing-square); }
+.@{eicons-css-prefix}-icon-youtube-play { .eicons-icon(youtube-play); }
+.@{eicons-css-prefix}-icon-dropbox { .eicons-icon(dropbox); }
+.@{eicons-css-prefix}-icon-stack-overflow { .eicons-icon(stack-overflow); }
+.@{eicons-css-prefix}-icon-instagram { .eicons-icon(instagram); }
+.@{eicons-css-prefix}-icon-flickr { .eicons-icon(flickr); }
+.@{eicons-css-prefix}-icon-adn { .eicons-icon(adn); }
+.@{eicons-css-prefix}-icon-bitbucket { .eicons-icon(bitbucket); }
+.@{eicons-css-prefix}-icon-bitbucket-square { .eicons-icon(bitbucket-square); }
+.@{eicons-css-prefix}-icon-tumblr { .eicons-icon(tumblr); }
+.@{eicons-css-prefix}-icon-tumblr-square { .eicons-icon(tumblr-square); }
+.@{eicons-css-prefix}-icon-long-arrow-down { .eicons-icon(long-arrow-down); }
+.@{eicons-css-prefix}-icon-long-arrow-up { .eicons-icon(long-arrow-up); }
+.@{eicons-css-prefix}-icon-long-arrow-left { .eicons-icon(long-arrow-left); }
+.@{eicons-css-prefix}-icon-long-arrow-right { .eicons-icon(long-arrow-right); }
+.@{eicons-css-prefix}-icon-apple { .eicons-icon(apple); }
+.@{eicons-css-prefix}-icon-windows { .eicons-icon(windows); }
+.@{eicons-css-prefix}-icon-android { .eicons-icon(android); }
+.@{eicons-css-prefix}-icon-linux { .eicons-icon(linux); }
+.@{eicons-css-prefix}-icon-dribbble { .eicons-icon(dribbble); }
+.@{eicons-css-prefix}-icon-skype { .eicons-icon(skype); }
+.@{eicons-css-prefix}-icon-foursquare { .eicons-icon(foursquare); }
+.@{eicons-css-prefix}-icon-trello { .eicons-icon(trello); }
+.@{eicons-css-prefix}-icon-female { .eicons-icon(female); }
+.@{eicons-css-prefix}-icon-male { .eicons-icon(male); }
+.@{eicons-css-prefix}-icon-gittip { .eicons-icon(gittip); }
+.@{eicons-css-prefix}-icon-sun-o { .eicons-icon(sun-o); }
+.@{eicons-css-prefix}-icon-moon-o { .eicons-icon(moon-o); }
+.@{eicons-css-prefix}-icon-archive { .eicons-icon(archive); }
+.@{eicons-css-prefix}-icon-bug { .eicons-icon(bug); }
+.@{eicons-css-prefix}-icon-vk { .eicons-icon(vk); }
+.@{eicons-css-prefix}-icon-weibo { .eicons-icon(weibo); }
+.@{eicons-css-prefix}-icon-renren { .eicons-icon(renren); }
+.@{eicons-css-prefix}-icon-pagelines { .eicons-icon(pagelines); }
+.@{eicons-css-prefix}-icon-stack-exchange { .eicons-icon(stack-exchange); }
+.@{eicons-css-prefix}-icon-arrow-circle-o-right { .eicons-icon(arrow-circle-o-right); }
+.@{eicons-css-prefix}-icon-arrow-circle-o-left { .eicons-icon(arrow-circle-o-left); }
+.@{eicons-css-prefix}-icon-toggle-left,
+.@{eicons-css-prefix}-icon-caret-square-o-left { .eicons-icon(caret-square-o-left); }
+.@{eicons-css-prefix}-icon-dot-circle-o { .eicons-icon(dot-circle-o); }
+.@{eicons-css-prefix}-icon-wheelchair { .eicons-icon(wheelchair); }
+.@{eicons-css-prefix}-icon-vimeo-square { .eicons-icon(vimeo-square); }
+.@{eicons-css-prefix}-icon-turkish-lira,
+.@{eicons-css-prefix}-icon-try { .eicons-icon(try); }
+.@{eicons-css-prefix}-icon-plus-square-o { .eicons-icon(plus-square-o); }
+.@{eicons-css-prefix}-icon-space-shuttle { .eicons-icon(space-shuttle); }
+.@{eicons-css-prefix}-icon-slack { .eicons-icon(slack); }
+.@{eicons-css-prefix}-icon-envelope-square { .eicons-icon(envelope-square); }
+.@{eicons-css-prefix}-icon-wordpress { .eicons-icon(wordpress); }
+.@{eicons-css-prefix}-icon-openid { .eicons-icon(openid); }
+.@{eicons-css-prefix}-icon-institution,
+.@{eicons-css-prefix}-icon-bank,
+.@{eicons-css-prefix}-icon-university { .eicons-icon(university); }
+.@{eicons-css-prefix}-icon-mortar-board,
+.@{eicons-css-prefix}-icon-graduation-cap { .eicons-icon(graduation-cap); }
+.@{eicons-css-prefix}-icon-yahoo { .eicons-icon(yahoo); }
+.@{eicons-css-prefix}-icon-google { .eicons-icon(google); }
+.@{eicons-css-prefix}-icon-reddit { .eicons-icon(reddit); }
+.@{eicons-css-prefix}-icon-reddit-square { .eicons-icon(reddit-square); }
+.@{eicons-css-prefix}-icon-stumbleupon-circle { .eicons-icon(stumbleupon-circle); }
+.@{eicons-css-prefix}-icon-stumbleupon { .eicons-icon(stumbleupon); }
+.@{eicons-css-prefix}-icon-delicious { .eicons-icon(delicious); }
+.@{eicons-css-prefix}-icon-digg { .eicons-icon(digg); }
+.@{eicons-css-prefix}-icon-pied-piper { .eicons-icon(pied-piper); }
+.@{eicons-css-prefix}-icon-pied-piper-alt { .eicons-icon(pied-piper-alt); }
+.@{eicons-css-prefix}-icon-drupal { .eicons-icon(drupal); }
+.@{eicons-css-prefix}-icon-joomla { .eicons-icon(joomla); }
+.@{eicons-css-prefix}-icon-language { .eicons-icon(language); }
+.@{eicons-css-prefix}-icon-fax { .eicons-icon(fax); }
+.@{eicons-css-prefix}-icon-building { .eicons-icon(building); }
+.@{eicons-css-prefix}-icon-child { .eicons-icon(child); }
+.@{eicons-css-prefix}-icon-paw { .eicons-icon(paw); }
+.@{eicons-css-prefix}-icon-spoon { .eicons-icon(spoon); }
+.@{eicons-css-prefix}-icon-cube { .eicons-icon(cube); }
+.@{eicons-css-prefix}-icon-cubes { .eicons-icon(cubes); }
+.@{eicons-css-prefix}-icon-behance { .eicons-icon(behance); }
+.@{eicons-css-prefix}-icon-behance-square { .eicons-icon(behance-square); }
+.@{eicons-css-prefix}-icon-steam { .eicons-icon(steam); }
+.@{eicons-css-prefix}-icon-steam-square { .eicons-icon(steam-square); }
+.@{eicons-css-prefix}-icon-recycle { .eicons-icon(recycle); }
+.@{eicons-css-prefix}-icon-automobile,
+.@{eicons-css-prefix}-icon-car { .eicons-icon(car); }
+.@{eicons-css-prefix}-icon-cab,
+.@{eicons-css-prefix}-icon-taxi { .eicons-icon(taxi); }
+.@{eicons-css-prefix}-icon-tree { .eicons-icon(tree); }
+.@{eicons-css-prefix}-icon-spotify { .eicons-icon(spotify); }
+.@{eicons-css-prefix}-icon-deviantart { .eicons-icon(deviantart); }
+.@{eicons-css-prefix}-icon-soundcloud { .eicons-icon(soundcloud); }
+.@{eicons-css-prefix}-icon-database { .eicons-icon(database); }
+.@{eicons-css-prefix}-icon-file-pdf-o { .eicons-icon(file-pdf-o); }
+.@{eicons-css-prefix}-icon-file-word-o { .eicons-icon(file-word-o); }
+.@{eicons-css-prefix}-icon-file-excel-o { .eicons-icon(file-excel-o); }
+.@{eicons-css-prefix}-icon-file-powerpoint-o { .eicons-icon(file-powerpoint-o); }
+.@{eicons-css-prefix}-icon-file-photo-o,
+.@{eicons-css-prefix}-icon-file-picture-o,
+.@{eicons-css-prefix}-icon-file-image-o { .eicons-icon(file-image-o); }
+.@{eicons-css-prefix}-icon-file-zip-o,
+.@{eicons-css-prefix}-icon-file-archive-o { .eicons-icon(file-archive-o); }
+.@{eicons-css-prefix}-icon-file-sound-o,
+.@{eicons-css-prefix}-icon-file-audio-o { .eicons-icon(file-audio-o); }
+.@{eicons-css-prefix}-icon-file-movie-o,
+.@{eicons-css-prefix}-icon-file-video-o { .eicons-icon(file-video-o); }
+.@{eicons-css-prefix}-icon-file-code-o { .eicons-icon(file-code-o); }
+.@{eicons-css-prefix}-icon-vine { .eicons-icon(vine); }
+.@{eicons-css-prefix}-icon-codepen { .eicons-icon(codepen); }
+.@{eicons-css-prefix}-icon-jsfiddle { .eicons-icon(jsfiddle); }
+.@{eicons-css-prefix}-icon-life-bouy,
+.@{eicons-css-prefix}-icon-life-buoy,
+.@{eicons-css-prefix}-icon-life-saver,
+.@{eicons-css-prefix}-icon-support,
+.@{eicons-css-prefix}-icon-life-ring { .eicons-icon(life-ring); }
+.@{eicons-css-prefix}-icon-circle-o-notch { .eicons-icon(circle-o-notch); }
+.@{eicons-css-prefix}-icon-ra,
+.@{eicons-css-prefix}-icon-rebel { .eicons-icon(rebel); }
+.@{eicons-css-prefix}-icon-ge,
+.@{eicons-css-prefix}-icon-empire { .eicons-icon(empire); }
+.@{eicons-css-prefix}-icon-git-square { .eicons-icon(git-square); }
+.@{eicons-css-prefix}-icon-git { .eicons-icon(git); }
+.@{eicons-css-prefix}-icon-hacker-news { .eicons-icon(hacker-news); }
+.@{eicons-css-prefix}-icon-tencent-weibo { .eicons-icon(tencent-weibo); }
+.@{eicons-css-prefix}-icon-qq { .eicons-icon(qq); }
+.@{eicons-css-prefix}-icon-wechat,
+.@{eicons-css-prefix}-icon-weixin { .eicons-icon(weixin); }
+.@{eicons-css-prefix}-icon-send,
+.@{eicons-css-prefix}-icon-paper-plane { .eicons-icon(paper-plane); }
+.@{eicons-css-prefix}-icon-send-o,
+.@{eicons-css-prefix}-icon-paper-plane-o { .eicons-icon(paper-plane-o); }
+.@{eicons-css-prefix}-icon-history { .eicons-icon(history); }
+.@{eicons-css-prefix}-icon-circle-thin { .eicons-icon(circle-thin); }
+.@{eicons-css-prefix}-icon-header { .eicons-icon(header); }
+.@{eicons-css-prefix}-icon-paragraph { .eicons-icon(paragraph); }
+.@{eicons-css-prefix}-icon-sliders { .eicons-icon(sliders); }
+.@{eicons-css-prefix}-icon-share-alt { .eicons-icon(share-alt); }
+.@{eicons-css-prefix}-icon-share-alt-square { .eicons-icon(share-alt-square); }
+.@{eicons-css-prefix}-icon-bomb { .eicons-icon(bomb); }
+.@{eicons-css-prefix}-icon-soccer-ball-o,
+.@{eicons-css-prefix}-icon-futbol-o { .eicons-icon(futbol-o); }
+.@{eicons-css-prefix}-icon-tty { .eicons-icon(tty); }
+.@{eicons-css-prefix}-icon-binoculars { .eicons-icon(binoculars); }
+.@{eicons-css-prefix}-icon-plug { .eicons-icon(plug); }
+.@{eicons-css-prefix}-icon-slideshare { .eicons-icon(slideshare); }
+.@{eicons-css-prefix}-icon-twitch { .eicons-icon(twitch); }
+.@{eicons-css-prefix}-icon-yelp { .eicons-icon(yelp); }
+.@{eicons-css-prefix}-icon-newspaper-o { .eicons-icon(newspaper-o); }
+.@{eicons-css-prefix}-icon-wifi { .eicons-icon(wifi); }
+.@{eicons-css-prefix}-icon-calculator { .eicons-icon(calculator); }
+.@{eicons-css-prefix}-icon-paypal { .eicons-icon(paypal); }
+.@{eicons-css-prefix}-icon-google-wallet { .eicons-icon(google-wallet); }
+.@{eicons-css-prefix}-icon-cc-visa { .eicons-icon(cc-visa); }
+.@{eicons-css-prefix}-icon-cc-mastercard { .eicons-icon(cc-mastercard); }
+.@{eicons-css-prefix}-icon-cc-discover { .eicons-icon(cc-discover); }
+.@{eicons-css-prefix}-icon-cc-amex { .eicons-icon(cc-amex); }
+.@{eicons-css-prefix}-icon-cc-paypal { .eicons-icon(cc-paypal); }
+.@{eicons-css-prefix}-icon-cc-stripe { .eicons-icon(cc-stripe); }
+.@{eicons-css-prefix}-icon-bell-slash { .eicons-icon(bell-slash); }
+.@{eicons-css-prefix}-icon-bell-slash-o { .eicons-icon(bell-slash-o); }
+.@{eicons-css-prefix}-icon-trash { .eicons-icon(trash); }
+.@{eicons-css-prefix}-icon-copyright { .eicons-icon(copyright); }
+.@{eicons-css-prefix}-icon-at { .eicons-icon(at); }
+.@{eicons-css-prefix}-icon-eyedropper { .eicons-icon(eyedropper); }
+.@{eicons-css-prefix}-icon-paint-brush { .eicons-icon(paint-brush); }
+.@{eicons-css-prefix}-icon-birthday-cake { .eicons-icon(birthday-cake); }
+.@{eicons-css-prefix}-icon-area-chart { .eicons-icon(area-chart); }
+.@{eicons-css-prefix}-icon-pie-chart { .eicons-icon(pie-chart); }
+.@{eicons-css-prefix}-icon-line-chart { .eicons-icon(line-chart); }
+.@{eicons-css-prefix}-icon-lastfm { .eicons-icon(lastfm); }
+.@{eicons-css-prefix}-icon-lastfm-square { .eicons-icon(lastfm-square); }
+.@{eicons-css-prefix}-icon-toggle-off { .eicons-icon(toggle-off); }
+.@{eicons-css-prefix}-icon-toggle-on { .eicons-icon(toggle-on); }
+.@{eicons-css-prefix}-icon-bicycle { .eicons-icon(bicycle); }
+.@{eicons-css-prefix}-icon-bus { .eicons-icon(bus); }
+.@{eicons-css-prefix}-icon-ioxhost { .eicons-icon(ioxhost); }
+.@{eicons-css-prefix}-icon-angellist { .eicons-icon(angellist); }
+.@{eicons-css-prefix}-icon-cc { .eicons-icon(cc); }
+.@{eicons-css-prefix}-icon-shekel,
+.@{eicons-css-prefix}-icon-sheqel,
+.@{eicons-css-prefix}-icon-ils { .eicons-icon(ils); }
+.@{eicons-css-prefix}-icon-meanpath { .eicons-icon(meanpath); }

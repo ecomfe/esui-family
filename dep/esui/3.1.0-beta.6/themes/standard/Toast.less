@@ -1,0 +1,42 @@
+
+@import "../../src/css/Toast.less";
+
+@esui-toast-default-background: @esf-palette-neutral-color;
+@esui-toast-default-color: @esf-palette-color;
+
+@esui-toast-info-background: @esf-palette-info-color;
+@esui-toast-info-color: @esf-palette-contrast-color;
+
+@esui-toast-error-background: @esf-palette-danger-color;
+@esui-toast-error-color: @esf-palette-contrast-color;
+
+@esui-toast-alert-background: @esf-palette-warning-color;
+@esui-toast-alert-color: @esf-palette-contrast-color;
+
+@esui-toast-success-background: @esf-palette-success-color;
+@esui-toast-success-color: @esf-palette-contrast-color;
+
+.esui-toast-content-theme() {
+    background: @esui-toast-default-background;
+    margin: 0;
+}
+
+.esui-toast-content-info-theme() {
+    background: @esui-toast-info-background;
+    color: @esui-toast-info-color;
+}
+
+.esui-toast-content-error-theme() {
+    background: @esui-toast-error-background;
+    color: @esui-toast-error-color;
+}
+
+.esui-toast-content-alert-theme() {
+    background: @esui-toast-alert-background;
+    color: @esui-toast-alert-color;
+}
+
+.esui-toast-content-success-theme() {
+    background: @esui-toast-success-background;
+    color: @esui-toast-success-color;
+}

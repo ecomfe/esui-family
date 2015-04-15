@@ -1,0 +1,92 @@
+@import "base.less";
+
+@esf-dropdown-padding: 0.2em 0;
+@esf-dropdown-border: none;
+@esf-dropdown-separator-border: 1px solid #ddd;
+@esf-dropdown-background: #EFF0F2;
+
+@esf-dropdown-item-color: #444;
+@esf-dropdown-item-hover-color: #444;
+@esf-dropdown-item-highlight-background: #FAFAFA;
+@esf-dropdown-item-padding: 0.5em 1em;
+
+@esf-dropdown-heading-font-size: 1.1em;
+@esf-dropdown-heading-padding: 0.5em;
+
+.@{ui-class-prefix}-dropdown {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    position: relative;
+    background: @esf-dropdown-background;
+    border: @esf-dropdown-border;
+    padding: @esf-dropdown-padding;
+
+    >li {
+        // for sub menu.
+        position: relative;
+        // IE8 doesn't show respect to li:hover
+        // thus we add one :first-child to make hover work.
+        > :first-child {
+            cursor: pointer;
+            display: block;
+            .esf-transition(background-color 0.3s ease);
+            padding: @esf-dropdown-item-padding;
+            color: @esf-dropdown-item-color;
+        }
+        &:hover {
+            > :first-child {
+                color: @esf-dropdown-item-hover-color;
+                background: @esf-dropdown-item-highlight-background;
+            }
+        }
+    }
+}
+
+.@{ui-class-prefix}-dropdown-separator-top {
+    border-top: @esf-dropdown-separator-border;
+}
+
+.@{ui-class-prefix}-dropdown-separator-bottom {
+    border-bottom: @esf-dropdown-separator-border;
+}
+
+.@{ui-class-prefix}-dropdown-heading {
+    font-weight: bold;
+    font-size: @esf-dropdown-heading-font-size;
+    padding: @esf-dropdown-heading-padding !important;
+}
+
+// mixins
+.esf-dropdown-variant(
+    @background,
+    @border,
+    @separator-border,
+    @text-color,
+    @text-hover-color,
+    @hightlight-color,
+    @dropdown-padding: @esf-dropdown-padding,
+    @dropdown-item-padding: @esf-dropdown-item-padding,
+    @dropdown-heading-padding: @esf-dropdown-heading-padding
+) {
+    padding: @dropdown-padding;
+    background: @background;
+    border: @border;
+    > li > :first-child {
+        color: @text-color;
+        padding: @dropdown-padding;
+    }
+    > li:hover > :first-child {
+        color: @text-hover-color;
+        background: @hightlight-color;
+    }
+    .@{ui-class-prefix}-dropdown-separator-top {
+        border-top: @separator-border;
+    }
+    .@{ui-class-prefix}-dropdown-separator-bottom {
+        border-bottom: @separator-border;
+    }
+    .@{ui-class-prefix}-dropdown-heading {
+        padding: @dropdown-heading-padding;
+    }
+}

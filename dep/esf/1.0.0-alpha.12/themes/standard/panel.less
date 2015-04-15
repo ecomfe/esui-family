@@ -1,0 +1,39 @@
+// button core
+@import "../../src/panel.less";
+
+// theme variable
+@import "variable.less";
+
+@esf-panel-background: @esf-palette-white;
+@esf-panel-border: 1px solid @esf-palette-border;
+@esf-panel-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+
+@esf-panel-header-color: @esf-palette-color;
+@esf-panel-header-background: @esf-palette-neutral-color;
+
+@esf-panel-body-color: @esf-palette-color;
+
+@esf-panel-footer-color: @esf-palette-color;
+@esf-panel-footer-background: @esf-palette-neutral-color;
+
+.esf-panel-custom-theme() {
+    background: @esf-panel-background;
+    border: @esf-panel-border;
+    .box-shadow(@esf-panel-box-shadow);
+}
+
+.esf-panel-header-theme() {
+    color: @esf-panel-header-color;
+    background: @esf-panel-header-background;
+    border-bottom: @esf-panel-border;
+}
+
+.esf-panel-body-theme() {
+    color: @esf-panel-body-color;
+}
+
+.esf-panel-footer-theme() {
+    color: @esf-panel-footer-color;
+    background: @esf-panel-footer-background;
+    border-top: @esf-panel-border;
+}

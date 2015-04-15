@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sticky - Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+    <style>
+        .sticky_test {
+            height:30px;
+            border:1px solid #e5e5e5;
+            padding: 15px;
+            background-color: #fafafa;
+            color:#666;
+            border-radius: 4px;
+        }
+        .big-row {
+            margin-bottom: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sticky</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>Sticky</h2>
+            <section class="intro">
+                <p>悬浮在距离顶端的固定位置</p>
+            </section>
+            <section class="view">
+                <div class="example ui-demo-light-stage">
+                    <div class="row">
+                        <h3>固定在文档顶端</h3>
+                        <div data-ui="type:Sticky;top:0" >
+                            <div class="sticky_test">设置top:0 可以悬浮在顶端 <button id="stop1" class="ui-button">Stop 1</button></div>
+                        </div>
+                    </div>
+                    <div class="big-row">
+                        <h3>固定在文档70处</h3>
+                        <div data-ui="type:Sticky;top:70" >
+                            <div class="sticky_test">设置top:70 可以悬浮在距离顶端70px的位置 <button id="stop2" class="ui-button">Stop 2</button></div>
+                        </div>
+                    </div>
+                    <div class="big-row">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        require(
+            [
+                'esui',
+                'Sticky'
+            ],
+            function (ui, Sticky) {
+                window.ui = ui;
+                var controls = ui.init();
+                document.getElementById('stop1').onclick = function () {
+                    controls[0].dispose();
+                }
+                document.getElementById('stop2').onclick = function () {
+                    controls[1].dispose();
+                }
+            }
+        );
+    </script>
+</body>
+</html>

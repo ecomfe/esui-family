@@ -1,0 +1,56 @@
+// button core
+@import "../../src/select.less";
+
+// theme variable
+@import "variable.less";
+
+// core variables
+@esf-form-select-height: @esf-single-line-control-height;
+
+// theme variables
+@esf-form-select-border: 1px solid @esf-palette-border;
+@esf-form-select-background: @esf-palette-neutral-color;
+@esf-form-select-color: @esf-palette-color;
+@esf-form-select-hover-border: 1px solid @esf-palette-primary-color;
+@esf-form-select-hover-background: @esf-palette-neutral-highlight-color;
+@esf-form-select-focus-color: @esf-palette-color;
+@esf-form-select-arrow-color: @esf-palette-color;
+
+.esf-select-custom-theme() {
+    background: @esf-form-select-background;
+    border: @esf-form-select-border;
+    color: @esf-form-select-color;
+}
+
+.esf-select-custom-focus-theme() {
+    color: @esf-form-select-focus-color;
+}
+
+.esf-select-custom-hover-theme() {
+    border: @esf-form-select-hover-border;
+    background: @esf-form-select-hover-background;
+}
+
+.esf-select-custom-arrow-theme() {
+    .@{ui-class-prefix}-select-custom:before,
+    .@{ui-class-prefix}-select-custom:after {
+        top: 35%;
+        width: 0;
+        height: 0;
+        right: 10px;
+        border: 5px solid;
+        pointer-events: none;
+        border-color: @esf-form-select-arrow-color transparent;
+        content: '';
+        position: absolute;
+    }
+    .@{ui-class-prefix}-select-custom:before {
+        border-bottom-style: solid;
+        border-top: 0
+    }
+    .@{ui-class-prefix}-select-custom:after {
+        margin-top: 6px;
+        border-top-style: solid;
+        border-bottom: 0
+    }
+}

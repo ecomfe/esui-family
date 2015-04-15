@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Progress - ESUI Demo</title>
+        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/prism.css" />
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+        <script src="assets/prism.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </head>
+    <body class="ui-m3">
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#default">Default progress bar</a></li>
+                    <li><a href="#withLabel">With label</a></li>
+                    <li><a href="#lowPercentages">Low percentages</a></li>
+                    <li><a href="#contextual">Contextual alternatives</a></li>
+                    <li><a href="#striped">Striped</a></li>
+                    <li><a href="#animated">Animated</a></li>
+                    <li><a href="#size">Size modifiers</a></li>
+                    <li><a href="#stacked">Stacked</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main" class="content ui-p2 ui-pt0">
+                    <h2>进度条（Progress）</h2>
+                    <hr />
+                    <h3 id="default">Default progress bar</h3>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="withLabel">With label</h3>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar" style="width: 60%;">60%</div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="lowPercentages">Low percentages</h3>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar">0%</div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar" style="width: 2%;">2%</div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="contextual">Contextual alternatives</h3>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-success" style="width: 40%;"></div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-info" style="width: 50%;"></div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-warning" style="width: 20%;"></div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-danger" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="striped">Striped</h3>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-striped" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="animated">Animated</h3>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-striped ui-progress-bar-animated" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="size">Size modifiers</h3>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-small ui-progress-bar-striped ui-progress-bar-animated" style="width: 20%;">20%</div>
+                        </div>
+                         <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-striped ui-progress-bar-animated" style="width: 30%;">30%</div>
+                        </div>
+                         <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-large ui-progress-bar-striped ui-progress-bar-animated" style="width: 50%;">50%</div>
+                        </div>
+                    </div>
+                    
+                    <h3 id="stacked">Stacked</h3>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-success ui-progress-bar-striped ui-progress-bar-animated" style="width: 20%;">20%</div>
+                            <div class="ui-progress-bar ui-progress-bar-warning ui-progress-bar-striped ui-progress-bar-animated" style="width: 30%;">30%</div>
+                            <div class="ui-progress-bar ui-progress-bar-info ui-progress-bar-striped ui-progress-bar-animated" style="width: 10%;">10%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

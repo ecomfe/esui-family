@@ -1,0 +1,54 @@
+/**
+ * 完整模式拾色器，包含高级模式和简单模式，并支持模式切换
+ */
+@esui-full-color-picker-seperator-width: 1em;
+@esui-full-color-picker-border: 1px solid #ddd;
+
+.@{ui-class-prefix}-fullcolorpicker {
+    border: @esui-full-color-picker-border;
+    overflow: hidden;
+    padding: @esui-full-color-picker-seperator-width;
+
+    .clearfix();
+
+    &.@{ui-class-prefix}-fullcolorpicker-simple {
+        .@{ui-class-prefix}-fullcolorpicker-advanced-section {
+            display: none;
+        }
+
+        .@{ui-class-prefix}-fullcolorpicker-simple-section {
+            border-bottom: none;
+        }
+    }
+
+    &.@{ui-class-prefix}-fullcolorpicker-advanced {
+        .@{ui-class-prefix}-fullcolorpicker-simple-section {
+            display: none;
+        }
+
+        .@{ui-class-prefix}-fullcolorpicker-advanced-section {
+            padding-bottom: 0;
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+    }
+
+    .@{ui-class-prefix}-fullcolorpicker-simple-section,
+    .@{ui-class-prefix}-fullcolorpicker-advanced-section {
+        padding-bottom: @esui-full-color-picker-seperator-width;
+        border-bottom: 1px dotted #c9c9c9;
+    }
+
+    .@{ui-class-prefix}-fullcolorpicker-advanced-section {
+        margin-bottom: @esui-full-color-picker-seperator-width;
+    }
+
+    .@{ui-class-prefix}-simplecolorpicker {
+        margin-top: -10px;
+    }
+
+    .@{ui-class-prefix}-fullcolorpicker-mode-switch {
+        margin-top: @esui-full-color-picker-seperator-width;
+        width: 100%;
+    }
+}

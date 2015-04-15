@@ -1,0 +1,34 @@
+@import "../../src/css/Alert.less";
+
+@esui-alert-success-background: lighten(@esf-palette-success-color, 25%);
+@esui-alert-success-color: darken(@esf-palette-success-color, 10%);
+
+@esui-alert-info-background: lighten(@esf-palette-info-color, 25%);
+@esui-alert-info-color: darken(@esf-palette-info-color, 10%);
+
+@esui-alert-warning-background: lighten(@esf-palette-warning-color, 25%);
+@esui-alert-warning-color: darken(@esf-palette-warning-color, 10%);
+
+@esui-alert-error-background: lighten(@esf-palette-danger-color, 25%);
+@esui-alert-error-color: darken(@esf-palette-danger-color, 10%);
+
+.esui-alert-success-theme() {
+    background: @esui-alert-success-background;
+    color: @esui-alert-success-color;
+}
+
+.esui-alert-info-theme() {
+    background: @esui-alert-info-background;
+    color: @esui-alert-info-color;
+}
+
+.esui-alert-warning-theme() {
+    background: @esui-alert-warning-background;
+    color: @esui-alert-warning-color;
+}
+
+.esui-alert-error-theme() {
+    background: @esui-alert-error-background;
+    color: @esui-alert-error-color;
+}
+

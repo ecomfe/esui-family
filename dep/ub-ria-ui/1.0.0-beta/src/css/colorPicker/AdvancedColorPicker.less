@@ -1,0 +1,200 @@
+/**
+ * 高级模式拾色器，基于Hue，Bright，Saturation调节
+ */
+@advanced-color-picker-canvas-width: 256px;
+@advanced-color-picker-canvas-height: 256px;
+@advanced-color-picker-canvas-margin-left: 15px;
+@advanced-color-picker-canvas-border-color: #eaeaea;
+@advanced-color-picker-canvas-pointer-width: 6px;
+@advanced-color-picker-hue-width: 28px;
+@advanced-color-picker-alpha-width: @advanced-color-picker-hue-width;
+@advanced-color-picker-hue-pointer-height: 2px;
+@advanced-color-picker-compare-color-width: 127px;
+@advanced-color-picker-compare-color-height: 30px;
+@advanced-color-picker-color-field-width: 3em;
+@advanced-color-picker-color-field-label-color: #666;
+@advanced-color-picker-color-field-input-height: 25px;
+@advanced-color-picker-color-field-hex-width: 5em;
+
+@advanced-color-resource-path: "../../../resource";
+
+.@{ui-class-prefix}-advancedcolorpicker {
+    position: relative;
+}
+
+.esui-advancedcolorpicker-hue-pointer {
+    position: absolute;
+    left: 0;
+    width: @advanced-color-picker-hue-width - 2px;
+    height: @advanced-color-picker-hue-pointer-height;
+    background: transparent;
+    border: 1px solid #fff;
+}
+
+.@{ui-class-prefix}-advancedcolorpicker-pallete {
+    // Hue调节
+    .@{ui-class-prefix}-advancedcolorpicker-hue {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: @advanced-color-picker-hue-width;
+        height: @advanced-color-picker-canvas-height;
+        border: 1px solid @advanced-color-picker-canvas-border-color;
+        background-repeat: no-repeat;
+        // 非CSS3支持浏览器
+        background-image: url('@{advanced-color-resource-path}/palette.png');
+        // CSS3
+        .linear-gradient(
+            top,
+            #ff0000 0%, #ffff00 16.67%,
+            #00ff00 33.33%, #00ffff 50%,
+            #0000ff 66.67%, #ff00ff 83.33%,
+            #ff0000 100%
+        );
+        cursor: pointer;
+    }
+
+    // Hue滑动条
+    .@{ui-class-prefix}-advancedcolorpicker-hue-slider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: @advanced-color-picker-hue-width;
+    }
+
+    // Hue滑动光标
+    .@{ui-class-prefix}-advancedcolorpicker-hue-pointer {
+        &:extend(.esui-advancedcolorpicker-hue-pointer);
+    }
+
+    // Saturation + Bright面板
+    .@{ui-class-prefix}-advancedcolorpicker-canvas {
+        position: relative;
+        width: @advanced-color-picker-canvas-width;
+        height: @advanced-color-picker-canvas-height;
+        margin: 0 (@advanced-color-picker-canvas-margin-left + @advanced-color-picker-hue-width + 2px);
+        border: 1px solid @advanced-color-picker-canvas-border-color;
+        cursor: pointer;
+    }
+
+    // Bright遮罩
+    .@{ui-class-prefix}-advancedcolorpicker-canvas-mask {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-image: url('@{advanced-color-resource-path}/color-picker-canvas-mask.png');
+    }
+
+    // 面板光标
+    .@{ui-class-prefix}-advancedcolorpicker-canvas-pointer {
+        position: absolute;
+        width: @advanced-color-picker-canvas-pointer-width;
+        height: @advanced-color-picker-canvas-pointer-width;
+        border: 1px solid #fff;
+        border-radius: 50%;
+    }
+
+    // 透明度调节
+    .@{ui-class-prefix}-advancedcolorpicker-alpha {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: @advanced-color-picker-alpha-width;
+        height: @advanced-color-picker-canvas-height;
+        border: 1px solid @advanced-color-picker-canvas-border-color;
+        background-repeat: no-repeat;
+        // 非CSS3支持浏览器
+        background-image: url('@{advanced-color-resource-path}/color-picker-opacity.png');
+        // CSS3
+        .linear-gradient(top, rgba(0, 0, 0, 1) 0% , rgba(0, 0, 0, 0) 100%);
+        cursor: pointer;
+    }
+
+    .@{ui-class-prefix}-advancedcolorpicker-alpha-slider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: @advanced-color-picker-alpha-width;
+    }
+
+    .@{ui-class-prefix}-advancedcolorpicker-alpha-pointer {
+        &:extend(.esui-advancedcolorpicker-hue-pointer);
+    }
+}
+
+// 历史对比
+.@{ui-class-prefix}-advancedcolorpicker-compare {
+    margin: 15px 0;
+    .clearfix();
+
+    .@{ui-class-prefix}-advancedcolorpicker-compare-title {
+        text-align: center;
+        float: left;
+        line-height: @advanced-color-picker-compare-color-height;
+    }
+
+    .@{ui-class-prefix}-advancedcolorpicker-compare-color-old,
+    .@{ui-class-prefix}-advancedcolorpicker-compare-color-new {
+        width: @advanced-color-picker-compare-color-width;
+        height: @advanced-color-picker-compare-color-height;
+        line-height: @advanced-color-picker-compare-color-height;
+        border: 1px solid #ddd;
+        float: left;
+    }
+
+    .@{ui-class-prefix}-advancedcolorpicker-compare-color-old {
+        border-right: none;
+    }
+
+    .@{ui-class-prefix}-advancedcolorpicker-compare-color-old {
+        margin-left: @advanced-color-picker-canvas-margin-left;
+    }
+
+    .@{ui-class-prefix}-advancedcolorpicker-compare-color-new {
+        margin-right: @advanced-color-picker-canvas-margin-left;
+    }
+}
+
+// 色彩指标输入框
+.@{ui-class-prefix}-advancedcolorpicker-input {
+    .clearfix();
+}
+
+.@{ui-class-prefix}-advancedcolorpicker-color-field {
+    text-align: center;
+    width: @advanced-color-picker-color-field-width;
+    float: left;
+
+    .@{ui-class-prefix}-label {
+        color: @advanced-color-picker-color-field-label-color;
+    }
+
+    .@{ui-class-prefix}-textbox {
+        margin-bottom: .5em;
+    }
+}
+
+.@{ui-class-prefix}-advancedcolorpicker-color-field-hex {
+    width: @advanced-color-picker-color-field-hex-width;
+}
+
+.@{ui-class-prefix}-advancedcolorpicker-input-rgba {
+    float: right;
+
+    .@{ui-class-prefix}-advancedcolorpicker-color-field {
+        margin-left: .5em;
+    }
+}
+
+// 无透明度状态
+.@{ui-class-prefix}-advancedcolorpicker-no-alpha {
+    .@{ui-class-prefix}-advancedcolorpicker-alpha,
+    .@{ui-class-prefix}-advancedcolorpicker-color-field-alpha {
+        display: none;
+    }
+}

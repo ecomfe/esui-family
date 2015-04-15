@@ -1,0 +1,85 @@
+@import "base.less";
+
+@esf-wizard-font-family: 'Helvetica Neue', Helvetica, Arial, '微软雅黑', 'Microsoft YaHei', '黑体', SimHei, sans-serif;
+@esf-wizard-margin: 0;
+@esf-wizard-padding: 0;
+@esf-wizard-icon-size: 1.5em;
+
+@esf-wizard-text-margin: 0 .5em;
+@esf-wizard-connector-width: 8em;
+@esf-wizard-connector-horizontal-margin: .5em;
+
+.@{ui-class-prefix}-wizard {
+    margin: @esf-wizard-margin;
+    padding: @esf-wizard-padding;
+    overflow: hidden;
+    text-align: center;
+    font-family: @esf-wizard-font-family;
+}
+
+.@{ui-class-prefix}-wizard-node {
+    list-style-type: none;
+
+    display: inline-block;
+    span {
+        vertical-align: middle;
+    }
+}
+
+.@{ui-class-prefix}-wizard-node-number {
+    .size(@esf-wizard-icon-size);
+    line-height: @esf-wizard-icon-size !important;
+    display: inline-block;
+    text-align: center;
+
+    .esf-wizard-node-number-theme();
+}
+
+.esf-wizard-node-number-theme() {}
+
+.@{ui-class-prefix}-wizard-node-text {
+    margin: @esf-wizard-text-margin;
+    .esf-wizard-node-text-theme();
+}
+
+.esf-wizard-node-text-theme() {}
+
+.@{ui-class-prefix}-wizard-node-done {
+    .@{ui-class-prefix}-wizard-node-number {
+        .esf-wizard-node-done-number-theme();
+    }
+    .@{ui-class-prefix}-wizard-node-text {
+        .esf-wizard-node-done-text-theme();
+    }
+}
+
+.esf-wizard-node-done-number-theme() {}
+.esf-wizard-node-done-text-theme() {}
+
+.@{ui-class-prefix}-wizard-node-active {
+    .@{ui-class-prefix}-wizard-node-number {
+        .esf-wizard-node-active-number-theme();
+    }
+    .@{ui-class-prefix}-wizard-node-text {
+        .esf-wizard-node-active-text-theme();
+    }
+}
+
+.esf-wizard-node-active-number-theme() {}
+.esf-wizard-node-active-text-theme() {}
+
+.@{ui-class-prefix}-wizard-node:after {
+    content: '';
+    width: @esf-wizard-connector-width;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 @esf-wizard-connector-horizontal-margin;
+    .esf-wizard-connector-theme();
+}
+
+.esf-wizard-connector-theme() {}
+
+.@{ui-class-prefix}-wizard-node:last-child:after,
+.@{ui-class-prefix}-wizard-node-last:after {
+    display: none !important;
+}

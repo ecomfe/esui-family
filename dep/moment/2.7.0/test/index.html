@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="author" content="leeight" />
+    <title>[Please input title]</title>
+    <script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js"></script>
+    <script>
+    require.config({
+        "baseUrl": "src",
+        "paths": {},
+        "packages": [
+            {
+                "name": "moment",
+                "location": "../../src",
+                "main": "moment"
+            }
+        ]
+    });
+    </script>
+</head>
+<body>
+<script>
+require(['app']);
+</script>
+</body>
+</html>

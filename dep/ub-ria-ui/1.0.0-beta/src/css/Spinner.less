@@ -1,0 +1,53 @@
+/**
+ * UB-RIA UI Library
+ * Copyright 2014 Baidu Inc. All rights reserved.
+ *
+ * @file Spinner样式
+ * @author maoquan(maoquan@baidu.com), jiangyuan(jiangyuan01@baidu.com)
+ */
+
+@esui-spinner-btn-color: #444;
+@esui-spinner-btn-background: #DDD;
+@esui-spinner-btn-hover-background: #CCC;
+@esui-spinner-btn-active-background: #BBB;
+
+.@{ui-class-prefix}-spinner {
+}
+
+.@{ui-class-prefix}-spinner-up,
+.@{ui-class-prefix}-spinner-down {
+    position: absolute;
+    right: 1px;
+    width: 1.2em;
+    height: 50%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: default;
+    color: @esui-spinner-btn-color;
+    background: @esui-spinner-btn-background;
+
+    &:hover {
+        background: @esui-spinner-btn-hover-background;
+    }
+
+    &:active {
+        background: @esui-spinner-btn-active-background;
+    }
+}
+
+.@{ui-class-prefix}-spinner-up {
+    top: 1px;
+    .eicons-icon(caret-up);
+    .border-top-right-radius(@esf-textbox-radius);
+}
+
+.@{ui-class-prefix}-spinner-down {
+    bottom: 1px;
+    .border-bottom-right-radius(@esf-textbox-radius);
+
+    &:before {
+        .eicons-icon-content(caret-down);
+        vertical-align: sub;
+    }
+}

@@ -1,0 +1,38 @@
+@import "base.less";
+
+@esf-progress-height: 1.5em;
+@esf-progress-border-radius: 5px;
+@esf-progress-small-height: 1em;
+@esf-progress-large-height: 2em;
+@esf-progress-margin-bottom: 1em;
+
+.@{ui-class-prefix}-progress {
+    margin-bottom: @esf-progress-margin-bottom;
+    overflow: hidden;
+    border-radius: @esf-progress-border-radius;
+    .esf-progress-theme();
+}
+
+.@{ui-class-prefix}-progress-bar {
+    float: left;
+    width: 0;
+    font-size: @esf-progress-bar-font-size;
+    line-height: @esf-progress-height;
+    height: @esf-progress-height;
+    text-align: center;
+    .transition(width .6s ease);
+    .esf-progress-bar-theme();
+}
+
+// Sizes
+.@{ui-class-prefix}-progress-bar-small {
+    height: @esf-progress-small-height;
+    line-height: @esf-progress-small-height;
+}
+.@{ui-class-prefix}-progress-bar-large {
+    height: @esf-progress-large-height;
+    line-height: @esf-progress-large-height;
+}
+
+.esf-progress-theme() {}
+.esf-progress-bar-theme() {}

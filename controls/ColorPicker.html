@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>ColorPicker - ESUI Demo</title>
+    <link rel="stylesheet" href="../assets/themes/standard.css" />
+    <link rel="stylesheet" href="../assets/3rd-party/prism.css" />
+    <script src="../assets/loader/esl.js"></script>
+    <script src="../assets/loader/config.js"></script>
+    <script src="../assets/build/ui.js"></script>
+    <script src="../assets/3rd-party/jquery-1.11.1.min.js"></script>
+    <script src="../assets/3rd-party/prism.js"></script>
+    <script src="../assets/demo.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header id="header">
+    <div class="ui-navbar ui-navbar-mordern">
+        <h1 id="branding" class="ui-navbar-content">
+            <a class="ui-navbar-content-link">ESUI Family</a>
+        </h1>
+        <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+            <script>
+            mainNav('../');
+            </script>
+        </ul>
+    </div>
+</header>
+<div class="ui-g main-container">
+    <div id="side-bar" class="ui-u-1-5">
+        <ul id="navigator" class="ui-sidebar">
+        </ul>
+    </div>
+    <div id="content" class="ui-u-4-5">
+        <h2>默认的ColorPicker</h2>
+        <p>默认的ColorPicker: 简单模式</p>
+        <hr />
+        <div id="main">
+            <h3>模式切换</h3>
+            <p>模式切换。</p>
+            <div class="example">
+                <h4>
+                     简单模式
+                </h4>
+                <div class="row">
+                    <div data-ui-type="ColorPicker"></div>
+                </div>
+                <h4>
+                    ColorPicker简单模式，展示方式为浮层，可切换模式
+                </h4>
+                <div class="row">
+                    <div data-ui-type="ColorPicker" data-ui-switchable="true"></div>
+                </div>
+            </div>
+
+            <h3>ColorPicker高级模式</h3>
+            <p>ColorPicker高级模式。</p>
+            <div class="example">
+                <h4>
+                     展示方式为浮层
+                </h4>
+                <div class="row">
+                    <div data-ui-type="ColorPicker" data-ui-feature-mode="advanced"></div>
+                </div>
+                <h4>
+                    展示方式为浮层，无透明度
+                </h4>
+                <div class="row">
+                    <div data-ui-type="ColorPicker" data-ui-feature-mode="advanced"
+                    data-ui-has-alpha="false"></div>
+                </div>
+                <h4>
+                    展示方式为浮层，可以切换模式，有透明度
+                </h4>
+                <div class="row">
+                    <div data-ui-type="ColorPicker" data-ui-feature-mode="advanced"
+                    data-ui-switchable="true"></div>
+                </div>
+                <h4>
+                    展示方式为浮层，可以切换模式，无透明度
+                </h4>
+                <div class="row">
+                    <div data-ui-type="ColorPicker" data-ui-feature-mode="advanced"
+                    data-ui-switchable="true" data-ui-has-alpha="false"></div>
+                </div>
+            </div>
+
+            <h3>展示方式为dialog的ColorPicker</h3>
+            <p>展示方式为dialog的ColorPicker</p>
+            <div class="example">
+                <h4>
+                    展示方式为dialog的ColorPicker, 模式为full
+                </h4>
+                <div class="row">
+                    <div data-ui-type="ColorPicker" data-ui-display-mode="dialog"
+                    data-ui-feature-mode="full"></div>
+                </div>
+                <h4>
+                    展示方式为dialog的ColorPicker, 模式为高级
+                </h4>
+                <div class="row">
+                    <div data-ui-type="ColorPicker" data-ui-display-mode="dialog"
+                    data-ui-feature-mode="advanced" data-ui-switchable="true"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <script>
+        footer();
+    </script>
+</footer>
+<script>
+    require(
+        [
+            'esui',
+            'ub-ria-ui/colorPicker/ColorPicker'
+        ],
+        function (ui, ColorPicker) {
+            window.ui = ui;
+            ui.init();
+        }
+    );
+</script>
+</body>
+</html>

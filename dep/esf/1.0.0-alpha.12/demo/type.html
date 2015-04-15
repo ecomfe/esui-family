@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>UI - ESUI Demo</title>
+        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/prism.css" />
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+        <script src="assets/prism.js" data-manual></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </head>
+    <body>
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#type-headings">Headings - 标题</a></li>
+                    <li><a href="#type-a">Anchor - 链接</a></li>
+                    <li><a href="#type-p">Paragraphs - 段落</a></li>
+                    <li><a href="#type-inline-tags">Text-level semantics - 行内标签</a></li>
+                    <li><a href="#type-hr">Horizontal rule - 分割线</a></li>
+                    <li><a href="#type-quote-block">Quote block - 引用文字</a></li>
+                    <li><a href="#type-code-block">Code block - 代码</a></li>
+                    <li><a href="#type-lists">Lists - 列表</a></li>
+                    <li><a href="#type-dl">Description Lists - 定义</a></li>
+                    <li><a href="#table-default">Table - 表格样式</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main" class="content">
+                    <h2 id="icons">基础字体样式</h2>
+                    <hr />
+                    <div>
+                        <h3 id="type-headings">Headings - 标题</h3>
+                        <div class="example">
+                            <h1>一级标题 - Heading 1 <small>副标题</small></h1>
+
+                            <h2>二级标题 - Heading 2 <small>副标题</small></h2>
+
+                            <h3>三级标题 - Heading 3 <small>副标题</small></h3>
+
+                            <h4>四级标题 - Heading 4 <small>副标题</small></h4>
+
+                            <h5>五级标题 - Heading 5 <small>副标题</small></h5>
+
+                            <h6>六级标题 - Heading 6 <small>副标题</small></h6>
+                        </div>
+
+                        <h3 id="type-a">链接 - Anchor</h3>
+                        <div class="example">
+                            <a href="#"><span class="ui-icon-heart"></span> Link</a>
+                            <a href="#" class="ui-link-static"><span class="ui-icon-heart"></span> Link</a>
+                        </div>
+
+                        <h3 id="type-p">Paragraphs - 段落</h3>
+                        <div class="example">
+                            <h2 class="ui-text-center">荷塘月色 <small>朱自清</small></h2>
+                            <p class="ui-text-indent">
+                                月光如流水一般，静静地泻在这一片叶子和花上。薄薄的青雾浮起在荷塘里。叶子和花仿佛在牛乳中洗过一样；又像笼着轻纱的梦。虽然是满月，天上却有一层淡淡的云，所以不能朗照；但我以为这恰是到了好处——酣眠固不可少，小睡也别有风味的。月光是隔了树照过来的，高处丛生的灌木，落下参差的斑驳的黑影，峭楞楞如鬼一般；弯弯的杨柳的稀疏的倩影，却又像是画在荷叶上。塘中的月色并不均匀；但光与影有着和谐的旋律，如梵婀玲上奏着的名曲。
+                            </p>
+                        </div>
+
+                        <h3 id="type-inline-tags">Text-level semantics - 行内标签</h3>
+                        <div class="example">
+                            <table class="ui-raw-table ui-raw-table-horizontal ui-raw-table-hoverable" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;a&gt;</code></td>
+                                        <td>Turn text into hypertext using the <a href="#">a element</a>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;em&gt;</code></td>
+                                        <td>Emphasize text using the <em>em element</em>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;strong&gt;</code></td>
+                                        <td>Imply any extra importance using the <strong>strong element</strong>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;code&gt;</code></td>
+                                        <td>Define inline code snippets using the <code>code element</code>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;del&gt;</code></td>
+                                        <td>Mark document changes as deleted text using the <del>del element</del>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;ins&gt;</code></td>
+                                        <td>Mark document changes as inserted text using the <ins>ins element</ins>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;mark&gt;</code></td>
+                                        <td>Highlight text with no semantic meaning using the <mark>mark element</mark>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;q&gt;</code></td>
+                                        <td>Define inline quotations using <q>q element <q>inside</q> a q element</q>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;abbr&gt;</code></td>
+                                        <td>Define an abbreviation using the <abbr title="Abbreviation Element">abbr element</abbr> with a title.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;dfn&gt;</code></td>
+                                        <td>Define a definition term using the <dfn title="Defines a definition term">dfn element</dfn> with a title.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;small&gt;</code></td>
+                                        <td>De-emphasize text for small print using the <small>small element</small>.</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="hightlight">&lt;sup&gt;</code></td>
+                                        <td>Base font<sup>superscript</sup>.</td>
+                                    </tr>
+                                   <tr>
+                                        <td><code class="hightlight">&lt;sub&gt;</code></td>
+                                        <td>Base font<sub>subscript</sub>.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 id="type-hr">Horizontal rule - 分割线</h3>
+                        <div class="example">
+                            <hr />
+                        </div>
+
+                        <h3 id="type-quote-block">Quote block - 引用文字</h3>
+                        <div class="example">
+                            <blockquote cite="http://abandon.ie">
+                                <p>青春的光辉，理想的钥匙，生命的意义，乃至人类的生存、发展全包含在这两个字之中，奋斗！只有奋斗，才能治愈过去的创伤；只有奋斗，才是我们民族的希望和光明所在。</p>
+                                <footer class="ui-text-right">—— 马克思</footer>
+                            </blockquote>
+                        </div>
+
+                        <h3 id="type-code-block">Code block - 代码</h3>
+                        <div class="example">
+<pre><code>&lt;pre&gt;
+    &lt;code&gt;...&lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+
+<code>
+inline code
+</code>
+                        </div>
+
+                        <h3 id="type-lists">Lists - 列表</h3>
+                        <p>
+                            Create an unordered list using the <code>&lt;ul&gt;</code> element and the <code>&lt;ol&gt;</code> element for ordered lists. The <code>&lt;li&gt;</code> element defines the list item.
+                        </p>
+                        <h4>Unordered List</h4>
+                        <div class="example">
+                            <ul>
+                                <li>Lorem ipsum dolor sit amet</li>
+                                <li>Consectetur adipiscing elit</li>
+                                <li>Integer molestie lorem at massa</li>
+                                <li>Facilisis in pretium nisl aliquet</li>
+                                <li>Nulla volutpat aliquam velit
+                                    <ul>
+                                        <li>Phasellus iaculis neque</li>
+                                        <li>Purus sodales ultricies</li>
+                                        <li>Vestibulum laoreet porttitor sem</li>
+                                        <li>Ac tristique libero volutpat at</li>
+                                    </ul>
+                                </li>
+                                <li>Faucibus porta lacus fringilla vel</li>
+                                <li>Aenean sit amet erat nunc</li>
+                                <li>Eget porttitor lorem</li>
+                            </ul>
+                        </div>
+                        <h4>Order List</h4>
+                        <div class="example">
+                            <ol>
+                                <li>List item</li>
+                                <li>List item</li>
+                                <li>List item
+                                    <ol>
+                                        <li>List item level 2</li>
+                                        <li>List item level 2
+                                            <ol>
+                                                <li>List item level 3</li>
+                                                <li>List item level 3</li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                        <h4>Unstyled List</h4>
+                        <div class="example">
+                            <ul class="ui-list-unstyled">
+                                <li>Lorem ipsum dolor sit amet</li>
+                                <li>Consectetur adipiscing elit</li>
+                                <li>Integer molestie lorem at massa</li>
+                                <li>Facilisis in pretium nisl aliquet</li>
+                                <li>Nulla volutpat aliquam velit</li>
+                                <li>Faucibus porta lacus fringilla vel</li>
+                                <li>Aenean sit amet erat nunc</li>
+                                <li>Eget porttitor lorem</li>
+                            </ul>
+                        </div>
+                        <h4>Inline List</h4>
+                        <div class="example">
+                            <ul class="ui-list-inline">
+                                <li>Lorem ipsum dolor sit amet</li>
+                                <li>Consectetur adipiscing elit</li>
+                                <li>Integer molestie lorem at massa</li>
+                            </ul>
+                        </div>
+                        <h3 id="type-dl">Description Lists</h3>
+                        <div class="example">
+                            <dl>
+                                <dt>Description Lists</dt>
+                                <dd>A description list defines terms and their corresponding descriptions.</dd>
+                                <dt>This is a term</dt>
+                                <dd>This is a description.</dd>
+                                <dt>This is a term</dt>
+                                <dd>This is a description.</dd>
+                            </dl>
+                        </div>
+
+                        <h3>Table样式</h3>
+                        <h4 id="table-default">Table - 默认样式</h4>
+                        <div class="example">
+                            <table class="ui-raw-table">
+                                <caption>中文 Caption Text</caption>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
+                                        <th>Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Honda</td>
+                                        <td>Accord</td>
+                                        <td>2009</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Toyota</td>
+                                        <td>Camry</td>
+                                        <td>2012</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Hyundai</td>
+                                        <td>Elantra</td>
+                                        <td>2010</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 id="table-bordered">Table - 边线样式</h4>
+                        <div class="example">
+                            <table class="ui-raw-table ui-raw-table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
+                                        <th>Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Honda</td>
+                                        <td>Accord</td>
+                                        <td>2009</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Toyota</td>
+                                        <td>Camry</td>
+                                        <td>2012</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Hyundai</td>
+                                        <td>Elantra</td>
+                                        <td>2010</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 id="table-horizontal">Table - 横线样式</h4>
+                        <div class="example">
+                            <table class="ui-raw-table ui-raw-table-horizontal">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
+                                        <th>Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Honda</td>
+                                        <td>Accord</td>
+                                        <td>2009</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Toyota</td>
+                                        <td>Camry</td>
+                                        <td>2012</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Hyundai</td>
+                                        <td>Elantra</td>
+                                        <td>2010</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4 id="table-striped">Table - 条纹样式</h4>
+                        <div class="example">
+                            <table class="ui-raw-table ui-raw-table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
+                                        <th>Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Honda</td>
+                                        <td>Accord</td>
+                                        <td>2009</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Toyota</td>
+                                        <td>Camry</td>
+                                        <td>2012</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Hyundai</td>
+                                        <td>Elantra</td>
+                                        <td>2010</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 id="table-hover">Table - Hover行样式</h4>
+                        <div class="example">
+                            <table class="ui-raw-table ui-raw-table-hoverable">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Make</th>
+                                        <th>Model</th>
+                                        <th>Year</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Honda</td>
+                                        <td>Accord</td>
+                                        <td>2009</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Toyota</td>
+                                        <td>Camry</td>
+                                        <td>2012</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Hyundai</td>
+                                        <td>Elantra</td>
+                                        <td>2010</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

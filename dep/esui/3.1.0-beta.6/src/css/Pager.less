@@ -1,0 +1,98 @@
+/**
+* ESUI (Enterprise Simple UI)
+* Copyright 2013 Baidu Inc. All rights reserved.
+*
+* @file 翻页样式
+* @author shenbin langxingjian
+*/
+@import "Variable.less";
+
+@esui-pager-select-label-font-family: "Heiti SC Light", "Heiti SC";
+
+@esui-pager-item-margin: 0 0 0 .5em;
+@esui-pager-item-padding: 0 .2em;
+
+.@{ui-class-prefix}-pager-select-wrapper {
+    display: inline-block;
+}
+
+.@{ui-class-prefix}-pager-label {
+    display: inline-block;
+    font-family: @esui-pager-select-label-font-family;
+
+    .esui-pager-label-theme();
+}
+
+.esui-pager-label-theme() {}
+
+.@{ui-class-prefix}-pager-main {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+
+    li {
+        margin: @esui-pager-item-margin;
+        padding: @esui-pager-item-padding;
+        text-align: center;
+        display: inline-block;
+        cursor: pointer;
+
+        .esui-pager-item-theme();
+    }
+    a {
+        display: inline-block;
+
+        .esui-pager-item-link-theme();
+    }
+}
+
+.@{ui-class-prefix}-pager-item-current {
+    cursor: default;
+
+    .esui-pager-item-current-theme();
+}
+
+.@{ui-class-prefix}-pager-item-extend {
+    .esui-pager-item-extend-theme();
+}
+
+// * 布局皮肤样式
+// 左侧正序、左侧逆序
+.@{ui-class-prefix}-pager-alignLeft,
+.@{ui-class-prefix}-pager-alignLeftReverse {
+    float: left;
+}
+
+// 左侧逆序
+.@{ui-class-prefix}-pager-alignLeftReverse .@{ui-class-prefix}-pager-select-wrapper {
+    float: right;
+}
+
+// 右侧正序、右侧逆序
+.@{ui-class-prefix}-pager-alignRight,
+.@{ui-class-prefix}-pager-alignRightReverse {
+    float: right;
+}
+
+// 右侧逆序
+.@{ui-class-prefix}-pager-alignRightReverse .@{ui-class-prefix}-pager-select-wrapper {
+    float: right;
+}
+
+// 分散正序
+.@{ui-class-prefix}-pager-distributed .@{ui-class-prefix}-pager-main {
+    float: right;
+}
+
+// 分散逆序
+.@{ui-class-prefix}-pager-distributedReverse .@{ui-class-prefix}-pager-select-wrapper {
+    float: right;
+}
+
+.esui-pager-item-theme() {}
+
+.esui-pager-item-link-theme() {}
+
+.esui-pager-item-current-theme() {}
+
+.esui-pager-item-extend-theme() {}

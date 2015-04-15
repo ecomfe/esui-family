@@ -1,0 +1,49 @@
+ /**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 输入日历样式
+ * @author dbear
+ */
+
+@import "Variable.less";
+
+
+@esui-calendar-height: 2.4em;
+@esui-calendar-horizontal-padding: 1em;
+@esui-calendar-border-radius: 5px;
+
+@esui-calendar-text-right-padding: 2em;
+
+.@{ui-class-prefix}-calendar {
+    line-height: @esui-calendar-height;
+    padding: 0 @esui-calendar-horizontal-padding;
+    display: inline-block;
+    cursor: pointer;
+    position: relative;
+    .esf-border-radius(
+        @esui-calendar-border-radius,
+        @esui-calendar-border-radius
+    );
+    .user-select(none);
+    vertical-align: middle;
+    .esui-calendar-theme();
+}
+
+.@{ui-class-prefix}-calendar-text {
+    padding-right: @esui-calendar-text-right-padding;
+    .ellipsis();
+}
+
+.@{ui-class-prefix}-calendar-arrow {
+    position: absolute;
+    right: @esui-calendar-horizontal-padding;
+    top: 0;
+}
+
+.@{ui-class-prefix}-calendar-layer {
+    .esui-calendar-layer-theme();
+}
+
+.esui-calendar-theme() {}
+.esui-calendar-layer-theme() {}

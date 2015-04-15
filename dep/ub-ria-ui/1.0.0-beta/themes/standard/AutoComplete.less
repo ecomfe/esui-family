@@ -1,0 +1,15 @@
+@import "../../src/css/AutoComplete.less";
+
+@esui-autocomplete-selected-item-color: @esf-dropdown-item-hover-color;
+@esui-autocomplete-selected-item-background: @esf-dropdown-item-highlight-background;
+
+@esui-autocomplete-item-char-selected-font-weight: bold;
+
+.esui-autocomplete-item-hover-theme() {
+    background: @esui-autocomplete-selected-item-background;
+    color: @esui-autocomplete-selected-item-color;
+}
+
+.esui-autocomplete-item-char-selected-theme() {
+    font-weight: @esui-autocomplete-item-char-selected-font-weight;
+}

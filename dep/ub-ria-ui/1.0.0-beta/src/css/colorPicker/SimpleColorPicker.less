@@ -1,0 +1,38 @@
+/**
+ * 简单模式拾色器
+ */
+@simple-color-picker-width: 350px;
+@simple-color-picker-block-width: 20px;
+@simple-color-picker-block-height: 20px;
+@simple-color-picker-block-border-color: #ddd;
+@simple-color-picker-block-border-color-selected: #6df2ff;
+
+.@{ui-class-prefix}-simplecolorpicker {
+    width: @simple-color-picker-width;
+    line-height: 0;
+    .box-sizing(border-box);
+    .clearfix();
+}
+
+.@{ui-class-prefix}-simplecolorpicker-block {
+    display: inline-block;
+    width: @simple-color-picker-block-width;
+    height: @simple-color-picker-block-height;
+    margin: 10px 0 0 10px;
+    border: 1px solid @simple-color-picker-block-border-color;
+    cursor: pointer;
+    .hide-text();
+    .box-sizing(border-box);
+
+    // 每行第一个
+    &[data-value="ffffff"],
+    &[data-value="50a7f9"],
+    &[data-value="86ccc8"],
+    &[data-value="0068b7"] {
+        margin-left: 0;
+    }
+}
+
+.@{ui-class-prefix}-simplecolorpicker-selected {
+    border: 1px solid @simple-color-picker-block-border-color-selected;
+}

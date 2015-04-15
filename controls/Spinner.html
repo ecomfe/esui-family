@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script src="assets/loader/esl.js"></script>
+<!--[if lt IE 9]>
+<script src="http://xy3.baidu.com/js/html5.js"></script>
+<![endif]-->
+<script src="assets/third-party/prism.js"></script>
+<script src="assets/third-party/jquery-1.9.1.min.js"></script>
+<script src="demo.js"></script>
+<link rel="stylesheet" href="assets/themes/standard.less" />
+<link rel="stylesheet" href="assets/third-party/prism.css">
+<style>
+    h1 {
+        font-family: 'Microsoft Yahei', Arial, sans-serif;
+        margin: 10px 0;
+        font-size: 24px;
+        font-weight: 400;
+    }
+
+    h2 {
+        font-family: 'Microsoft Yahei', Arial, sans-serif;
+        margin: 10px 0;
+        font-size: 22px;
+        font-weight: 400;
+    }
+
+    .blackboard {
+        background-color: #000000;
+        color: #ffffff;
+        font-family: "Consolas", "Menlo", "Courier", monospace;
+        font-size: 16px;
+        padding: 10px;
+        margin: 10px 0;
+        min-height: 50px;
+        overflow-x: scroll;
+        overflow-y: auto;
+    }
+    ul li {
+        margin: 10px 0;
+        list-style: none;
+    }
+    ul label {
+        width: 150px;
+        display: inline-block;
+    }
+    .custom {
+        text-align: center;
+    }
+    .btn {
+        color: #333333;
+        width: 100px;
+    }
+</style>
+
+<h1>Spinner</h1>
+<div id="page">
+    <ul id="navigator">
+    </ul>
+    <div id="main">
+        <h2>Spinner的实例</h2>
+        <section class="intro">
+            <p>
+                1. 光秃秃的只有一个滑杆
+            </p>
+        </section>
+        <section class="view">
+            <ul class="viewer">
+                <li class="view-markup">结构</li>
+            </ul>
+            <div class="example" id="container">
+                <div data-ui-type="TextBox" data-ui-id="myTextBox" data-ui-placeholder="hehe" data-ui-hint="$"
+                     data-ui-width="300"
+                     data-ui-hint-type="prefix" data-ui-extension-spinner-type="Spinner"
+                     data-ui-extension-spinner-format="YYYY-MM-DD"
+                     data-ui-extension-spinner-time-interval="100" data-ui-extension-spinner-turn="false"
+                     data-ui-extension-spinner-upper-bound="20150630"
+                     data-ui-extension-spinner-lower-bound="20150101"></div>
+            </div>
+        </section>
+        
+        <h2>自定义配置示例</h2>
+        <ul>
+            
+            <li>
+                <label>hintType:</label>
+                <input id="prefix" type="radio" name="hintType" value="prefix"><label for="prefix">prefix</label>
+                <input id="suffix" type="radio" name="hintType" value="suffix"><label for="suffix">suffix</label>
+            </li>
+            <li>
+                <label>useCustom:<input id="useCustom" type="checkbox" name="useCustom"></label>
+            </li>
+            <li>
+                <label for="scale">scale:</label><input type="text" id="scale" name="scale">
+            </li>
+            <li>
+                <label for="upperBound">upperBound:</label><input type="text" id="upperBound" name="upperBound">
+            </li>
+            <li>
+                <label for="lowerBound">lowerBound:</label><input type="text" id="lowerBound" name="lowerBound">
+            </li>
+            <li>
+                <label for="format">format:</label><input type="text" id="format" name="format">
+            </li>
+            <li>
+                <label for="timeInterval">timeInterval:</label><input type="text" id="timeInterval" name="timeInterval">
+            </li>
+            <li>
+                <label for="spinnerValue">spinnerValue:</label><input type="text" name="spinnerValue" id="spinnerValue">
+            </li>
+            <li>
+                <input type="button" id="tryBtn" value="确定" class="ui-button btn">
+            </li>
+        </ul>
+        <div id="custom" class="custom">
+            <div data-ui-type="TextBox" data-ui-id="custom" data-ui-placeholder="hehe" data-ui-hint="$"
+                 data-ui-width="500"
+                 data-ui-hint-type="prefix">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    require(['esui', 'Spinner', 'esui/TextBox'], function (ui) {
+        var lib = require('esui/lib');
+        var u = require('underscore');
+        ui.init();
+
+        var myTextBox = ui.get('myTextBox');
+        var custom = ui.get('custom');
+
+        myTextBox.scale = {key: "day", value: 1};
+
+        function refreshView () {
+            var options = {};
+            var opt = {};
+            var inputOptions = {};
+            var disabled = lib.g('disabled').checked;
+            var readOnly = lib.g('readOnly').checked;
+            var hint = document.getElementsByName('hintType');
+            var hintType;
+            var useCustom = lib.g('useCustom').checked;
+
+            for(var i = 0; i< hint.length; i++) {
+                if(hint[i].checked) {
+                    hintType = hint[i].value;
+                }
+            }
+
+            options.turn = lib.g('turn').checked;
+            options.scale = lib.g('scale').value;
+            options.upperBound = lib.g('upperBound').value;
+            options.lowerBound = lib.g('lowerBound').value;
+            options.format = lib.g('format').value;
+            options.timeInterval = lib.g('timeInterval').value;
+//            options.mask = lib.g('mask');
+            inputOptions.disabled = disabled;
+            inputOptions.readOnly = readOnly;
+            inputOptions.hintType = hintType;
+
+            custom.setProperties(inputOptions);
+            u.each(options, function (value, key) {
+                if (!!value) {
+                    opt[key] = value;
+                }
+            });
+            var ext = u.findWhere(custom.extensions, {type: "Spinner"});
+            if (ext) {
+                ext.dispose();
+            }
+
+            var spinner = ui.createExtension(
+                    'Spinner',
+                    opt
+            );
+            spinner.attachTo(custom);
+            custom.extensions.push(spinner);
+            custom.mask = {
+                '(╯‵□′)╯︵┻━┻': 1,
+                '(╯‵□′)╯︵ ┻━┻': 2,
+                '(╯‵□′)╯︵  ┻━┻': 3,
+                "┬─┬  ノ( ' - 'ノ) ": 4,
+                '(╯‵□′)╯︵   ┻━┻': 5,
+                "┬─┬ ノ( ' - 'ノ) ": 6,
+                "（╯' - ')╯︵ ┻━┻ ": 7,
+                '(╯‵□′)╯︵     ┻━┻': 8,
+                ' - ( ゜- ゜)つロ 乾杯~': [0, 10, 13]
+            };
+            if (useCustom) {
+                custom.on('scrollValue', showSpinnerValue);
+            } else {
+                custom.un('scrollValue', showSpinnerValue);
+            }
+        }
+        var spinnerValue = lib.g('spinnerValue');
+        function showSpinnerValue (e) {
+            setTimeout(function () {
+                spinnerValue.value = e.target.spinnerValue;
+            },0);
+        }
+
+        var tryBtn = lib.g('tryBtn');
+        tryBtn.onclick = refreshView;
+    });
+</script>
+</body>
+</html>

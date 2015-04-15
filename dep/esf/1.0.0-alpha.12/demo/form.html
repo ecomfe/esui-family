@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Form - ESUI Demo</title>
+        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/prism.css" />
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+        <script src="assets/prism.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </head>
+    <body>
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#form-inline">单行表单（Inline Form）</a></li>
+                    <li><a href="#form-horizontal">横向表单（Horizontal Form）</a></li>
+                    <li><a href="#form-stacked">堆叠表单（Stacked Form）</a></li>
+                    <li><a href="#form-fieldset">字段组合（FieldSet）</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main" class="content">
+                    <h2>表单（Form） <span class="ui-text-danger">(Draft)</span></h2>
+                    <hr />
+                    <h3 id="form-inline">单行表单（Inline Form）</h3>
+                    <div class="example">
+                        <h3>With Label</h3>
+                        <form class="ui-form">
+                            <div class="ui-form-row">
+                                <div class="ui-form-field">
+                                    <div class="ui-form-key ui-form-valign ui-form-required">
+                                        <label for="email">邮箱：</label>
+                                    </div>
+                                    <div class="ui-form-value ui-form-wrap-hint">
+                                        <div class="ui-textbox">
+                                            <input placeholder="邮箱" type="email" id="email1" />
+                                        </div>
+                                        <label class="ui-form-hint">输入邮箱</label>
+                                    </div>
+                                </div>
+                                <div class="ui-form-field">
+                                    <div class="ui-form-key ui-form-valign">
+                                        <label for="password">密码：</label>
+                                    </div>
+                                    <div class="ui-form-value ui-form-wrap-hint">
+                                        <div class="ui-textbox">
+                                            <input placeholder="密码" type="password" id="password" />
+                                        </div>
+                                        <label class="ui-form-hint">输入密码</label>
+                                    </div>
+                                </div>
+                                <div class="ui-form-field">
+                                    <div class="ui-form-value ui-form-valign">
+                                        <div class="ui-checkbox-custom">
+                                            <input id="remember1" type="checkbox" />
+                                            <label for="remember1">记住账户</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="ui-button">登录</button>
+                            </div>
+                        </form>
+                        <h3>Without Label</h3>
+                        <form class="ui-form">
+                            <div class="ui-form-row">
+                                <div class="ui-form-value">
+                                    <div class="ui-textbox">
+                                        <input placeholder="邮箱" type="email" id="email1" />
+                                    </div>
+                                </div>
+                                <div class="ui-form-value">
+                                    <div class="ui-textbox">
+                                        <input placeholder="密码" type="password" id="password1" />
+                                    </div>
+                                </div>
+                                <div class="ui-form-value ui-form-valign">
+                                    <div class="ui-checkbox-custom">
+                                        <input id="remember2" type="checkbox" />
+                                        <label for="remember2">记住账户</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="ui-button">登录</button>
+                            </div>
+                        </form>
+                    </div>
+                    <h3 id="form-horizontal">横向表单（Horizontal Form）</h3>
+                    <div class="example">
+                        <h4>提示信息折行</h4>
+                        <form class="ui-form ui-form-wrap-hint">
+                            <div class="ui-form-row">
+                                <div class="ui-form-key ui-form-required"><label for="email2">邮箱：</label></div>
+                                <div class="ui-form-value">
+                                    <div class="ui-textbox">
+                                        <input placeholder="邮箱" type="email" id="email2" />
+                                    </div>
+                                    <label class="ui-form-hint">输入用户名，提示信息可以在第二行</label>
+                                </div>
+                            </div>
+                            <div class="ui-form-row">
+                                <div class="ui-form-key ui-form-required">
+                                    <label for="password2">密码：</label>
+                                </div>
+                                <div class="ui-form-value">
+                                    <div class="ui-textbox">
+                                        <input placeholder="密码" type="password" id="password2" />
+                                    </div>
+                                    <label class="ui-form-hint">输入密码</label>
+                                </div>
+                            </div>
+                            <div class="ui-form-row">
+                                <div class="ui-form-key">
+                                    <label>性别：</label>
+                                </div>
+                                <div class="ui-form-value">
+                                    <label class="ui-select-custom">
+                                        <select id="selectGender">
+                                            <option value="male">男</option>
+                                            <option value="female">女</option>
+                                            <option value="none">不知道性别请登录www.baidu.com搜索：性别如何测试</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="ui-form-row">
+                                <div class="ui-form-key">
+                                    <label>国家：</label>
+                                </div>
+                                <div class="ui-form-value">
+                                    <label class="ui-select-custom">
+                                        <select id="selectGender2">
+                                            <option value="male">美帝</option>
+                                            <option value="female">欧帝</option>
+                                            <option value="none">天朝</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="ui-form-buttons">
+                                <button type="submit" class="ui-button ui-button-primary">提交</button>
+                                <button type="submit" class="ui-button ui-button-link">返回</button>
+                            </div>
+                        </form>
+                        <h4>提示信息不折行</h4>
+                        <form class="ui-form">
+                            <div class="ui-form-row">
+                                <div class="ui-form-key ui-form-required"><label for="email2">邮箱：</label></div>
+                                <div class="ui-form-value">
+                                    <div class="ui-textbox">
+                                        <input placeholder="邮箱" type="email" id="email2" />
+                                    </div>
+                                    <label class="ui-form-hint">输入用户名</label>
+                                </div>
+                            </div>
+                            <div class="ui-form-row">
+                                <div class="ui-form-key ui-form-required">
+                                    <label for="password2">密码：</label>
+                                </div>
+                                <div class="ui-form-value">
+                                    <div class="ui-textbox">
+                                        <input placeholder="密码" type="password" id="password2" />
+                                    </div>
+                                    <label class="ui-form-hint">输入密码</label>
+                                </div>
+                            </div>
+                            <div class="ui-form-row">
+                                <div class="ui-form-key">
+                                    <label>性别：</label>
+                                </div>
+                                <div class="ui-form-value">
+                                    <label class="ui-select-custom">
+                                        <select id="selectGender">
+                                            <option value="male">男</option>
+                                            <option value="female">女</option>
+                                            <option value="none">不知道性别请登录www.baidu.com搜索：性别如何测试</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="ui-form-row">
+                                <div class="ui-form-key">
+                                    <label>国家：</label>
+                                </div>
+                                <div class="ui-form-value">
+                                    <label class="ui-select-custom ui-disabled">
+                                        <select disabled="disabled" id="selectGender2">
+                                            <option value="male">美帝</option>
+                                            <option value="female">欧帝</option>
+                                            <option value="none">天朝</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="ui-form-row">
+                                <div class="ui-checkbox-custom">
+                                    <input id="remember4" type="checkbox" />
+                                    <label for="remember4">记住账户</label>
+                                </div>
+                            </div>
+                            <div class="ui-form-buttons">
+                                <button type="submit" class="ui-button ui-button-success">提交</button>
+                                <button type="submit" class="ui-button">返回</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h3 id="form-stacked">堆叠表单（Stacked Form）</h3>
+                    <div class="example">
+                        <form class="ui-form ui-form-stack ui-form-wrap-hint" style="width: 500px">
+                            <div class="ui-form-row">
+                                <div class="ui-form-field">
+                                    <label class="ui-form-key ui-form-required">Name</label>
+                                    <div class="ui-form-field">
+                                        <div class="ui-form-value">
+                                            <div class="ui-textbox ui-textbox-width-size4">
+                                                <input placeholder="First Name" type="text" id="firstName" />
+                                            </div>
+                                            <label class="ui-form-hint">Your first name</label>
+                                        </div>
+                                    </div>
+                                    <div class="ui-form-field">
+                                        <div class="ui-form-value">
+                                            <div class="ui-textbox ui-textbox-width-size4">
+                                                <input placeholder="Last Name" type="text" id="lastName" />
+                                            </div>
+                                            <label class="ui-form-hint">Your last name</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-form-row">
+                                <label class="ui-form-key">Address</label>
+                                <div class="ui-form-value">
+                                    <div class="ui-textbox ui-textbox-width-size8">
+                                        <input placeholder="密码" type="text" id="address" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-form-buttons">
+                                <button type="submit" class="ui-button">登录</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h3 id="form-fieldset">Field Set</h3>
+                    <div class="example">
+                        <form class="ui-form ui-form-stack ui-form-wrap-hint" style="width: 500px">
+                            <fieldset>
+                                <legend>Personal Details </legend>
+                                <div class="ui-form-row">
+                                    <div class="ui-form-field">
+                                        <label class="ui-form-key ui-form-required">Name</label>
+                                        <div class="ui-form-field">
+                                            <div class="ui-form-value">
+                                                <div class="ui-textbox ui-textbox-width-size4">
+                                                    <input placeholder="First Name" type="text" id="firstName" />
+                                                </div>
+                                                <label class="ui-form-hint">Your first name</label>
+                                            </div>
+                                        </div>
+                                        <div class="ui-form-field">
+                                            <div class="ui-form-value">
+                                                <div class="ui-textbox ui-textbox-width-size4">
+                                                    <input placeholder="Last Name" type="text" id="lastName" />
+                                                </div>
+                                                <label class="ui-form-hint">Your last name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui-form-row">
+                                    <label class="ui-form-key">Address</label>
+                                    <div class="ui-form-value">
+                                        <div class="ui-textbox ui-textbox-width-size8">
+                                            <input placeholder="密码" type="text" id="address" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset>
+                                <legend>Home Address</legend>
+                                <div class="ui-form-row">
+                                    <div class="ui-form-field">
+                                        <label class="ui-form-key ui-form-required">Name</label>
+                                        <div class="ui-form-field">
+                                            <div class="ui-form-value">
+                                                <div class="ui-textbox ui-textbox-width-size4">
+                                                    <input placeholder="First Name" type="text" id="firstName" />
+                                                </div>
+                                                <label class="ui-form-hint">Your first name</label>
+                                            </div>
+                                        </div>
+                                        <div class="ui-form-field">
+                                            <div class="ui-form-value">
+                                                <div class="ui-textbox ui-textbox-width-size4">
+                                                    <input placeholder="Last Name" type="text" id="lastName" />
+                                                </div>
+                                                <label class="ui-form-hint">Your last name</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ui-form-row">
+                                    <label class="ui-form-key">Address</label>
+                                    <div class="ui-form-value">
+                                        <div class="ui-textbox ui-textbox-width-size8">
+                                            <input placeholder="密码" type="text" id="address" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="ui-form-buttons">
+                                <button type="submit" class="ui-button">登录</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

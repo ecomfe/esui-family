@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Navbar - ESF Demo</title>
+        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/prism.css" />
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+        <script src="assets/prism.js" data-manual></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+        <style>
+            #branding {
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#navbar-nav">导航位置</a></li>
+                    <li><a href="#navbar-content">放置其他元素</a></li>
+                    <li><a href="#navbar-submenu">子菜单</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main" class="content">
+                    <h2>导航菜单 <small>Navbar</small></h2>
+                    <hr />
+                    <p>
+                        站点横向导航菜单。
+                    </p>
+                    <h3 id="navbar-nav">导航位置</h3>
+                    <p>
+                        添加<code>ui-navbar-pull-right</code>把导航子选项布局到右侧。
+                    </p>
+                    <div class="example">
+                        <div class="ui-navbar">
+                            <ul class="ui-navbar-nav">
+                                <li><a href="#"><i class="ui-icon-home"></i> Home</a></li>
+                                <li><a href="#"><i class="ui-icon-rocket"></i> CSS Nested Menu</a></li>
+                            </ul>
+                            <ul class="ui-navbar-nav ui-navbar-pull-right">
+                                <li><a href="#"><i class="ui-icon-user"></i> Profile</a></li>
+                                <li><a href="#"><i class="ui-icon-sign-out"></i> Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <h3 id="menu-hoverable">放置其他元素</h3>
+                    <p>
+                        添加<code>ui-navbar-content</code>放置其他元素。
+                    </p>
+                    <div class="example">
+                        <div class="ui-navbar">
+                            <div class="ui-navbar-content">
+                                <a href="#" class="ui-navbar-content-icon ui-navbar-content-link ui-icon-bars"></a>
+                            </div>
+                            <ul class="ui-navbar-nav">
+                                <li>
+                                    <a href="#">
+                                        <i class="ui-icon-home"></i> Home
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="ui-navbar-content ui-navbar-pull-right ui-small" style="margin-right: .5em">
+                                <div class="ui-textbox ui-textbox-icon-left">
+                                    <span class="ui-textbox-icon ui-icon-search"></span>
+                                    <input type="text" placeholder="Search users...">
+                                </div>
+                            </div>
+                            <div class="ui-navbar-content ui-navbar-pull-right ui-small" style="margin-right: 1.5em">
+                                <a href="#" class="ui-navbar-content-link">
+                                    <span class="ui-icon-question-circle"></span>
+                                    Help
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <h3 id="navbar-submenu">子菜单</h3>
+                    <div class="example">
+                        <div class="ui-navbar">
+                            <div class="ui-navbar-content">
+                                <a href="#" class="ui-navbar-content-icon ui-navbar-content-link ui-icon-bars"></a>
+                            </div>
+                            <ul class="ui-navbar-nav">
+                                <li>
+                                    <a href="#">
+                                        <i class="ui-icon-home"></i> Home
+                                    </a>
+                                    <ul class="ui-submenu ui-submenu-fly-out ui-submenu-fill-width">
+                                        <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                        <li class="ui-submenu-separator-bottom">
+                                            <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                        </li>
+                                        <li><span>Active</span></li>
+                                        <li class="ui-disabled"><span>Disabled</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="ui-navbar-nav ui-navbar-pull-right">
+                                <li>
+                                    <a href="#"><i class="ui-icon-sign-out"></i> Sign Out</a>
+                                    <ul class="ui-submenu ui-submenu-align-right ui-submenu-fill-width">
+                                        <li><span><span class="ui-icon-home"></span> Log out</span></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

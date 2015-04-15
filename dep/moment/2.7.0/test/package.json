@@ -1,0 +1,21 @@
+{
+    "name": "test",
+    "version": "0.0.1",
+    "description": "edp project",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "edp": {
+        "wwwroot": "/",
+        "depDir": "dep",
+        "srcDir": "src",
+        "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
+        "dependencies": {}
+    },
+    "dependencies": {},
+    "author": "leeight@gmail.com",
+    "repository": "empty",
+    "license": "BSD",
+    "readme": "README"
+}

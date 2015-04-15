@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Sticky - ESUI Demo</title>
+    <link rel="stylesheet" href="../assets/themes/standard.css" />
+    <link rel="stylesheet" href="../assets/3rd-party/prism.css" />
+    <script src="../assets/loader/esl.js"></script>
+    <script src="../assets/loader/config.js"></script>
+    <script src="../assets/build/ui.js"></script>
+    <script src="../assets/3rd-party/jquery-1.11.1.min.js"></script>
+    <script src="../assets/3rd-party/prism.js"></script>
+    <script src="../assets/demo.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <style>
+        .sticky_test {
+            height:30px;
+            border:1px solid #e5e5e5;
+            padding: 15px;
+            background-color: #fafafa;
+            color:#666;
+            border-radius: 4px;
+        }
+        .big-row {
+            margin-bottom: 500px;
+        }
+    </style>
+</head>
+<body>
+<header id="header">
+    <div class="ui-navbar ui-navbar-mordern">
+        <h1 id="branding" class="ui-navbar-content">
+            <a class="ui-navbar-content-link">ESUI Family</a>
+        </h1>
+        <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+            <script>
+            mainNav('../');
+            </script>
+        </ul>
+    </div>
+</header>
+<div class="ui-g main-container">
+    <div id="side-bar" class="ui-u-1-5">
+        <ul id="navigator" class="ui-sidebar">
+        </ul>
+    </div>
+    <div id="content" class="ui-u-4-5">
+        <h2>Sticky</h2>
+        <p>悬浮在距离顶端的固定位置</p>
+        <hr />
+        <div id="main">
+            <h3>设置悬浮位置</h3>
+            <p>可以设置展开图标位置。</p>
+            <div class="example">
+                <div class="row">
+                        <h3>固定在文档顶端</h3>
+                        <div data-ui="type:Sticky;top:0" >
+                            <div class="sticky_test">设置top:0 可以悬浮在顶端 </div>
+                        </div>
+                </div>
+                <div class="big-row">
+                    <h3>固定在文档70处</h3>
+                    <div data-ui="type:Sticky;top:70" >
+                        <div class="sticky_test">设置top:70 可以悬浮在距离顶端70px的位置</div>
+                    </div>
+                </div>
+                <div class="big-row">
+                </div>
+                <div class="big-row">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <script>
+        footer();
+    </script>
+</footer>
+<script>
+require(
+    [
+        'esui',
+        'ub-ria-ui/Sticky'
+    ],
+    function (ui, Sticky) {
+        window.ui = ui;
+        var controls = ui.init();
+    }
+);
+</script>
+</body>
+</html>

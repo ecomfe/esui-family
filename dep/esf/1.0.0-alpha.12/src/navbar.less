@@ -1,0 +1,109 @@
+@import "base.less";
+
+@esf-navbar-padding: 0;
+@esf-navbar-margin: 0;
+@esf-navbar-font-family: 'Helvetica Neue', Helvetica, Arial, '微软雅黑', 'Microsoft YaHei', '黑体', SimHei, sans-serif;
+
+@esf-navbar-nav-item-height: 60px;
+@esf-navbar-nav-item-horizontal-padding: 1em;
+@esf-navbar-nav-item-line-height: 60px;
+@esf-navbar-nav-item-font-size: 20px;
+@esf-navbar-nav-item-font-weight: bold;
+
+@esf-navbar-content-icon-font-size: 25px;
+
+// http://getuikit.com/docs/navbar.html
+.@{ui-class-prefix}-navbar {
+    padding: @esf-navbar-padding;
+    margin: @esf-navbar-margin;
+    font-family: @esf-navbar-font-family;
+    .esf-navbar-theme();
+}
+
+.@{ui-class-prefix}-navbar {
+    &:extend(.esf-clearfix all);
+}
+
+.@{ui-class-prefix}-navbar-nav,
+.@{ui-class-prefix}-navbar-content {
+    float: left;
+    height: @esf-navbar-nav-item-height;
+}
+
+.@{ui-class-prefix}-navbar-pull-right {
+    float: right;
+}
+
+.@{ui-class-prefix}-navbar-content {
+    &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+}
+
+.@{ui-class-prefix}-navbar-content-text,
+.@{ui-class-prefix}-navbar-content-link,
+.@{ui-class-prefix}-navbar-content-icon {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.@{ui-class-prefix}-navbar-content-text {
+    .esf-navbar-content-text-theme();
+}
+
+.@{ui-class-prefix}-navbar-content-link {
+    .esf-navbar-content-link-theme();
+}
+
+.@{ui-class-prefix}-navbar-content-icon {
+    font-size: @esf-navbar-content-icon-font-size;
+    .esf-navbar-content-icon-theme();
+}
+
+.@{ui-class-prefix}-navbar-nav {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    > li {
+        float: left;
+        position: relative;
+        > a {
+            display: block;
+            .box-sizing(border-box);
+            height: @esf-navbar-nav-item-height;
+            padding: 0 @esf-navbar-nav-item-horizontal-padding;
+            line-height: @esf-navbar-nav-item-line-height;
+            font-size: @esf-navbar-nav-item-font-size;
+            font-weight: @esf-navbar-nav-item-font-weight;
+            .esf-navbar-nav-item-theme();
+        }
+        &:hover,
+        &:focus {
+            > a {
+                .esf-navbar-nav-item-hover-theme();
+            }
+            > .@{ui-class-prefix}-submenu {
+                display: block;
+            }
+        }
+        &:active,
+        &.@{ui-class-prefix}-active {
+            > a {
+                .esf-navbar-nav-item-active-theme();
+            }
+        }
+        > .@{ui-class-prefix}-submenu {
+            display: none;
+        }
+    }
+}
+
+.esf-navbar-theme() {}
+.esf-navbar-content-text-theme() {}
+.esf-navbar-content-link-theme() {}
+.esf-navbar-content-icon-theme() {}
+.esf-navbar-nav-item-theme() {}
+.esf-navbar-nav-item-hover-theme() {}

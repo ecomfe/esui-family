@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>TextLine - ESUI Demo</title>
+    <link rel="stylesheet" href="../assets/themes/standard.css" />
+    <link rel="stylesheet" href="../assets/3rd-party/prism.css" />
+
+    <script src="../assets/loader/esl.js"></script>
+    <script src="../assets/loader/config.js"></script>
+    <script src="../assets/build/ui.js"></script>
+    <script src="../assets/3rd-party/jquery-1.11.1.min.js"></script>
+    <script src="../assets/3rd-party/prism.js"></script>
+    <script src="../assets/demo.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <header id="header">
+        <div class="ui-navbar ui-navbar-mordern">
+            <h1 id="branding" class="ui-navbar-content">
+                <a class="ui-navbar-content-link">ESUI Family</a>
+            </h1>
+            <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+               <script>
+                mainNav('../');
+                </script>
+            </ul>
+        </div>
+    </header>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-sidebar">
+            </ul>
+        </div>
+        <div id="content" class="ui-u-4-5">
+            <h2 id="branding">ESUI - TextLine</h2>
+            <hr />
+            <div id="page">
+                <ul id="navigator">
+                </ul>
+                <div id="main">
+                    <h3>展示</h3>
+                    <section class="intro">
+                        <p>描述</p>
+                    </section>
+                    <section class="view">
+                        <div class="example ui-demo-light-stage">
+                            <h4>Error</h4>
+                            <div data-ui="type:TextLine;name:textLine;">
+                            </div>
+                            <h4>Disabled</h4>
+                            <esui-text-line data-ui="type:TextLine;name:textLine;disabled:disabled;rawValue:disabled"></esui-text-line>
+                            <h4>Read Only</h4>
+                            <esui-text-line data-ui="type:TextLine;name:textLine;readOnly:readOnly;rawValue:readOnly"></esui-text-line>
+                            <h4>Success</h4>
+                            <esui-text-line data-ui="type:TextLine;name:textLine;rawValue:success;states:success"></esui-text-line>
+                            <h4>Warning</h4>
+                            <esui-text-line data-ui="type:TextLine;name:textLine;rawValue:warning;states:warning"></esui-text-line>
+                        </div>
+                    </section>
+                </div>
+                <script>
+                require(
+                    [
+                        'esui',
+                        'esui/TextLine'
+                    ],
+                    function (ui) {
+                        var controls = ui.init();
+                        var textLine = controls[0];
+
+                        textLine.setProperties({
+                            value: 'value1\nvalue2\nsadf\nsadf\nsadf\nsadf\nsadf\nsadf\nsadf\nsadf\nsadf'
+                        });
+                        textLine.showValidationMessage('invalid', '错误信息！');
+                    }
+                )
+                </script>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <script>
+            footer();
+        </script>
+    </footer>
+</body>
+</html>

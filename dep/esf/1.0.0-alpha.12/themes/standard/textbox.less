@@ -1,0 +1,173 @@
+// textbox core
+@import "../../src/textbox.less";
+
+// core variables
+@esf-textbox-height: @esf-single-line-control-height;
+
+// theme variables
+// normal
+@esf-textbox-border-color: @esf-palette-border;
+@esf-textbox-background: @esf-palette-white;
+@esf-textbox-text-color: @esf-palette-color;
+
+// focus state
+@esf-textbox-focus-border-color: @esf-palette-primary-color;
+@esf-textbox-focus-background: lighten(@esf-palette-primary-color, 37%);
+@esf-textbox-focus-text-color: @esf-palette-color;
+
+// error state
+@esf-textbox-error-border-color: @esf-palette-danger-color;
+@esf-textbox-error-background: lighten(@esf-palette-danger-color, 37%);
+@esf-textbox-error-text-color: @esf-palette-danger-shadow-color;
+
+// readonly state
+@esf-textbox-readonly-border-color: @esf-palette-border;
+@esf-textbox-readonly-background: @esf-palette-white;
+@esf-textbox-readonly-text-color: @esf-palette-muted-color;
+
+// success state
+@esf-textbox-success-border-color: @esf-palette-success-color;
+@esf-textbox-success-background: lighten(@esf-palette-success-color, 37%);
+@esf-textbox-success-text-color: @esf-palette-success-color;
+
+// warning state
+@esf-textbox-warning-border-color: @esf-palette-warning-color;
+@esf-textbox-warning-background: lighten(@esf-palette-warning-color, 37%);
+@esf-textbox-warning-text-color: @esf-palette-warning-color;
+
+// placeholder color
+@esf-textbox-placeholder-color: @esf-palette-muted-color;
+
+.esf-textbox-input-theme() {
+    .esf-input-color-def(
+        @esf-textbox-border-color,
+        @esf-textbox-background,
+        @esf-textbox-text-color
+    );
+    .placeholder(@esf-textbox-placeholder-color);
+}
+
+.esf-textbox-theme() {
+
+    // focus
+    & > input:focus,
+    & > textarea:focus,
+    &.@{ui-state-prefix}-focus > input {
+        .esf-input-color-def(
+            @esf-textbox-focus-border-color,
+            @esf-textbox-focus-background,
+            @esf-textbox-focus-text-color
+        );
+    }
+
+    // disabled
+    & > input[disabled],
+    & > textarea[disabled] {
+        .esf-disabled();
+    }
+
+    // error
+    &.@{ui-state-prefix}-error > input,
+    &.@{ui-state-prefix}-validity-invalid > input {
+        .esf-input-color-def(
+            @esf-textbox-error-border-color,
+            @esf-textbox-error-background,
+            @esf-textbox-error-text-color
+        );
+        .placeholder(@esf-textbox-error-text-color);
+    }
+
+    // read only
+    & > input[readonly],
+    & > textarea[readonly] {
+        .esf-input-color-def(
+            @esf-textbox-readonly-border-color,
+            @esf-textbox-readonly-background,
+            @esf-textbox-readonly-text-color
+        );
+    }
+
+    // success
+    &.@{ui-state-prefix}-success > input,
+    &.@{ui-state-prefix}-success > textarea {
+        .esf-input-color-def(
+            @esf-textbox-success-border-color,
+            @esf-textbox-success-background,
+            @esf-textbox-success-text-color
+        );
+        .placeholder(@esf-textbox-success-text-color);
+    }
+
+    // warning
+    &.@{ui-state-prefix}-warning > input,
+    &.@{ui-state-prefix}-warning > textarea {
+        .esf-input-color-def(
+            @esf-textbox-warning-border-color,
+            @esf-textbox-warning-background,
+            @esf-textbox-warning-text-color
+        );
+        .placeholder(@esf-textbox-warning-text-color);
+    }
+}
+
+.esf-textbox-button-text-border-theme() {
+    .esf-input-color-def(
+        @esf-textbox-border-color,
+        @esf-textbox-background,
+        @esf-textbox-text-color
+    );
+    .@{ui-state-prefix}-focus & {
+        .esf-input-color-def(
+            @esf-textbox-focus-border-color,
+            @esf-textbox-focus-background,
+            @esf-textbox-focus-text-color
+        );
+    }
+    .@{ui-state-prefix}-error &,
+    .@{ui-state-prefix}-validity-invalid & {
+        .esf-input-color-def(
+            @esf-textbox-error-border-color,
+            @esf-textbox-error-background,
+            @esf-textbox-error-text-color
+        );
+    }
+
+    .@{ui-state-prefix}-readon-only & {
+        .esf-input-color-def(
+            @esf-textbox-readonly-border-color,
+            @esf-textbox-readonly-background,
+            @esf-textbox-readonly-text-color
+        );
+    }
+
+    // success
+    .@{ui-state-prefix}-success &,
+    .@{ui-state-prefix}-success & {
+        .esf-input-color-def(
+            @esf-textbox-success-border-color,
+            @esf-textbox-success-background,
+            @esf-textbox-success-text-color
+        );
+    }
+
+    // warning
+    .@{ui-state-prefix}-warning &,
+    .@{ui-state-prefix}-warning & {
+        .esf-input-color-def(
+            @esf-textbox-warning-border-color,
+            @esf-textbox-warning-background,
+            @esf-textbox-warning-text-color
+        );
+    }
+}
+
+// mixins
+.esf-input-color-def(
+    @border,
+    @background,
+    @text,
+) {
+    border: 1px solid @border;
+    background: @background;
+    color: @text;
+}

@@ -1,0 +1,176 @@
+@import "base.less";
+
+// =========
+// Input
+// =========
+
+// keep the same height as button
+@esf-textbox-height: 2.5em;
+
+// padding
+@esf-textbox-padding: 0.5em;
+
+// radius
+@esf-textbox-radius: 5px;
+
+@esf-textbox-icon-width: @esf-textbox-height;
+
+.@{ui-class-prefix}-textbox {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    .esf-border-radius(
+        @esf-textbox-radius,
+        @esf-textbox-radius
+    );
+
+    > input {
+        height: @esf-textbox-height;
+        vertical-align: top;
+    }
+    > input,
+    > textarea {
+        padding: @esf-textbox-padding;
+        width: 100%;
+        margin: 0;
+        outline: 0;
+        .esf-border-radius(
+            @esf-textbox-radius,
+            @esf-textbox-radius
+        );
+        @esf-textbox-transition:
+            background-color 0.3s ease-out,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+        .esf-transition(@esf-textbox-transition);
+        .box-sizing(border-box);
+        font-size: 100%;
+        resize: none;
+
+        .esf-textbox-input-theme();
+    }
+    .esf-textbox-theme();
+}
+
+// icon
+// use textbox-icon to specify icon
+.@{ui-class-prefix}-textbox-icon {
+    width: @esf-textbox-icon-width;
+    height: @esf-textbox-height;
+    line-height: @esf-textbox-height !important;
+    position: absolute;
+    top: 0;
+    text-align: center;
+}
+
+.@{ui-class-prefix}-textbox-icon-left {
+    .@{ui-class-prefix}-textbox-icon {
+        left: 0;
+    }
+    input {
+        padding-left: @esf-textbox-icon-width;
+    }
+}
+
+.@{ui-class-prefix}-textbox-icon-right {
+    .@{ui-class-prefix}-textbox-icon {
+        right: 0;
+    }
+    input {
+        padding-right: @esf-textbox-icon-width;
+    }
+}
+
+.@{ui-class-prefix}-textbox-fluid {
+    display: block;
+}
+
+// TODO: 需要添加Last Child IE8的支持
+.@{ui-class-prefix}-textbox-wrapper {
+    display: table !important;
+    border-collapse: separate;
+    >.@{ui-class-prefix}-textbox {
+        display: table-cell;
+        width: 100%;
+    }
+    .@{ui-class-prefix}-textbox-addon:first-child {
+        right: -1px;
+        margin-left: -1px;
+    }
+    .@{ui-class-prefix}-textbox-addon:first-child .@{ui-class-prefix}-button,
+    .@{ui-class-prefix}-textbox-addon:first-child .@{ui-class-prefix}-select-inner,
+    .@{ui-class-prefix}-textbox:first-child input {
+        .esf-border-right-radius(
+            0,
+            @esf-textbox-radius
+        );
+        border-right: 0 !important;
+    }
+    .@{ui-class-prefix}-textbox-addon:last-child .@{ui-class-prefix}-button,
+    .@{ui-class-prefix}-textbox-addon:last-child .@{ui-class-prefix}-select-inner,
+    .@{ui-class-prefix}-textbox:last-child input {
+        .esf-border-left-radius(
+            0,
+            @esf-textbox-radius
+        );
+        border-left: 0 !important;
+    }
+}
+
+.@{ui-class-prefix}-textbox-addon {
+    white-space: nowrap;
+    position: relative;
+    display: table-cell;
+    .@{ui-class-prefix}-button-group {
+        .@{ui-class-prefix}-button {
+            float: none;
+        }
+    }
+}
+
+// textbox border button
+.@{ui-class-prefix}-button.@{ui-class-prefix}-button-text-border {
+    .esf-textbox-button-text-border-theme();
+}
+
+// widths-sizes
+.@{ui-class-prefix}-textbox-size1 {
+    input {
+        width: 2em;
+    }
+}
+.@{ui-class-prefix}-textbox-size2 {
+    input {
+        width: 4em;
+    }
+}
+.@{ui-class-prefix}-textbox-size3 {
+    input {
+        width: 6em;
+    }
+}
+.@{ui-class-prefix}-textbox-size4 {
+    input {
+        width: 8em;
+    }
+}
+.@{ui-class-prefix}-textbox-size5 {
+    input {
+        width: 10em;
+    }
+}
+.@{ui-class-prefix}-textbox-size6 {
+    input {
+        width: 12em;
+    }
+}
+.@{ui-class-prefix}-textbox-size7 {
+    input {
+        width: 14em;
+    }
+}
+.@{ui-class-prefix}-textbox-size8 {
+    input {
+        width: 16em;
+    }
+}

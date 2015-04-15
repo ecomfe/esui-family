@@ -1,0 +1,75 @@
+@esui-tokenfield-padding: .5em;
+@esui-tokenfield-border-radius: 5px;
+
+@esui-tokenfield-item-height: 1.5em;
+@esui-tokenfield-item-margin: .1em .2em 0.1em 0;
+@esui-tokenfield-item-padding: 0 .5em;
+@esui-tokenfield-item-radius: 5px;
+
+@esui-tokenfield-item-remove-icon-left-margin: .2em;
+
+.@{ui-class-prefix}-tokenfield {
+    .esf-border-radius(
+        @esui-tokenfield-border-radius,
+        @esui-tokenfield-border-radius
+    );
+    @esf-tokenfield-transition:
+        background-color 0.3s ease-out,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    .esf-transition(@esf-tokenfield-transition);
+    padding: @esui-tokenfield-padding;
+    position: relative;
+    .user-select(none);
+
+    .esui-tokenfield-theme();
+}
+
+.esui-tokenfield-theme() {}
+
+.@{ui-class-prefix}-tokenfield-flash {
+    .opacity(20);
+}
+
+.@{ui-class-prefix}-tokenfield-item {
+    max-width: 80%;
+    .ellipsis();
+    .box-sizing(border-box);
+    .border-radius(@esui-tokenfield-item-radius);
+    display: inline-block;
+    white-space: nowrap;
+    margin: @esui-tokenfield-item-margin;
+    padding: @esui-tokenfield-item-padding;
+    line-height: @esui-tokenfield-item-height;
+    vertical-align: middle;
+    cursor: pointer;
+    .esf-transition(opacity .1s ease-in-out);
+    .esui-tokenfield-item-theme();
+}
+
+.esui-tokenfield-item-theme() {}
+
+.@{ui-class-prefix}-tokenfield-close {
+    display: inline-block;
+    margin-left: @esui-tokenfield-item-remove-icon-left-margin;
+}
+
+// 要保证input和item的定位一致
+.@{ui-class-prefix}-tokenfield-input {
+    margin: @esui-tokenfield-item-margin;
+
+    input[type="text"], textarea {
+        border: none;
+        background: transparent;
+        height: @esui-tokenfield-item-height;
+        // override textbox
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+.@{ui-class-prefix}-tokenfield.@{ui-state-prefix}-disabled {
+    .@{ui-class-prefix}-tokenfield-item {
+        cursor: not-allowed;
+    }
+}

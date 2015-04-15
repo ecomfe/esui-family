@@ -1,0 +1,169 @@
+@import "base.less";
+
+@esf-checkbox-radio-label-padding: 1.5em;
+@esf-checkbox-radio-box-size: 1.1em;
+
+.esf-checkbox-style-base {
+    position: relative;
+    display: inline-block;
+    min-width: @esf-checkbox-radio-box-size;
+    line-height: @esf-checkbox-radio-box-size;
+    height: @esf-checkbox-radio-box-size;
+    vertical-align: middle;
+
+    // virtual checkbox
+    .@{ui-class-prefix}-checkbox-box,
+    label {
+        display: block;
+        padding-left: @esf-checkbox-radio-label-padding;
+
+        // checkbox
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: @esf-checkbox-radio-box-size;
+            height: @esf-checkbox-radio-box-size;
+            content: '';
+            .box-sizing(border-box);
+            .esf-transition(~"background-color 0.3s ease, border-color 0.3s ease");
+
+            .esf-checkbox-virtual-box-theme();
+
+        }
+        &:after {
+            .box-sizing(border-box);
+            position: absolute;
+            content: '';
+            .esf-transition(~"background 0.3s ease 0s, left 0.3s ease 0s");
+
+        }
+        &:active:before {
+            .esf-checkbox-virtual-box-active-theme();
+        }
+    }
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        .opacity(0);
+
+        outline: none;
+        &:focus {
+            & ~ label,
+            & ~ .@{ui-class-prefix}-checkbox-box {
+                color: @esf-checkbox-label-text-focus-color;
+                .esf-checkbox-virtual-box-focus-theme();
+            }
+        }
+        &:checked {
+            & ~ label,
+            & ~ .@{ui-class-prefix}-checkbox-box {
+                .esf-checkbox-virtual-box-checked-theme();
+            }
+        }
+        &:indeterminate {
+            & ~ label,
+            & ~ .@{ui-class-prefix}-checkbox-box {
+                .esf-checkbox-virtual-box-indeterminate-theme();
+            }
+        }
+    }
+    input[disabled] {
+        & ~ label,
+        & ~ .@{ui-class-prefix}-checkbox-box {
+            .esf-checkbox-virtual-box-disabled-theme();
+            .esf-disabled();
+        }
+    }
+
+    // ~ label: if we put label after checkbox container
+    label,
+    ~ label {
+        .esf-transition(color 0.2s ease);
+        cursor: pointer;
+        vertical-align: middle;
+        .esf-checkbox-label-theme();
+    }
+}
+
+.@{ui-class-prefix}-checkbox-custom,
+.@{ui-class-prefix}-radio-custom,
+.@{ui-class-prefix}-checkbox-switch,
+.@{ui-class-prefix}-checkbox-switch-round {
+    &:extend(.esf-checkbox-style-base all);
+}
+
+.@{ui-class-prefix}-checkbox-custom.@{ui-class-prefix}-checkbox-single,
+.@{ui-class-prefix}-radio-custom.@{ui-class-prefix}-checkbox-single {
+    label {
+        padding-left: @esf-checkbox-radio-box-size;
+    }
+}
+
+.@{ui-class-prefix}-checkbox-switch.@{ui-class-prefix}-checkbox-single,
+.@{ui-class-prefix}-checkbox-switch-round.@{ui-class-prefix}-checkbox-single {
+    label {
+        padding-left: 3em;
+    }
+}
+
+.@{ui-class-prefix}-radio-custom {
+    .@{ui-class-prefix}-checkbox-box,
+    label {
+        &:before {
+            .esf-circular();
+        }
+    }
+    input:checked {
+        & ~ label,
+        & ~ .@{ui-class-prefix}-checkbox-box {
+            .esf-checkbox-virtual-box-radio-checked-theme();
+        }
+    }
+}
+
+.@{ui-class-prefix}-checkbox-switch,
+.@{ui-class-prefix}-checkbox-switch-round {
+    input {
+        ~ .@{ui-class-prefix}-checkbox-box,
+        ~ label {
+            padding-left: 4em;
+            .esf-checkbox-virtual-box-switch-theme();
+        }
+        &:checked {
+            ~ .@{ui-class-prefix}-checkbox-box,
+            ~ label {
+                .esf-checkbox-virtual-box-switch-checked-theme();
+            }
+        }
+    }
+}
+
+.@{ui-class-prefix}-checkbox-switch-round {
+    input {
+        ~ .@{ui-class-prefix}-checkbox-box,
+        ~ label {
+            .esf-checkbox-virtual-box-switch-round-theme();
+        }
+        &:checked {
+            ~ .@{ui-class-prefix}-checkbox-box,
+            ~ label {
+                .esf-checkbox-virtual-box-switch-round-checked-theme();
+            }
+        }
+    }
+}
+
+.esf-checkbox-label-theme() {}
+.esf-checkbox-virtual-box-active-theme() {}
+.esf-checkbox-virtual-box-focus-theme() {}
+.esf-checkbox-virtual-box-checked-theme() {}
+.esf-checkbox-virtual-box-indeterminate-theme() {}
+.esf-checkbox-virtual-box-disabled-theme() {}
+.esf-checkbox-virtual-box-theme() {}
+.esf-checkbox-virtual-box-radio-checked-theme() {}
+.esf-checkbox-virtual-box-switch-theme() {}
+.esf-checkbox-virtual-box-switch-checked-theme() {}
+.esf-checkbox-virtual-box-switch-round-theme() {}
+.esf-checkbox-virtual-box-switch-round-checked-theme() {}

@@ -1,0 +1,33 @@
+@import "RichSelector";
+
+@import "../../../src/css/selectors/TableRichSelector.less";
+
+// 表格
+@esui-table-richselector-th-background: none;
+@esui-table-richselector-th-font-weight: bold;
+@esui-table-richselector-action-icon-color: @esf-palette-primary-color;
+
+// RichSelector控件单项悬浮状态
+@esui-richselector-row-background-color-hover: @esf-palette-light-bg-hightlight-color;
+@esui-table-richselector-delete-icon-color: @esf-palette-danger-color;
+
+.esui-table-richselector-table-head-theme() {
+    background: @esui-table-richselector-th-background;
+    font-weight: @esui-table-richselector-th-font-weight;
+}
+
+.esui-table-richselector-table-td-theme() {
+
+}
+
+.esui-table-richselector-action-icon-theme() {
+    color: @esui-table-richselector-action-icon-color;
+}
+
+.esui-table-richselector-table-row-hover-theme() {
+    background: @esui-richselector-row-background-color-hover;
+}
+
+.esui-table-richselector-delete-icon-theme() {
+    color: @esui-table-richselector-delete-icon-color;
+}

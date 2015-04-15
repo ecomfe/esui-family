@@ -1,0 +1,85 @@
+@import "base.less";
+
+@esf-form-select-height: 2.4em;
+@esf-form-select-padding: .5em 1.9em .5em .5em;
+@esf-form-select-border-radius: 5px;
+
+// http://jsbin.com/yaruh
+.@{ui-class-prefix}-select-custom {
+    position: relative;
+    display: inline-block;
+    .box-sizing(border-box);
+    height: @esf-form-select-height;
+    vertical-align: middle;
+    .esf-border-radius(
+        @esf-form-select-border-radius,
+        @esf-form-select-border-radius
+    );
+    option {
+        font-weight:normal;
+    }
+    .esf-select-custom-theme();
+    // Hover style
+    &:hover {
+        .esf-select-custom-hover-theme();
+    }
+    // Focus style
+    &:focus {
+        .esf-select-custom-focus-theme();
+    }
+}
+
+.@{ui-class-prefix}-select-custom select {
+    width:100%;
+    width:120%\9;
+    margin:0;
+    background:none;
+    border: 1px solid transparent;
+    outline: none;
+    // Remove select styling
+    appearance: none;
+    -webkit-appearance: none;
+    .box-sizing(border-box);
+    // Prefixed box-sizing rules necessary for older browsers
+    padding: @esf-form-select-padding;
+    height: @esf-form-select-height;
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+
+x:-o-prefocus, .@{ui-class-prefix}-select-custom:after {
+    display:none;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+    .@{ui-class-prefix}-select-custom select::-ms-expand {
+        display: none;
+    }
+    .@{ui-class-prefix}-select-custom select:focus::-ms-value {
+        background: transparent;
+    }
+}
+
+@-moz-document url-prefix() {
+    .@{ui-class-prefix}-select-custom {
+        overflow: hidden;
+    }
+    .@{ui-class-prefix}-select-custom select {
+        width: 120%;
+    }
+}
+
+.@{ui-class-prefix}-select-custom select:-moz-focusring {
+    color: transparent;
+}
+
+.esf-select-custom-arrow-theme();
+
+.esf-select-custom-theme() {}
+
+.esf-select-custom-hover-theme() {}
+
+.esf-select-custom-focus-theme() {}
+
+.esf-select-custom-arrow-theme() {}

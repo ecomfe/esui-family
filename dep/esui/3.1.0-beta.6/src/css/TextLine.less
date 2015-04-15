@@ -1,0 +1,66 @@
+ /**
+  * ESUI (Enterprise Simple UI)
+  * Copyright 2013 Baidu Inc. All rights reserved.
+  *
+  * @file 带行号输入框
+  * @author dbear
+  */
+
+@import "Variable.less";
+
+@esui-textline-border-radius: 5px;
+@esui-textline-line-height: 1.5;
+@esui-textline-number-column-width: 2em;
+@esui-textline-number-column-font-size: 1em;
+
+.@{ui-class-prefix}-textline {
+    position: relative;
+    display: inline-block;
+
+    .esf-border-radius(
+        @esui-textline-border-radius,
+        @esui-textline-border-radius
+    );
+    .esui-textline-theme();
+}
+
+.@{ui-class-prefix}-textline-num-line {
+    line-height: @esui-textline-line-height;
+    text-align: center;
+    width: @esui-textline-number-column-width;
+    font-size: @esui-textline-number-column-font-size;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    .esf-border-left-radius(
+        @esui-textline-border-radius,
+        @esui-textline-border-radius
+    );
+    .esui-textline-numbers-theme();
+}
+
+.@{ui-class-prefix}-textline-text-container {
+    position: absolute;
+    left: @esui-textline-number-column-width + .2em;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    textarea {
+        position: absolute;
+        .size(100%);
+        line-height: @esui-textline-line-height;
+        padding: 0;
+        margin: 0;
+        border: 0 none;
+        outline: none;
+        resize: none;
+        background: none;
+        color: inherit;
+    }
+}
+
+.@{ui-class-prefix}-textline.@{ui-state-prefix}-disabled textarea {
+    cursor: not-allowed;
+}

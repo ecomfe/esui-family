@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Label - ESUI Demo</title>
+        <link rel="stylesheet" href="../assets/themes/standard.css" />
+        <link rel="stylesheet" href="../assets/3rd-party/prism.css" />
+    
+        <script src="../assets/loader/esl.js"></script>
+        <script src="../assets/loader/config.js"></script>
+        <script src="../assets/build/ui.js"></script>
+        <script src="../assets/3rd-party/jquery-1.11.1.min.js"></script>
+        <script src="../assets/3rd-party/prism.js"></script>
+        <script src="../assets/demo.js"></script>
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header id="header">
+            <div class="ui-navbar ui-navbar-mordern">
+                <h1 id="branding" class="ui-navbar-content">
+                    <a class="ui-navbar-content-link">ESUI Family</a>
+                </h1>
+                <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+                   <script>
+                    mainNav('../');
+                    </script>
+                </ul>
+            </div>
+        </header>
+        <div class="ui-g main-container">
+            <div id="side-bar" class="ui-u-1-5">
+                <ul id="navigator" class="ui-sidebar">
+                </ul>
+            </div>
+            <div id="content" class="ui-u-4-5">
+                <h2 id="branding">ESUI - Label</h2>
+                <hr />
+                <div id="page">
+                    <ul id="navigator">
+                    </ul>
+                    <div id="main">
+                        <h3>无样式Label</h3>
+                        <section class="intro">
+                            <p>基本Label。</p>
+                        </section>
+                        <section class="view">
+                            <div class="example ui-demo-light-stage">
+                                <strong data-ui-type="Label">Hello Label!</strong>
+                                <esui-label data-ui-type="Label">Custom Label!</esui-label>
+                                <button class="ui-button" id="op-show">show</button>
+                                <button class="ui-button" id="op-hide">hide</button>
+                                <button class="ui-button" id="op-toggle">toggle</button>
+                                <button class="ui-button" id="op-set-text">set text</button>
+                                <button class="ui-button" id="op-set-content">set content</button>
+                            </div>
+                        </section>
+                        <h3>预设样式Label</h3>
+                        <section class="intro">
+                        </section>
+                        <section class="view">
+                            <div class="example ui-demo-light-stage">
+                                <h3>箭头Label</h3>
+                                <div class="row">
+                                    <label data-ui-type="Label" data-ui-variants="custom primary pointer-right">Primary Pointer Right</label>
+                                </div>
+                                <div class="row">
+                                    <label data-ui-type="Label" data-ui-variants="custom info pointer-left">Info Pointer Left</label>
+                                </div>
+                                <div class="row">
+                                    <label data-ui-type="Label" data-ui-variants="custom warning pointer-bottom">Warning Pointer Bottom</label>
+                                </div>
+                                <div class="row">
+                                    <label data-ui-type="Label" data-ui-variants="custom danger pointer">Danger Pointer Top</label>
+                                </div>
+                                <h3>普通Label</h3>
+                                <div class="row">
+                                    <label data-ui-type="Label" data-ui-variants="custom">Hello Label!</label>
+                                </div>
+                                <h3>瘦Label</h3>
+                                <div class="row">
+                                    <esui-label data-ui-type="Label" data-ui-variants="custom success slim">Success Slim Label!</esui-label>
+                                </div>
+                                <h3>圈Label</h3>
+                                <div class="row">
+                                    <esui-label class="ui-hover-fade-in" data-ui-type="Label" data-ui-variants="custom circular">3</esui-label>
+                                    <esui-label class="ui-hover-fade-in" data-ui-type="Label" data-ui-variants="custom circular">2</esui-label>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <script>
+                footer();
+            </script>
+        </footer>
+        <script>
+            require(
+                [
+                    'esui',
+                    'esui/Label'
+                ],
+                function (ui) {
+                    var label = ui.init()[0];
+                    document.getElementById('op-show').onclick = function () {
+                        label.show();
+                    };
+                    document.getElementById('op-hide').onclick = function () {
+                        label.hide();
+                    };
+                    document.getElementById('op-toggle').onclick = function () {
+                        label.toggle();
+                    };
+                    document.getElementById('op-set-text').onclick = function () {
+                        label.setText('<a href="###">prevent hijack</a>');
+                    };
+                    document.getElementById('op-set-content').onclick = function () {
+                        label.setContent('<a href="###">prevent hijack</a>');
+                    };
+                }
+            )
+        </script>
+    </body>
+</html>

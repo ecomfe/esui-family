@@ -1,0 +1,49 @@
+@import "base.less";
+
+@esf-mask-background: fade(#FFFFFF, 50%);
+@esf-mask-zindex: 1040;
+
+.@{ui-class-prefix}-mask-section {
+    position: relative;
+}
+
+.@{ui-class-prefix}-masked {
+    overflow: hidden !important;
+}
+
+.@{ui-class-prefix}-mask {
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    .size(100%);
+    text-align: center;
+    vertical-align: middle;
+    background: @esf-mask-background;
+    display: none;
+}
+
+.@{ui-class-prefix}-mask-content {
+    width: 100%;
+    height: 100%;
+    display: table;
+    .user-select(none);
+}
+
+.@{ui-class-prefix}-mask-middle {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.@{ui-class-prefix}-mask-page {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: @esf-mask-zindex;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}

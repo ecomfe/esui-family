@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Accordion - ESUI Demo</title>
+    <link rel="stylesheet" href="../assets/themes/standard.css" />
+    <link rel="stylesheet" href="../assets/3rd-party/prism.css" />
+    <script src="../assets/loader/esl.js"></script>
+    <script src="../assets/loader/config.js"></script>
+    <script src="../assets/build/ui.js"></script>
+    <script src="../assets/3rd-party/jquery-1.11.1.min.js"></script>
+    <script src="../assets/3rd-party/prism.js"></script>
+    <script src="../assets/demo.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header id="header">
+    <div class="ui-navbar ui-navbar-mordern">
+        <h1 id="branding" class="ui-navbar-content">
+            <a class="ui-navbar-content-link">ESUI Family</a>
+        </h1>
+        <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+            <script>
+            mainNav('../');
+            </script>
+        </ul>
+    </div>
+</header>
+<div class="ui-g main-container">
+    <div id="side-bar" class="ui-u-1-5">
+        <ul id="navigator" class="ui-sidebar">
+        </ul>
+    </div>
+    <div id="content" class="ui-u-4-5">
+        <h2>Accordion</h2>
+        <p>传说中的手风琴。</p>
+        <hr />
+        <div id="main">
+            <h3>展开图标位置</h3>
+            <p>可以设置展开图标位置。</p>
+            <div class="example">
+                <h4>左侧图标</h4>
+                <div class="row">
+                    <esui-accordion>
+                        <div data-role="panel">
+                            <div data-role="header">1.一级条目</div>
+                            <div data-role="content">
+                                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                            </div>
+                        </div>
+                        <div data-role="panel">
+                            <div data-role="header">2.一级条目</div>
+                            <ul data-role="content">
+                                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                            </ul>
+                        </div>
+                    </esui-accordion>
+                </div>
+                <h4>图标置于右侧</h4>
+                <div class="row">
+                    <esui-accordion 
+                    data-ui-variants="icon-right"
+                    data-ui-header-icon="ui-icon-caret-left">
+                        <div data-role="panel">
+                            <div data-role="header">1.一级条目</div>
+                            <div data-role="content">
+                                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                            </div>
+                        </div>
+                        <div data-role="panel">
+                            <div data-role="header">2.一级条目</div>
+                            <div data-role="content">
+                                Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                            </div>
+                        </div>
+                    </esui-accordion>
+                </div>
+            </div>
+
+            <h3>全部可折叠</h3>
+            <p>全部折叠所有的Panel。</p>
+            <div class="example">
+                <div data-ui="type:Accordion;collapsible:true;activeIndex:-1;">
+                    <div>
+                        <div>1.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                    <div>
+                        <div>2.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                    <div>
+                        <div>3.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Hover Open</h3>
+            <p>鼠标悬浮打开。</p>
+            <div class="example">
+                <div data-ui="type:Accordion;hoverable:true;">
+                    <div>
+                        <div>1.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                    <div>
+                        <div>2.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                    <div>
+                        <div>3.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>固定高度</h3>
+            <p>固定高度。</p>
+            <div class="example">
+                <div data-ui="type:Accordion;fixHeight:100;">
+                    <div>
+                        <div>1.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                    <div>
+                        <div>2.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                    <div>
+                        <div>3.一级条目</div>
+                        <div>东风夜放花千树，更吹落，星如雨。宝马雕车香满路。凤箫声动，玉壶光转，一夜鱼龙舞。蛾儿雪柳黄金缕，笑语盈盈暗香去。众里寻他千百度，蓦然回首，那人却在，灯火阑珊处。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <script>
+        footer();
+    </script>
+</footer>
+<script>
+    require(
+        [
+            'esui',
+            'ub-ria-ui/Accordion',
+            'esui/TextBox'
+        ],
+        function (ui, Accordion) {
+            ui.init();
+        }
+    );
+</script>
+</body>
+</html>

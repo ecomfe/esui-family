@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Validity Label - ESUI Demo</title>
+        <link rel="stylesheet" href="../assets/themes/standard.css" />
+        <link rel="stylesheet" href="../assets/3rd-party/prism.css" />
+    
+        <script src="../assets/loader/esl.js"></script>
+        <script src="../assets/loader/config.js"></script>
+        <script src="../assets/build/ui.js"></script>
+        <script src="../assets/3rd-party/jquery-1.11.1.min.js"></script>
+        <script src="../assets/3rd-party/prism.js"></script>
+        <script src="../assets/demo.js"></script>
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <header id="header">
+            <div class="ui-navbar ui-navbar-mordern">
+                <h1 id="branding" class="ui-navbar-content">
+                    <a class="ui-navbar-content-link">ESUI Family</a>
+                </h1>
+                <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+                   <script>
+                    mainNav('../');
+                    </script>
+                </ul>
+            </div>
+        </header>
+        <div class="ui-g main-container">
+            <div id="side-bar" class="ui-u-1-5">
+                <ul id="navigator" class="ui-sidebar">
+                </ul>
+            </div>
+            <div id="content" class="ui-u-4-5">
+                <h2 id="branding">ESUI - Validity Label</h2>
+                <hr />
+                <div id="page">
+                    <ul id="navigator">
+                    </ul>
+                    <div id="main">
+                        <h3>验证信息标签可以放置到其他位置</h3>
+                        <section class="intro">
+                            <p>Validity Label</p>
+                        </section>
+                        <section class="view">
+                            <div class="example ui-demo-light-stage">
+                                <h4>文字不能为空</h4>
+                                <div id="container" class="container">
+                                </div>
+                                <div id="validator">
+                                
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <script>
+                footer();
+            </script>
+        </footer>
+        <script>
+            require(
+                [
+                    'esui',
+                    'esui/TextBox',
+                    'esui/Validity',
+                    'esui/validator/RequiredRule'
+                ],
+                function (ui, TextBox, ValidityLabel) {
+                    var validityLabel = new ValidityLabel({
+                        id: 'test-validity'
+                    });
+
+                    var textbox = new TextBox({
+                        id: 'test',
+                        validityLabel: 'test-validity',
+                        mode: 'textarea',
+                        required: true,
+                        requiredErrorMessage: '不能为空 <a href="http://www.baidu.com">百度一下</a>'
+                    });
+                    textbox.appendTo(document.getElementById('container'));
+                    textbox.on('input', function () { this.validate(); });
+                    validityLabel.appendTo(document.getElementById('validator'));
+                    textbox.validate();
+                }
+            )
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+/**
+  * ESUI (Enterprise Simple UI)
+  * Copyright 2013 Baidu Inc. All rights reserved.
+  *
+  * @file 通用提示用漂浮层
+  * @author dbear
+  */
+
+@import "Variable.less";
+
+@esui-tiplayer-padding: 5px;
+@esui-tiplayer-zIndex: @dialog-z-index;
+
+@esui-tiplayer-title-padding: .5em 0;
+@esui-tiplayer-title-font-size: 1.2em;
+@esui-tiplayer-body-margin: .5em 0;
+@esui-tiplayer-border-radius: 5px;
+
+.@{ui-class-prefix}-tiplayer {
+    padding: @esui-tiplayer-padding;
+    z-index: @esui-tiplayer-zIndex;
+    position: absolute;
+    .esf-border-radius(
+        @esui-tiplayer-border-radius,
+        @esui-tiplayer-border-radius
+    );
+    .esui-tiplayer-theme();
+}
+
+.@{ui-class-prefix}-tiplayer-title {
+    padding: @esui-tiplayer-title-padding;
+    font-size: @esui-tiplayer-title-font-size;
+    margin: 0;
+}
+
+.@{ui-class-prefix}-tiplayer-body {
+    margin: @esui-tiplayer-body-margin;
+}
+
+.esui-tiplayer-theme() {}

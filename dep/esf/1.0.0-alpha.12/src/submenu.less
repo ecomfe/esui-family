@@ -1,0 +1,118 @@
+// =========
+// submenu
+// =========
+@import "base.less";
+
+@esf-submenu-min-width: 12em;
+@esf-submenu-padding: 0.2em 0;
+@esf-submenu-border: none;
+@esf-submenu-separator-border: 1px solid #ddd;
+@esf-submenu-background: #EFF0F2;
+@esf-submenu-zIndex: 1000;
+
+@esf-submenu-item-color: #444;
+@esf-submenu-item-hover-color: #444;
+@esf-submenu-item-text-size: 1em;
+@esf-submenu-item-highlight-background: #FAFAFA;
+@esf-submenu-item-padding: 0.5em 1em;
+
+.@{ui-class-prefix}-submenu {
+    position: absolute;
+    z-index: @esf-submenu-zIndex;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background: @esf-submenu-background;
+    border: @esf-submenu-border;
+    padding: @esf-submenu-padding;
+    min-width: @esf-submenu-min-width;
+
+    > li {
+        // IE8 doesn't show respect to li:hover
+        // thus we add one :first-child to make hover work.
+        > :first-child {
+            cursor: pointer;
+            display: block;
+            .esf-transition(background-color 0.3s ease);
+            padding: @esf-submenu-item-padding;
+            color: @esf-submenu-item-color;
+            text-decoration: none !important;
+            white-space: nowrap;
+        }
+        &:hover {
+            > :first-child {
+                color: @esf-submenu-item-hover-color;
+                background: @esf-submenu-item-highlight-background;
+            }
+            > .@{ui-class-prefix}-submenu {
+                display: block;
+            }
+        }
+        // for sub menu.
+        position: relative;
+        > .@{ui-class-prefix}-submenu {
+            display: none;
+        }
+    }
+}
+
+.@{ui-class-prefix}-submenu-fill-width {
+    min-width: 100%;
+}
+
+.@{ui-class-prefix}-submenu-fly-out-top {
+    bottom: 100%;
+}
+
+.@{ui-class-prefix}-submenu-align-right {
+    right: 0;
+}
+
+.@{ui-class-prefix}-submenu-fly-out-left {
+    top: 0;
+    left: -100%;
+}
+
+.@{ui-class-prefix}-submenu-fly-out-right {
+    top: 0;
+    left: 100%;
+}
+
+.@{ui-class-prefix}-submenu-separator-top {
+    border-top: @esf-submenu-separator-border;
+}
+
+.@{ui-class-prefix}-submenu-separator-bottom {
+    border-bottom: @esf-submenu-separator-border;
+}
+
+.esf-submenu-variant(
+    @background,
+    @border,
+    @separator-border,
+    @text-color,
+    @text-hover-color,
+    @hightlight-color,
+    @submenu-padding: @esf-submenu-padding,
+    @submenu-item-padding: @esf-submenu-item-padding
+) {
+    padding: @submenu-padding;
+    background: @background;
+    border: @border;
+    > li > :first-child {
+        color: @text-color;
+        padding: @submenu-item-padding;
+        white-space: nowrap;
+    }
+    > li:hover > :first-child {
+        color: @text-hover-color;
+        background: @hightlight-color;
+    }
+    .@{ui-class-prefix}-submenu-separator-top {
+        border-top: @separator-border;
+    }
+    .@{ui-class-prefix}-submenu-separator-bottom {
+        border-bottom: @separator-border;
+    }
+}
