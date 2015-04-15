@@ -126,16 +126,7 @@ define(
          */
         exports.initStructure = function () {
             this.$super(arguments);
-
-            var controlHelper = this.helper;
-            var cls = [
-                controlHelper.getPrefixClass('table-richselector-with-filter'),
-                controlHelper.getPrefixClass('table-richselector')
-            ];
-            lib.addClasses(
-                this.main,
-                cls
-            );
+            this.addState('with-filter');
         };
 
         /**

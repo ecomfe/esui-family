@@ -3836,7 +3836,8 @@ define('esui/main', [
             viewContextAttr: 'data-ctrl-view-context',
             uiClassPrefix: 'ui',
             skinClassPrefix: 'skin',
-            stateClassPrefix: 'state'
+            stateClassPrefix: 'state',
+            inheritFont: true
         };
     main.config = function (info) {
         lib.extend(config, info);
@@ -6086,14 +6087,18 @@ define('esui/Layer', [
         });
     };
     Layer.prototype.create = function () {
-        var helper = this.control.helper;
+        var control = this.control;
+        var helper = control.helper;
         var element = helper.createPart('layer', this.nodeName);
         lib.addClass(element, ui.getConfig('uiClassPrefix') + '-layer');
-        var variants = this.control.variants;
+        if (control.inheritFont || ui.getConfig('inheritFont')) {
+            element.style.fontSize = lib.getComputedStyle(control.main, 'fontSize');
+        }
+        var variants = control.variants;
         var variantsCls = [];
         if (variants) {
             variants = typeof variants === 'string' ? variants.split(' ') : variants;
-            this.control.variants = variants;
+            control.variants = variants;
             u.each(variants, function (v) {
                 variantsCls.push(helper.getPrimaryClassName('layer-' + v));
             });
@@ -10300,14 +10305,16 @@ define('ub-ria-ui/filter/FilterResult', [
         }
     });
     exports.buildItems = function (datasource) {
-        var html = '<a href="javascript:;" class="${style}" data-value="${value}">' + '<span>${text}</span><i>&times;</i></a>';
+        var html = '<a href="javascript:;" class="${style}" data-value="${value}">' + '<span>${text}</span><span class="${iconClass} ${removeClass}"></span></a>';
         var s = '';
         var helper = this.helper;
         u.forEach(datasource, function (item) {
             s += lib.format(html, {
                 value: item.value,
                 text: item.text,
-                style: helper.getPartClassName('item')
+                style: helper.getPartClassName('item'),
+                iconClass: helper.getIconClass(),
+                removeClass: helper.getPartClassName('remove')
             });
         });
         var selectedItemsPanel = this.getSelectedItemsPanel();
@@ -10842,7 +10849,7 @@ define('esui/Dialog', [
                     mask: true,
                     title: '\u6211\u662F\u6807\u9898',
                     content: '<p>\u6211\u662F\u5185\u5BB9</p>',
-                    defaultFoot: '' + '<div ' + 'class="' + this.helper.getPartClassName('ok-btn') + '" data-ui="type:Button;id:btnFootOk;' + 'childName:btnOk;variants:success;">\u786E\u5B9A</div> ' + '<div ' + 'class="' + this.helper.getPartClassName('cancel-btn') + '" data-ui="type:Button;' + 'id:btnFootCancel;childName:btnCancel;variants:link">\u53D6\u6D88</div>',
+                    defaultFoot: '' + '<div ' + 'class="' + this.helper.getPartClassName('ok-btn') + '" data-ui="type:Button;id:btnFootOk;' + 'childName:btnOk;variants:primary;">\u786E\u5B9A</div> ' + '<div ' + 'class="' + this.helper.getPartClassName('cancel-btn') + '" data-ui="type:Button;' + 'id:btnFootCancel;childName:btnCancel;variants:link">\u53D6\u6D88</div>',
                     needFoot: true,
                     roles: {}
                 };
@@ -11171,7 +11178,7 @@ define('esui/Dialog', [
             prefix: dialog.helper.getPrimaryClassName(),
             icon: dialog.helper.getIconClass('exclamation-circle')
         }));
-        dialog.setFoot('' + '<div ' + 'class="' + dialog.helper.getPartClassName('ok-btn') + '"' + ' data-ui="type:Button;childName:okBtn;id:' + dialogId + '-' + okPrefix + ';variants:success;">' + okText + '</div>');
+        dialog.setFoot('' + '<div ' + 'class="' + dialog.helper.getPartClassName('ok-btn') + '"' + ' data-ui="type:Button;childName:okBtn;id:' + dialogId + '-' + okPrefix + ';variants:primary;">' + okText + '</div>');
         dialog.show();
         var okBtn = dialog.getFoot().getChild('okBtn');
         okBtn.on('click', lib.curry(btnClickHandler, dialog, okBtn));
@@ -13596,7 +13603,7 @@ define('ub-ria-ui/selectors/TableRichSelector', [
     };
     exports.initStructure = function () {
         this.$super(arguments);
-        lib.addClass(this.main, 'ui-table-richselector');
+        lib.addClass(this.main, this.helper.getPrefixClass('tablerichselector'));
     };
     exports.repaint = require('esui/painters').createRepaint(RichSelector.prototype.repaint, {
         name: [
@@ -13982,12 +13989,7 @@ define('ub-ria-ui/selectors/TableRichSelectorWithFilter', [
     });
     exports.initStructure = function () {
         this.$super(arguments);
-        var controlHelper = this.helper;
-        var cls = [
-                controlHelper.getPrefixClass('table-richselector-with-filter'),
-                controlHelper.getPrefixClass('table-richselector')
-            ];
-        lib.addClasses(this.main, cls);
+        this.addState('with-filter');
     };
     exports.refreshContent = function () {
         this.hasRowHead = false;
@@ -14731,7 +14733,7 @@ define('ub-ria-ui/selectors/TreeRichSelector', [
     };
     exports.initStructure = function () {
         this.$super(arguments);
-        lib.addClass(this.main, 'ui-tree-richselector');
+        lib.addClass(this.main, this.helper.getPrefixClass('treerichselector'));
         if (this.onlyLeafSelect) {
             this.addState('only-leaf-selectable');
         }
@@ -25479,8 +25481,8 @@ define('esui/RichCalendar', [
             var tpl = [
                     '<div data-ui-type="Panel" class="${generalPanelClass}"',
                     ' data-ui-child-name="generalPanel">',
-                    '\u5171<span id="${totalNumId}" ',
-                    'class="${totalNumClass}"></span>\u5929,',
+                    '<label>\u5171<span id="${totalNumId}" ',
+                    'class="${totalNumClass}"></span>\u5929,</label>',
                     '<button data-ui-type="Button" data-ui-variants="link"',
                     ' data-ui-child-name="deleteBtn">\u5168\u90E8\u5220\u9664</button>',
                     '</div>',
@@ -25894,7 +25896,7 @@ define('esui/Schedule', [
         var i = index;
         var checkInput = lib.g(getId(me, 'line-state' + i));
         checkInput.checked = false;
-        var patt = /1{3,}/g;
+        var patt = /1{1,}/g;
         var statusStr = arr.join('');
         var result;
         var coverClass = getClass(me, 'continue-covertimes');
@@ -25911,12 +25913,14 @@ define('esui/Schedule', [
             coverDiv.setAttribute('data-day', i);
             coverDiv.className = coverClass;
             coverDiv.style.cssText += cssStyle;
-            coverDiv.innerHTML = lib.format(coverTpl, {
-                start: start,
-                end: end,
-                text: length === 24 ? '\u5168\u5929\u6295\u653E' : start + ':00-' + end + ':00',
-                coverClass: getClass(me, 'covertimes-tip')
-            });
+            if (length > 2) {
+                coverDiv.innerHTML = lib.format(coverTpl, {
+                    start: start,
+                    end: end,
+                    text: length === 24 ? '\u5168\u5929\u6295\u653E' : start + ':00-' + end + ':00',
+                    coverClass: getClass(me, 'covertimes-tip')
+                });
+            }
             parent.appendChild(coverDiv);
             helper.addDOMEvent(me, coverDiv, 'mouseover', lib.curry(coverTipOverHandler, coverDiv));
         }
@@ -26068,7 +26072,10 @@ define('esui/Schedule', [
             });
         var tipId = getId(me, 'timeitem-tip');
         showPromptTip(me, tipId, mousepos, tipText);
-        var timebody = lib.g(getId(me, 'time-body'));
+        repaintCovers.call(this, day, time);
+    }
+    function repaintCovers(day, time) {
+        var timebody = lib.g(getId(this, 'time-body'));
         var timeCovers = timebody.getElementsByTagName('aside');
         for (var i = 0, len = timeCovers.length; i < len; i++) {
             var item = timeCovers[i];
@@ -26087,6 +26094,7 @@ define('esui/Schedule', [
         if (!target || !target.getAttribute('data-time-item')) {
             return;
         }
+        repaintCovers.call(this, 0, 0);
         lib.removeClasses(target, helper.getPartClasses(this, 'time-hover'));
         hidePromptTip(this, getId(this, 'timeitem-tip'));
     }
@@ -27664,6 +27672,9 @@ define('esui/Tip', [
     Tip.prototype.initStructure = function () {
         var main = document.createElement('div');
         document.body.appendChild(main);
+        if (this.inheritFont || ui.getConfig('inheritFont')) {
+            main.style.fontSize = lib.getComputedStyle(this.main, 'fontSize');
+        }
         var tipLayer = ui.create('TipLayer', {
                 main: main,
                 childName: 'layer',

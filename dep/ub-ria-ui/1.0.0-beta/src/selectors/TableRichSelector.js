@@ -69,7 +69,7 @@ define(
 
             lib.addClass(
                 this.main,
-                'ui-table-richselector'
+                this.helper.getPrefixClass('tablerichselector')
             );
         };
 

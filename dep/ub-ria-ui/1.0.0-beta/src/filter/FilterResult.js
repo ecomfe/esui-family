@@ -28,7 +28,7 @@ define(function (require) {
     };
 
     exports.type = 'FilterResult';
-    
+
     exports.datasource = [];
 
     /**
@@ -169,7 +169,7 @@ define(function (require) {
             'item': item
         });
     };
-    
+
     /**
      * 根据值获取整个选择项的数据
      * @param {string} value 值
@@ -219,7 +219,7 @@ define(function (require) {
             }
         }
     );
-    
+
     /**
      * 根据datasource生成选择项
      * @param {Array} datasource 选项列表数据源
@@ -227,7 +227,7 @@ define(function (require) {
      */
     exports.buildItems = function (datasource) {
         var html = '<a href="javascript:;" class="${style}" data-value="${value}">'
-                 + '<span>${text}</span><i>&times;</i></a>';
+                 + '<span>${text}</span><span class="${iconClass} ${removeClass}"></span></a>';
         var s = '';
         var helper = this.helper;
         u.forEach(datasource, function (item) {
@@ -236,7 +236,9 @@ define(function (require) {
                 {
                     value: item.value,
                     text: item.text,
-                    style: helper.getPartClassName('item')
+                    style: helper.getPartClassName('item'),
+                    iconClass: helper.getIconClass(),
+                    removeClass: helper.getPartClassName('remove')
                 }
             );
         });
