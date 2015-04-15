@@ -49,6 +49,7 @@ $(function () {
         '<li><a href="Select.html">Select</a></li>' +
         '<li><a href="SearchBox.html">SearchBox</a></li>' +
         '<li><a href="Slider.html">Slider <span class="ui-x-small ui-label-slim ui-label-custom ui-label-info">ub-ui</span></a></a></li>' +
+        '<li><a href="Spinner.html">Spinner</a></li>' +
         '<li><a href="Textbox.html">TextBox</a></li>' +
         '<li><a href="TextLine.html">TextLine</a></li>' +
         '<li><a href="TokenField.html">TokenField <span class="ui-x-small ui-label-slim ui-label-custom ui-label-info">ub-ui</span></a></a></li>' +
