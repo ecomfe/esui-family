@@ -42,9 +42,15 @@
     text-decoration: none !important;
     z-index: 1;
     margin-top: -1em;
-    display: none;
 
     .esui-lightbox-nav-theme();
+}
+
+.@{ui-class-prefix}-dialog-lightbox:hover {
+    .@{ui-class-prefix}-dialog-lightbox-content-link-left,
+    .@{ui-class-prefix}-dialog-lightbox-content-link-right {
+         .esui-lightbox-nav-hover-theme();
+    }
 }
 
 .@{ui-class-prefix}-dialog-lightbox-content-link-left {
@@ -64,6 +70,15 @@
     }
 }
 
+.@{ui-class-prefix}-dialog-lightbox-content-link-left,
+.@{ui-class-prefix}-dialog-lightbox-content-link-right {
+    &:hover {
+         .esui-lightbox-nav-arrow-hover-theme();
+    }
+}
+
 .esui-lightbox-close-theme() {}
 .esui-lightbox-loading-message-theme() {}
 .esui-lightbox-nav-theme() {}
+.esui-lightbox-nav-hover-theme() {}
+.esui-lightbox-nav-arrow-hover-theme() {}
