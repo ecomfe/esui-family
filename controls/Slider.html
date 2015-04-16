@@ -5,6 +5,7 @@
     <title>Slider - ESUI Demo</title>
     <link rel="stylesheet" href="../assets/themes/standard.css" />
     <link rel="stylesheet" href="../assets/3rd-party/prism.css" />
+
     <script src="../assets/loader/esl.js"></script>
     <script src="../assets/loader/config.js"></script>
     <script src="../assets/build/ui.js"></script>
@@ -39,61 +40,89 @@
         <hr />
         <div id="main">
             <h3>光秃秃的滑杆</h3>
-            <p>可以设置展开图标位置。</p>
+            <p>可以设置滑块的起始值和终点值</p>
             <div class="example">
-                <div data-ui="size:200;id:slider1;type:Slider;start:0;end:10;"></div>
+                <div data-ui="size:200;id:slider1;type:Slider;start:0;end:10;">
+                </div>
             </div>
 
             <h3>头部有标题和label</h3>
-            <p>头部有标题和label</p>
             <div class="example">
-                <div data-ui="id:slider2-1;type:Slider;start:0;end:10;
+                <div data-ui="id:slider2;type:Slider;start:0;end:10;
                     hasHead:true;headType:label;value:5;">
                 </div>
             </div>
 
-            <h3>最大值最小值</h3>
-            <p>最小值3 最大值7</p>
+            <h3>控制滑块的可滑范围</h3>
+            <p>最小值3，最大值7</p>
             <div class="example">
-                <div data-ui="id:slider2-2;type:Slider;start:0;end:10;
+                <div data-ui="id:slider3;type:Slider;start:0;end:10;
                     hasHead:true;headType:label;value:4;min:3;max:7;">
                 </div>
             </div>
 
-            <h3>步长</h3>
-            <p>10-100 步长为10</p>
+            <h3>设定步长</h3>
+            <p>步长范围10~100，步长为10</p>
             <div class="example">
-                <div data-ui="id:slider2-4;type:Slider;start:10;end:100;step:10;
+                <div data-ui="id:slider4;type:Slider;start:10;end:100;step:10;
                         hasHead:true;headType:label;"></div>
             </div>
 
             <h3>输入框</h3>
-            <p>输入框联动</p>
+            <p>滑块位置与输入框联动</p>
             <div class="example">
-                 <div data-ui="id:slider3;type:Slider;start:0;end:10;
+                 <div data-ui="id:slider5;type:Slider;start:0;end:10;
                         hasHead:true;headType:textbox;min:0;max:10;">
                  </div>
             </div>
 
             <h3>下拉联动</h3>
-            <p>输入框联动</p>
+            <p>滑块位置与下拉框联动</p>
             <div class="example">
-                <div id="container4"></div>
+                <div id="container4">
+                </div>
             </div>
 
             <h3>脚标</h3>
-            <p>输入框联动</p>
             <div class="example">
-                <div data-ui="id:slider5;type:Slider;start:0;end:10;
-                    hasHead:true;headType:label;hasFoot:true;disabled:disabled;">
+                <div data-ui="id:slider6;type:Slider;start:0;end:10;
+                    hasHead:true;headType:label;hasFoot:true;">
+                </div>
+            </div>
+
+            <h3>状态</h3>
+            <p>可设定为不可用状态</p>
+            <div class="example">
+                <div data-ui="id:slider7;type:Slider;start:0;end:10;
+                    hasHead:true;headType:label;hasFoot:true;disabled:disabled">
                 </div>
             </div>
 
             <h3>纵向</h3>
             <p>竖直的滑动杆</p>
             <div class="example">
-                <div data-ui="id:slider8-1;type:Slider;start:1;end:100;
+                <div data-ui="id:slider8;type:Slider;start:1;end:100;
                         hasHead:true;headType:label;orientation:vertical;"></div>
+            </div>
+
+            <h3>横向双滑块</h3>
+            <p>滑块范围[0, 10], 默认值[3, 7],可选值范围[2, 8],脚标为%</p>
+            <div class="example">
+                <div data-ui="id:slider9;type:Slider;start:0;end:10;
+                        range:true;hasHead:true;min:2;max:8;
+                        hasFoot:true;unitText:%;"
+                        data-ui-value="3,7">
+                </div>
+            </div>
+
+            <h3>纵向双滑块</h3>
+            <p>滑块范围[0, 10]，默认值[3, 7]，可选值范围[2, 8]</p>
+            <div class="example">
+                <div data-ui="id:slider10;type:Slider;start:0;end:10;
+                    range:true;hasHead:true;min:2;max:8;
+                    orientation:vertical;"
+                    data-ui-value="3,7">
+                </div>
             </div>
         </div>
     </div>

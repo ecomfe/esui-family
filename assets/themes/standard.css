@@ -8023,10 +8023,10 @@ i.ui-autocomplete-item-char-selected {
 }
 .container-primary {
   background: #70ccc0;
-  padding: 8em 10em 20em 15em;
+  padding: 7em 10em 20em 15em;
 }
 .hero {
-  font-size: 48px;
+  font-size: 4em;
 }
 .ui-button-contrast {
   color: #ffffff;
