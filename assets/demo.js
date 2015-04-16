@@ -3,11 +3,6 @@ function mainNav(path) {
     var htmlItem = '<li><a href="{link}"><span class="{icon}"></span> {text}</a></li>';
     var items = [
         {
-            link: 'index.html',
-            icon: 'ui-icon-home',
-            text: 'Hi-约吗'
-        },
-        {
             link: 'css/button.html',
             icon: 'ui-icon-css3',
             text: 'CSS'
@@ -24,7 +19,6 @@ function mainNav(path) {
     });
     document.write(html.join(''));
 }
-
 
 function footer() {
     var footHtml = '<p class="ui-text-center contrast">HI群：1392158</p>';
