@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>LightBox - ESUI Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">ESUI - LightBox</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>Filter</h2>
+            <section class="intro">
+                <p>LightBox</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container">
+                    <div id="image-container">
+                        <a href="http://getuikit.com/docs/images/placeholder_800x600_2.jpg" data-lightbox-group="group-1">
+                            <img src="http://getuikit.com/docs/images/placeholder_800x600_2.jpg" width="100" height="100"/>
+                        </a>
+                        <a href="http://getuikit.com/docs/images/placeholder_800x600_1.jpg" data-lightbox-group="group-1">
+                            <img src="http://getuikit.com/docs/images/placeholder_800x600_1.jpg" width="100" height="100"/>
+                        </a>
+                        <a href="http://file.ynet.com/2/1503/23/9928834.jpg" data-lightbox-group="group-1">
+                            <img src="http://file.ynet.com/2/1503/23/9928834.jpg" width="100" height="100"/>
+                        </a>
+                    </div>
+
+                    <div data-ui-type="LightBox"
+                        data-ui-id="box3"
+                        data-ui-title="Hi Baby, this is multiple media."
+                        data-ui-group="group-1"
+                        data-ui-group-container-id="image-container",
+                        data-ui-swf-path="../resource/video-preview-player.swf"
+                        ></div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+
+        require(
+            [
+                'esui',
+                'LightBox'
+            ],
+            function (ui) {
+
+                ui.init();
+        });
+
+    </script>
+</body>
+</html>

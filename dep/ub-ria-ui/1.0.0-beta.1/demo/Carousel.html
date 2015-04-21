@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Carousel - Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">Carousel</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>Carousel显示</h2>
+            <section class="intro">
+                <p>可以切换的Carousel。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container">
+                    <div data-ui="type:Carousel;id:car;" style="margin-bottom:30px;"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        var item = {
+            //模板id
+            "id": 1,
+            //模板缩略图
+            "url": "http://pic1.5442.com/2013/0808/07/01.jpg"
+        };
+        var datasource = [];
+        for (var i = 1; i < 21; i++) {
+            newItem = $.extend(true, {}, item);
+            newItem.id = i;
+            datasource.push(newItem);
+        }
+        var model = {
+            "datasource": datasource,
+            'disabled': false,
+            'itemWidth': 150,
+            'itemHeight': 93,
+            'pageSize': 5
+        };
+        require(
+            [
+                'esui',
+                'Carousel'
+            ],
+            function (ui, Carousel) {
+                window.ui = ui;
+                var controls = ui.init();
+                var car1 = ui.get('car');
+                car1.setProperties({
+                    'datasource': datasource,
+                    'value': 5,
+                    'disabled': true
+                });
+                
+                var car2 = new Carousel(model);
+                car2.on('change', function (e) {
+                    console.log(e.target.value, e.target.selectedItem, e.target.selectedIndex); 
+                });
+                car2.appendTo(document.getElementById('container'));
+                //car2.setValue(10);
+                //console.log(car2.value, car2.selectedItem, car2.selectedIndex);
+                
+            }
+        );
+    </script>
+</body>
+</html>

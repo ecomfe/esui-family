@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>ToggleSelector - Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">ToggleSelector</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>下拉选择控件</h2>
+            <section class="intro">
+                <p>下拉选择</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container">
+                    <div class="row">
+                        <label class="label">单选第一层级：</label>
+                        <div
+                            data-ui-type="ToggleSelector"
+                            data-ui-id="slot-channel"
+                            data-ui-name="slotChannel"
+                            data-ui-target-control="slot-channel-selector"
+                            data-ui-text-field="name"
+                            data-ui-value-field="id">
+                            <span>请选择</span>
+                            <section>
+                                <div
+                                    data-ui-type="TableRichSelector"
+                                    data-ui-id="slot-channel-selector"
+                                    data-ui-item-name="应用"
+                                    data-ui-multi="false"
+                                    data-ui-has-foot="true"
+                                    data-ui-has-head="false"
+                                    data-ui-has-row-head="false"
+                                    class="no-move-richselector">
+                                </div>
+                            </section>
+                        </div>
+                        <div
+                            data-ui-type="TogglePanel"
+                            >
+                            <span>Panel</span>
+                            <section>
+                                test
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="label">单选二层级：</label>
+                        <div
+                            data-ui-type="ToggleSelector"
+                            data-ui-id="slot-tree"
+                            data-ui-name="slotTree"
+                            data-ui-target-control="all-slots"
+                            data-ui-text-field="name"
+                            data-ui-value-field="id">
+                            <span>请选择</span>
+                            <section>
+                                <div class="no-move-richselector"
+                                    data-ui-type="TreeRichSelector"
+                                    data-ui-id="all-slots"
+                                    data-ui-multi="false"
+                                    data-ui-has-foot="false"
+                                    data-ui-has-head="false"
+                                    data-ui-only-leaf-select="true">
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="label">单选一级双列：</label>
+                        <div
+                            data-ui-type="ToggleSelector"
+                            data-ui-id="delivery"
+                            data-ui-name="delivery"
+                            data-ui-target-control="delivery-under-order"
+                            data-ui-text-field="name"
+                            data-ui-value-field="id">
+                            <span>请选择</span>
+                            <section>
+                                <div data-ui-type="RichSelectorGroup"
+                                    data-ui-id="delivery-under-order">
+                                    <esui-table-rich-selector-with-filter
+                                        data-ui-child-name="filter"
+                                        data-ui-title="订单"
+                                        data-ui-has-head="false"
+                                        data-ui-has-search-box="true"
+                                        data-ui-need-batch-action="false"
+                                        data-ui-has-row-head="true"
+                                        data-ui-multi="false"
+                                        data-ui-mode="load">
+                                    </esui-table-rich-selector-with-filter>
+                                    <esui-table-rich-selector
+                                        data-ui-child-name="source"
+                                        data-ui-title="广告"
+                                        data-ui-mode="add"
+                                        data-ui-has-head="false"
+                                        data-ui-has-row-head="false"
+                                        data-ui-multi="false"
+                                        data-ui-need-batch-action="false"
+                                        data-ui-empty-text="请从左侧选择要订单">
+                                    </esui-table-rich-selector>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="label">占位：</label>
+                        <div
+                            data-ui-type="ToggleSelector"
+                            data-ui-id="slot-tree-oppucied"
+                            data-ui-name="slotTree"
+                            data-ui-target-control="all-slots-oppucied"
+                            data-ui-text-field="name"
+                            data-ui-value-field="id"
+                            data-ui-position="fixed">
+                            <span>请选择</span>
+                            <section>
+                                <div class="no-move-richselector"
+                                    data-ui-type="TreeRichSelector"
+                                    data-ui-id="all-slots-oppucied"
+                                    data-ui-multi="false"
+                                    data-ui-has-foot="false"
+                                    data-ui-has-head="false"
+                                    data-ui-only-leaf-select="true">
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        require(
+                [
+                    'esui',
+                    'selectors/RichSelectorGroup',
+                    'selectors/TreeRichSelector',
+                    'selectors/TableRichSelector',
+                    'selectors/ToggleSelector',
+                    'selectors/TableRichSelectorWithFilter'
+                ],
+                function (ui) {
+                    var tables = ui.init(document.body);
+                    var table1 = ui.get('slot-channel-selector');
+
+                    var arrayDatasource = [];
+                    for (var i = 0; i < 20; i++) {
+                        var isSelected = false;
+                        if (i == 20) {
+                            isSelected = true;
+                        }
+                        arrayDatasource.push({
+                            text: '<input />选项' + (i + 1),
+                            name: '<input />选项' + (i + 1),
+                            status: i % 2 + '',
+                            id: i + 1,
+                            isSelected: isSelected
+                        })
+                    }
+
+                    table1.setProperties({datasource: arrayDatasource});
+
+                    table2 = ui.get('all-slots');
+
+                    var datasource = {
+                        id: 'root',
+                        text: '所有选项<input/>',
+                        children: []
+                    };
+                    var children = datasource.children;
+                    for (var i = 0; i < 20; i++) {
+                        var isSelected = false;
+                        if (i == 20) {
+                            isSelected = true;
+                        }
+                        children.push({
+                            text: '选项<input/>' + (i + 1),
+                            name: '选项<input/>' + (i + 1),
+                            id: i + 1,
+                            isSelected: isSelected
+                        })
+                    }
+
+                    for (i = 0; i < children.length; i += 2) {
+                        var node = children[i];
+                        node.children = [
+                            {
+                                text: '子节点<input/>' + i,
+                                name: '子节点<input/>' + (i),
+                                id: 'child' + i
+                            }
+                        ]
+                    }
+
+                    table2.setProperties({datasource: datasource});
+
+                    table3 = ui.get('all-slots-oppucied');
+                    table3.setProperties({datasource: datasource});
+
+                    var deliveryUnderOrder = ui.get('delivery-under-order');
+
+                    var order = deliveryUnderOrder.getChild('filter');
+                    var delivery = deliveryUnderOrder.getChild('source');
+
+                    order.setProperties({
+                        datasource: arrayDatasource,
+                        fields: [
+                            {
+                                field: 'name',
+                                content: 'name',
+                                searchScope: 'partial',
+                                width: 100,
+                                isDefaultSearchField: true,
+                                title: '名称'
+                            },
+                            {
+                                field: 'status',
+                                content: function (item) {
+                                    return '' + item.status;
+                                },
+                                searchScope: 'full',
+                                width: 70,
+                                isDefaultSearchField: true,
+                                title: '状态'
+                            }
+                        ],
+                        filterField: 'status',
+                        filterDatasource: [
+                            {
+                                value: '',
+                                text: '全部'
+                            },
+                            {
+                                value: 1,
+                                text: 1
+                            },
+                            {
+                                value: 2,
+                                text: 2
+                            },
+                            {
+                                value: 3,
+                                text: 3
+                            }
+                        ]
+                    });
+
+                    deliveryUnderOrder.on('load', function (e) {
+                        var item = e.item;
+                        delivery.setProperties({datasource: arrayDatasource.slice(item.id)});
+                    });
+
+
+                }
+        );
+    </script>
+</body>
+</html>

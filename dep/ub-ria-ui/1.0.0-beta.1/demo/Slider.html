@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Slider - Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css"/>
+    <link rel="stylesheet" href="assets/third-party/prism.css">
+    <style>
+        .mt20 {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="assets/loader/esl.js"></script>
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">Slider</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>Slider的实例</h2>
+            <section class="intro">
+                <p>
+                    1. 光秃秃的只有一个滑杆
+                </p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container">
+                   <div data-ui="size:200;id:slider1;type:Slider;start:0;end:10;"></div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>2. 头部有标题和label</p>
+                <p>2.1 0-10 默认值是5</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container2-1">
+                    <div data-ui="id:slider2-1;type:Slider;start:0;end:10;
+                        hasHead:true;headType:label;value:5;">
+                    </div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>2. 头部有标题和label</p>
+                <p>2.2 0-10 最小值3 最大值7</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container2-2">
+                    <div data-ui="id:slider2-2;type:Slider;start:0;end:10;
+                        hasHead:true;headType:label;value:4;min:3;max:7;">
+                    </div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>2. 头部有标题和label</p>
+                <p>2.3 1-100</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container2-3">
+                    <div data-ui="id:slider2-3;type:Slider;start:1;end:100;
+                        hasHead:true;headType:label;">
+                    </div>
+                    <div class="mt20">
+                        <button id="btn-set-2-3">设置值为30</button>
+                        <button id="btn-get-2-3">获取值</button>
+                    </div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>2. 头部有标题和label</p>
+                <p>2.4 10-100 步长为10</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container2-4">
+                    <div data-ui="id:slider2-4;type:Slider;start:10;end:100;step:10;
+                        hasHead:true;headType:label;"></div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>
+                    3. 头部有一个文本框 0-10
+                </p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container3">
+                    <div data-ui="id:slider3;type:Slider;start:0;end:10;
+                        hasHead:true;headType:textbox;min:0;max:10;">
+                    </div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>
+                    4. 头部有一个下拉框 0-10
+                </p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container4">
+                    动态生成的控件没有代码结构
+                </div>
+            </section>
+            <section class="intro">
+                <p>
+                    5. 头部有label 还有脚标 0-10 可是是disabled的
+                </p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container5">
+                    <div data-ui="id:slider5;type:Slider;start:0;end:10;
+                        hasHead:true;headType:label;hasFoot:true;disabled:disabled;">
+                    </div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>
+                    6. 头部有label 还有角标 角标显示步长是20 角标还有单位 0-100
+                </p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container6">
+                    <div data-ui="size:300;id:slider6;type:Slider;start:0;end:100;
+                        hasHead:true;headType:label;
+                        hasFoot:true;footStep:20;unitText:%;">
+                    </div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>
+                    7. 头部有label, 选择的值是个区间 滑动杆范围[0, 10], 可选值的范围[2, 8], 默认值[3, 7], 还有角标 角标还有单位%
+                </p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container7">
+                    <div data-ui="id:slider7;type:Slider;start:0;end:10;
+                        range:true;hasHead:true;min:2;max:8;
+                        hasFoot:true;unitText:%;"
+                        data-ui-value="3,7">
+                    </div>
+                    <div class="mt20">
+                        <button id="btn-set-7">设置值为[4,6]</button>
+                        <button id="btn-get-7">获取值</button>
+                    </div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>
+                    8.1 竖直的滑动杆 1-100
+                </p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container8-1">
+                    <div data-ui="id:slider8-1;type:Slider;start:1;end:100;
+                        hasHead:true;headType:label;orientation:vertical;"></div>
+                </div>
+            </section>
+            <section class="intro">
+                <p>
+                    8.2 竖直的滑动杆 选择的值是个区间 滑动杆范围[0, 10],可选范围[2,8], 默认值是[3, 7]
+                </p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container8">
+                    <div data-ui="id:slider8-2;type:Slider;start:0;end:10;
+                        range:true;hasHead:true;min:2;max:8;
+                        orientation:vertical;"
+                        data-ui-value="3,7">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+   
+<script>
+    require(
+        [
+            'esui',
+            'esui/lib',
+            'Slider'
+        ],
+        function (ui, lib) {
+            var childrens  = ui.init(document.body);
+
+            var options = {
+                id: 'slider4',
+                type: 'Slider',
+                start: 0,
+                end: 10,
+                hasHead: true,
+                headType: 'select',
+                datasource: [
+                    {
+                        text: '0',
+                        value: 0
+                    },
+                    {
+                        text: '1',
+                        value: 1
+                    },
+                    {
+                        text: '2',
+                        value: 2                      
+                    },
+                    {
+                        text: '3',
+                        value: 3                       
+                    },
+                    {
+                        text: '4',
+                        value: 4
+                    },
+                    {
+                        text: '5',
+                        value: 5
+                    },
+                    {
+                        text: '6',
+                        value: 6
+                    },
+                    {
+                        text: '7',
+                        value: 7
+                    },
+                    {
+                        text: '8',
+                        value: 8
+                    },
+                    {
+                        text: '9',
+                        value: 9
+                    },
+                    {
+                        text: '10',
+                        value: 10
+                    }
+                ],
+                value: 0
+            };
+
+            var select2 = ui.create('Slider', options);
+
+            select2.appendTo(document.getElementById('container4'));
+
+            lib.on(lib.g('btn-set-2-3'), 'click', function () {
+                ui.get('slider2-3').setValue(30);
+            });
+
+            lib.on(lib.g('btn-get-2-3'), 'click', function () {
+                alert(ui.get('slider2-3').getValue());
+            });
+
+            lib.on(lib.g('btn-set-7'), 'click', function () {
+                ui.get('slider7').setValue([4,6]);
+            });
+
+            lib.on(lib.g('btn-get-7'), 'click', function () {
+                alert(ui.get('slider7').getValue());
+            });
+        }
+    );
+</script>
+</body>
+</html>

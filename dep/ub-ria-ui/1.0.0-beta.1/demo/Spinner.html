@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title>Spinner - Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+</head>
+<body>
+<h1 id="branding">Spinner</h1>
+<div id="page">
+    <ul id="navigator">
+    </ul>
+    <div id="main">
+        <h2>Spinner的实例</h2>
+        <section class="intro">
+            <p>
+                1. 日期微调
+            </p>
+        </section>
+        <section class="view">
+            <ul class="viewer">
+                <li class="view-markup">结构</li>
+            </ul>
+            <div class="example" id="container">
+                <div data-ui-type="Spinner" data-ui-id="dateSpinner"
+                     data-ui-width="160"
+                     data-ui-format="YYYY-MM-DD"
+                     data-ui-interval="100" data-ui-turn="false"
+                     data-ui-max="20150630"
+                     data-ui-min="20150101"
+                     data-ui-value="20150402"
+                     data-ui-scale='{"key": "day", "value": 1}'
+                     ></div>
+            </div>
+        </section>
+        
+        <section class="intro">
+            <p>
+                2. 日期微调(循环)
+            </p>
+        </section>
+        <section class="view">
+            <ul class="viewer">
+                <li class="view-markup">结构</li>
+            </ul>
+            <div class="example" id="container">
+                <div data-ui-type="Spinner" data-ui-id="dateTurnSpinner"
+                     data-ui-width="160"
+                     data-ui-format="YYYY-MM-DD"
+                     data-ui-interval="100"
+                     data-ui-max="20150107"
+                     data-ui-min="20150101"
+                     data-ui-value="20150402"
+                     ></div>
+            </div>
+        </section>
+        
+        <section class="intro">
+            <p>
+                3. 数字微调
+            </p>
+        </section>
+        <section class="view">
+            <ul class="viewer">
+                <li class="view-markup">结构</li>
+            </ul>
+            <div class="example" id="container">
+                <div data-ui-type="Spinner" data-ui-id="numberSpinner"
+                     data-ui-width="100"
+                     data-ui-format="number"
+                     data-ui-interval="100"
+                     data-ui-max="100"
+                     data-ui-min="0"
+                     data-ui-value="1000"
+                     ></div>
+            </div>
+        </section>
+        
+        <section class="intro">
+            <p>
+                4. 小数微调
+            </p>
+        </section>
+        <section class="view">
+            <ul class="viewer">
+                <li class="view-markup">结构</li>
+            </ul>
+            <div class="example" id="container">
+                <div data-ui-type="Spinner" data-ui-id="floatSpinner"
+                     data-ui-width="100"
+                     data-ui-format="number"
+                     data-ui-interval="100"
+                     data-ui-max="5"
+                     data-ui-min="0"
+                     data-ui-scale="0.01"
+                     data-ui-value="1.87"
+                     ></div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    require(['esui', 'Spinner', 'esui/TextBox'], function (ui) {
+        var lib = require('esui/lib');
+        var u = require('underscore');
+        ui.init();
+
+        mySpinner = ui.get('dateTurnSpinner');
+        mySpinner.scale = {key: "day", value: 1};
+    });
+</script>
+</body>
+</html>

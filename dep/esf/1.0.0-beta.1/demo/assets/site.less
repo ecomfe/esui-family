@@ -1,0 +1,154 @@
+@import "../../dep/est/1.3.0/src/all.less";
+.global-normalize();
+@import "../../theme/standard/main.less";
+
+@import "../../dep/eicons/1.0.0-beta.1/src/main.less";
+
+@fa-font-path: "./fonts/font-awesome";
+
+// loaders are mixins now, output them manually
+.esf-loader-bouncers();
+
+.esf-loader-border();
+
+.esf-loader-borders();
+
+.esf-loader-spinner-wave();
+
+.esf-loader-rotating-plane();
+
+.esf-loader-chasing-dots();
+
+.esf-loader-spinner-circles();
+
+body {
+   .est-layout-fixed-header(60px);
+}
+
+.est-header {
+    background: @esf-palette-primary-color;
+}
+
+#branding {
+    margin: 0;
+}
+
+#container-frame { 
+    width: 100%;
+    border: 0;
+}
+
+#main {
+    padding: 2em;
+    padding-top: 0;
+}
+
+.ui-demo-row {
+    margin-bottom: 1em;
+}
+
+// child page
+#navigator-features {
+    a {
+        padding: 0.5em 1em;
+        display: block; 
+        &:hover {
+            background: @esf-palette-primary-color;
+            text-decoration: none;
+            color: @esf-palette-white;
+        }
+    }
+    border-right: 1px solid @esf-palette-border;
+}
+
+.example {
+    position: relative;
+    padding: 45px 15px 15px;
+    margin-bottom: 15px;
+    border: 1px #e5e5e5 solid;
+}
+
+/* Echo out a label for the example */
+.example:after {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 12px; 
+  font-weight: bold;
+  color: #959595;
+  content: "Example";
+}
+
+/* Tweak display of the code snippets when following an example */
+.example + .highlight {
+  margin-bottom: 15px;
+  margin-top: -15px;
+  border-width: 0 0 1px;
+  border-radius: 0;
+  position: relative;
+}
+
+.highlight {
+    max-height: 300px;
+    overflow: auto;
+}
+
+.ui-g {
+  letter-spacing: -0.31em;
+  *letter-spacing: normal;
+  *word-spacing: -0.43em;
+  word-spacing: -0.43em;
+  text-rendering: optimizespeed;
+  font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  display: -ms-flexbox;
+  -ms-flex-flow: row wrap;
+}
+/* Opera as of 12 on Windows needs word-spacing.
+   The ".opera-only" selector is used to prevent actual prefocus styling
+   and is not required in markup.
+*/
+.opera-only :-o-prefocus {
+  word-spacing: -0.43em;
+}
+.esf-grid-u,
+.ui-u,
+.ui-u-1,
+.ui-u-golden-ratio,
+.ui-u-golden-ratio-1,
+.ui-u-2-2,
+.ui-u-1-2,
+.ui-u-3-3,
+.ui-u-2-3,
+.ui-u-1-3,
+.ui-u-4-4,
+.ui-u-3-4,
+.ui-u-2-4,
+.ui-u-1-4,
+.ui-u-5-5,
+.ui-u-4-5,
+.ui-u-3-5,
+.ui-u-2-5,
+.ui-u-1-5 {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  letter-spacing: normal;
+  word-spacing: normal;
+  vertical-align: top;
+  text-rendering: auto;
+  font-family: @default-base-font-family;
+}
+.ui-u-1-5 {
+  width: 20%;
+  position: fixed;
+}
+.ui-u-4-5 {
+  width: 80%;
+  margin-left: 20%;
+}
+
+.ui-menu {
+    .font-family(heading);
+}

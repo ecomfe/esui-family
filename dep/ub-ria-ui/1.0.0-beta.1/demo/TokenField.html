@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Token Field - ESUI Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">ESUI - Token Field</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>输入多个</h2>
+            <section class="intro">
+                <p>输入多个字段。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container">
+                    <input data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan+liwei" data-ui-limit="30" data-ui-delimiter=",+" data-ui-width="600" />
+                </div>
+            </section>
+            <h2>状态</h2>
+            <section class="intro">
+                <p>输入多个字段。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container">
+                    <h3>不可用</h3>
+                    <div class="row">
+                        <input data-ui-disabled="1" data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan" data-ui-limit="30" data-ui-delimiter=",+" data-ui-width="600" />
+                    </div>
+                    <h3>只读</h3>
+                    <div class="row">
+                        <input data-ui-read-only="1" data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan" data-ui-limit="30" data-ui-delimiter=",+" data-ui-width="600" />
+                    </div>
+                    <h3>错误</h3>
+                    <div class="row">
+                        <input data-ui-states="validity-invalid" data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan" data-ui-limit="30" data-ui-delimiter=",+" data-ui-width="600" />
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        require(
+            [
+                'esui',
+                'TokenField'
+            ],
+            function (ui) {
+                ui.init();
+            }
+        );
+    </script>
+</body>
+</html>

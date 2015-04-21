@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Alert - ESUI Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">ESUI Alert</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>Alert</h2>
+            <section class="intro">
+                <p>利用Alert可以在页面上显示提示信息。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage">
+                    <table id="table" class="ui-raw-table ui-raw-table-bordered">
+                        <tr>
+                            <td align="right">类型</td>
+                            <td>
+                                <label class="ui-select-custom">
+                                    <select id="type">
+                                        <option value="success">Success</option>
+                                        <option value="warning">Warning</option>
+                                        <option value="info">Info</option>
+                                        <option value="error">Error</option>
+                                    </select>
+                                </label>
+
+                                <button id="show" class="ui-button ui-button-primary">Show an Alert!</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">信息</td>
+                            <td>
+                                <div class="ui-textbox">
+                                    <input class="message" value="白日依山尽" />
+                                </div><br /><br />
+                                <div class="ui-textbox">
+                                    <input class="message" value="黄河入海流" />
+                                </div><br /><br />
+                                <div class="ui-textbox">
+                                    <input class="message" value="欲穷千里目" />
+                                </div><br /><br />
+                                <div class="ui-textbox">
+                                <input class="message" value="更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">自动关闭时间<br />不填或false表示不自动关闭</td>
+                            <td>
+                                <div class="ui-textbox">
+                                    <input id="autoClose" />
+                                </div>
+                                ms
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">自动轮换时间间隔<br />不填或false表示不自动轮播</td>
+                            <td>
+                                <div class="ui-textbox">
+                                    <input id="autoSlide" value="4000" />
+                                </div>
+                                ms
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">是否带有关闭按钮</td>
+                            <td>
+                                <div class="ui-checkbox-custom">
+                                    <input type="checkbox" id="closeBtn" checked="checked" />
+                                    <label for="closeBtn"></label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">是否带有Icon</td>
+                            <td>
+                                <div class="ui-textbox">
+                                    <input type="input" value="ui-icon-exclamation-circle" id="icon">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        require(
+            [
+                'esui',
+                'Alert',
+                'esui/lib'
+            ],
+            function (ui, alert, lib) {
+                //ui.init();
+                lib.g('show').onclick = function() {
+                    var options = {};
+                    var msgType = lib.g('type').value;
+                    options.message = [];
+                    var messages = document.getElementsByClassName('message');
+                    for (var i = 0; i < messages.length; i++) {
+                        if (messages[i].value) {
+                            options.message.push(messages[i].value);
+                        }
+                    }
+                    options.autoClose = lib.g('autoClose').value;
+                    options.autoSlide = lib.g('autoSlide').value;
+                    options.closeBtn = lib.g('closeBtn').checked;
+                    options.icon = lib.g('icon').value;
+                    options.container = 'main';
+
+                    alert[msgType](options);
+                };
+            }
+        );
+    </script>
+</body>
+</html>

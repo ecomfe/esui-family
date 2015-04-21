@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Multi Calendar - ESUI Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">ESUI - Multi Calendar</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>输入多个</h2>
+            <section class="intro">
+                <p>输入多个字段。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container">
+                    <div data-ui="type:MultiCalendar;id:test;value:2010-02-01;name:test;range:2011-02-02,2014-02-01;"></div>
+                </div>
+            </section>
+            <h2>状态</h2>
+            <section class="intro">
+                <p>输入多个字段。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage">
+                    <h3>不可用</h3>
+                    <div class="row">
+                        <input value="2011-03-01" name="test2" data-ui="type:MultiCalendar;id:test2;range:2011-02-02,2014-02-01;" data-ui-auto-hide-layer="true"/>
+                    </div>
+                    <h3>只读</h3>
+                    <div class="row">
+                        <esui-multi-calendar value="2014-03-25" data-ui="id:test3;range:2011-02-02,2014-02-01;readOnly:1"></esui-multi-calendar>
+                    </div>
+                    <h3>错误</h3>
+                    <div class="row">
+                        <esui-multi-calendar value="2014-03-25" data-ui="id:test4;range:2011-02-02,2014-02-01;states:validity-invalid"></esui-multi-calendar>
+                    </div>
+                </div>
+            </section>
+            
+        </div>
+    </div>
+    <script>
+    require(
+        ['esui', 'MultiCalendar'], 
+        function (esui, multiCalendar) {
+            var controls = esui.init();
+
+            var multiCalendar1 = controls[1];
+            multiCalendar1.setProperties({
+                range: '2012-02-02,2013-02-01',
+                value: '2010-2-1'
+            });
+        }
+    );
+    </script>
+</body>
+</html>

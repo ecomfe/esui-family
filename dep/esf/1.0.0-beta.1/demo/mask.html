@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Mask</title>
+        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/prism.css" />
+        <!--[if lt IE 9]>
+        <script src="http://xy3.baidu.com/js/html5.js"></script>
+        <![endif]-->
+        <script src="assets/prism.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </head>
+    <body>
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#mask-light">Section Mask </a></li>
+                    <li><a href="#mask-page">Page Mask</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main" class="content">
+                    <h2>Mask</h2>
+                    <hr />
+                    <h3 id="mask-light">Section Mask</h3>
+                    <p>Reset scroll position.</p>
+                    <div class="example">
+                        <div class="ui-demo-row">
+                            <button class="ui-button ui-button-success">Open / Close Mask</button>
+                        </div>
+                        <div class="ui-mask-section" style="height: 220px; overflow: auto;">
+                            <div class="ui-mask">
+                                <div class="ui-mask-content">
+                                    <div class="ui-mask-middle">
+                                        <div class="ui-loader ui-loader-bouncers">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <figure class="ui-img-frame ui-img-frame-hover" style="width: 300px">
+                                    <img src="assets/img/image4.jpg" alt="Photo of the UNL Campus" />
+                                </figure>
+                                <figure class="ui-img-frame ui-img-rounded ui-img-frame-hover" style="width: 300px">
+                                    <img src="assets/img/image4.jpg" alt="Photo of the UNL Campus" />
+                                </figure>
+                            </div>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                Donec iaculis, ante et congue feugiat, elit wisi commodo metus, ut commodo ligula enim ac justo.
+                                Pellentesque id ligula.
+                                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.
+                                Phasellus vitae mi a elit dictum volutpat.
+                                Pellentesque nec arcu. Etiam blandit.
+                                Phasellus egestas dolor ut lacus.
+                                Sed enim justo, sagittis ut, condimentum non, ullamcorper eu, neque.
+                                In hac habitasse platea dictumst.
+                                Integer ipsum risus, sagittis ac, imperdiet ac, interdum sed, libero.
+                                Praesent commodo. Mauris congue, urna eget hendrerit elementum, dolor ligula ultrices neque, in elementum ante erat et elit.
+                            </p>
+                        </div>
+                    </div>
+                    <h3 id="mask-page">Page Mask</h3>
+                    <div class="example">
+                        <button class="ui-button ui-button-info">Open / Close Page Mask</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="page-mask" class="ui-mask ui-mask-page">
+            <div class="ui-mask-content">
+                <div class="ui-mask-middle">
+                    <div class="ui-loader ui-loader-bouncers">
+                        <div class="ui-spinner-bouncer1"></div>
+                        <div class="ui-spinner-bouncer2"></div>
+                        <div class="ui-spinner-bouncer3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $('.ui-button-success').on('click', function (e) {
+                var $e = $(e.target);
+                var $p = $e.parent().next();
+                $p.toggleClass('ui-masked').find('.ui-mask').toggle();
+                $p.prop('scrollTop', 0)
+            });
+            $('.ui-button-info').on('click', function () {
+                $('#page-mask').show().parent().addClass('ui-masked');
+                setTimeout(function () {
+                    $(document).one('click', function () {
+                        $('#page-mask').hide().parent().removeClass('ui-masked');
+                    });
+                }, 1);
+            });
+        </script>
+    </body>
+</html>

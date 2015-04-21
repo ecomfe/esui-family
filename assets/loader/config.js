@@ -24,18 +24,31 @@ require.config({
         },
         {
             'name': 'esui',
-            'location': '../dep/esui/3.1.0-beta.6/src',
+            'location': '../dep/esui/3.2.0-beta.1/src',
             'main': 'main'
         },
         {
             'name': 'ub-ria-ui',
-            'location': '../dep/ub-ria-ui/1.0.0-beta/src',
+            'location': '../dep/ub-ria-ui/1.0.0-beta.1/src',
             'main': 'main'
         },
         {
             'name': 'eoo',
-            'location': '../dep/eoo/0.1.1/src',
+            'location': '../dep/eoo/0.1.2/src',
             'main': 'main'
+        },
+        {
+            'name': 'eicons',
+            'location': '../dep/eicons/1.0.0-beta.1/src',
+            'main': 'main.less'
+        },
+        {
+            'name': 'esf',
+            'location': '../dep/esf/1.0.0-beta.1/src'
+        },
+        {
+            'name': 'est',
+            'location': '../dep/est/1.3.0/src'
         }
     ]
 });

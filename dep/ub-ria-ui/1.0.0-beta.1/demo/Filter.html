@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Filter - Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">Filter</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>FilterGroup</h2>
+            <section class="intro">
+                <p>FilterGroup</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage" id="container">
+                    <div data-ui-type="Filter"
+                         data-ui-id="test1"
+                         data-ui-custom="true"
+                         data-ui-label="单选：">
+                    </div>
+                    <div data-ui-type="Filter"
+                         data-ui-id="test2"
+                         data-ui-label="多选："
+                         data-ui-custom="true"
+                         data-ui-multiple="true">
+                    </div>
+                    <div data-ui-type="FilterResult"
+                         data-ui-id="result"
+                         data-ui-label="已选择：">
+                    </div>
+                </div>
+            </section>
+            <div data-ui-type="Button" data-ui-id="submit" data-ui-variants="success" style="margin-top:20px;">获取值</div>
+        </div>
+    </div>
+    <script>
+
+        require(
+            [
+                'esui',
+                'filter/Filter',
+                'filter/FilterResult',
+                'esui/Button'
+            ],
+            function (ui) {
+                window.ui = ui;
+                var citys = [
+                    {
+                        text: '上海',
+                        value: 'SHANGHAI'
+                    },
+                    {
+                        text: '北京',
+                        value: 'BEIJING'
+                    },
+                    {
+                        text: '广州',
+                        value: 'GUANGZHOU'
+                    },
+                    {
+                        text: '深圳',
+                        value: 'SHENZHEN'
+                    },
+                    {
+                        text: '杭州',
+                        value: 'HANGZHOU'
+                    },
+                    {
+                        text: '南京',
+                        value: 'NANJING'
+                    },
+                    {
+                        text: '厦门',
+                        value: 'XIAMEN'
+                    },
+                    {
+                        text: '苏州',
+                        value: 'SUZHOU'
+                    },
+                    {
+                        text: '珠海',
+                        value: 'ZHUHAI'
+                    }
+                ];
+                var controls = ui.init();
+                $.each(controls, function (index, control) {
+                    if (index + 2 >= controls.length) {
+                        return;
+                    }
+                    var citysClone = $.extend(true, [], citys);
+                    $.each(citysClone, function (i, city) {
+                        city.text += index;
+                        city.value += index;
+                    });
+                    control.setProperties({
+                        'datasource': citysClone
+                    });
+                })
+                var filter1 = controls[0];
+                var filter2 = controls[1];
+                var result = controls[2];
+                filter1.on('change', function (e) {
+                    if (e.action === 'add') {
+                        result.addItem(e.item);
+                        result.removeItem(e.lastItem);
+                    }
+                    else {
+                        result.removeItem(e.item);
+                    }
+                });
+                // 保存自定义时监听
+                filter1.onsave = function (item, callback) {
+                    console.log(item);
+                    // some code
+                    callback();
+                };
+                filter2.on('change', function (e) {
+                    if (e.action === 'add') {
+                        result.addItem(e.item);
+                    }
+                    else {
+                        result.removeItem(e.item);
+                    }
+                });
+                result.on('change', function (e) {
+                    filter1.removeItem(e.item);
+                    filter2.removeItem(e.item);
+                });
+                // 获取值
+                var submit = controls[3];
+                submit.on('click', function (e) {
+                    var val = filter1.getValue();
+                    console.log(val);
+                });
+            }
+        );
+    </script>
+</body>
+</html>

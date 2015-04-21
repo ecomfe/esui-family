@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>AutoComplete - ESUI Demo</title>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <link href="assets/third-party/prism.css" rel="stylesheet" />
+    <script src="assets/loader/esl.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://xy3.baidu.com/js/html5.js"></script>
+    <![endif]-->
+    <script src="assets/third-party/prism.js"></script>
+    <script src="assets/third-party/jquery-1.9.1.min.js"></script>
+
+    <script src="demo.js"></script>
+</head>
+<body>
+    <h1 id="branding">ESUI AutoComplete Extension</h1>
+    <div id="page">
+        <ul id="navigator">
+        </ul>
+        <div id="main">
+            <h2>Input</h2>
+            <section class="intro">
+                <p>AutoComplete绑定到一个Input。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage">
+                    <input data-ui-type="TextBox"
+                           data-ui-mode="text"
+                           data-ui-id="test"
+                           data-ui-extension-autocomplete-type="AutoComplete"
+                    />
+                </div>
+            </section>
+            <h2>TextLine</h2>
+            <section class="intro">
+                <p>AutoComplete 绑定到TextLine。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage">
+                    <textarea data-ui-type="TextLine"
+                           data-ui-id="test1"
+                           data-ui-name="test1"
+                           data-ui-extension-autocomplete-type="AutoComplete"
+                    /></textarea>
+                </div>
+            </section>
+            <h2>TextArea</h2>
+            <section class="intro">
+                <p>TextArea AutoComplete。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example ui-demo-light-stage">
+                    <textarea data-ui-type="TextBox"
+                           data-ui-mode="text"
+                           data-ui-id="test2"
+                           data-ui-extension-autocomplete-type="AutoComplete"
+                           style="height:200px"
+                    ></textarea>
+                </div>
+            </section>
+            <h2>分割字符</h2>
+            <section class="intro">
+                <p>TextArea AutoComplete(split by ' ')。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example" id="container">
+                    <textarea data-ui-type="TextBox"
+                           data-ui-mode="text"
+                           data-ui-id="test3"
+                           data-ui-extension-autocomplete-type="AutoComplete"
+                           style="height:200px"
+                    ></textarea>
+                </div>
+            </section>
+            <h2>触发器</h2>
+            <section class="intro">
+                <p>TextArea AutoComplete with mock ajax(split by ',', fire by '{')。</p>
+            </section>
+            <section class="view">
+                <ul class="viewer">
+                    <li class="view-markup">结构</li>
+                </ul>
+                <div class="example" id="container">
+                    <textarea data-ui-type="TextBox"
+                           data-ui-mode="text"
+                           data-ui-id="test4"
+                           data-ui-extension-autocomplete-type="AutoComplete"
+                           style="height:200px"
+                    ></textarea>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script>
+        require(
+            [
+                'esui',
+                'AutoComplete',
+                'esui/TextLine',
+                'esui/TextBox'
+            ],
+            function (ui, AutoComplete) {
+                window.ui = ui;
+                var controls = ui.init();
+                var data = [
+                    "actionScript",
+                    "AppleScript",
+                    "Asp",
+                    "BASIC",
+                    "C",
+                    "C++",
+                    "Clojure",
+                    "COBOL",
+                    "ColdFusion",
+                    "Erlang",
+                    "Fortran",
+                    "Groovy",
+                    "Haskell",
+                    "Java",
+                    "JavaScript",
+                    "Lisp",
+                    "Perl",
+                    "PHP",
+                    "Python",
+                    "Ruby",
+                    "Scala",
+                    "Scheme"
+                ];
+                var data1 = [
+                    {
+                        text: 'actionScript',
+                        desc: 'It is actionScript'
+                    },
+                    {
+                        text: 'AppleScript',
+                        desc: 'It is AppleScript'
+                    },
+                    {
+                        text: 'Asp',
+                        desc: 'It is Asp'
+                    },
+                    {
+                        text: 'BASIC',
+                        desc: 'It is BASIC'
+                    },
+                    {
+                        text: 'Clojure',
+                        desc: 'It is Clojure'
+                    },
+                    {
+                        text: 'ColdFusion',
+                        desc: 'It is ColdFusion'
+                    }
+                ];
+
+                var control;
+                var datasource;
+                for (var i = 0; i < controls.length; i++) {
+                    control = controls[i];
+                    if (control.id === 'test4') {
+                        datasource = function (req, res) {
+                            setTimeout(function(){
+                                res(data);
+                            }, 800);
+                        };
+                    }
+                    else if (control.id === 'test1') {
+                        datasource = data1;
+                    } 
+                    else {
+                        datasource = data;
+                    }
+                    controls[i].setProperties({
+                        'datasource': datasource,
+                        /*
+                        search: function (v) {
+                            if (v.length < 2) {
+                                return false;
+                            }
+                        },
+                        */
+                        select: function (value, target) {
+                            //target.setValue('你好');
+                            //return false;
+
+                        },
+                        /*extractWord: function (s) {
+
+                        },*/
+                        preProcessResponseData: function (data) {
+                            data = ['你好', 'Hello'];
+                            return data;
+                        }
+                    });
+                }
+            }
+        );
+    </script>
+</body>
+</html>

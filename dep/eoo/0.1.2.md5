@@ -1,0 +1,12 @@
+{
+    "LICENSE": "d466e2325ee60ace4f73f2fec651c171",
+    "README.md": "5fb3de65536db630edc472fdb0d8a13f",
+    "demo\\index.html": "575822680871c03eddf3226be9c82e3a",
+    "package.json": "2066d71d08eafa81ae75c06a530c39dd",
+    "src\\defineAccessor.js": "7ea18564be96999119a953b1cc2ea0ca",
+    "src\\main.js": "e9dedcc81417e1422485aaf483fbc56d",
+    "src\\oo.js": "380dbcbf7bc22bc780f70f37008ed437",
+    "test\\karma.conf.js": "4ecce251747d92c22fe0ebd0c0cb9cc6",
+    "test\\spec\\ooSpec.js": "7323af469d3f7ff672a9af6ea6fe0b22",
+    "test\\test-main.js": "6bf9baa975863bd1a928ab1ea3598a4f"
+}

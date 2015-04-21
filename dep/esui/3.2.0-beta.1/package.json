@@ -1,0 +1,52 @@
+{
+    "name": "esui",
+    "version": "3.2.0-beta.1",
+    "maintainers": [
+        {
+            "name": "otakustay",
+            "email": "otakustay@live.com"
+        }
+    ],
+    "contributors": [
+        {
+            "name": "erik",
+            "email": "errorrik@gmail.com"
+        },
+        {
+            "name": "DDDBear"
+        },
+        {
+            "name": "wurongyao"
+        },
+        {
+            "name": "kitemao"
+        },
+        {
+            "name": "Shen Bin",
+            "email": "bobshenbin@gmail.com"
+        },
+        {
+            "name": "Li Sijin"
+        }
+    ],
+    "main": "main",
+    "description": "ESUI是一个轻巧灵活的高性能UI组件库。",
+    "homepage": "https://github.com/ecomfe/esui",
+    "edp": {
+        "wwwroot": "/",
+        "depDir": "dep",
+        "srcDir": "src",
+        "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
+        "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
+        "dependencies": {
+            "mini-event": "1.x",
+            "underscore": "1.5.x",
+            "moment": "2.x",
+            "etpl": ">=2.0.8",
+            "est": "~1.3.0",
+            "esf": "~1.0.0-beta",
+            "eicons": "~1.0.0-beta",
+            "eoo": "0.1.x"
+        }
+    }
+}
