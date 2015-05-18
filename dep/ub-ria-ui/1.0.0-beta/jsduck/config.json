@@ -1,0 +1,20 @@
+{
+    "--title": "UB-UI",
+    "--output": "doc",
+    "--external": "mini-event.EventTarget,etpl.Engine",
+    "--": [
+        "../src/AutoComplete.js",
+        "../src/colorPicker/colorPicker.js",
+        "../src/selectors/RichSelector.js",
+        "../src/selectors/ToggleSelector.js",
+        "../src/Slider.js",
+        "../src/TokenField.js",
+        "../src/MultiCalendar.js",
+        "../src/Accordion.js",
+        "../src/Carousel.js",
+        "../src/filter/Filter.js",
+        "../src/Alert.js",
+        "../src/LightBox.js",
+        "../src/sticky.js"
+    ]
+}

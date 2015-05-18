@@ -40,7 +40,7 @@ define(
          * - 单选
          * - 多选
          *
-         * @class ui.RichSelector
+         * @class RichSelector
          * @extends esui.InputControl
          */
         var exports = {};

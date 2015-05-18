@@ -1,6 +1,6 @@
 {
     "--title": "ESUI",
-    "--output": "../doc/api",
+    "--output": "doc",
     "--categories": "categories.json",
     "--external": "mini-event.EventTarget,etpl.Engine",
     "--": [

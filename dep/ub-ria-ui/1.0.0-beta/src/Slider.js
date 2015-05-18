@@ -9,6 +9,11 @@ define(
         require('esui/TextBox');
         require('esui/Select');
 
+        /**
+         * @class Slider
+         * @extends ub-ria-ui.Slider
+         */
+
         // 注册验证类
         require('esui/validator/RequiredRule');
         require('esui/validator/MaxRule');

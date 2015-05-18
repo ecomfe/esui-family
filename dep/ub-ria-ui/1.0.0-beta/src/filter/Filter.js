@@ -14,6 +14,11 @@ define(function (require) {
     require('esui/Panel');
     require('esui/Label');
 
+    /**
+     * @class Filter
+     * @extends ub-ria-ui.Filter
+     */
+
     var exports = {};
 
 

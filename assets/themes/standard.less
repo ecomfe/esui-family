@@ -38,12 +38,14 @@
 
 .esf-loader-spinner-circles();
 .ui-navbar-mordern {
-    background: @dark-color;
-    li:hover a,
-    li:active a {
-        background: @dark-color;
-        color: @esf-palette-primary-color;
+    .ui-navbar-nav {
+      >li:hover>a,
+      >li:active>a {
+          background: @dark-color;
+          color: @esf-palette-primary-color;
+      }
     }
+    background: @dark-color;
 }
 
 #branding {

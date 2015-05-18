@@ -10,6 +10,11 @@ define(function (require) {
     var Control = require('esui/Control');
     var eoo = require('eoo');
 
+    /**
+     * @class Carousel
+     * @extends ub-ria-ui.Carousel
+     */
+
     var MAIN_TPL = [
         '<div class="${typeSelector}-main" id="${contentId}">',
             '<div class="${typeSelector}-content">',

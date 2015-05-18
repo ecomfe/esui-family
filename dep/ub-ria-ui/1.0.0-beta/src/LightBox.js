@@ -13,6 +13,11 @@ define(function (require) {
     var helper = require('esui/controlHelper');
     var swf = require('./helper/swfHelper');
 
+    /**
+     * @class LightBox
+     * @extends ub-ria-ui.LightBoxs
+     */
+
     var NOT_SUPPORT_MESSAGE = '暂不支持该格式预览';
     var VIDEO_TPL = [
         '<video id="${id}" title="${title}" width="${width}" height="${height}" src="${src}" autoplay="autoplay">',

@@ -13,6 +13,11 @@ define(
         var Control = require('esui/Control');
 
         /**
+         * @class Alert
+         * @extends ub-ria-ui.Alert
+         */
+
+        /**
          * Alert控件
          *
          * @param {Object} options 初始化参数

@@ -23,6 +23,11 @@ define(
         require('esui/TextBox');
         require('esui/Button');
 
+        /**
+         * @class ColorPicker
+         * @extends ub-ria-ui.ColorPicker
+         */
+
         var exports = {};
         /**
          * 控件类型
