@@ -1,6 +1,9 @@
 function mainNav(path) {
     path = path || '';
     var htmlItem = '<li><a href="{link}"><span class="{icon}"></span> {text}</a></li>';
+    var childHtml = '<li><span><span class="{icon}"></span><a target="_blank" href="{link}">{text}</a></span></li>';
+    var htmlItemWithChildren = '<li><a href="{link}"><span class="{icon}"></span> {text}</a><ul class="ui-submenu ui-submenu-fly-out ui-submenu-fill-width">{children}</ul></li>';
+
     var items = [
         {
             link: 'css/button.html',
@@ -10,12 +13,42 @@ function mainNav(path) {
         {
             link: 'controls/Button.html',
             icon: 'ui-icon-code',
-            text: 'Controls'
+            text: 'Controls',
+            children: [{
+                link: 'controls/Button.html',
+                text: 'Demo',
+                icon: 'ui-icon-code'
+            },{
+                link: 'controls/API.html?uiName=esui',
+                text: 'ESUI API',
+                icon: 'ui-icon-code'
+            },{
+                link: 'controls/API.html?uiName=ubui',
+                text: 'UB-UI API',
+                icon: 'ui-icon-code'
+            }]
         }
     ];
     var html = [];
     $.each(items, function (idx, item) {
-        html.push(htmlItem.replace('{link}', path + item.link).replace('{icon}', item.icon).replace('{text}', item.text));
+        if (item.children) {
+            var childrenHtml = [];
+            var childHtmlTpl = '';
+            $.each(item.children, function(index, child) {
+                if (index === 0) {
+                    childHtmlTpl = childHtml.replace('target="_blank"', '');
+                }
+                else {
+                    childHtmlTpl = childHtml;
+                }
+                childrenHtml.push(childHtmlTpl.replace('{link}', path + child.link).replace('{icon}', child.icon).replace('{text}', child.text));
+            });
+            html.push(htmlItemWithChildren.replace('{link}', path + item.link).replace('{icon}', item.icon).replace('{text}', item.text).replace('{children}', childrenHtml.join('')))
+        }
+        else {
+            html.push(htmlItem.replace('{link}', path + item.link).replace('{icon}', item.icon).replace('{text}', item.text));
+        }
+        
     });
     document.write(html.join(''));
 }
@@ -140,5 +173,6 @@ $(function () {
         '<li><a href="type.html">Type</a></li>' +
         '<li><a href="wizard.html">Wizard</a></li>';
     generateNav('#navigator-esf', navItems);
+
 
 });
