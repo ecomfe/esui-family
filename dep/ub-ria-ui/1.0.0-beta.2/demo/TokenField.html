@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>Token Fiel - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">Token Field</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>输入多个</h2>
+            <section class="intro">
+                <p>输入多个字段。</p>
+            </section>
+            <div class="example ui-demo-light-stage" id="container1">
+                <input data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan+liwei" data-ui-limit="30" data-ui-delimiter="," data-ui-width="600" />
+            </div>
+            <h2>状态</h2>
+            <section class="intro">
+                <p>输入多个字段。</p>
+            </section>
+            <div class="example ui-demo-light-stage" id="container2">
+                <h3>不可用</h3>
+                <div class="row">
+                    <input data-ui-disabled="1" data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan" data-ui-limit="30" data-ui-delimiter="," data-ui-width="600" />
+                </div>
+                <h3>只读</h3>
+                <div class="row">
+                    <input data-ui-read-only="1" data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan" data-ui-limit="30" data-ui-delimiter="," data-ui-width="600" />
+                </div>
+                <h3>错误</h3>
+                <div class="row">
+                    <input data-ui-states="validity-invalid" data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan" data-ui-limit="30" data-ui-delimiter="," data-ui-width="600" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/TokenField',
+            'demo',
+            'esui/Tab'
+        ],
+        function (ui) {
+            ui.init();
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sub Menu - ESF Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/site.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../legacy/ie8-compatible.css" />
+        <![endif]-->
+        <link rel="stylesheet" href="assets/google-code-prettify/prettify.css" />
+    </head>
+    <body>
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#sub-menu">子菜单</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main-header">
+                    <h1>子菜单 <small>Sub Menu</small></h1>
+                    <hr />
+                </div>
+                <div id="main" class="content">
+                    <h2 id="sub-menu">弹出位置 Flyout Position</h2>
+                    <div class="example">
+                        <h3>ui-submenu-fly-out-bottom</h3>
+                        <div class="ui-submenu-wrapper">
+                            <button type="button" class="ui-button ui-button-info">
+                                Hover to Show Sub Menu
+                                <span class="ui-icon-caret-down"></span>
+                            </button>
+                            <ul class="ui-submenu ui-submenu-fill-width">
+                                <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                <li class="ui-submenu-separator-bottom">
+                                    <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                    <ul class="ui-submenu ui-submenu-fly-out-right">
+                                        <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                        <li class="ui-submenu-separator-bottom">
+                                            <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                        </li>
+                                        <li><span>Active</span></li>
+                                        <li class="ui-disabled"><span>Disabled</span></li>
+                                    </ul>
+                                </li>
+                                <li><span>Active</span></li>
+                                <li class="ui-disabled"><span>Disabled</span></li>
+                            </ul>
+                        </div>
+                        <h3>ui-submenu-fly-out-top</h3>
+                        <div class="ui-submenu-wrapper">
+                            <button  type="button" class="ui-button ui-button-info">
+                                Hover to Show Sub Menu
+                                <span class="ui-icon-caret-up"></span>
+                            </button>
+                            <ul class="ui-submenu ui-submenu-fill-width ui-submenu-fly-out-top">
+                                <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                <li class="ui-submenu-separator-bottom">
+                                    <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                    <ul class="ui-submenu ui-submenu-fly-out-right">
+                                        <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                        <li class="ui-submenu-separator-bottom">
+                                            <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                        </li>
+                                        <li><span>Active</span></li>
+                                        <li class="ui-disabled"><span>Disabled</span></li>
+                                    </ul>
+                                </li>
+                                <li><span>Active</span></li>
+                                <li class="ui-disabled"><span>Disabled</span></li>
+                            </ul>
+                        </div>
+                        <h3>ui-submenu-fly-out-left</h3>
+                        <div class="ui-submenu-wrapper">
+                            <button type="button" class="ui-button ui-button-info">
+                                <span class="ui-icon-caret-left"></span>
+                                Hover to Show Sub Menu
+                            </button>
+                            <ul class="ui-submenu ui-submenu-fill-width ui-submenu-fly-out-left">
+                                <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                <li class="ui-submenu-separator-bottom">
+                                    <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                    <ul class="ui-submenu ui-submenu-fly-out-right">
+                                        <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                        <li class="ui-submenu-separator-bottom">
+                                            <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                        </li>
+                                        <li><span>Active</span></li>
+                                        <li class="ui-disabled"><span>Disabled</span></li>
+                                    </ul>
+                                </li>
+                                <li><span>Active</span></li>
+                                <li class="ui-disabled"><span>Disabled</span></li>
+                            </ul>
+                        </div>
+                        <h3>ui-submenu-fly-out-right</h3>
+                        <div class="ui-submenu-wrapper">
+                            <button type="button" class="ui-button ui-button-info">
+                                Hover to Show Sub Menu
+                                <span class="ui-icon-caret-right"></span>
+                            </button>
+                            <ul class="ui-submenu ui-submenu-fill-width ui-submenu-fly-out-right">
+                                <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                <li class="ui-submenu-separator-bottom">
+                                    <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                    <ul class="ui-submenu ui-submenu-fly-out-right">
+                                        <li><span><span class="ui-icon-home"></span> Home</span></li>
+                                        <li class="ui-submenu-separator-bottom">
+                                            <span><span class="ui-icon-rocket"></span> CSS Nested Menu</span>
+                                        </li>
+                                        <li><span>Active</span></li>
+                                        <li class="ui-disabled"><span>Disabled</span></li>
+                                    </ul>
+                                </li>
+                                <li><span>Active</span></li>
+                                <li class="ui-disabled"><span>Disabled</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/google-code-prettify/prettify.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </body>
+</html>

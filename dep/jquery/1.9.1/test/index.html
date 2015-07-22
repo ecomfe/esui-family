@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+    <title>jQuery Testcase</title>
+    <script src="../lib/esl/0.0.1/src/esl.js"></script>
+    <script>
+    require.config({
+      paths: {
+        'jquery': '../src/jquery.min'
+      }
+    });
+    </script>
+  </head>
+  <body>
+  <script>
+  require(['jquery'], function($){
+    $(document).prop("title", $("<div />").jquery);
+  });
+  </script>
+  </body>
+</html>

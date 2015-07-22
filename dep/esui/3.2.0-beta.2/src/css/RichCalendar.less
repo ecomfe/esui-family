@@ -1,0 +1,71 @@
+ /**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 多月份多选日历
+ * @author dbear
+ */
+
+@import "Variable.less";
+
+
+@esui-rich-calendar-border-radius: 0;
+@esui-rich-calendar-padding: 1em;
+@esui-rich-calendar-layer-padding: 0;
+@esui-rich-calendar-margin: .5em;
+
+.@{ui-class-prefix}-richcalendar {
+    display: inline-block;
+    position: relative;
+    padding: @esui-rich-calendar-padding;
+    .esui-border-radius(
+        @esui-rich-calendar-border-radius,
+        @esui-rich-calendar-border-radius
+    );
+    .esui-richcalendar-theme();
+
+    .@{ui-class-prefix}-button-link {
+        padding: 0;
+        line-height: 1.3em;
+        height: 1.3em;
+        min-height: 1.3em;
+    }
+}
+
+.@{ui-class-prefix}-richcalendar-general-info {
+    line-height: 1;
+    label {
+        vertical-align: middle;
+    }
+}
+
+.@{ui-class-prefix}-richcalendar-total-num {
+    .esui-richcalendar-total-num-theme();
+}
+
+.@{ui-class-prefix}-richcalendar-text {
+    margin-top: 1em;
+    .@{ui-class-prefix}-button {
+        position: absolute;
+        top: @esui-rich-calendar-padding;
+        right: @esui-rich-calendar-padding;
+    }
+}
+
+// 浮层
+.@{ui-class-prefix}-richcalendar-layer {
+    padding: @esui-rich-calendar-layer-padding;
+    position: absolute;
+
+    .esui-richcalendar-layer-theme();
+}
+
+.@{ui-class-prefix}-richcalendar-month-container {
+    float: left;
+    margin-right: @esui-rich-calendar-margin;
+}
+
+
+.esui-richcalendar-theme() {}
+.esui-richcalendar-total-num-theme() {}
+.esui-richcalendar-layer-theme() {}

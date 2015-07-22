@@ -1,0 +1,79 @@
+@import "../../src/css/TextLine.less";
+
+
+@esui-textline-number-column-color: @esui-palette-color;
+@esui-textline-number-column-background: @esui-palette-neutral-color;
+
+.esui-textline-theme() {
+    border: 1px solid @esui-textbox-border-color;
+    textarea {
+        background: @esui-textbox-background;
+        color: @esui-textbox-text-color;
+    }
+
+    &.@{ui-state-prefix}-focus {
+        border: 1px solid @esui-textbox-focus-border-color;
+        textarea {
+            background: @esui-textbox-focus-background;
+            color: @esui-textbox-focus-text-color;
+        };
+    }
+
+    // error
+    &.@{ui-state-prefix}-validity-invalid {
+        border: 1px solid @esui-textbox-error-border-color;
+        textarea {
+            background: @esui-textbox-error-background;
+            color: @esui-textbox-error-text-color;
+            .placeholder(@esui-textbox-error-text-color);
+        };
+    }
+
+    &.@{ui-state-prefix}-read-only {
+        border: 1px solid @esui-textbox-readonly-border-color;
+        textarea {
+            background: @esui-textbox-readonly-background;
+            color: @esui-textbox-readonly-text-color;
+            .placeholder(@esui-textbox-readonly-text-color);
+        };
+    }
+
+    &.@{ui-state-prefix}-success,
+    &.@{ui-state-prefix}-success {
+        border: 1px solid @esui-textbox-success-border-color;
+        textarea {
+            background: @esui-textbox-success-background;
+            color: @esui-textbox-success-text-color;
+            .placeholder(@esui-textbox-success-text-color);
+        };
+    }
+
+    // warning
+    &.@{ui-state-prefix}-warning,
+    &.@{ui-state-prefix}-warning {
+        border: 1px solid @esui-textbox-warning-border-color;
+        textarea {
+            background: @esui-textbox-warning-background;
+            color: @esui-textbox-warning-text-color;
+            .placeholder(@esui-textbox-warning-text-color);
+        };
+    }
+}
+
+.esui-textline-numbers-theme() {
+    background: @esui-textline-number-column-background;
+    color: @esui-textline-number-column-color;
+}
+
+// mixins
+.esui-text-line-color(
+    @border,
+    @textareaTextColor,
+    @textareaBackground
+) {
+    border: @border;
+    textarea {
+        background: @textareaBackground;
+        color: @textareaTextColor;
+    }
+}

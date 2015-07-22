@@ -1,0 +1,105 @@
+@esui-table-richselector-th-cell-padding: 0 0 0 .75em;
+@esui-table-richselector-th-line-height: 2.5em;
+@esui-table-richselector-td-cell-padding: 0 0 0 .75em;
+@esui-table-richselector-td-line-height: 2em;
+
+.@{ui-class-prefix}-tablerichselector {
+    .@{ui-class-prefix}-richselector-query-list {
+        table {
+            border-collapse: collapse;
+            width: 100%;
+
+            th {
+                text-align: left;
+                padding: @esui-table-richselector-th-cell-padding;
+                line-height: @esui-table-richselector-th-line-height;
+                .esui-table-richselector-table-head-theme();
+            }
+
+            td {
+                padding: @esui-table-richselector-td-cell-padding;
+                line-height: @esui-table-richselector-td-line-height;
+                vertical-align: middle;
+                .ellipsis();
+                .esui-table-richselector-table-td-theme();
+            }
+        }
+    }
+
+    .@{ui-class-prefix}-richselector-row-action-icon {
+        display: none;
+        text-align: right;
+        &:before {
+            margin-right: 1em;
+        }
+        .esui-table-richselector-action-icon-theme();
+    }
+
+    .@{ui-class-prefix}-richselector-row {
+        cursor: pointer;
+        &:hover {
+            .esui-table-richselector-table-row-hover-theme();
+        }
+    }
+
+    .@{ui-class-prefix}-richselector-row-selected {
+        cursor: default;
+        .@{ui-class-prefix}-richselector-row-action-icon {
+            display: block;
+            .eicons-icon(check) !important;
+        }
+    }
+
+    .@{ui-class-prefix}-richselector-row-disabled {
+        .esui-disabled()
+    }
+
+    // 添加
+    &.@{ui-state-prefix}-add {
+        .@{ui-class-prefix}-richselector-row:hover {
+            .@{ui-class-prefix}-richselector-row-action-icon {
+                .eicons-icon(arrow-right);
+                display: block;
+            }
+        }
+    }
+
+    // 删除型
+    &.@{ui-state-prefix}-delete {
+        .@{ui-class-prefix}-richselector-row:hover {
+            .@{ui-class-prefix}-richselector-row-action-icon {
+                .eicons-icon(close);
+                display: block;
+                .esui-table-richselector-delete-icon-theme();
+            }
+        }
+    }
+
+    // 隐藏icon
+    &.@{ui-state-prefix}-no-hover-icon {
+        .@{ui-class-prefix}-richselector-row {
+            &:hover {
+                .@{ui-class-prefix}-richselector-row-action-icon {
+                    display: none;
+                }
+            }
+        }
+        .@{ui-class-prefix}-richselector-row-selected {
+            &:hover {
+                .@{ui-class-prefix}-richselector-row-action-icon {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+.@{ui-class-prefix}-richselector-with-filter {
+    .@{ui-class-prefix}-richselector-content-wrapper {
+        height:
+            @esui-richselector-body-height
+            - @esui-textbox-height
+            - 2*@esui-richselector-searchbox-wrapper-padding
+            - @esui-table-richselector-th-line-height;
+    }
+}

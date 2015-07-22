@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>Sticky - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+</head>
+<body>
+    <div class="header">
+        <h1 id="branding">Sticky</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>Sticky</h2>
+            <section class="intro">
+                <p>悬浮在距离顶端的固定位置</p>
+            </section>
+            <div class="example ui-demo-light-stage">
+                <div class="row">
+                    <h3>固定在文档顶端</h3>
+                    <div data-ui="type:Sticky;top:0" >
+                        <div class="sticky-test" style="height:30px;border:1px solid #e5e5e5;padding:15px;background-color:#fafafa;color:#666;border-radius:4px">设置top:0 可以悬浮在顶端 
+                            <button type="button" id="stop1" class="ui-button">Stop 1</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="big-row" style="margin-bottom:500px">
+                    <h3>固定在文档70处</h3>
+                    <div data-ui="type:Sticky;top:70" >
+                        <div class="sticky-test" style="height:30px;border:1px solid #e5e5e5;padding:15px;background-color:#fafafa;color:#666;border-radius:4px">设置top:70 可以悬浮在距离顶端70px的位置 
+                            <button type="button" id="stop2" class="ui-button">Stop 2</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="big-row">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/Sticky',
+            'demo',
+            'esui/Tab'
+        ],
+        function (ui, Sticky) {
+            window.ui = ui;
+            var controls = ui.init();
+            document.getElementById('stop1').onclick = function () {
+                controls[0].dispose();
+            };
+            document.getElementById('stop2').onclick = function () {
+                controls[1].dispose();
+            };
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

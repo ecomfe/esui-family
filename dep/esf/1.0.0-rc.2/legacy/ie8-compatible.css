@@ -1,0 +1,45 @@
+.ui-checkbox-custom .ui-checkbox-box,
+.ui-radio-custom .ui-checkbox-box,
+.ui-checkbox-switch .ui-checkbox-box,
+.ui-checkbox-switch-round .ui-checkbox-box,
+.ui-checkbox-custom label,
+.ui-radio-custom label,
+.ui-checkbox-switch label,
+.ui-checkbox-switch-round label {
+  padding-left: 0;
+}
+.ui-checkbox-custom .ui-checkbox-box:before,
+.ui-radio-custom .ui-checkbox-box:before,
+.ui-checkbox-switch .ui-checkbox-box:before,
+.ui-checkbox-switch-round .ui-checkbox-box:before,
+.ui-checkbox-custom label:before,
+.ui-radio-custom label:before,
+.ui-checkbox-switch label:before,
+.ui-checkbox-switch-round label:before,
+.ui-checkbox-custom .ui-checkbox-box:after,
+.ui-radio-custom .ui-checkbox-box:after,
+.ui-checkbox-switch .ui-checkbox-box:after,
+.ui-checkbox-switch-round .ui-checkbox-box:after,
+.ui-checkbox-custom label:after,
+.ui-radio-custom label:after,
+.ui-checkbox-switch label:after,
+.ui-checkbox-switch-round label:after {
+  display: none;
+}
+.ui-checkbox-custom input,
+.ui-radio-custom input,
+.ui-checkbox-switch input,
+.ui-checkbox-switch-round input {
+  opacity: 1;
+  filter: alpha(opacity=100);
+  position: static;
+  vertical-align: middle;
+}
+.ui-textbox-wrapper .ui-textbox-addon.ui-last-child .ui-button,
+.ui-textbox-wrapper .ui-textbox-addon.ui-last-child .ui-select-inner,
+.ui-textbox-wrapper .ui-textbox.ui-last-child input {
+  border-left: 0 !important;
+}
+.ui-mask {
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#4FFFFFFF', endColorstr='#4FFFFFFF');
+}

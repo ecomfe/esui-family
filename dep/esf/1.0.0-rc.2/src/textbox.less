@@ -1,0 +1,175 @@
+@import "base.less";
+
+// =========
+// Input
+// =========
+
+// keep the same height as button
+@esui-textbox-height: 2.5em;
+
+// padding
+@esui-textbox-padding: 0.5em;
+
+// radius
+@esui-textbox-radius: 0;
+
+@esui-textbox-icon-width: @esui-textbox-height;
+
+.@{ui-class-prefix}-textbox {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    .esui-border-radius(
+        @esui-textbox-radius,
+        @esui-textbox-radius
+    );
+
+    > input {
+        height: @esui-textbox-height;
+        vertical-align: top;
+    }
+    > input,
+    > textarea {
+        padding: @esui-textbox-padding;
+        width: 100%;
+        margin: 0;
+        outline: 0;
+        .esui-border-radius(
+            @esui-textbox-radius,
+            @esui-textbox-radius
+        );
+        @esui-textbox-transition:
+            background-color 0.3s ease-out,
+            box-shadow 0.2s ease,
+            border-color 0.2s ease;
+        .esui-transition(@esui-textbox-transition);
+        .box-sizing(border-box);
+        font-size: 100%;
+        resize: none;
+
+        .esui-textbox-input-theme();
+    }
+    .esui-textbox-theme();
+}
+
+// icon
+// use textbox-icon to specify icon
+.@{ui-class-prefix}-textbox-icon {
+    width: @esui-textbox-icon-width;
+    height: @esui-textbox-height;
+    line-height: @esui-textbox-height !important;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    .esui-textbox-icon-theme();
+}
+
+.@{ui-class-prefix}-textbox-icon-left {
+    .@{ui-class-prefix}-textbox-icon {
+        left: 0;
+    }
+    input {
+        padding-left: @esui-textbox-icon-width;
+    }
+}
+
+.@{ui-class-prefix}-textbox-icon-right {
+    .@{ui-class-prefix}-textbox-icon {
+        right: 0;
+    }
+    input {
+        padding-right: @esui-textbox-icon-width;
+    }
+}
+
+.@{ui-class-prefix}-textbox-fluid {
+    display: block;
+}
+
+.@{ui-class-prefix}-textbox-wrapper {
+    display: table !important;
+    border-collapse: separate;
+    >.@{ui-class-prefix}-textbox {
+        display: table-cell;
+        width: 100%;
+    }
+    .@{ui-class-prefix}-textbox-addon:first-child .@{ui-class-prefix}-button,
+    .@{ui-class-prefix}-textbox-addon:first-child .@{ui-class-prefix}-select {
+        .esui-border-right-radius(
+            0,
+            @esui-textbox-radius
+        );
+        margin-right: -1px;
+    }
+    .@{ui-class-prefix}-textbox-addon:last-child .@{ui-class-prefix}-button,
+    .@{ui-class-prefix}-textbox-addon:last-child .@{ui-class-prefix}-select {
+        .esui-border-left-radius(
+            0,
+            @esui-textbox-radius
+        );
+        margin-left: -1px;
+    }
+}
+
+.@{ui-class-prefix}-textbox-addon {
+    white-space: nowrap;
+    position: relative;
+    display: table-cell;
+    .@{ui-class-prefix}-button-group {
+        .@{ui-class-prefix}-button {
+            float: none;
+        }
+    }
+}
+
+// widths-sizes
+.@{ui-class-prefix}-textbox-size1 {
+    input,
+    textarea {
+        width: 2em;
+    }
+}
+.@{ui-class-prefix}-textbox-size2 {
+    input,
+    textarea {
+        width: 4em;
+    }
+}
+.@{ui-class-prefix}-textbox-size3 {
+    input,
+    textarea {
+        width: 6em;
+    }
+}
+.@{ui-class-prefix}-textbox-size4 {
+    input,
+    textarea {
+        width: 8em;
+    }
+}
+.@{ui-class-prefix}-textbox-size5 {
+    input,
+    textarea {
+        width: 10em;
+    }
+}
+.@{ui-class-prefix}-textbox-size6 {
+    input,
+    textarea {
+        width: 12em;
+    }
+}
+.@{ui-class-prefix}-textbox-size7 {
+    input,
+    textarea {
+        width: 14em;
+    }
+}
+.@{ui-class-prefix}-textbox-size8 {
+    input,
+    textarea {
+        width: 16em;
+    }
+}
+
+.esui-textbox-icon-theme() {}

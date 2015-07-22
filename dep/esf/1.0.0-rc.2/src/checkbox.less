@@ -1,0 +1,179 @@
+@import "base.less";
+
+@esui-checkbox-radio-label-padding: 1.5em;
+@esui-checkbox-radio-box-size: 1.1em;
+
+.esui-checkbox-style-base {
+    position: relative;
+    display: inline-block;
+    min-width: @esui-checkbox-radio-box-size;
+    line-height: @esui-checkbox-radio-box-size;
+    height: @esui-checkbox-radio-box-size;
+    vertical-align: middle;
+
+    // virtual checkbox
+    .@{ui-class-prefix}-checkbox-box,
+    label {
+        display: inline-block;
+        padding-left: @esui-checkbox-radio-label-padding;
+
+        // checkbox
+        &:before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: @esui-checkbox-radio-box-size;
+            height: @esui-checkbox-radio-box-size;
+            content: '';
+            .box-sizing(border-box);
+            .esui-transition(~"background-color 0.3s ease, border-color 0.3s ease");
+            .esui-checkbox-virtual-box-theme();
+        }
+        &:after {
+            .box-sizing(border-box);
+            position: absolute;
+            content: '';
+            .esui-checkbox-virtual-box-check-theme();
+        }
+        &:active:before {
+            .esui-checkbox-virtual-box-active-theme();
+        }
+    }
+    input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        .opacity(0);
+
+        outline: none;
+        &:focus {
+            & ~ label,
+            & ~ .@{ui-class-prefix}-checkbox-box {
+                color: @esui-checkbox-label-text-focus-color;
+                .esui-checkbox-virtual-box-focus-theme();
+            }
+        }
+        &:checked {
+            & ~ label,
+            & ~ .@{ui-class-prefix}-checkbox-box {
+                .esui-checkbox-virtual-box-checked-theme();
+            }
+        }
+    }
+    input[disabled] {
+        & ~ label,
+        & ~ .@{ui-class-prefix}-checkbox-box
+        {
+            .esui-checkbox-virtual-box-disabled-theme();
+            .esui-disabled();
+        }
+    }
+
+    // ~ label: if we put label after checkbox container
+    label,
+    ~ label {
+        cursor: pointer;
+        vertical-align: middle;
+        .esui-checkbox-label-theme();
+    }
+    // fake readonly state, used with disabled state
+    &.@{ui-state-prefix}-readonly {
+        input {
+            & ~ label,
+            & ~ .@{ui-class-prefix}-checkbox-box {
+                .opacity(100);
+                cursor: default !important;
+                .esui-checkbox-virtual-box-readonly-theme();
+            }
+        }
+    }
+}
+
+.@{ui-class-prefix}-checkbox-custom,
+.@{ui-class-prefix}-radio-custom,
+.@{ui-class-prefix}-checkbox-switch,
+.@{ui-class-prefix}-checkbox-switch-round {
+    &:extend(.esui-checkbox-style-base all);
+}
+
+.@{ui-class-prefix}-checkbox-custom {
+    input:indeterminate {
+        & ~ label,
+        & ~ .@{ui-class-prefix}-checkbox-box {
+            .esui-checkbox-virtual-box-indeterminate-theme();
+        }
+    }
+}
+
+
+.@{ui-class-prefix}-checkbox-custom.@{ui-class-prefix}-checkbox-single,
+.@{ui-class-prefix}-radio-custom.@{ui-class-prefix}-checkbox-single {
+    label {
+        padding-left: @esui-checkbox-radio-box-size;
+    }
+}
+
+.@{ui-class-prefix}-checkbox-switch.@{ui-class-prefix}-checkbox-single,
+.@{ui-class-prefix}-checkbox-switch-round.@{ui-class-prefix}-checkbox-single {
+    label {
+        padding-left: 3em;
+    }
+}
+
+.@{ui-class-prefix}-radio-custom {
+    .@{ui-class-prefix}-checkbox-box,
+    label {
+        &:before {
+            .esui-circular();
+        }
+    }
+    input:checked {
+        & ~ label,
+        & ~ .@{ui-class-prefix}-checkbox-box {
+            .esui-checkbox-virtual-box-radio-checked-theme();
+        }
+    }
+}
+
+.@{ui-class-prefix}-checkbox-switch,
+.@{ui-class-prefix}-checkbox-switch-round {
+    .@{ui-class-prefix}-checkbox-box,
+    label {
+        padding-left: 4em;
+        .esui-checkbox-virtual-box-switch-theme();
+    }
+    input:checked {
+        ~ .@{ui-class-prefix}-checkbox-box,
+        ~ label {
+            .esui-checkbox-virtual-box-switch-checked-theme();
+        }
+    }
+}
+
+.@{ui-class-prefix}-checkbox-switch-round {
+    .@{ui-class-prefix}-checkbox-box,
+    label {
+        .esui-checkbox-virtual-box-switch-round-theme();
+    }
+    input:checked {
+        ~ .@{ui-class-prefix}-checkbox-box,
+        ~ label {
+            .esui-checkbox-virtual-box-switch-round-checked-theme();
+        }
+    }
+}
+
+.esui-checkbox-label-theme() {}
+.esui-checkbox-virtual-box-active-theme() {}
+.esui-checkbox-virtual-box-focus-theme() {}
+.esui-checkbox-virtual-box-checked-theme() {}
+.esui-checkbox-virtual-box-indeterminate-theme() {}
+.esui-checkbox-virtual-box-disabled-theme() {}
+.esui-checkbox-virtual-box-readonly-theme() {}
+.esui-checkbox-virtual-box-theme() {}
+.esui-checkbox-virtual-box-check-theme() {}
+.esui-checkbox-virtual-box-radio-checked-theme() {}
+.esui-checkbox-virtual-box-switch-theme() {}
+.esui-checkbox-virtual-box-switch-checked-theme() {}
+.esui-checkbox-virtual-box-switch-round-theme() {}
+.esui-checkbox-virtual-box-switch-round-checked-theme() {}

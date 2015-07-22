@@ -3,55 +3,52 @@
 
 .global-normalize();
 
+
 // import esf
-@import "../../dep/esf/1.0.0-beta.1/theme/standard/main.less";
-
-// import esui
-@import "../../dep/esui/3.2.0-beta.1/theme/standard/Main.less";
-
-// import ub-ria-ui
-@import "../../dep/ub-ria-ui/1.0.0-beta.1/theme/standard/Main.less";
+@import "../../dep/esf/1.0.0-rc.2/theme/standard/main.less";
 
 // import eicons
 @import "../../dep/eicons/1.0.0-beta.1/src/main.less";
 
 @fa-font-path: "../../dep/eicons/1.0.0-beta.1/fonts/font-awesome";
 
-@import "standard-override.less";
+// import esui
+@import "../../dep/esui/3.2.0-beta.2/theme/standard/Main.less";
 
-@advanced-color-resource-path: "../../dep/ub-ria-ui/1.0.0-beta.1/resource";
+// import ub-ria-ui
+@import "../../dep/ub-ria-ui/1.0.0-beta.2/theme/standard/Main.less";
 
-@dark-color: #2C3E50;
+@advanced-color-resource-path: "../../dep/ub-ria-ui/1.0.0-beta.2/resource";
+
+// import site
+@import "../../dep/esui/3.2.0-beta.2/demo/assets/themes/site.less";
 
 // loaders are mixins now, output them manually
-.esf-loader-bouncers();
+.esui-loader-bouncers();
 
-.esf-loader-border();
+.esui-loader-border();
 
-.esf-loader-borders();
+.esui-loader-borders();
 
-.esf-loader-spinner-wave();
+.esui-loader-spinner-wave();
 
-.esf-loader-rotating-plane();
+.esui-loader-rotating-plane();
 
-.esf-loader-chasing-dots();
+.esui-loader-chasing-dots();
 
-.esf-loader-spinner-circles();
+.esui-loader-spinner-circles();
+
 .ui-navbar-mordern {
     background: @dark-color;
     li:hover a,
     li:active a {
         background: @dark-color;
-        color: @esf-palette-primary-color;
+        color: @esui-palette-primary-color;
     }
 }
 
-#branding {
-    margin: 0;
-}
-
 .container-primary {
-    background: @esf-palette-primary-color;
+    background: @esui-palette-primary-color;
     padding: 7em 10em 20em 15em;
 }
 
@@ -59,8 +56,12 @@
     font-size: 4em;
 }
 
+.contrast {
+    color: #FFF;
+}
+
 .ui-button-contrast {
-    .esf-button-variant(
+    .esui-button-variant(
         #FFF,
         @dark-color,
         lighten(@dark-color, 5%),
@@ -69,10 +70,7 @@
     );
 }
 
-.contrast {
-    color: #FFF !important;
-}
-
+// Demo CSS
 .ui-tab-vertical-container-left {
    .esui-vertical-tab-def(
        8em,
@@ -89,117 +87,21 @@
    );
 }
 
-.footer {
-    padding: 1em;
-    background: @dark-color;
-}
-
-.main-container {
-    margin-top: 2em;
-}
-
-#content {
-    padding-left: 2em;
-    border-left: 1px solid #ddd;
-    .box-sizing(border-box);
-}
-
-// sidebar
-.ui-sidebar {
-    font-family: @esf-global-heading-font-family;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    .ui-sidebar-item-header {
-        padding: .3em 2em;
-        color: #ACB6C0;
-    }
-    a {
-        padding: .3em 3em;
-        display: block;
-        color: #ACB6C0;
-        text-decoration: none !important;
-        &:hover {
-            background: #f5f5f5;
-        }
-    }
-    li.ui-sidebar-item-active a {
-        color: #333;
-    }
-}
-
-// grid
-.ui-g {
-  letter-spacing: -0.31em;
-  *letter-spacing: normal;
-  *word-spacing: -0.43em;
-  word-spacing: -0.43em;
-  text-rendering: optimizespeed;
-  font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
-  display: -webkit-flex;
-  -webkit-flex-flow: row wrap;
-  display: -ms-flexbox;
-  -ms-flex-flow: row wrap;
-}
-/* Opera as of 12 on Windows needs word-spacing.
-   The ".opera-only" selector is used to prevent actual prefocus styling
-   and is not required in markup.
-*/
-.opera-only :-o-prefocus {
-  word-spacing: -0.43em;
-}
-
-.ui-u-4-5,
-.ui-u-1-5 {
-    display: inline-block;
-    *display: inline;
-    zoom: 1;
-    letter-spacing: normal;
-    word-spacing: normal;
-    vertical-align: top;
-    text-rendering: auto;
-    font-family: @default-base-font-family;
-}
-
-.ui-u-1-5 {
-    width: 20%;
-}
-
-.ui-u-4-5 {
-    width: 80%;
-}
-
-// code 
-.example {
+.ui-submenu-wrapper {
     position: relative;
-    padding: 45px 15px 15px;
-    margin-bottom: 15px;
-    border: 1px #e5e5e5 solid;
+    display: inline-block;
 }
 
-.example:after {
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    font-size: 12px; 
-    font-weight: bold;
-    color: #959595;
-    content: "Example";
+.ui-submenu-wrapper>.ui-submenu {
+    display: none;
 }
 
-.example + .highlight {
-  margin-bottom: 15px;
-  margin-top: 15px;
-  border-width: 0 0 1px;
-  border-radius: 0;
-  position: relative;
+.ui-submenu-wrapper:hover>.ui-submenu {
+    display: block;
 }
 
-.highlight {
-    max-height: 300px;
-    overflow: auto;
-}
-
-.row {
-    margin-bottom: .5em;
+#bodyload {
+    position: fixed;
+    top: 50%;
+    left: 50%;
 }

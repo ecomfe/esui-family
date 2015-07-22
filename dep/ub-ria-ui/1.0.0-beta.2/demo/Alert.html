@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>Alert - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI Alert</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <div id="alert-container"></div>
+            <h2>Alert</h2>
+            <p>利用Alert可以在页面上显示提示信息。</p>
+            <div class="example">
+                <table id="table" class="ui-raw-table ui-raw-table-bordered">
+                    <tr>
+                        <td align="right">类型</td>
+                        <td>
+                            <label class="ui-select-custom">
+                                <select id="type">
+                                    <option value="success">Success</option>
+                                    <option value="warning">Warning</option>
+                                    <option value="info">Info</option>
+                                    <option value="error">Error</option>
+                                </select>
+                            </label>
+
+                            <button type="button" id="show" class="ui-button ui-button-primary">Show an Alert!</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">信息</td>
+                        <td>
+                            <div class="ui-textbox">
+                                <input class="message" value="白日依山尽" />
+                            </div><br /><br />
+                            <div class="ui-textbox">
+                                <input class="message" value="黄河入海流" />
+                            </div><br /><br />
+                            <div class="ui-textbox">
+                                <input class="message" value="欲穷千里目" />
+                            </div><br /><br />
+                            <div class="ui-textbox">
+                            <input class="message" value="更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼,更上一层楼" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">自动关闭时间</td>
+                        <td>
+                            <div class="ui-checkbox-custom">
+                                <input type="checkbox" id="auto-close" />
+                                <label for="auto-close"></label>
+                            </div>
+                            <div class="ui-textbox">
+                                <input id="auto-close-duration" value="1000" />
+                            </div>
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">自动轮换时间间隔</td>
+                        <td>
+                            <div class="ui-checkbox-custom">
+                                <input type="checkbox" id="auto-slide" />
+                                <label for="auto-slide"></label>
+                            </div>
+                            <div class="ui-textbox">
+                                <input id="auto-slide-interval" value="4000" />
+                            </div>
+                            ms
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">是否带有关闭按钮</td>
+                        <td>
+                            <div class="ui-checkbox-custom">
+                                <input type="checkbox" id="close-btn" checked />
+                                <label for="close-btn"></label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">是否带有Icon</td>
+                        <td>
+                            <div class="ui-textbox">
+                                <input type="input" value="ui-icon-exclamation-circle" id="icon">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <script type="text/sample" data-refid="main-js">
+            </script>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/Alert',
+            'esui/lib',
+            'demo',
+            'esui/Tab'
+        ],
+        function (ui, alert, lib) {
+            ui.init();
+
+            lib.g('show').onclick = function () {
+                var options = {};
+                var msgType = lib.g('type').value;
+                options.message = [];
+                var messages = document.getElementsByClassName('message');
+                for (var i = 0; i < messages.length; i++) {
+                    if (messages[i].value) {
+                        options.message.push(messages[i].value);
+                    }
+                }
+                options.autoClose = lib.g('auto-close').checked;
+                options.autoCloseDuration = +lib.g('auto-close-duration').value;
+                options.autoSlide = lib.g('auto-slide').value;
+                options.autoSlideInterval = +lib.g('auto-slide-interval').value;
+                options.closeBtn = lib.g('close-btn').checked;
+                options.icon = lib.g('icon').value;
+                options.container = 'alert-container';
+
+                alert[msgType](options);
+            };
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

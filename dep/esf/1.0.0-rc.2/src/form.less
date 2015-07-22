@@ -1,0 +1,107 @@
+@import "base.less";
+
+@esui-form-row-bottom-margin: 1em;
+
+@esui-form-hint-font-size: 1em;
+@esui-form-hint-font-color: #999;
+
+@esui-form-validity-font-color: #D9534F;
+@esui-form-buttons-background: none;
+@esui-form-buttons-padding: 1.5em 0;
+@esui-form-buttons-border-top: 1px solid #ddd;
+
+@esui-form-fieldset-padding: .35em .625em .75em;
+@esui-form-fieldset-margin: 0 .2em;
+@esui-form-fieldset-border-color: #ddd;
+
+.@{ui-class-prefix}-form {
+    margin-bottom: 1em;
+    display: block;
+    fieldset {
+        border: 0;
+        border-top: 1px solid @esui-form-fieldset-border-color;
+        margin: @esui-form-fieldset-margin;
+        padding: @esui-form-fieldset-padding;
+    }
+
+    legend {
+        margin-left: -1em;
+        border: 0;
+        padding: 0;
+        white-space: normal;
+        *margin-left: -7px;
+        font-weight: bold;
+    }
+}
+
+.@{ui-class-prefix}-form-row {
+    margin-bottom: @esui-form-row-bottom-margin;
+}
+
+.@{ui-class-prefix}-form-key {
+    padding-right: 1em;
+    .box-sizing(border-box);
+}
+
+.@{ui-class-prefix}-form-field,
+.@{ui-class-prefix}-form-key,
+.@{ui-class-prefix}-form-value {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.@{ui-class-prefix}-form-required {
+    position: relative;
+    &:after {
+        content: '*';
+        color: @esui-form-validity-font-color;
+        display: block;
+        right: 0;
+        top: 50%;
+        position: absolute;
+        line-height: 1;
+        padding-right: .5em;
+    }
+}
+
+.@{ui-class-prefix}-form-key,
+.@{ui-class-prefix}-form-valign {
+    padding-top: .5em;
+}
+
+.@{ui-class-prefix}-form-hint {
+    display: inline-block;
+    font-size: @esui-form-hint-font-size;
+    color: @esui-form-hint-font-color;
+}
+
+.@{ui-class-prefix}-form-wrap-hint .@{ui-class-prefix}-form-hint {
+    display: block;
+    margin-top: .5em;
+}
+
+.@{ui-class-prefix}-form-stack {
+    .@{ui-class-prefix}-form-key,
+    .@{ui-class-prefix}-form-value {
+        display: block;
+        margin-left: 0;
+    }
+    .@{ui-class-prefix}-form-key {
+        padding-top: 0;
+        padding-bottom: .3em;
+    }
+    .@{ui-class-prefix}-form-required {
+        &:after {
+            display: inline-block;
+            position: static;
+            margin-top: .3em;
+            margin-left: .5em;
+        }
+    }
+}
+
+.@{ui-class-prefix}-form-buttons {
+    padding: @esui-form-buttons-padding;
+    background: @esui-form-buttons-background;
+    border-top: @esui-form-buttons-border-top;
+}

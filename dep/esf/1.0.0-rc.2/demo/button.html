@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Button - ESF Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/site.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../legacy/ie8-compatible.css" />
+        <![endif]-->
+        <link rel="stylesheet" href="assets/google-code-prettify/prettify.css" />
+    </head>
+    <body>
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#button-standard">文字按钮</a></li>
+                    <li><a href="#button-icon">图标按钮</a></li>
+                    <li><a href="#button-icon-text">图标和文字按钮</a></li>
+                    <li><a href="#button-states">按钮状态</a></li>
+                    <li><a href="#button-color-variants">扩展颜色</a></li>
+                    <li><a href="#button-circular">圆形按钮</a></li>
+                    <li><a href="#button-sizes">按钮尺寸</a></li>
+                    <li><a href="#button-fluid">全宽按钮</a></li>
+                    <li><a href="#button-group">按钮组合</a></li>
+                    <li><a href="#button-font-size">按钮字体</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main-header">
+                    <h1>按钮</h1>
+                    <hr />
+                    <p>
+                        按钮的颜色、大小都可扩展。同时可以定义图标按钮、按钮组。
+                    </p>
+                </div>
+
+                <div id="main">
+                    <h2 id="button-standard">文字按钮</h2>
+                    <div class="example">
+                        <button type="button" class="ui-button">Button</button>
+                        <a class="ui-button">Anchor</a>
+                        <input class="ui-button" type="button" value="Input Button" />
+                    </div>
+
+                    <h2 id="button-icon">图标按钮</h2>
+                    <div class="example">
+                        <button type="button" class="ui-button ui-button-icon ui-icon-cloud-download"></button>
+                        <button type="button" class="ui-button ui-button-icon ui-icon-users"></button>
+                    </div>
+
+                    <h2 id="button-icon-text">图标和文字按钮</h2>
+                    <p>
+                        可以为按钮添加图标。
+                    </p>
+                    <div class="example">
+                        <button type="button" class="ui-button">
+                            下载报告
+                            <span class="ui-icon-cloud-download"></span>
+                        </button>
+                        <button type="button" class="ui-button">
+                            <span class="ui-icon-users"></span> 用户列表
+                        </button>
+                    </div>
+
+                    <h2 id="button-states">按钮状态</h2>
+                    <p>
+                        按钮的状态。
+                    </p>
+                    <div class="example">
+                        <h3>Active</h3>
+                        <button type="button" class="ui-button state-active">ui-button-active</button>
+                        Or
+                        <button type="button" class="ui-button">:active</button>
+                        <h3>Hover</h3>
+                        <button type="button" class="ui-button state-hover">ui-button-hover</button>
+                        Or
+                        <button type="button" class="ui-button">:hover</button>
+                        <h3>Disabled</h3>
+                        <button type="button" class="ui-button" disabled>Button</button>
+                        <a class="ui-button state-disabled">Anchor</a>
+                        <input type="button" class="ui-button" value="Input Button" disabled />
+                    </div>
+
+                    <h2 id="button-color-variants">扩展颜色</h2>
+                    <div class="example">
+                        <button type="button" class="ui-button">Default</button>
+                        <button type="button" class="ui-button ui-button-primary">Primary</button>
+                        <button type="button" class="ui-button ui-button-primary-inverted">Primary Inverted</button>
+                        <button type="button" class="ui-button ui-button-success">Success</button>
+                        <button type="button" class="ui-button ui-button-info">Info</button>
+                        <button type="button" class="ui-button ui-button-warning">Warning</button>
+                        <button type="button" class="ui-button ui-button-danger">Danger</button>
+                        <button type="button" class="ui-button ui-button-link">Link</button>
+                    </div>
+
+                    <h2 id="button-circular">圆形按钮</h2>
+                    <div class="example">
+                        <button type="button" class="ui-button ui-button-icon ui-button-circular ui-icon-users"></button>
+                        <button type="button" class="ui-button ui-button-icon ui-button-circular ui-button-primary ui-icon-android"></button>
+                        <button type="button" class="ui-button ui-button-circular ui-button-info">Long Text</button>
+                    </div>
+
+                    <h2 id="button-sizes">按钮尺寸</h2>
+                    <p>
+                        按钮可以调整大小。
+                    </p>
+                    <div class="example">
+                        <button type="button" class="ui-button ui-x-small"><span class="ui-icon-users"></span> x-small</button>
+                        <button type="button" class="ui-button ui-small"><span class="ui-icon-users"></span> small</button>
+                        <button type="button" class="ui-button"><span class="ui-icon-users"></span> medium</button>
+                        <button type="button" class="ui-button ui-large"><span class="ui-icon-users"></span> large</button>
+                        <button type="button" class="ui-button ui-x-large"><span class="ui-icon-users"></span> x-large</button>
+                        <button type="button" class="ui-button ui-xx-large"><span class="ui-icon-users"></span> xx-large</button>
+                        <button type="button" class="ui-button ui-xxx-large"><span class="ui-icon-users"></span> xxx-large</button>
+                    </div>
+
+                    <h2 id="button-fluid">Fluid Button</h2>
+                    <p>
+                        Block button.
+                    </p>
+                    <div class="example">
+                        <button type="button" class="ui-button ui-button-fluid"><span class="ui-icon-users"></span> success</button>
+                    </div>
+
+                    <h2 id="button-group">按钮组合</h2>
+                    <p>
+                        按钮组合。
+                    </p>
+                    <div class="example">
+                        <div class="ui-button-group">
+                            <button type="button" class="ui-button ui-button-primary-inverted ui-button-icon ui-icon-users"></button>
+                            <button type="button" class="ui-button ui-button-primary-inverted ui-button-icon ui-icon-users"></button>
+                            <button type="button" class="ui-button ui-button-primary ui-button-icon ui-icon-users"></button>
+                        </div>
+                        <div class="ui-button-group">
+                            <button type="button" class="ui-button ui-button-primary-inverted">Left</button>
+                            <button type="button" class="ui-button ui-button-primary">Middle</button>
+                            <button type="button" class="ui-button ui-button-primary-inverted">Right</button>
+                        </div>
+                        <div class="ui-button-group ui-xx-large">
+                            <button type="button" class="ui-button">Left</button>
+                            <button type="button" class="ui-button ui-button-active">Middle</button>
+                            <button type="button" class="ui-button">Right</button>
+                        </div>
+                    </div>
+
+                    <h2 id="button-font-size">字大小不同</h2>
+                    <div class="example">
+                        <div class="ui-button-group">
+                            <button type="button" class="ui-button"><span class="ui-x-small">Left</span></button>
+                            <button type="button" class="ui-button ui-button-active"><span class="ui-large">Middle</span></button>
+                            <button type="button" class="ui-button"><span class="ui-xx-large">Right</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/google-code-prettify/prettify.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </body>
+</html>

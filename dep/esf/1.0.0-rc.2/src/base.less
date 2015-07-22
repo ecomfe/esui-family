@@ -1,0 +1,97 @@
+@import "variable.less";
+
+// transition control
+.esui-transition(@transition) {}
+
+.esui-transition(@transition) when (@esui-enable-transition-effect) {
+    .transition(@transition);
+}
+
+// avoiding border radius output when we don't need it.
+.esui-border-radius(@radius, @ignore) when (@ignore = 0) {}
+
+.esui-border-radius(@radius, @ignore) {
+    .border-radius(@radius);
+}
+
+.esui-border-top-radius(@radius, @ignore) when (@ignore = 0) {}
+
+.esui-border-top-radius(@radius, @ignore) {
+    .border-top-radius(@radius);
+}
+
+.esui-border-bottom-radius(@radius, @ignore) when (@ignore = 0) {}
+
+.esui-border-bottom-radius(@radius, @ignore) {
+    .border-bottom-radius(@radius);
+}
+
+.esui-border-left-radius(@radius, @ignore) when (@ignore = 0) {}
+
+.esui-border-left-radius(@radius, @ignore) {
+    .border-left-radius(@radius);
+}
+
+.esui-border-right-radius(@radius, @ignore) when (@ignore = 0) {}
+
+.esui-border-right-radius(@radius, @ignore) {
+    .border-right-radius(@radius);
+}
+
+// make a circle
+.esui-circular() {
+    .border-radius(500em);
+}
+
+// other selector extends this selector
+.esui-clearfix {
+    .clearfix();
+}
+
+.@{ui-class-prefix}-hover-fade-in {
+    cursor: pointer;
+    .opacity(80);
+    &:hover {
+        .opacity(100);
+    }
+    .esui-transition(opacity 0.1s linear);
+}
+
+// states
+.esui-disabled() {
+    .opacity(50);
+    cursor: not-allowed !important;
+}
+
+.@{ui-state-prefix}-hidden {
+    display: none !important;
+}
+
+// sizes
+.@{ui-class-prefix}-x-small {
+    font-size: @esui-x-small-font-size !important;
+}
+
+.@{ui-class-prefix}-small {
+    font-size: @esui-small-font-size !important;
+}
+
+.@{ui-class-prefix}-medium {
+    font-size: @esui-medium-font-size !important;
+}
+
+.@{ui-class-prefix}-large {
+    font-size: @esui-large-font-size !important;
+}
+
+.@{ui-class-prefix}-x-large {
+    font-size: @esui-x-large-font-size !important;
+}
+
+.@{ui-class-prefix}-xx-large {
+    font-size: @esui-xx-large-font-size !important;
+}
+
+.@{ui-class-prefix}-xxx-large {
+    font-size: @esui-xxx-large-font-size !important;
+}

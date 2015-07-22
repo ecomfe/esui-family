@@ -1,0 +1,35 @@
+@import "../dep/est/1.3.0/src/all.less";
+
+@ui-class-prefix: ui;
+@ui-state-prefix: state;
+
+.@{ui-class-prefix}-checkbox-custom,
+.@{ui-class-prefix}-radio-custom,
+.@{ui-class-prefix}-checkbox-switch,
+.@{ui-class-prefix}-checkbox-switch-round {
+    .@{ui-class-prefix}-checkbox-box,
+    label {
+        &:before,
+        &:after {
+            display: none;
+        }
+        padding-left: 0;
+    }
+    input {
+        .opacity(100);
+        position: static;
+        vertical-align: middle;
+    }
+}
+
+.@{ui-class-prefix}-textbox-wrapper {
+    .@{ui-class-prefix}-textbox-addon.@{ui-class-prefix}-last-child .@{ui-class-prefix}-button,
+    .@{ui-class-prefix}-textbox-addon.@{ui-class-prefix}-last-child .@{ui-class-prefix}-select-inner,
+    .@{ui-class-prefix}-textbox.@{ui-class-prefix}-last-child input {
+        border-left: 0 !important;
+    }
+}
+
+.@{ui-class-prefix}-mask {
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#4FFFFFFF', endColorstr='#4FFFFFFF');
+}

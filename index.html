@@ -5,40 +5,50 @@
         <title>Welcome to ESUI</title>
         <link rel="stylesheet" href="assets/themes/standard.css" />
         <link rel="stylesheet" href="assets/3rd-party/animate.css"></script>
-        <!--[if lt IE 9]>
-        <script src="http://xy3.baidu.com/js/html5.js"></script>
-        <![endif]-->
-        <script src="assets/3rd-party/jquery-1.11.1.min.js"></script>
-        <script src="assets/demo.js"></script>
     </head>
-    <body class="">
-        <header id="header">
+    <body>
+        <div id="header">
             <div class="ui-navbar ui-navbar-mordern">
                 <h1 id="branding" class="ui-navbar-content">
                     <a class="ui-navbar-content-link" href="index.html">ESUI Family</a>
                 </h1>
                 <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
-                    <script>
-                        mainNav();
-                    </script>
                 </ul>
             </div>
-        </header>
+        </div>
         <div class="container-primary">
             <div class="animated fadeInUp">
                 <h2 class="hero ui-text-center contrast">ESF &amp; ESUI</h2>
                 <h2 class="ui-text-center contrast">ESF is a CSS Framework Based on <a class="contrast" href="http://ecomfe.github.io/est/">EST</a>.</h2>
                 <h2 class="ui-text-center contrast">ESUI is a Collection of JavaScript Controls.</h2>
                 <div class="ui-text-center">
-                    <a href="css/button.html" class="ui-button ui-button-contrast"><span class="ui-icon-css3"></span> ESF</a>
-                    <a href="controls/Button.html" class="ui-button ui-button-contrast"><span class="ui-icon-code"></span> ESUI</a>
+                    <a href="css/index.html" class="ui-button ui-button-contrast"><span class="ui-icon-css3"></span> ESF</a>
+                    <a href="controls/index.html" class="ui-button ui-button-contrast"><span class="ui-icon-code"></span> ESUI</a>
                 </div>
             </div>
         </div>
         <div class="footer">
             <p class="ui-text-center contrast">
-                Hello World
             </p>
         </div>
+        <script src="dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+        <script>
+            require.config({
+                'packages': [
+                    {
+                        'name': 'jquery',
+                        'location': 'dep/jquery/1.9.1/src',
+                        'main': 'jquery.min'
+                    }
+                ]
+            });
+        </script>
+        <script src="assets/sitemap.js"></script>
+        <script>
+            require(['sitemap'], function (site) {
+                site.mainNav();
+                site.footer();
+            });
+        </script>
     </body>
 </html>

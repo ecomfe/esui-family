@@ -1,0 +1,114 @@
+// ESUI Custom
+// esf input pre/postfix color
+
+@import "Variable.less";
+
+@esui-textbox-hint-horizontal-padding: 1em;
+
+.@{ui-class-prefix}-textbox-hint {
+    display: inline-block;
+    height: @esui-textbox-height;
+    line-height: @esui-textbox-height;
+    .box-sizing(border-box);
+    padding: 0 @esui-textbox-hint-horizontal-padding;
+    vertical-align: top;
+    .esui-textbox-hint-theme();
+}
+
+.esui-textbox-hint-border-radius() {}
+.esui-textbox-hint-border-radius() when (@esui-textbox-radius > 0) {
+    .@{ui-class-prefix}-textbox.@{ui-state-prefix}-hint-prefix {
+        .@{ui-class-prefix}-textbox-hint {
+            .border-left-radius(@esui-textbox-radius);
+        }
+        input {
+            .border-left-radius(0);
+        }
+    }
+    .@{ui-class-prefix}-textbox.@{ui-state-prefix}-hint-suffix {
+        .@{ui-class-prefix}-textbox-hint {
+            .border-right-radius(@esui-textbox-radius);
+        }
+        input {
+            .border-right-radius(0);
+        }
+    }
+}
+
+// 输出border mixin内容
+.esui-textbox-hint-border-radius();
+
+.esui-textbox-hint-theme() {}
+
+.@{ui-class-prefix}-textbox-placeholder {
+    height: @esui-textbox-height;
+    line-height: @esui-textbox-height;
+    padding-left: @esui-textbox-padding;
+    padding-right: @esui-textbox-padding;
+    position: absolute;
+    left: 0;
+    top: 0;
+    .box-sizing(border-box);
+    .ellipsis();
+}
+
+.@{ui-class-prefix}-textbox-icon-left {
+    .@{ui-class-prefix}-textbox-placeholder {
+        left: @esui-textbox-icon-width;
+    }
+}
+
+.@{ui-class-prefix}-textbox-hint-suffix {
+    .@{ui-class-prefix}-textbox-hint {
+        border-left: 0;
+    }
+}
+
+.@{ui-class-prefix}-textbox-hint-prefix {
+    .@{ui-class-prefix}-textbox-hint {
+        border-right: 0;
+    }
+}
+
+.@{ui-class-prefix}-textbox.@{ui-state-prefix}-validity-invalid {
+    border: 0;
+    input, textarea {
+        .esui-input-color-def(
+            @esui-textbox-error-border-color,
+            @esui-textbox-error-background,
+            @esui-textbox-error-text-color
+        );
+    }
+}
+
+.@{ui-class-prefix}-textbox-placeholder-hidden {
+    display: none;
+}
+
+.@{ui-class-prefix}-textbox-hint-suffix {
+    .@{ui-class-prefix}-textbox-hint {
+        border-left: 0;
+    }
+}
+
+.@{ui-class-prefix}-textbox-hint-prefix {
+    .@{ui-class-prefix}-textbox-hint {
+        border-right: 0;
+    }
+}
+
+// 验证
+.@{ui-class-prefix}-textbox-validity-label-notice,
+.@{ui-class-prefix}-textarea-validity-label-notice {
+    color: @esui-textbox-error-border-color;
+}
+
+.@{ui-class-prefix}-textbox-validity-label-warn,
+.@{ui-class-prefix}-textarea-validity-label-warn {
+    color: @esui-textbox-warning-border-color;
+}
+
+.@{ui-class-prefix}-textbox-validity-label-invalid,
+.@{ui-class-prefix}-textarea-validity-label-invalid {
+    color: @esui-textbox-error-border-color;
+}

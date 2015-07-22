@@ -1,0 +1,150 @@
+@import "../../dep/est/2.0.3/src/all.less";
+.global-normalize();
+@import "../../theme/main.less";
+
+@import "../../dep/eicons/1.0.0-beta.1/src/main.less";
+
+@fa-font-path: "./fonts/font-awesome";
+
+// loaders are mixins now, output them manually
+.esui-loader-bouncers();
+
+.esui-loader-border();
+
+.esui-loader-borders();
+
+.esui-loader-spinner-wave();
+
+.esui-loader-rotating-plane();
+
+.esui-loader-chasing-dots();
+
+.esui-loader-spinner-circles();
+
+body {
+   .est-layout-fixed-header(60px);
+}
+
+.est-header {
+    background: @esui-palette-primary-color;
+}
+
+#branding {
+    margin: 0;
+}
+
+#container-frame { 
+    width: 100%;
+    border: 0;
+}
+
+#main-header {
+    padding: 0 2em;
+}
+
+#main {
+    padding: 0 2em;
+}
+
+.row {
+    margin-bottom: 1em;
+}
+
+// child page
+#navigator-features {
+    a {
+        padding: 0.5em 1em;
+        display: block; 
+        &:hover {
+            background: @esui-palette-primary-color;
+            text-decoration: none;
+            color: @esui-palette-white;
+        }
+    }
+    border-right: 1px solid @esui-palette-border;
+}
+
+.example {
+    position: relative;
+    padding: 45px 15px 15px;
+    margin-bottom: 15px;
+    border: 1px #e5e5e5 solid;
+}
+
+/* Echo out a label for the example */
+.example:after {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 12px; 
+    font-weight: bold;
+    color: #959595;
+    content: "Example";
+}
+
+/* Tweak display of the code snippets when following an example */
+.example + .highlight {
+    border-width: 0 0 1px;
+    border-radius: 0;
+    position: relative;
+}
+
+.highlight {
+    margin-top: 2em;
+    pre.prettyprint {
+        border: 1px #e5e5e5 solid;
+        padding: 0 1em;
+        max-height: 300px;
+        overflow: auto;
+    }
+}
+
+.ui-g {
+    letter-spacing: -0.31em;
+    *letter-spacing: normal;
+    *word-spacing: -0.43em;
+    word-spacing: -0.43em;
+    text-rendering: optimizespeed;
+    font-family: FreeSans, Arimo, "Droid Sans", Helvetica, Arial, sans-serif;
+    display: -webkit-flex;
+    -webkit-flex-flow: row wrap;
+    display: -ms-flexbox;
+    -ms-flex-flow: row wrap;
+}
+
+.opera-only :-o-prefocus {
+    word-spacing: -0.43em;
+}
+
+.ui-u-4-5,
+.ui-u-1-5 {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    letter-spacing: normal;
+    word-spacing: normal;
+    vertical-align: top;
+    text-rendering: auto;
+    font-family: @default-base-font-family;
+}
+.ui-u-1-5 {
+    width: 20%;
+    position: fixed;
+}
+.ui-u-4-5 {
+    width: 80%;
+    margin-left: 20%;
+}
+
+.ui-submenu-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.ui-submenu-wrapper>.ui-submenu {
+    display: none;
+}
+
+.ui-submenu-wrapper:hover>.ui-submenu {
+    display: block;
+}

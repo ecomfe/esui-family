@@ -1,0 +1,5 @@
+{
+  "name": "jquery",
+  "version": "1.9.1",
+  "main": "./src/jquery.min.js"
+}

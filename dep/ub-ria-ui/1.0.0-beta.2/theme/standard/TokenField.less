@@ -1,0 +1,59 @@
+@import "../../src/css/TokenField.less";
+
+@esui-tokenfield-border-color: @esui-palette-border;
+@esui-tokenfield-background: @esui-palette-white;
+@esui-tokenfield-text-color: inherit;
+
+// focus state
+@esui-tokenfield-focus-border-color: @esui-palette-primary-color;
+@esui-tokenfield-focus-background: @esui-palette-white;
+@esui-tokenfield-focus-text-color: @esui-palette-dark-color;
+
+// error state
+@esui-tokenfield-error-border-color: @esui-palette-danger-color;
+@esui-tokenfield-error-background: none;
+@esui-tokenfield-error-text-color: inherit;
+
+// readonly state
+@esui-tokenfield-readonly-border-color: @esui-palette-border;
+@esui-tokenfield-readonly-background: @esui-palette-white;
+@esui-tokenfield-readonly-text-color: @esui-palette-muted-color;
+
+@esui-tokenfield-item-color: @esui-palette-contrast-color;
+@esui-tokenfield-item-background: @esui-palette-primary-color;
+@esui-tokenfield-item-hover-background: @esui-palette-primary-highlight-color;
+@esui-tokenfield-item-active-background: @esui-palette-primary-shadow-color;
+
+.esui-tokenfield-theme() {
+    border: 1px solid @esui-tokenfield-border-color;
+    color: @esui-tokenfield-text-color;
+    background: @esui-tokenfield-background;
+
+    &.@{ui-state-prefix}-focus {
+        border: 1px solid @esui-tokenfield-focus-border-color;
+        color: @esui-tokenfield-focus-text-color;
+        background: @esui-tokenfield-focus-background;
+    }
+    &.@{ui-state-prefix}-read-only {
+        border: 1px solid @esui-tokenfield-readonly-border-color;
+        color: @esui-tokenfield-readonly-text-color;
+        background: @esui-tokenfield-readonly-background;
+    }
+    &.@{ui-state-prefix}-validity-invalid {
+        border: 1px solid @esui-tokenfield-error-border-color;
+        color: @esui-tokenfield-error-text-color;
+        background: @esui-tokenfield-error-background;
+    }
+}
+
+.esui-tokenfield-item-theme() {
+    color: @esui-tokenfield-item-color;
+    background-color: @esui-tokenfield-item-background;
+    &:hover {
+        background: @esui-tokenfield-item-hover-background;
+    }
+
+    &:active {
+        background: @esui-tokenfield-item-active-background;
+    }
+}

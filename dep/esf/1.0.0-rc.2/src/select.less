@@ -1,0 +1,85 @@
+@import "base.less";
+
+@esui-form-select-height: 2.4em;
+@esui-form-select-padding: .5em 1.9em .5em .5em;
+@esui-form-select-border-radius: 0;
+
+// http://jsbin.com/yaruh
+.@{ui-class-prefix}-select-custom {
+    position: relative;
+    display: inline-block;
+    .box-sizing(border-box);
+    height: @esui-form-select-height;
+    vertical-align: middle;
+    .esui-border-radius(
+        @esui-form-select-border-radius,
+        @esui-form-select-border-radius
+    );
+    option {
+        font-weight:normal;
+    }
+    .esui-select-custom-theme();
+    // Hover style
+    &:hover {
+        .esui-select-custom-hover-theme();
+    }
+    // Focus style
+    &:focus {
+        .esui-select-custom-focus-theme();
+    }
+}
+
+.@{ui-class-prefix}-select-custom select {
+    width:100%;
+    width:120%\9;
+    margin:0;
+    background:none;
+    border: 1px solid transparent;
+    outline: none;
+    // Remove select styling
+    appearance: none;
+    -webkit-appearance: none;
+    .box-sizing(border-box);
+    // Prefixed box-sizing rules necessary for older browsers
+    padding: @esui-form-select-padding;
+    height: @esui-form-select-height;
+    &[disabled] {
+        cursor: not-allowed;
+    }
+}
+
+x:-o-prefocus, .@{ui-class-prefix}-select-custom:after {
+    display:none;
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+    .@{ui-class-prefix}-select-custom select::-ms-expand {
+        display: none;
+    }
+    .@{ui-class-prefix}-select-custom select:focus::-ms-value {
+        background: transparent;
+    }
+}
+
+@-moz-document url-prefix() {
+    .@{ui-class-prefix}-select-custom {
+        overflow: hidden;
+    }
+    .@{ui-class-prefix}-select-custom select {
+        width: 120%;
+    }
+}
+
+.@{ui-class-prefix}-select-custom select:-moz-focusring {
+    color: transparent;
+}
+
+.esui-select-custom-arrow-theme();
+
+.esui-select-custom-theme() {}
+
+.esui-select-custom-hover-theme() {}
+
+.esui-select-custom-focus-theme() {}
+
+.esui-select-custom-arrow-theme() {}

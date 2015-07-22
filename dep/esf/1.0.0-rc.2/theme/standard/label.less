@@ -1,0 +1,75 @@
+// button core
+@import "../../src/label.less";
+
+// theme variable
+@import "variable.less";
+
+// theme variables
+@esui-label-color: @esui-palette-color;
+@esui-label-background: @esui-palette-neutral-color;
+
+@esui-label-primary-color: @esui-palette-contrast-color;
+@esui-label-primary-background: @esui-palette-primary-color;
+
+@esui-label-success-color: @esui-palette-contrast-color;
+@esui-label-success-background: @esui-palette-success-color;
+
+@esui-label-warning-color: @esui-palette-contrast-color;
+@esui-label-warning-background: @esui-palette-warning-color;
+
+@esui-label-danger-color: @esui-palette-contrast-color;
+@esui-label-danger-background: @esui-palette-danger-color;
+
+@esui-label-info-color: @esui-palette-contrast-color;
+@esui-label-info-background: @esui-palette-info-color;
+
+.esui-label-theme() {
+    background: @esui-label-background;
+    color: @esui-label-color;
+}
+
+.esui-label-primary-theme() {
+    background: @esui-label-primary-background;
+    color: @esui-label-primary-color;
+    .esui-label-pointer-variant-color(@esui-label-primary-background);
+}
+
+.esui-label-success-theme() {
+    background: @esui-label-success-background;
+    color: @esui-label-success-color;
+    .esui-label-pointer-variant-color(@esui-label-success-background);
+}
+
+.esui-label-warning-theme() {
+    background: @esui-label-warning-background;
+    color: @esui-label-warning-color;
+    .esui-label-pointer-variant-color(@esui-label-warning-background);
+}
+
+.esui-label-danger-theme() {
+    background: @esui-label-danger-background;
+    color: @esui-label-danger-color;
+    .esui-label-pointer-variant-color(@esui-label-danger-background);
+}
+
+.esui-label-info-theme() {
+    background: @esui-label-info-background;
+    color: @esui-label-info-color;
+    .esui-label-pointer-variant-color(@esui-label-info-background);
+}
+
+// theme used mixin
+.esui-label-pointer-variant-color(@bg-color) {
+    &.@{ui-class-prefix}-label-pointer:before {
+        border-bottom-color: @bg-color;
+    }
+    &.@{ui-class-prefix}-label-pointer-bottom:before {
+        border-top-color: @bg-color;
+    }
+    &.@{ui-class-prefix}-label-pointer-left:before {
+        border-right-color: @bg-color;
+    }
+    &.@{ui-class-prefix}-label-pointer-right:before {
+        border-left-color: @bg-color;
+    }
+}

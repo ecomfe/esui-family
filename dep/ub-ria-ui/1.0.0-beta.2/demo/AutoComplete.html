@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>AutoComplete - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI AutoComplete</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>Input</h2>
+            <p>AutoComplete绑定到一个Input。</p>
+            <div class="example">
+                <input data-ui-type="TextBox"
+                       data-ui-mode="text"
+                       data-ui-id="test"
+                       data-ui-extension-autocomplete-type="AutoComplete" />
+            </div>
+
+            <h2>TextLine</h2>
+            <p>AutoComplete 绑定到TextLine。</p>
+            <div class="example ui-demo-light-stage">
+                <textarea data-ui-type="TextLine"
+                       data-ui-id="test1"
+                       data-ui-name="test1"
+                       data-ui-extension-autocomplete-type="AutoComplete"
+                /></textarea>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/AutoComplete',
+            'esui/TextLine',
+            'esui/TextBox',
+            'demo',
+            'esui/Tab'
+        ],
+        function (ui, AutoComplete) {
+            window.ui = ui;
+            var controls = ui.init();
+            var data = [
+                'actionScript',
+                'AppleScript',
+                'Asp',
+                'BASIC',
+                'C',
+                'C++',
+                'Clojure',
+                'COBOL',
+                'ColdFusion',
+                'Erlang',
+                'Fortran',
+                'Groovy',
+                'Haskell',
+                'Java',
+                'JavaScript',
+                'Lisp',
+                'Perl',
+                'PHP',
+                'Python',
+                'Ruby',
+                'Scala',
+                'Scheme'
+            ];
+            var data1 = [
+                {
+                    text: 'actionScript',
+                    desc: 'It is actionScript'
+                },
+                {
+                    text: 'AppleScript',
+                    desc: 'It is AppleScript'
+                },
+                {
+                    text: 'Asp',
+                    desc: 'It is Asp'
+                },
+                {
+                    text: 'BASIC',
+                    desc: 'It is BASIC'
+                },
+                {
+                    text: 'Clojure',
+                    desc: 'It is Clojure'
+                },
+                {
+                    text: 'ColdFusion',
+                    desc: 'It is ColdFusion'
+                }
+            ];
+
+            var control;
+            var datasource;
+            for (var i = 0; i < controls.length; i++) {
+                control = controls[i];
+                if (control.id === 'test1') {
+                    datasource = data1;
+                }
+                else {
+                    datasource = data;
+                }
+                controls[i].setProperties({
+                    datasource: datasource
+                });
+            }
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

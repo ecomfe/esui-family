@@ -1,0 +1,181 @@
+// button core
+@import "../../src/checkbox.less";
+
+// theme variable
+@import "variable.less";
+
+// theme variables
+@esui-checkbox-label-text-color: fade(@esui-palette-color, 90%);
+@esui-checkbox-label-text-hover-color: @esui-palette-color;
+@esui-checkbox-label-text-focus-color: @esui-palette-color;
+@esui-checkbox-label-text-readonly-color: @esui-palette-muted-color;
+
+@esui-checkbox-border-color: @esui-palette-border;
+@esui-checkbox-border-radius: 0;
+@esui-checkbox-background-color: @esui-palette-neutral-color;
+@esui-checkbox-background-active-color: @esui-palette-neutral-color;
+
+@esui-checkbox-focus-border-color: @esui-palette-primary-color;
+@esui-checkbox-border-active-color: @esui-palette-primary-color;
+
+@esui-checkbox-radio-checked-color: @esui-palette-contrast-color;
+@esui-checkbox-radio-checked-background-color: @esui-palette-primary-color;
+@esui-checkbox-radio-checked-border-color: @esui-palette-primary-color;
+
+@esui-checkbox-switch-on-background-color: @esui-palette-primary-color;
+@esui-checkbox-switch-on-border-color: @esui-palette-primary-color;
+
+@esui-checkbox-switch-on-handle-background-color: @esui-palette-contrast-color;
+@esui-checkbox-switch-on-handle-border-color: @esui-palette-primary-color;
+
+@esui-checkbox-switch-off-background-color: @esui-palette-neutral-shadow-d30-color;
+@esui-checkbox-switch-off-border-color: @esui-palette-neutral-shadow-d30-color;
+
+@esui-checkbox-switch-off-handle-background-color: @esui-palette-contrast-color;
+@esui-checkbox-switch-off-handle-border-color: @esui-palette-neutral-shadow-d30-color;
+
+.esui-checkbox-label-theme() {
+    .esui-transition(color 0.2s ease);
+    color: @esui-checkbox-label-text-color;
+    &:hover {
+        color: @esui-checkbox-label-text-hover-color;
+    }
+}
+
+.esui-checkbox-virtual-box-active-theme() {
+    background: @esui-checkbox-background-active-color;
+}
+
+.esui-checkbox-virtual-box-focus-theme() {
+    &:before {
+        .box-shadow(0 0 1px @esui-checkbox-focus-border-color);
+    }
+}
+
+.esui-checkbox-virtual-box-checked-theme() {
+    &:before {
+        background: @esui-checkbox-radio-checked-background-color;
+        border-color: @esui-checkbox-radio-checked-border-color;
+    }
+    &:after {
+        position: absolute;
+        top: (@esui-checkbox-radio-box-size * .49)/2;
+        left: @esui-checkbox-radio-box-size * .15;
+        width: @esui-checkbox-radio-box-size * .7;
+        height: @esui-checkbox-radio-box-size * .4;
+        border: 0.2em solid @esui-checkbox-radio-checked-color;
+        border-top: none;
+        border-right: none;
+        .transform(rotate(-45deg));
+    }
+}
+
+.esui-checkbox-virtual-box-indeterminate-theme() {
+    &:after {
+        border: 1px solid @esui-checkbox-border-active-color;
+
+        width: @esui-checkbox-radio-box-size;
+        height: @esui-checkbox-radio-box-size;
+        background: @esui-checkbox-radio-checked-background-color;
+        .box-shadow(inset 0px 0px 0px 0.2em @esui-checkbox-background-color);
+        top: 0;
+        left: 0;
+        // IE has indeterminate and checked states at the same time.
+        .transform(none);
+    }
+}
+
+.esui-checkbox-virtual-box-theme() {
+    .esui-transition(~"background-color 0.3s ease, border-color 0.3s ease");
+    background: @esui-checkbox-background-color;
+    border: 1px solid @esui-checkbox-border-color;
+    .esui-border-radius(
+        @esui-checkbox-border-radius,
+        @esui-checkbox-border-radius
+    );
+}
+
+.esui-checkbox-virtual-box-check-theme() {
+    .esui-transition(~"background 0.3s ease 0s");
+}
+
+.esui-checkbox-virtual-box-radio-checked-theme() {
+    &:after {
+        top: 0;
+        left: 0;
+        width: @esui-checkbox-radio-box-size;
+        height: @esui-checkbox-radio-box-size;
+        background-color: @esui-checkbox-radio-checked-color;
+        .box-shadow(inset 0px 0px 0px 0.3em @esui-checkbox-border-active-color);
+        .esui-circular();
+        border: 0;
+    }
+}
+
+.esui-checkbox-virtual-box-switch-theme() {
+    &:before {
+        background-color: @esui-checkbox-switch-off-background-color;
+        width: 3em;
+        height: 1.2em;
+        top: -0.1em;
+        left: 0;
+        border: @esui-checkbox-switch-off-border-color 1px solid;
+        .esui-border-radius(0, @esui-checkbox-border-radius);
+    }
+    &:after {
+        border: @esui-checkbox-switch-off-handle-border-color 1px solid;
+        width: 1.5em;
+        height: 1.2em;
+        top: -0.1em;
+        left: 0;
+        background-color: @esui-checkbox-switch-off-handle-background-color;
+        .transform(none);
+        .esui-transition(left 0.3s ease 0s);
+        
+    }
+}
+
+.esui-checkbox-virtual-box-switch-checked-theme() {
+    &:before {
+        background-color: @esui-checkbox-switch-on-background-color;
+        width: 3em;
+        height: 1.2em;
+        top: -0.1em;
+        left: 0;
+        border:@esui-checkbox-switch-on-border-color 1px solid;
+    }
+    &:after {
+        width: 1.5em;
+        height: 1.2em;
+        top: -0.1em;
+        left: 1.5em;
+        border: @esui-checkbox-switch-on-handle-border-color 1px solid;
+        background-color: @esui-checkbox-switch-on-handle-background-color;
+         .transform(none);
+    }
+}
+
+.esui-checkbox-virtual-box-switch-round-theme() {
+    &:before {
+        .esui-circular();
+    }
+    &:after {
+        width: 1.2em;
+         .esui-circular();
+    }
+}
+
+.esui-checkbox-virtual-box-switch-round-checked-theme() {
+    &:before {
+        .esui-circular();
+    }
+    &:after {
+        width: 1.2em;
+        left: 1.8em;
+         .esui-circular();
+    }
+}
+
+.esui-checkbox-virtual-box-readonly-theme() {
+    color: @esui-checkbox-label-text-readonly-color;
+}

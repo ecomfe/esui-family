@@ -1,0 +1,126 @@
+// textbox core
+@import "../../src/textbox.less";
+
+// core variables
+@esui-textbox-height: @esui-single-line-control-height;
+
+// theme variables
+// normal
+@esui-textbox-border-color: @esui-palette-border;
+@esui-textbox-background: @esui-palette-white;
+@esui-textbox-text-color: @esui-palette-color;
+
+// focus state
+@esui-textbox-focus-border-color: @esui-palette-primary-color;
+@esui-textbox-focus-background: @esui-palette-white;
+@esui-textbox-focus-text-color: @esui-palette-color;
+
+// error state
+@esui-textbox-error-border-color: @esui-palette-danger-color;
+@esui-textbox-error-background: @esui-palette-white;
+@esui-textbox-error-text-color: @esui-palette-danger-shadow-color;
+
+// readonly state
+@esui-textbox-readonly-border-color: @esui-palette-border;
+@esui-textbox-readonly-background: @esui-palette-white;
+@esui-textbox-readonly-text-color: @esui-palette-muted-color;
+
+// success state
+@esui-textbox-success-border-color: @esui-palette-success-color;
+@esui-textbox-success-background: @esui-palette-white;
+@esui-textbox-success-text-color: @esui-palette-success-color;
+
+// warning state
+@esui-textbox-warning-border-color: @esui-palette-warning-color;
+@esui-textbox-warning-background: @esui-palette-white;
+@esui-textbox-warning-text-color: @esui-palette-warning-color;
+
+// placeholder color
+@esui-textbox-placeholder-color: @esui-palette-muted-color;
+
+.esui-textbox-input-theme() {
+    .esui-input-color-def(
+        @esui-textbox-border-color,
+        @esui-textbox-background,
+        @esui-textbox-text-color
+    );
+    .placeholder(@esui-textbox-placeholder-color);
+}
+
+.esui-textbox-icon-theme() {
+    color: @esui-textbox-focus-text-color;
+}
+
+.esui-textbox-theme() {
+
+    // focus
+    & > input:focus,
+    & > textarea:focus,
+    &.@{ui-state-prefix}-focus > input {
+        .esui-input-color-def(
+            @esui-textbox-focus-border-color,
+            @esui-textbox-focus-background,
+            @esui-textbox-focus-text-color
+        );
+    }
+
+    // disabled
+    & > input[disabled],
+    & > textarea[disabled] {
+        .esui-disabled();
+    }
+
+    // error
+    &.@{ui-state-prefix}-error > input,
+    &.@{ui-state-prefix}-validity-invalid > input {
+        .esui-input-color-def(
+            @esui-textbox-error-border-color,
+            @esui-textbox-error-background,
+            @esui-textbox-error-text-color
+        );
+        .placeholder(@esui-textbox-error-text-color);
+    }
+
+    // read only
+    & > input[readonly],
+    & > textarea[readonly] {
+        .esui-input-color-def(
+            @esui-textbox-readonly-border-color,
+            @esui-textbox-readonly-background,
+            @esui-textbox-readonly-text-color
+        );
+    }
+
+    // success
+    &.@{ui-state-prefix}-success > input,
+    &.@{ui-state-prefix}-success > textarea {
+        .esui-input-color-def(
+            @esui-textbox-success-border-color,
+            @esui-textbox-success-background,
+            @esui-textbox-success-text-color
+        );
+        .placeholder(@esui-textbox-success-text-color);
+    }
+
+    // warning
+    &.@{ui-state-prefix}-warning > input,
+    &.@{ui-state-prefix}-warning > textarea {
+        .esui-input-color-def(
+            @esui-textbox-warning-border-color,
+            @esui-textbox-warning-background,
+            @esui-textbox-warning-text-color
+        );
+        .placeholder(@esui-textbox-warning-text-color);
+    }
+}
+
+// mixins
+.esui-input-color-def(
+    @border,
+    @background,
+    @text,
+) {
+    border: 1px solid @border;
+    background: @background;
+    color: @text;
+}

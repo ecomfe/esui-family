@@ -1,0 +1,95 @@
+// import est
+@import "../../../dep/est/1.3.0/src/all.less";
+
+.global-normalize();
+
+// import esf
+@import "../../../dep/esf/1.0.0-rc.1/theme/standard/main.less";
+
+// import eicons
+@import "../../../dep/eicons/1.0.0-beta.1/src/main.less";
+
+@fa-font-path: "../../../dep/eicons/1.0.0-beta.1/fonts/font-awesome";
+
+@esui-type-headings-font-weight: normal;
+
+// import esui
+@import "../../../theme/standard/Main.less";
+
+@import "site.less";
+
+// demo page
+.ui-tab-vertical-container-left {
+   .esui-vertical-tab-def(
+       8em,
+       300px,
+       left
+   );
+}
+
+.ui-tab-vertical-container-right {
+   .esui-vertical-tab-def(
+       8em,
+       300px,
+       right
+   );
+}
+
+// form.html
+.edit-form .ui-form-key {
+    width: 8em;
+}
+
+// BehaviorSelectable
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    color: #222222;
+}
+.ui-state-default {
+    border: 1px solid #d3d3d3;
+    font-weight: normal;
+    color: #555555;
+}
+#selectable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 450px;
+}
+#selectable li {
+    margin: 3px;
+    padding: 1px;
+    float: left;
+    width: 100px;
+    height: 80px;
+    font-size: 4em;
+    text-align: center;
+}
+
+#selectable-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+#selectable-list li {
+    margin: 3px;
+    padding: 0.4em;
+    font-size: 1.4em;
+    height: 18px;
+}
+
+#selectable-demo {
+    .ui-selectable-selecting {
+        background: #FECA40;
+    }
+
+    .ui-selectable-selected {
+        background: #F39814;
+        color: white;
+    }
+    
+    .ui-selectable-helper {
+        border: 1px dotted #666;
+    }
+}

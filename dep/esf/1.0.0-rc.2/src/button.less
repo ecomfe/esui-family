@@ -1,0 +1,177 @@
+@import "base.less";
+
+@esui-button-font-family: 'Helvetica Neue', Helvetica, Arial, '宋体', SimSun, sans-serif;
+@esui-button-font-weight: bold;
+@esui-button-height: 2.4em;
+@esui-button-padding: 0 1em;
+@esui-button-link-color: #6CCDC0;
+@esui-button-link-decoration: none;
+@esui-button-link-hover-color: lighten(#6CCDC0, 15%);
+@esui-button-link-hover-decoration: underline;
+@esui-button-radius: 0;
+
+.@{ui-class-prefix}-button {
+    .esui-button();
+    .esui-button-theme();
+    &:disabled,
+    &.@{ui-state-prefix}-disabled {
+        .esui-disabled();
+    }
+}
+
+// variants
+.@{ui-class-prefix}-button.@{ui-class-prefix}-button-icon {
+    padding: 0;
+    .size(@esui-button-height);
+    line-height: @esui-button-height;
+}
+
+.@{ui-class-prefix}-button-circular {
+    .esui-circular();
+}
+
+.@{ui-class-prefix}-button-fluid {
+    width: 100%;
+    display: block;
+}
+
+.@{ui-class-prefix}-button-link {
+    color: @esui-button-link-color;
+    text-decoration: @esui-button-link-decoration;
+
+    &:hover {
+        color: @esui-button-link-hover-color;
+        text-decoration: @esui-button-link-hover-decoration;
+    }
+    &:focus {
+        // adding outline for link element
+        outline: 1px dotted;
+    }
+    background: none !important;
+}
+
+// button group
+.@{ui-class-prefix}-button-group {
+    display: inline-block;
+    vertical-align: middle;
+    .@{ui-class-prefix}-button {
+        &:first-child {
+            margin-left: 0;
+        }
+        margin-left: -1px;
+        float: left;
+    }
+    .esui-button-group-border();
+    .esui-button-group-theme();
+}
+
+.@{ui-class-prefix}-button-primary {
+    .esui-button-primary-theme();
+}
+
+.@{ui-class-prefix}-button-primary-inverted {
+    .esui-button-primary-inverted-theme();
+}
+
+.@{ui-class-prefix}-button-success {
+    .esui-button-success-theme();
+}
+
+.@{ui-class-prefix}-button-info {
+    .esui-button-info-theme();
+}
+
+.@{ui-class-prefix}-button-warning {
+    .esui-button-warning-theme();
+}
+
+.@{ui-class-prefix}-button-danger {
+    .esui-button-danger-theme();
+}
+
+// textbox border button
+.@{ui-class-prefix}-button-bordered {
+    .esui-button-bordered-theme();
+}
+
+.esui-button-group-border() when (@esui-button-radius > 0) {
+    .@{ui-class-prefix}-button:not(:first-child):not(:last-child) {
+        .border-radius(0);
+    }
+    .@{ui-class-prefix}-button:first-child:not(:last-child) {
+        .border-right-radius(0);
+    }
+    .@{ui-class-prefix}-button:last-child:not(:first-child) {
+        .border-left-radius(0);
+    }
+}
+
+.esui-button-group-border() {}
+
+/*
+ * 1. Correct inability to style clickable `input` types in iOS.
+ * 2. Remove margins in Chrome, Safari and Opera.
+ * 3. Remove borders for `button`.
+ * 4. Address `overflow` set to `hidden` in IE 8/9/10/11.
+ * 5. Correct `font` properties and `color` not being inherited for `button`.
+ * 6. Address inconsistent `text-transform` inheritance which is only inherit in Firefox and IE
+ * 7. Style
+ * 8. `line-height` is used to create a height
+ * 9. `min-height` is necessary for `input` elements in Firefox and Opera because `line-height` is not working.
+ * 10. Required for `a`.
+ */
+.esui-button() {
+    // 1
+    -webkit-appearance: none;
+    // 2
+    margin: 0;
+    // 3
+    border: none;
+    // 4
+    overflow: visible;
+    // 5
+    font: inherit;
+    // 6
+    text-transform: none;
+    // 7
+    display: inline-block;
+    .box-sizing(border-box);
+    text-align: center;
+    vertical-align: middle;
+    font-family: @esui-button-font-family;
+    // 10
+    text-decoration: none;
+    &:hover,
+    &:focus {
+        text-decoration: none;
+        outline: 0;
+    }
+    .user-select(none);
+    // 8
+    line-height: @esui-button-height;
+    // 9
+    min-height: @esui-button-height;
+    height: @esui-button-height;
+    // button padding
+    padding: @esui-button-padding;
+    cursor: pointer;
+    font-weight: @esui-button-font-weight;
+    @esui-button-transition:
+        background-color 0.3s ease-out,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    .esui-transition(@esui-button-transition);
+    .esui-border-radius(
+        @esui-button-radius,
+        @esui-button-radius
+    );
+}
+
+// theme hooks
+.esui-button-theme {}
+.esui-button-primary-theme() {}
+.esui-button-success-theme() {}
+.esui-button-info-theme() {}
+.esui-button-warning-theme() {}
+.esui-button-danger-theme() {}
+.esui-button-group-theme {}

@@ -1,0 +1,15 @@
+@import "../../src/css/Accordion.less";
+
+@esui-accordion-header-background: @esui-palette-neutral-color;
+@esui-accordion-header-hover-background: @esui-palette-neutral-highlight-color;
+@esui-accordion-header-color: @esui-palette-neutral-color;
+@esui-accordion-header-border: 1px solid @esui-palette-border;
+
+.esui-accordion-header-theme() {
+    border: @esui-accordion-header-border;
+    background: @esui-accordion-header-background;
+    color: @esui-palette-color;
+    &:hover {
+        background: @esui-accordion-header-hover-background;
+    }
+}

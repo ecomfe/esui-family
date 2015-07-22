@@ -1,0 +1,28 @@
+{
+    "name": "ub-ria-ui",
+    "version": "1.0.0-beta.1",
+    "description": "UI components for UB RIA applications",
+    "dependencies": {},
+    "author": "otakustay@gmail.com",
+    "repository": "https://github.com/ecomfe/ub-ria-ui",
+    "license": "BSD",
+    "readme": "README",
+    "edp": {
+        "wwwroot": "/",
+        "depDir": "dep",
+        "srcDir": "src",
+        "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
+        "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
+        "dependencies": {
+            "esui": "~3.2.0-beta",
+            "esf": "~1.0.0-beta",
+            "eicons": "~1.0.0-beta",
+            "eoo": "0.1.x",
+            "est": "~1.3.0",
+            "etpl": "~3.0.0",
+            "moment": "~2.7.0",
+            "underscore": "~1.5.2",
+            "jquery": "~1.9.1"
+        }
+    }
+}

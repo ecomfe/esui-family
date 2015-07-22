@@ -13,16 +13,16 @@
         "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
         "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
         "dependencies": {
-            "ub-ria-ui": "~1.0.0-beta",
+            "ub-ria-ui": "~1.0.0-beta.2",
             "eicons": "~1.0.0-beta.1",
             "eoo": "~0.1.2",
-            "esf": "~1.0.0-beta.1",
+            "esf": "~1.0.0-rc.2",
             "est": "~1.3.0",
-            "esui": "~3.2.0-beta.1",
+            "esui": "~3.2.0-beta.2",
             "etpl": "~3.0.0",
-            "mini-event": "~1.0.2",
             "moment": "~2.7.0",
-            "underscore": "~1.5.2"
+            "underscore": "~1.5.2",
+            "jquery": "~1.9.1"
         }
     },
     "dependencies": {},

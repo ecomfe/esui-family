@@ -1,0 +1,88 @@
+@import "base.less";
+
+@esui-wizard-font-family: 'Helvetica Neue', Helvetica, Arial, '微软雅黑', 'Microsoft YaHei', '黑体', SimHei, sans-serif;
+@esui-wizard-margin: 0;
+@esui-wizard-padding: 0;
+@esui-wizard-icon-size: 1.5em;
+
+@esui-wizard-text-margin: 0 .5em;
+@esui-wizard-connector-width: 8em;
+@esui-wizard-connector-horizontal-margin: .5em;
+
+.@{ui-class-prefix}-wizard {
+    margin: @esui-wizard-margin;
+    padding: @esui-wizard-padding;
+    overflow: hidden;
+    text-align: center;
+    font-family: @esui-wizard-font-family;
+}
+
+.@{ui-class-prefix}-wizard-node {
+    list-style-type: none;
+
+    display: inline-block;
+    span {
+        vertical-align: middle;
+    }
+}
+
+.@{ui-class-prefix}-wizard-node-number {
+    .size(@esui-wizard-icon-size);
+    line-height: @esui-wizard-icon-size !important;
+    display: inline-block;
+    text-align: center;
+
+    .esui-wizard-node-number-theme();
+}
+
+.esui-wizard-node-number-theme() {}
+
+.@{ui-class-prefix}-wizard-node-text {
+    margin: @esui-wizard-text-margin;
+    .esui-wizard-node-text-theme();
+}
+
+.esui-wizard-node-text-theme() {}
+
+.@{ui-class-prefix}-wizard-node-done {
+    .@{ui-class-prefix}-wizard-node-number {
+        .esui-wizard-node-done-number-theme();
+    }
+    .@{ui-class-prefix}-wizard-node-text {
+        .esui-wizard-node-done-text-theme();
+    }
+}
+
+.esui-wizard-node-done-number-theme() {}
+.esui-wizard-node-done-text-theme() {}
+
+.@{ui-class-prefix}-wizard-node-active {
+    .@{ui-class-prefix}-wizard-node-number {
+        .esui-wizard-node-active-number-theme();
+    }
+    .@{ui-class-prefix}-wizard-node-text {
+        .esui-wizard-node-active-text-theme();
+    }
+}
+
+.esui-wizard-node-active-number-theme() {}
+.esui-wizard-node-active-text-theme() {}
+
+.@{ui-class-prefix}-wizard-node:after {
+    content: '';
+    width: @esui-wizard-connector-width;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 @esui-wizard-connector-horizontal-margin;
+    .esui-wizard-connector-theme();
+}
+
+.esui-wizard-connector-theme() {}
+
+.@{ui-class-prefix}-wizard-node:last-child:after {
+    display: none !important;
+}
+
+.@{ui-class-prefix}-wizard-node.@{ui-class-prefix}-wizard-node-last:after {
+    display: none !important;
+}

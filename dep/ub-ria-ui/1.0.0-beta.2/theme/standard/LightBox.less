@@ -1,0 +1,42 @@
+@import "../../src/css/LightBox.less";
+
+@esui-lightbox-drop-shadow: 0 0 5px rgba(0,0,0,.5);
+@esui-lightbox-close-icon-size: 1.5em;
+
+@esui-lightbox-loading-message-color: @esui-palette-contrast-color;
+@esui-lightbox-loading-message-background: @esui-palette-info-color;
+
+@esui-lightbox-nav-text-color: @esui-palette-white;
+@esui-lightbox-nav-text-shadow: 0 0 5px rgba(0,0,0,.5);
+
+.esui-lightbox-close-theme() {
+    z-index: 1;
+    .esui-circular();
+    .size(@esui-lightbox-close-icon-size);
+    line-height: @esui-lightbox-close-icon-size;
+    text-align: center;
+    background: white;
+    top: -@esui-lightbox-close-icon-size/2;
+    right: -@esui-lightbox-close-icon-size/2;
+    .box-shadow(@esui-lightbox-drop-shadow);
+}
+
+.esui-lightbox-loading-message-theme() {
+    content: '正在加载...';
+    color: @esui-lightbox-loading-message-color;
+    background: @esui-lightbox-loading-message-background;
+}
+
+.esui-lightbox-nav-theme() {
+    text-shadow: @esui-lightbox-nav-text-shadow;
+    .opacity(40);
+    color: @esui-lightbox-nav-text-color !important;
+}
+
+.esui-lightbox-nav-hover-theme() {
+    .opacity(60);
+}
+
+.esui-lightbox-nav-arrow-hover-theme() {
+    .opacity(80) !important;
+}

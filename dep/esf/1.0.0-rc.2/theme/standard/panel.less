@@ -1,0 +1,39 @@
+// button core
+@import "../../src/panel.less";
+
+// theme variable
+@import "variable.less";
+
+@esui-panel-background: @esui-palette-white;
+@esui-panel-border: 1px solid @esui-palette-border;
+@esui-panel-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+
+@esui-panel-header-color: @esui-palette-color;
+@esui-panel-header-background: @esui-palette-neutral-color;
+
+@esui-panel-body-color: @esui-palette-color;
+
+@esui-panel-footer-color: @esui-palette-color;
+@esui-panel-footer-background: @esui-palette-neutral-color;
+
+.esui-panel-custom-theme() {
+    background: @esui-panel-background;
+    border: @esui-panel-border;
+    .box-shadow(@esui-panel-box-shadow);
+}
+
+.esui-panel-header-theme() {
+    color: @esui-panel-header-color;
+    background: @esui-panel-header-background;
+    border-bottom: @esui-panel-border;
+}
+
+.esui-panel-body-theme() {
+    color: @esui-panel-body-color;
+}
+
+.esui-panel-footer-theme() {
+    color: @esui-panel-footer-color;
+    background: @esui-panel-footer-background;
+    border-top: @esui-panel-border;
+}

@@ -1,0 +1,52 @@
+@esui-richselector-node-icon-color: #6CCDC0;
+@esui-richselector-node-delete-icon-color: red;
+
+.@{ui-class-prefix}-treerichselector {
+    .@{ui-class-prefix}-tree-content-wrapper {
+        position: relative;
+    }
+    .@{ui-class-prefix}-tree-content-wrapper:before {
+        display: none;
+        position: absolute;
+        right: 1em;
+        top: 50%;
+        margin-top: -.5em;
+        color: @esui-richselector-node-icon-color;
+        .eicons-font-style();
+        content: '';
+    }
+
+    .@{ui-class-prefix}-tree-content-wrapper-selected:before {
+        .eicons-icon-content(check) !important;
+        display: inline-block;
+    }
+
+    // 添加
+    &.@{ui-state-prefix}-add {
+        .@{ui-class-prefix}-tree-content-wrapper:hover:before {
+            .eicons-icon-content(arrow-right);
+            display: inline-block;
+        }
+    }
+
+    // 删除型
+    &.@{ui-state-prefix}-delete {
+        .@{ui-class-prefix}-tree-content-wrapper:hover:before {
+            .eicons-icon-content(close);
+            display: inline-block;
+            color: @esui-richselector-node-delete-icon-color;
+        }
+    }
+
+    // 隐藏icon
+    &.@{ui-state-prefix}-no-hover-icon {
+        .@{ui-class-prefix}-tree-content-wrapper:hover:before {
+            display: none;
+        }
+        .@{ui-class-prefix}-tree-content-wrapper-selected:hover:before {
+            display: inline-block;
+        }
+    }
+}
+
+

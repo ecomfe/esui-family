@@ -1,0 +1,69 @@
+@esui-filter-line-height: 2;
+
+@esui-filter-item-padding: .3em .5em;
+@esui-filter-item-margin: 0 0.5em;
+@esui-filter-item-color: #333;
+
+@esui-filter-item-hover-color: #FFF;
+@esui-filter-item-hover-background: #96A9B5;
+
+@esui-filter-item-active-background: #698496;
+@esui-filter-item-active-color: #FFF;
+
+@esui-filter-cmd-color: #FFF;
+@esui-filter-cmd-hover-color: #FFF;
+@esui-filter-cmd-background: #7BC2F1;
+@esui-filter-cmd-hover-background: #7BC2F1;
+
+.@{ui-class-prefix}-filter,
+.@{ui-class-prefix}-filterresult {
+    line-height: @esui-filter-line-height;
+    display: block;
+}
+
+.@{ui-class-prefix}-filter-items-panel,
+.@{ui-class-prefix}-filterresult-items-panel {
+    display: inline-block;
+}
+
+.@{ui-class-prefix}-filter-item,
+.@{ui-class-prefix}-filterresult-item {
+    margin: @esui-filter-item-margin;
+    padding: @esui-filter-item-padding;
+    text-decoration: none !important;
+    white-space: nowrap;
+
+    color: @esui-filter-item-color;
+    &:hover {
+        background: @esui-filter-item-hover-background;
+        color: @esui-filter-item-hover-color;
+    }
+}
+
+.@{ui-class-prefix}-filter-item-active,
+.@{ui-class-prefix}-filterresult-item {
+    background: @esui-filter-item-active-background !important;
+    color: @esui-filter-item-active-color !important;
+}
+
+.@{ui-class-prefix}-filter-item-cmd {
+    text-decoration: none;
+    margin: 0 0.5em;
+    padding: 0.25em;
+    white-space: nowrap;
+
+    background: @esui-filter-cmd-background;
+    color: @esui-filter-cmd-color;
+    &:hover {
+        color: @esui-filter-cmd-hover-color;
+        background: @esui-filter-cmd-hover-background;
+        text-decoration: none;
+    }
+}
+
+.@{ui-class-prefix}-filterresult-remove {
+    &:before {
+        .eicons-icon-content(remove);
+        margin-left: 0.2em;
+    }
+}

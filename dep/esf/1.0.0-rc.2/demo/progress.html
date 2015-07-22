@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Progress - ESF Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/site.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../legacy/ie8-compatible.css" />
+        <![endif]-->
+        <link rel="stylesheet" href="assets/google-code-prettify/prettify.css" />
+    </head>
+    <body class="ui-m3">
+        <div id="layout" class="ui-g">
+            <div class="ui-u-1-5">
+                <ul id="navigator-features" class="ui-list-unstyled">
+                    <li><a href="#default">Default progress bar</a></li>
+                    <li><a href="#withLabel">With label</a></li>
+                    <li><a href="#lowPercentages">Low percentages</a></li>
+                    <li><a href="#contextual">Contextual alternatives</a></li>
+                    <li><a href="#striped">Striped</a></li>
+                    <li><a href="#animated">Animated</a></li>
+                    <li><a href="#size">Size modifiers</a></li>
+                    <li><a href="#stacked">Stacked</a></li>
+                </ul>
+            </div>
+            <div class="ui-u-4-5">
+                <div id="main-header">
+                    <h1>进度条（Progress）</h1>
+                    <hr />
+                </div>
+                <div id="main" class="content">
+                    <h2 id="default">Default progress bar</h2>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar" style="width: 60%;"></div>
+                        </div>
+                    </div>
+                    
+                    <h2 id="withLabel">With label</h2>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar" style="width: 60%;">60%</div>
+                        </div>
+                    </div>
+                    
+                    <h2 id="lowPercentages">Low percentages</h2>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar">0%</div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar" style="width: 2%;">2%</div>
+                        </div>
+                    </div>
+                    
+                    <h2 id="contextual">Contextual alternatives</h2>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-success" style="width: 40%;"></div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-info" style="width: 50%;"></div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-warning" style="width: 20%;"></div>
+                        </div>
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-danger" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                    
+                    <h2 id="striped">Striped</h2>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-striped" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    
+                    <h2 id="animated">Animated</h2>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-striped ui-progress-bar-animated" style="width: 40%;"></div>
+                        </div>
+                    </div>
+                    
+                    <h2 id="size">Size modifiers</h2>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-small ui-progress-bar-striped ui-progress-bar-animated" style="width: 20%;">20%</div>
+                        </div>
+                         <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-striped ui-progress-bar-animated" style="width: 30%;">30%</div>
+                        </div>
+                         <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-large ui-progress-bar-striped ui-progress-bar-animated" style="width: 50%;">50%</div>
+                        </div>
+                    </div>
+                    
+                    <h2 id="stacked">Stacked</h2>
+                    <div class="example">
+                        <div class="ui-progress">
+                            <div class="ui-progress-bar ui-progress-bar-success ui-progress-bar-striped ui-progress-bar-animated" style="width: 20%;">20%</div>
+                            <div class="ui-progress-bar ui-progress-bar-warning ui-progress-bar-striped ui-progress-bar-animated" style="width: 30%;">30%</div>
+                            <div class="ui-progress-bar ui-progress-bar-info ui-progress-bar-striped ui-progress-bar-animated" style="width: 10%;">10%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="assets/google-code-prettify/prettify.js"></script>
+        <script src="assets/jquery-1.11.1.min.js"></script>
+        <script src="assets/demo.js"></script>
+    </body>
+</html>

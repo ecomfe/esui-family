@@ -1,0 +1,209 @@
+// button core
+@import "../../src/button.less";
+
+// theme variable
+@import "variable.less";
+
+// core variables
+@esui-button-font-family: @esui-global-font-family;
+@esui-button-height: @esui-single-line-control-height;
+@esui-button-line-height: @esui-single-line-control-height;
+@esui-button-link-color: @esui-palette-link-color;
+@esui-button-link-hover-color: @esui-palette-link-hover-color;
+
+// theme variables
+@esui-button-text-color: @esui-palette-color;
+@esui-button-background-color: @esui-palette-neutral-color;
+@esui-button-hover-background-color: @esui-palette-neutral-highlight-color;
+@esui-button-active-background-color: @esui-palette-neutral-shadow-color;
+@esui-button-focus-background-color: @esui-palette-neutral-highlight-color;
+
+// primary button
+@esui-button-primary-text-color: @esui-palette-contrast-color;
+@esui-button-primary-background-color: @esui-palette-primary-color;
+@esui-button-primary-hover-background-color: @esui-palette-primary-highlight-color;
+@esui-button-primary-active-background-color: @esui-palette-primary-shadow-color;
+@esui-button-primary-focus-background-color: @esui-palette-primary-highlight-color;
+
+// success button
+@esui-button-success-text-color: @esui-palette-contrast-color;
+@esui-button-success-background-color: @esui-palette-success-color;
+@esui-button-success-hover-background-color: @esui-palette-success-highlight-color;
+@esui-button-success-active-background-color: @esui-palette-success-shadow-color;
+@esui-button-success-focus-background-color: @esui-palette-success-highlight-color;
+
+// info button
+@esui-button-info-text-color: @esui-palette-contrast-color;
+@esui-button-info-background-color: @esui-palette-info-color;
+@esui-button-info-hover-background-color: @esui-palette-info-highlight-color;
+@esui-button-info-active-background-color: @esui-palette-info-shadow-color;
+@esui-button-info-focus-background-color: @esui-palette-info-highlight-color;
+
+@esui-button-warning-text-color: @esui-palette-contrast-color;
+@esui-button-warning-background-color: @esui-palette-warning-color;
+@esui-button-warning-hover-background-color: @esui-palette-warning-highlight-color;
+@esui-button-warning-active-background-color: @esui-palette-warning-shadow-color;
+@esui-button-warning-focus-background-color: @esui-palette-warning-highlight-color;
+
+// danger button
+@esui-button-danger-text-color: @esui-palette-contrast-color;
+@esui-button-danger-background-color: @esui-palette-danger-color;
+@esui-button-danger-hover-background-color: @esui-palette-danger-highlight-color;
+@esui-button-danger-active-background-color: @esui-palette-danger-shadow-color;
+@esui-button-danger-focus-background-color: @esui-palette-danger-highlight-color;
+
+// bordered button variant
+@esui-button-bordered-border-color: @esui-palette-border;
+@esui-button-bordered-background: @esui-palette-white;
+@esui-button-bordered-color: @esui-palette-color;
+
+@esui-button-bordered-focus-border-color: @esui-palette-primary-color;
+@esui-button-bordered-focus-background: @esui-palette-white;
+@esui-button-bordered-focus-color: @esui-palette-color;
+
+@esui-button-group-separator-color: @esui-palette-contrast-color;
+
+.esui-button-variant(
+    @text-color,
+    @background-color,
+    @hover-background-color,
+    @active-background-color,
+    @focus-background-color
+) {
+    color: @text-color;
+    background-color: @background-color;
+    &:hover,
+    &.@{ui-state-prefix}-hover {
+        background-color: @hover-background-color;
+        color: @text-color;
+    }
+    &:focus,
+    &.@{ui-state-prefix}-focus {
+        background-color: @focus-background-color;
+    }
+    &:active,
+    &.@{ui-state-prefix}-active {
+        background-color: @active-background-color;
+    }
+}
+
+// only a shortcut for pure color buttons.
+.esui-button-variant(
+    @text-color,
+    @background-color
+) {
+    .esui-button-variant(
+        @text-color,
+        @background-color,
+        lighten(@background-color, 5%),
+        darken(@background-color, 10%),
+        lighten(@background-color, 5%)
+    );
+}
+
+.esui-button-theme() {
+    .esui-button-variant(
+        @esui-button-text-color,
+        @esui-button-background-color,
+        @esui-button-hover-background-color,
+        @esui-button-active-background-color,
+        @esui-button-focus-background-color
+    );
+}
+
+.esui-button-primary-theme() {
+    .esui-button-variant(
+        @esui-button-primary-text-color,
+        @esui-button-primary-background-color,
+        @esui-button-primary-hover-background-color,
+        @esui-button-primary-active-background-color,
+        @esui-button-primary-focus-background-color
+    );
+}
+
+.esui-button-primary-inverted-theme() {
+    color: @esui-button-primary-background-color;
+    background: none;
+    border: 1px solid @esui-button-primary-background-color;
+    &:hover,
+    &.@{ui-state-prefix}-hover {
+        border-color: @esui-button-primary-hover-background-color;
+        color: @esui-button-primary-hover-background-color;
+    }
+    &:focus,
+    &.@{ui-state-prefix}-focus {
+        border-color: @esui-button-primary-hover-background-color;
+        color: @esui-button-primary-hover-background-color;
+    }
+    &:active,
+    &.@{ui-state-prefix}-active {
+        background: @esui-button-primary-active-background-color;
+        color: @esui-button-primary-text-color;
+    }
+}
+
+.esui-button-success-theme() {
+    .esui-button-variant(
+        @esui-button-success-text-color,
+        @esui-button-success-background-color,
+        @esui-button-success-hover-background-color,
+        @esui-button-success-active-background-color,
+        @esui-button-success-focus-background-color
+    );
+}
+
+.esui-button-info-theme() {
+    .esui-button-variant(
+        @esui-button-info-text-color,
+        @esui-button-info-background-color,
+        @esui-button-info-hover-background-color,
+        @esui-button-info-active-background-color,
+        @esui-button-info-focus-background-color
+    );
+}
+
+.esui-button-warning-theme() {
+    .esui-button-variant(
+        @esui-button-warning-text-color,
+        @esui-button-warning-background-color,
+        @esui-button-warning-hover-background-color,
+        @esui-button-warning-active-background-color,
+        @esui-button-warning-focus-background-color
+    );
+}
+
+.esui-button-danger-theme() {
+    .esui-button-variant(
+        @esui-button-danger-text-color,
+        @esui-button-danger-background-color,
+        @esui-button-danger-hover-background-color,
+        @esui-button-danger-active-background-color,
+        @esui-button-danger-focus-background-color
+    );
+}
+
+.esui-button-bordered-theme() {
+    .esui-input-color-def(
+        @esui-button-bordered-border-color,
+        @esui-button-bordered-background,
+        @esui-button-bordered-color
+    );
+    .@{ui-state-prefix}-focus & {
+        .esui-input-color-def(
+            @esui-button-bordered-focus-border-color,
+            @esui-button-bordered-focus-background,
+            @esui-button-bordered-focus-color
+        );
+    }
+}
+
+.esui-button-group-theme() {
+    &.@{ui-class-prefix}-button-group-separated {
+        .@{ui-class-prefix}-button {
+            margin-left: 0;
+            &:not(:last-child) {
+                border-right: 1px solid @esui-button-group-separator-color;
+            }
+        }
+    }
+}

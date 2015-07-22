@@ -1,0 +1,66 @@
+// button core
+@import "../../src/navbar.less";
+
+// theme variable
+@import "variable.less";
+
+// core variables
+@esui-navbar-font-family: @esui-global-heading-font-family;
+
+// theme variables
+@esui-navbar-background: @esui-palette-primary-color;
+@esui-navbar-text-color: @esui-palette-contrast-color;
+
+@esui-navbar-content-link-color: @esui-palette-contrast-color;
+@esui-navbar-content-link-hover-color: @esui-palette-contrast-color;
+
+@esui-navbar-content-text-color: @esui-palette-contrast-color;
+@esui-navbar-content-icon-color: @esui-palette-contrast-color;
+@esui-navbar-content-icon-padding: 0 .5em;
+
+@esui-navbar-nav-item-color: @esui-palette-contrast-color;
+
+@esui-navbar-nav-item-hover-background: @esui-palette-primary-highlight-color;
+@esui-navbar-nav-item-hover-color: @esui-palette-contrast-color;
+
+@esui-navbar-nav-item-active-background:  @esui-palette-primary-shadow-color;
+@esui-navbar-nav-item-active-color: @esui-palette-contrast-color;
+
+.esui-navbar-theme() {
+    background: @esui-navbar-background;
+    color: @esui-navbar-text-color;
+}
+
+.esui-navbar-content-link-theme() {
+    text-decoration: none;
+    color: @esui-navbar-content-link-color;
+    &:hover,
+    &:focus{
+        color: @esui-navbar-content-link-hover-color;
+        text-decoration: none;
+    }
+}
+
+.esui-navbar-content-text-theme() {
+    color: @esui-navbar-content-text-color;
+}
+
+.esui-navbar-content-icon-theme() {
+    color: @esui-navbar-content-icon-color;
+    padding: @esui-navbar-content-icon-padding;
+}
+
+.esui-navbar-nav-item-theme() {
+    color: @esui-navbar-nav-item-color;
+    text-decoration: none;
+}
+
+.esui-navbar-nav-item-hover-theme() {
+    background: @esui-navbar-nav-item-hover-background;
+    color: @esui-navbar-nav-item-hover-color;
+}
+
+.esui-navbar-nav-item-active-theme() {
+    background: @esui-navbar-nav-item-active-background;
+    color: @esui-navbar-nav-item-active-color;
+}

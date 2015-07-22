@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>Lightbox - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI Lightbox</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>Lightbox</h2>
+            <p>LightBox</p>
+            <div class="example">
+                <div id="image-container">
+                    <a href="http://getuikit.com/docs/images/placeholder_800x600_2.jpg" data-lightbox-group="group-1" data-lightbox-width="200" data-lightbox-height="200">
+                        <img alt="demoImg" src="http://getuikit.com/docs/images/placeholder_800x600_2.jpg" width="100" height="100"/>
+                    </a>
+                    <a href="http://getuikit.com/docs/images/placeholder_800x600_1.jpg" data-lightbox-group="group-1">
+                        <img alt="demoImg" src="http://getuikit.com/docs/images/placeholder_800x600_1.jpg" width="100" height="100"/>
+                    </a>
+                    <a href="http://file.ynet.com/2/1503/23/9928834.jpg" data-lightbox-group="group-1">
+                        <img alt="demoImg" src="http://file.ynet.com/2/1503/23/9928834.jpg" width="100" height="100"/>
+                    </a>
+                    <a data-lightbox-width="500" data-lightbox-height="500" href="assets/coco_tree.swf" data-lightbox-group="group-1">
+                        Flash
+                    </a>
+                    <a data-lightbox-width="500" data-lightbox-height="500" href="http://bs.baidu.com/dspvideo/20150615/206697ed-2776-495b-bfae-0344be58ea6d.flv" data-lightbox-group="group-1">
+                        Video
+                    </a>
+                </div>
+
+                <div data-ui-type="LightBox"
+                    data-ui-id="box3"
+                    data-ui-title="Hi Baby, this is multiple media."
+                    data-ui-group="group-1"
+                    data-ui-group-container-id="image-container"
+                    data-ui-swf-path="../resource/video-preview-player.swf"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/LightBox',
+            'demo',
+            'esui/Tab'
+        ],
+        function (ui) {
+            ui.init();
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>
