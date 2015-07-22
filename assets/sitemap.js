@@ -149,7 +149,7 @@ define('sitemap', ['jquery'], function ($) {
         }
 
         if (window.location.pathname.indexOf("css") > 0) {
-            url = '../dep/esf/1.0.0-rc.2/demo/' + control + '.html';
+            url = '../dep/esf/1.0.0-rc.2/demo/' + control.toLowerCase() + '.html';
         }
         
         $.ajax({
