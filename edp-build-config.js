@@ -52,7 +52,7 @@ exports.getProcessors = function () {
             getCombineConfig: function () {
                 var config = {
                     'build/ui': {
-                        files: ['~ub-ria-ui', '~esui', '~mini-event', '~moment', '~etpl', '~eoo', '~underscore']
+                        files: ['~ub-ria-ui', '~esui', '~moment', '~etpl', '~eoo', '~underscore']
                     }
                 }
 
