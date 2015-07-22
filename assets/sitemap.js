@@ -100,7 +100,7 @@ define('sitemap', ['jquery'], function ($) {
 
         // 样式集合列表
         navItems = '<li class="ui-nav-item-header">样式集合</li>' +
-            '<li><a href="?control=Button">Button</a></li>' +
+            '<li><a href="?control=button">Button</a></li>' +
             '<li><a href="?control=checkbox">Checkbox</a></li>' +
             '<li><a href="?control=dropdown">Dropdown</a></li>' +
             '<li><a href="?control=form">Form</a></li>' +
