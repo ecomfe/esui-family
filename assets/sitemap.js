@@ -28,7 +28,7 @@ define('sitemap', ['jquery'], function ($) {
     }
 
     function footer() {
-        var footHtml = '<p class="ui-text-center contrast">HI群：1392158</p>';
+        var footHtml = '<p class="ui-text-center contrast">HI群：1401953</p>';
         $('.footer').html(footHtml);
     }
 
