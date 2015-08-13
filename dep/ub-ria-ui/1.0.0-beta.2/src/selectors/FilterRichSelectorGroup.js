@@ -17,7 +17,7 @@ define(
          * --- 一个Add型富选择器（必选）
          * --- 一个Delete型富选择器（可选）
          * 组成
-         * 
+         *
          * 支持根据Load型选择器的选择动态加载备选资源的交互
          *
          * 三个选择控件的类型以及配置由使用者通过模板自行定义，详情参见demo
@@ -60,7 +60,6 @@ define(
             u.each(
                 selectors,
                 function (selector) {
-                    var main = selector.main;
                     var role = selector.main.getAttribute('data-ui-role');
                     if (role) {
                         this[role] = selector;
@@ -71,7 +70,7 @@ define(
 
             // 绑事件
             this.filter.on(
-                'load', 
+                'load',
                 function (e) {
                     var event = this.fire('load', {item: e.item});
                     var data = event.data;
@@ -84,7 +83,7 @@ define(
                         this
                     );
 
-                    this.source.setProperties({datasource: data, selectedData:　selectedItems});
+                    this.source.setProperties({datasource: data, selectedData: selectedItems});
                 },
                 this
             );
@@ -191,10 +190,10 @@ define(
         };
 
         exports.getRawValue = function () {
-             if (this.target) {
+            if (this.target) {
                 return this.target.getRawValue();
-             }
-             return this.rawValue;
+            }
+            return this.rawValue;
         };
 
         var FilterRichSelectorGroup = require('eoo').create(Panel, exports);

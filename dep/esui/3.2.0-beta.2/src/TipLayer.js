@@ -357,7 +357,6 @@ define(
                                 enableOutsideClickHide.call(me, handler);
                             },
 
-
                             /**
                              * 取消外部点击隐藏
                              */

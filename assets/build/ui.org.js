@@ -11465,7 +11465,7 @@ define('esui/behavior/position', [
     var max = Math.max;
     var abs = Math.abs;
     var round = Math.round;
-    var _position = $.fn.position;
+    var jqPosition = $.fn.position;
     var supportsOffsetFractions = function () {
         var element = $('<div>').css('position', 'absolute').appendTo('body').offset({
                 top: 1.5,
@@ -11690,7 +11690,7 @@ define('esui/behavior/position', [
         };
     $.fn.position = function (options, element) {
         if (!options || !options.of) {
-            return _position.apply(this, arguments);
+            return jqPosition.apply(this, arguments);
         }
         if (!this instanceof $ && element) {
             return $(element).position(options);
@@ -11931,7 +11931,9 @@ define('esui/Layer', [
                     $(document).off('mousedown', this.docClickHandler);
                     this.docClickHandler = null;
                 }
-                this.fire('hide');
+                if (!silent) {
+                    this.fire('hide');
+                }
                 this.control.removeState('active');
             },
             show: function () {
@@ -12324,9 +12326,6 @@ define('esui/behavior/keyboard', [
     ], function (eventName) {
         $.event.special[eventName] = { add: keyHandler };
     });
-    var filterInputAcceptingElements = true;
-    var filterTextInputs = true;
-    var filterContentEditable = true;
     var exports = {
             setFilterInputAcceptingElements: function (bool) {
                 filterInputAcceptingElements = bool;
@@ -13463,7 +13462,7 @@ define('esui/InputControl', [
                 this.showValidity(validity);
             },
             dispose: function () {
-                if (this.helper.isInStage(this, 'DISPOSED')) {
+                if (this.helper.isInStage('DISPOSED')) {
                     return;
                 }
                 var validityLabel = this.getValidityLabel(true);
@@ -13507,7 +13506,7 @@ define('esui/behavior/textchange', [
             return;
         }
         activeElementValue = value;
-        var event = $.Event(nativeEvent);
+        var event = new $.Event(nativeEvent);
         event.type = 'textchange';
         $(activeElement).trigger(event);
     };
@@ -13560,7 +13559,6 @@ define('esui/TextBox', [
     'eoo',
     './main',
     'underscore',
-    'jquery',
     './lib',
     './InputControl',
     './painters',
@@ -13569,7 +13567,6 @@ define('esui/TextBox', [
     var eoo = require('eoo');
     var esui = require('./main');
     var u = require('underscore');
-    var $ = require('jquery');
     var lib = require('./lib');
     var InputControl = require('./InputControl');
     var supportPlaceholder = 'placeholder' in document.createElement('input');
@@ -13971,7 +13968,7 @@ define('esui/behavior/Base', [
             init: function () {
             },
             trigger: function (type, event, data) {
-                event = $.Event(event);
+                event = new $.Event(event);
                 event.type = (this.customEventPrefix + type).toLowerCase();
                 event.target = this.element[0];
                 var orig = event.originalEvent;
@@ -14030,7 +14027,6 @@ define('esui/behavior/Base', [
                     typeName = this.type;
                 }
                 styleType = styleType || '';
-                var options = me.options;
                 var classes = [];
                 u.each(styleType.split(/\s+/g), function (type) {
                     var result;
@@ -14111,6 +14107,62 @@ define('esui/behavior/Base', [
     return Base;
 });
 
+define('esui/behavior/util', [
+    'require',
+    'jquery'
+], function (require) {
+    var $ = require('jquery');
+    $.fn.extend({
+        scrollParent: function (includeHidden) {
+            var position = this.css('position');
+            var excludeStaticParent = position === 'absolute';
+            var overflowRegex = includeHidden ? /(auto|scroll|hidden)/ : /(auto|scroll)/;
+            var scrollParent = this.parents().filter(function () {
+                    var parent = $(this);
+                    if (excludeStaticParent && parent.css('position') === 'static') {
+                        return false;
+                    }
+                    return overflowRegex.test(parent.css('overflow') + parent.css('overflow-y') + parent.css('overflow-x'));
+                }).eq(0);
+            return position === 'fixed' || !scrollParent.length ? $(this[0].ownerDocument || document) : scrollParent;
+        },
+        disableSelection: function () {
+            var eventType = 'onselectstart' in document.createElement('div') ? 'selectstart' : 'mousedown';
+            return function () {
+                return this.on(eventType + '.esui-disableSelection', function (event) {
+                    event.preventDefault();
+                });
+            };
+        }(),
+        enableSelection: function () {
+            return this.off('.esui-disableSelection');
+        }
+    });
+    return {
+        safeActiveElement: function (document) {
+            var activeElement;
+            try {
+                activeElement = document.activeElement;
+            } catch (error) {
+                activeElement = document.body;
+            }
+            if (!activeElement) {
+                activeElement = document.body;
+            }
+            if (!activeElement.nodeName) {
+                activeElement = document.body;
+            }
+            return activeElement;
+        },
+        safeBlur: function (element) {
+            if (element && element.nodeName.toLowerCase() !== 'body') {
+                $(element).blur();
+            }
+        },
+        ie: !!/msie [\w.]+/.exec(navigator.userAgent.toLowerCase())
+    };
+});
+
 define('esui/behavior/bridge', [
     'require',
     'jquery'
@@ -14168,55 +14220,85 @@ define('esui/behavior/Mouse', [
     'jquery',
     'underscore',
     './Base',
+    './util',
     'eoo',
     './bridge'
 ], function (require) {
     var $ = require('jquery');
     var u = require('underscore');
     var Base = require('./Base');
+    var util = require('./util');
+    var eoo = require('eoo');
+    var bridge = require('./bridge');
+    var type = 'mouse';
     var mouseHandled = false;
     $(document).mouseup(function () {
         mouseHandled = false;
     });
-    var exports = {};
-    exports.type = 'mouse';
-    exports.constructor = function (options, element) {
-        options = u.extend({
-            cancel: 'input, textarea, button, select, option',
-            distance: 1,
-            delay: 0
-        }, options);
-        this.$super([
-            options,
-            element
-        ]);
-        this.mouseDownEvent = null;
-        this.mouseMoved = false;
-        this.customEventPrefix = 'mouse';
-    };
-    exports.init = function () {
-        this.$super(arguments);
-        var me = this;
-        var element = $(this.element)[0];
-        element = $(element);
-        element.bind('mousedown.' + this.type, function (event) {
-            return mouseDown.call(me, event);
-        }).bind('click.' + this.type, function (event) {
-            if (true === $.data(event.target, me.type + '.preventClickEvent')) {
-                $.removeData(event.target, me.type + '.preventClickEvent');
-                event.stopImmediatePropagation();
+    var Mouse = eoo.create(Base, {
+            type: type,
+            constructor: function (options, element) {
+                options = u.extend({
+                    cancel: 'input, textarea, button, select, option',
+                    distance: 1,
+                    delay: 0
+                }, options);
+                this.$super([
+                    options,
+                    element
+                ]);
+                this.mouseDownEvent = null;
+                this.mouseMoved = false;
+                this.customEventPrefix = 'mouse';
+            },
+            init: function () {
+                this.$super(arguments);
+                var me = this;
+                var element = $(this.element)[0];
+                element = $(element);
+                element.bind('mousedown.' + this.type, function (event) {
+                    return mouseDown.call(me, event);
+                }).bind('click.' + this.type, function (event) {
+                    if (true === $.data(event.target, me.type + '.preventClickEvent')) {
+                        $.removeData(event.target, me.type + '.preventClickEvent');
+                        event.stopImmediatePropagation();
+                        return false;
+                    }
+                });
+                this.started = false;
+            },
+            dispose: function () {
+                this.element.unbind('.' + this.type);
+                if (this.mouseMoveDelegate) {
+                    this.document.unbind('mousemove.' + this.type, this.mouseMoveDelegate).unbind('mouseup.' + this.type, this.mouseUpDelegate);
+                }
+                this.$super(arguments);
+            },
+            mouseUp: function (event) {
+                this.document.unbind('mousemove.' + this.type, this.mouseMoveDelegate).unbind('mouseup.' + this.type, this.mouseUpDelegate);
+                if (this.mouseStarted) {
+                    this.mouseStarted = false;
+                    if (event.target === this.mouseDownEvent.target) {
+                        $.data(event.target, this.type + '.preventClickEvent', true);
+                    }
+                    this.mouseStop(event);
+                }
+                mouseHandled = false;
                 return false;
+            },
+            mouseCapture: function (event) {
+                return this.trigger('capture', event);
+            },
+            mouseStart: function (event) {
+                return this.trigger('start', event);
+            },
+            mouseDrag: function (event) {
+                this.trigger('drag', event);
+            },
+            mouseStop: function (event) {
+                this.trigger('stop', event);
             }
         });
-        this.started = false;
-    };
-    exports.dispose = function () {
-        this.element.unbind('.' + this.type);
-        if (this.mouseMoveDelegate) {
-            this.document.unbind('mousemove.' + this.type, this.mouseMoveDelegate).unbind('mouseup.' + this.type, this.mouseUpDelegate);
-        }
-        this.$super(arguments);
-    };
     function mouseDown(event) {
         if (mouseHandled) {
             return;
@@ -14259,8 +14341,7 @@ define('esui/behavior/Mouse', [
     }
     function mouseMove(event) {
         if (this.mouseMoved) {
-            var ie = !-[1];
-            if (ie && (!document.documentMode || document.documentMode < 9) && !event.button) {
+            if (util.ie && (!document.documentMode || document.documentMode < 9) && !event.button) {
                 return this.mouseUp(event);
             } else if (!event.which) {
                 return this.mouseUp(event);
@@ -14279,38 +14360,13 @@ define('esui/behavior/Mouse', [
         }
         return !this.mouseStarted;
     }
-    exports.mouseUp = function (event) {
-        this.document.unbind('mousemove.' + this.type, this.mouseMoveDelegate).unbind('mouseup.' + this.type, this.mouseUpDelegate);
-        if (this.mouseStarted) {
-            this.mouseStarted = false;
-            if (event.target === this.mouseDownEvent.target) {
-                $.data(event.target, this.type + '.preventClickEvent', true);
-            }
-            this.mouseStop(event);
-        }
-        mouseHandled = false;
-        return false;
-    };
     function mouseDistanceMet(event) {
         return Math.max(Math.abs(this.mouseDownEvent.pageX - event.pageX), Math.abs(this.mouseDownEvent.pageY - event.pageY)) >= this.options.distance;
     }
     function mouseDelayMet() {
         return this.mouseDelayMet;
     }
-    exports.mouseCapture = function (event) {
-        return this.trigger('capture', event);
-    };
-    exports.mouseStart = function (event) {
-        return this.trigger('start', event);
-    };
-    exports.mouseDrag = function (event) {
-        this.trigger('drag', event);
-    };
-    exports.mouseStop = function (event) {
-        this.trigger('stop', event);
-    };
-    var Mouse = require('eoo').create(Base, exports);
-    require('./bridge')(exports.type, Mouse);
+    bridge(type, Mouse);
     return Mouse;
 });
 
@@ -16316,62 +16372,6 @@ define('ub-ria-ui/helper/swfHelper', [
             return $this;
         };
     }(jQuery, 'flash', navigator.plugins['Shockwave Flash'] || window.ActiveXObject));
-});
-
-define('esui/behavior/util', [
-    'require',
-    'jquery'
-], function (require) {
-    var $ = require('jquery');
-    $.fn.extend({
-        scrollParent: function (includeHidden) {
-            var position = this.css('position');
-            var excludeStaticParent = position === 'absolute';
-            var overflowRegex = includeHidden ? /(auto|scroll|hidden)/ : /(auto|scroll)/;
-            var scrollParent = this.parents().filter(function () {
-                    var parent = $(this);
-                    if (excludeStaticParent && parent.css('position') === 'static') {
-                        return false;
-                    }
-                    return overflowRegex.test(parent.css('overflow') + parent.css('overflow-y') + parent.css('overflow-x'));
-                }).eq(0);
-            return position === 'fixed' || !scrollParent.length ? $(this[0].ownerDocument || document) : scrollParent;
-        },
-        disableSelection: function () {
-            var eventType = 'onselectstart' in document.createElement('div') ? 'selectstart' : 'mousedown';
-            return function () {
-                return this.on(eventType + '.esui-disableSelection', function (event) {
-                    event.preventDefault();
-                });
-            };
-        }(),
-        enableSelection: function () {
-            return this.off('.esui-disableSelection');
-        }
-    });
-    return {
-        safeActiveElement: function (document) {
-            var activeElement;
-            try {
-                activeElement = document.activeElement;
-            } catch (error) {
-                activeElement = document.body;
-            }
-            if (!activeElement) {
-                activeElement = document.body;
-            }
-            if (!activeElement.nodeName) {
-                activeElement = document.body;
-            }
-            return activeElement;
-        },
-        safeBlur: function (element) {
-            if (element && element.nodeName.toLowerCase() !== 'body') {
-                $(element).blur();
-            }
-        },
-        ie: !!/msie [\w.]+/.exec(navigator.userAgent.toLowerCase())
-    };
 });
 
 define('esui/behavior/Draggable', [
@@ -19066,7 +19066,6 @@ define('ub-ria-ui/selectors/FilterRichSelectorGroup', [
         this.helper.initChildren();
         var selectors = this.children;
         u.each(selectors, function (selector) {
-            var main = selector.main;
             var role = selector.main.getAttribute('data-ui-role');
             if (role) {
                 this[role] = selector;
@@ -19763,12 +19762,10 @@ define('esui/TreeStrategy', [
 
 define('ub-ria-ui/selectors/SelectorTreeStrategy', [
     'require',
-    'esui/lib',
     'esui/TreeStrategy',
     'eoo',
     'underscore'
 ], function (require) {
-    var lib = require('esui/lib');
     var TreeStrategy = require('esui/TreeStrategy');
     var eoo = require('eoo');
     var u = require('underscore');
@@ -20370,11 +20367,16 @@ define('ub-ria-ui/TogglePanel', [
             }
         });
     function initTitle(titleElem) {
-        var titlePanel = esui.create('Panel', { main: titleElem });
+        var options = {
+                main: titleElem,
+                childName: 'title',
+                viewContext: this.viewContext,
+                renderOptions: this.renderOptions
+            };
+        var titlePanel = ui.create('Panel', options);
         this.helper.addPartClasses('title', titlePanel.main);
         this.addChild(titlePanel, 'title');
         titlePanel.render();
-        this.set('title', titleElem && titleElem.innerHTML);
     }
     function initContentPanel(contentElem) {
         var options = {
@@ -20400,6 +20402,10 @@ define('ub-ria-ui/TogglePanel', [
         layer.autoCloseExcludeElements = [titleElem];
     }
     function onToggle() {
+        var e = this.fire('beforetoggle');
+        if (e.isDefaultPrevented()) {
+            return;
+        }
         this.toggleContent();
     }
     esui.register(TogglePanel);
@@ -20410,14 +20416,12 @@ define('ub-ria-ui/selectors/ToggleSelector', [
     'require',
     'jquery',
     'esui',
-    'esui/lib',
     'underscore',
     '../TogglePanel',
     'eoo'
 ], function (require) {
     var $ = require('jquery');
     var esui = require('esui');
-    var lib = require('esui/lib');
     var u = require('underscore');
     var TogglePanel = require('../TogglePanel');
     var eoo = require('eoo');
@@ -21907,7 +21911,6 @@ define('ub-ria-ui/Spinner', [
     var u = require('underscore');
     var m = require('moment');
     var ui = require('esui');
-    var u = require('underscore');
     var painters = require('esui/painters');
     var $ = require('jquery');
     require('esui/behavior/mousewheel');
@@ -22812,7 +22815,8 @@ define('esui/BoxGroup', [
     var $ = require('jquery');
     var painters = require('./painters');
     var esui = require('./main');
-    var BoxGroup = require('eoo').create(InputControl, {
+    var eoo = require('eoo');
+    var BoxGroup = eoo.create(InputControl, {
             type: 'BoxGroup',
             initOptions: function (options) {
                 var properties = {
@@ -23542,6 +23546,556 @@ define('esui/Crumb', [
     return Crumb;
 });
 
+define('esui/TipLayer', [
+    'require',
+    './Button',
+    './Label',
+    './Panel',
+    'jquery',
+    './behavior/position',
+    'eoo',
+    './main',
+    'underscore',
+    './lib',
+    './Control',
+    './painters',
+    './Layer'
+], function (require) {
+    require('./Button');
+    require('./Label');
+    require('./Panel');
+    var $ = require('jquery');
+    require('./behavior/position');
+    var eoo = require('eoo');
+    var esui = require('./main');
+    var u = require('underscore');
+    var lib = require('./lib');
+    var Control = require('./Control');
+    var painters = require('./painters');
+    var Layer = require('./Layer');
+    var TipLayer = eoo.create(Control, {
+            type: 'TipLayer',
+            initOptions: function (options) {
+                parseMain(options);
+                var properties = {
+                        roles: {},
+                        showMode: 'manual'
+                    };
+                u.extend(properties, TipLayer.defaultProperties, options);
+                this.setProperties(properties);
+            },
+            initStructure: function () {
+                $(this.main).appendTo(this.appendToElement);
+                this.addState('hidden');
+                if (this.title || this.roles.title) {
+                    createHead(this, this.roles.title);
+                }
+                createBF(this, 'body', this.roles.content);
+                if (this.foot || this.roles.foot) {
+                    createBF(this, 'foot', this.roles.foot);
+                }
+            },
+            repaint: painters.createRepaint(Control.prototype.repaint, painters.style('width'), {
+                name: 'title',
+                paint: function (tipLayer, value) {
+                    var head = tipLayer.getHead();
+                    if (value == null) {
+                        if (head) {
+                            tipLayer.removeChild(head);
+                        }
+                    } else {
+                        if (!head) {
+                            head = createHead(tipLayer);
+                        }
+                        head.setText(value);
+                    }
+                }
+            }, {
+                name: 'content',
+                paint: function (tipLayer, value) {
+                    var bfTpl = '' + '<div class="${class}" id="${id}">' + '${content}' + '</div>';
+                    var body = tipLayer.getBody();
+                    var bodyId = tipLayer.helper.getId('body');
+                    var bodyClass = tipLayer.helper.getPartClasses('body');
+                    var data = {
+                            'class': bodyClass.join(' '),
+                            'id': bodyId,
+                            'content': value
+                        };
+                    body.setContent(lib.format(bfTpl, data));
+                }
+            }, {
+                name: 'foot',
+                paint: function (tipLayer, value) {
+                    var bfTpl = '' + '<div class="${class}" id="${id}">' + '${content}' + '</div>';
+                    var footId = tipLayer.helper.getId('foot');
+                    var footClass = tipLayer.helper.getPartClasses('foot');
+                    var foot = tipLayer.getFoot();
+                    if (value == null) {
+                        if (foot) {
+                            tipLayer.removeChild(foot);
+                        }
+                    } else {
+                        var data = {
+                                'class': footClass.join(' '),
+                                'id': footId,
+                                'content': value
+                            };
+                        if (!foot) {
+                            foot = createBF(tipLayer, 'foot');
+                        }
+                        foot.setContent(lib.format(bfTpl, data));
+                    }
+                }
+            }, {
+                name: [
+                    'targetDOM',
+                    'targetControl',
+                    'showMode',
+                    'positionOpt',
+                    'targetPositionOpt',
+                    'delayTime',
+                    'showDuration'
+                ],
+                paint: function (tipLayer, targetDOM, targetControl, showMode, positionOpt, targetPositionOpt) {
+                    var delayTime = arguments[6];
+                    var showDuration = arguments[7];
+                    var options = {
+                            targetDOM: targetDOM,
+                            targetControl: targetControl,
+                            showMode: showMode,
+                            delayTime: delayTime != null ? delayTime : tipLayer.delayTime,
+                            showDuration: showDuration != null ? showDuration : tipLayer.showDuration
+                        };
+                    if (positionOpt) {
+                        positionOpt = positionOpt.split('|');
+                        options.positionOpt = {
+                            top: positionOpt[0] || 'top',
+                            right: positionOpt[1] || 'left'
+                        };
+                    }
+                    if (showMode !== 'manual') {
+                        tipLayer.attachTo(options);
+                    }
+                }
+            }),
+            attachTo: function (options) {
+                var handler = this.getInitHandler(options);
+                if (!handler) {
+                    return;
+                }
+                options.handler = handler;
+                switch (options.showMode) {
+                case 'auto':
+                    this.initAutoMode(options);
+                    break;
+                case 'over':
+                    this.initOverMode(options);
+                    break;
+                case 'click':
+                    this.initClickMode(options);
+                    break;
+                case 'manual':
+                    break;
+                }
+            },
+            getInitHandler: function (options) {
+                var me = this;
+                var positionOpt = options.positionOpt || {
+                        top: 'top',
+                        right: 'left'
+                    };
+                var targetPositionOpt = options.targetPositionOpt || {
+                        top: 'top',
+                        right: 'right'
+                    };
+                var targetElement;
+                if (options.targetDOM) {
+                    targetElement = lib.g(options.targetDOM);
+                } else if (options.targetControl) {
+                    targetElement = getElementByControl(this, options.targetControl);
+                }
+                if (!targetElement) {
+                    return null;
+                }
+                var handler = {
+                        targetElement: targetElement,
+                        layer: {
+                            show: function () {
+                                if (options.showMode === 'over') {
+                                    me.helper.removeDOMEvent(me.main, 'mouseover');
+                                    me.helper.removeDOMEvent(me.main, 'mouseout');
+                                    me.helper.addDOMEvent(me.main, 'mouseover', u.bind(me.show, me, targetElement, {
+                                        targetPositionOpt: targetPositionOpt,
+                                        positionOpt: positionOpt
+                                    }));
+                                    me.helper.addDOMEvent(me.main, 'mouseout', function () {
+                                        handler.layer.hide();
+                                    });
+                                }
+                                delayShow(me, options.delayTime, targetElement, {
+                                    targetPositionOpt: targetPositionOpt,
+                                    positionOpt: positionOpt
+                                });
+                            },
+                            hide: u.partial(delayHide, me, options.delayTime),
+                            bind: function (showEvent, callback) {
+                                showEvent = showEvent || 'mouseup';
+                                me.helper.addDOMEvent(targetElement, showEvent, function (e) {
+                                    handler.layer.show();
+                                    if (typeof callback === 'function') {
+                                        callback();
+                                    }
+                                    e.stopPropagation();
+                                });
+                            },
+                            preventPopMethod: function (e) {
+                                e.stopPropagation();
+                            },
+                            clickOutsideHideHandler: function (e) {
+                                handler.layer.hide();
+                            },
+                            enableOutsideClickHide: function () {
+                                enableOutsideClickHide.call(me, handler);
+                            },
+                            disableOutsideClickHide: function () {
+                                disableOutsideClickHide.call(me, handler);
+                            }
+                        }
+                    };
+                return handler;
+            },
+            initAutoMode: function (options) {
+                var handler = options.handler;
+                handler.layer.show();
+                if (!options.showDuration) {
+                    handler.layer.enableOutsideClickHide();
+                } else {
+                    handler.layer.hide(options.showDuration);
+                }
+                handler.layer.bind('mouseup');
+            },
+            initClickMode: function (options) {
+                var handler = options.handler;
+                handler.layer.bind('mouseup');
+                handler.layer.enableOutsideClickHide();
+            },
+            initOverMode: function (options) {
+                var handler = options.handler;
+                handler.layer.bind('mouseover');
+                this.helper.addDOMEvent(handler.targetElement, 'mouseout', function () {
+                    handler.layer.hide();
+                });
+            },
+            getHead: function () {
+                return this.getChild('title');
+            },
+            getBody: function () {
+                return this.getChild('body');
+            },
+            getFoot: function () {
+                return this.getChild('foot');
+            },
+            show: function (targetElement, options) {
+                var helper = this.helper;
+                if (helper.isInStage('INITED')) {
+                    this.render();
+                } else if (helper.isInStage('DISPOSED')) {
+                    return;
+                }
+                clearTimeout(this.hideTimeout);
+                helper.addDOMEvent(window, 'resize', u.partial(resizeHandler, this, targetElement, options));
+                this.main.style.zIndex = Layer.getZIndex(targetElement);
+                this.removeState('hidden');
+                $(this.main).position({
+                    of: $(targetElement),
+                    at: options.targetPositionOpt.right + ' ' + options.targetPositionOpt.top,
+                    my: options.positionOpt.right + ' ' + options.positionOpt.top
+                });
+                if (this.isShow) {
+                    return;
+                }
+                this.isShow = true;
+                this.fire('show');
+            },
+            hide: function () {
+                if (!this.isShow) {
+                    return;
+                }
+                this.isShow = false;
+                this.addState('hidden');
+                this.fire('hide');
+            },
+            setTitle: function (html) {
+                this.setProperties({ title: html });
+            },
+            setContent: function (content) {
+                this.setProperties({ content: content });
+            },
+            setFoot: function (foot) {
+                this.setProperties({ foot: foot });
+            },
+            dispose: function () {
+                if (this.helper.isInStage('DISPOSED')) {
+                    return;
+                }
+                this.hide();
+                this.roles = null;
+                $(this.main).remove();
+                this.$super(arguments);
+            }
+        });
+    TipLayer.defaultProperties = {
+        delayTime: 0,
+        showDuration: 150,
+        appendToElement: 'body'
+    };
+    function parseMain(options) {
+        var main = options.main;
+        if (!main) {
+            return;
+        }
+        var $els = $(main).children('[data-role]');
+        var roles = {};
+        $els.each(function (idx, element) {
+            var roleName = $(element).attr('data-role');
+            roles[roleName] = element;
+        });
+        options.roles = roles;
+    }
+    function createHead(tipLayer, mainDOM) {
+        if (mainDOM) {
+            tipLayer.title = mainDOM.innerHTML;
+        } else {
+            mainDOM = document.createElement('h3');
+            if (tipLayer.main.firstChild) {
+                lib.insertBefore(mainDOM, tipLayer.main.firstChild);
+            } else {
+                tipLayer.main.appendChild(mainDOM);
+            }
+        }
+        var headClass = tipLayer.helper.getPartClassName('title');
+        $(mainDOM).addClass(headClass);
+        var properties = {
+                main: mainDOM,
+                childName: 'title',
+                title: ''
+            };
+        var label = esui.create('Label', properties);
+        label.render();
+        tipLayer.addChild(label);
+        return label;
+    }
+    function createBF(tipLayer, type, mainDOM) {
+        if (mainDOM) {
+            tipLayer.content = mainDOM.innerHTML;
+        } else {
+            mainDOM = document.createElement('div');
+            if (type === 'body') {
+                var head = tipLayer.getChild('title');
+                if (head) {
+                    lib.insertAfter(mainDOM, head.main);
+                } else if (tipLayer.main.firstChild) {
+                    lib.insertBefore(mainDOM, head, tipLayer.main.firstChild);
+                } else {
+                    tipLayer.main.appendChild(mainDOM);
+                }
+            } else {
+                tipLayer.main.appendChild(mainDOM);
+            }
+        }
+        $(mainDOM).addClass(tipLayer.helper.getPartClassName(type + '-panel'));
+        var properties = {
+                main: mainDOM,
+                renderOptions: tipLayer.renderOptions
+            };
+        var panel = esui.create('Panel', properties);
+        panel.render();
+        tipLayer.addChild(panel, type);
+        return panel;
+    }
+    function resizeHandler(tipLayer, targetElement, options) {
+        if (!tipLayer.isShow) {
+            return;
+        }
+        $(this.main).position({
+            of: $(targetElement),
+            at: options.targetPositionOpt.right + ' ' + options.targetPositionOpt.top,
+            my: options.positionOpt.right + ' ' + options.positionOpt.top
+        });
+    }
+    function delayShow(tipLayer, delayTime, targetElement, options) {
+        if (delayTime) {
+            clearTimeout(tipLayer.showTimeout);
+            clearTimeout(tipLayer.hideTimeout);
+            tipLayer.showTimeout = setTimeout(u.bind(tipLayer.show, tipLayer, targetElement, options), delayTime);
+        } else {
+            tipLayer.show(targetElement, options);
+        }
+    }
+    function delayHide(tipLayer, delayTime) {
+        clearTimeout(tipLayer.showTimeout);
+        clearTimeout(tipLayer.hideTimeout);
+        tipLayer.hideTimeout = setTimeout(u.bind(tipLayer.hide, tipLayer), delayTime);
+    }
+    function getElementByControl(tipLayer, control) {
+        if (typeof control === 'string') {
+            control = tipLayer.viewContext.get(control);
+        }
+        return control.main;
+    }
+    function enableOutsideClickHide(handler) {
+        this.helper.addDOMEvent(document.documentElement, 'mouseup', handler.layer.clickOutsideHideHandler);
+        this.helper.addDOMEvent(this.main, 'mouseup', handler.layer.preventPopMethod);
+    }
+    function disableOutsideClickHide(handler) {
+        this.helper.removeDOMEvent(document.documentElement, 'mouseup', handler.layer.clickOutsideHideHandler);
+        this.helper.removeDOMEvent(this.main, 'mouseup', handler.layer.clickOutsideHideHandler);
+    }
+    TipLayer.onceNotice = function (args) {
+        var tipLayerPrefix = 'tipLayer-once-notice';
+        var okPrefix = 'tipLayer-notice-ok';
+        function btnClickHandler(tipLayer) {
+            var handler = tipLayer.onok;
+            var isFunc = typeof handler === 'function';
+            if (isFunc) {
+                handler(tipLayer);
+            }
+            tipLayer.fire('ok');
+            tipLayer.dispose();
+        }
+        var content = u.escape(args.content) || '';
+        var properties = {
+                type: 'onceNotice',
+                skin: 'onceNotice'
+            };
+        u.extend(properties, args);
+        var main = document.createElement('div');
+        document.body.appendChild(main);
+        var tipLayerId = lib.getGUID(tipLayerPrefix);
+        properties.id = tipLayerId;
+        properties.main = main;
+        properties.type = null;
+        var tipLayer = esui.create('TipLayer', properties);
+        tipLayer.setContent(content);
+        var okText = args.okText || '\u77E5\u9053\u4E86';
+        tipLayer.setFoot(lib.format('<div data-ui="type:Button;childName:okBtn;id:${id}" class="${classes}">' + '${oktext}' + '</div>', {
+            id: tipLayerId + '-' + okPrefix,
+            classes: tipLayer.helper.getPartClasses('once-notice'),
+            okText: okText
+        }));
+        tipLayer.render();
+        var okBtn = tipLayer.getFoot().getChild('okBtn');
+        okBtn.on('click', u.partial(btnClickHandler, tipLayer, 'ok'));
+        var targetDOM = lib.g(args.targetDOM) || tipLayer.viewContext.get(args.targetControl);
+        tipLayer.show(targetDOM, {
+            top: 'top',
+            right: 'left'
+        });
+        return tipLayer;
+    };
+    esui.register(TipLayer);
+    return TipLayer;
+});
+
+define('esui/Tip', [
+    'require',
+    'eoo',
+    './main',
+    'underscore',
+    './Control',
+    './TipLayer',
+    './painters'
+], function (require) {
+    var eoo = require('eoo');
+    var esui = require('./main');
+    var u = require('underscore');
+    var Control = require('./Control');
+    require('./TipLayer');
+    var Tip = eoo.create(Control, {
+            type: 'Tip',
+            initOptions: function (options) {
+                var properties = {
+                        title: '',
+                        content: '',
+                        arrow: true,
+                        showMode: 'over',
+                        delayTime: 500,
+                        icon: 'question-circle',
+                        appendToElement: null,
+                        selfRight: 'right',
+                        selfTop: 'top',
+                        tipRight: 'left',
+                        tipTop: 'top'
+                    };
+                u.extend(properties, options);
+                extractDOMProperties(this, properties);
+                this.setProperties(properties);
+            },
+            initStructure: function () {
+                var main = document.createElement('div');
+                document.body.appendChild(main);
+                var tipLayer = esui.create('TipLayer', {
+                        main: main,
+                        childName: 'layer',
+                        content: this.content,
+                        title: this.title,
+                        arrow: this.arrow,
+                        width: this.layerWidth || 200,
+                        viewContext: this.viewContext,
+                        variants: 'from-tip',
+                        appendToElement: this.appendToElement
+                    });
+                this.addChild(tipLayer);
+                tipLayer.render();
+                var attachOptions = {
+                        showMode: this.mode || this.showMode,
+                        delayTime: this.delayTime,
+                        targetControl: this.id,
+                        positionOpt: {
+                            right: this.tipRight,
+                            top: this.tipTop
+                        },
+                        targetPositionOpt: {
+                            right: this.selfRight,
+                            top: this.selfTop
+                        }
+                    };
+                tipLayer.attachTo(attachOptions);
+            },
+            repaint: require('./painters').createRepaint(Control.prototype.repaint, {
+                name: 'title',
+                paint: function (tip, value) {
+                    var layer = tip.getChild('layer');
+                    if (layer) {
+                        layer.setTitle(value);
+                    }
+                }
+            }, {
+                name: 'content',
+                paint: function (tip, value) {
+                    var layer = tip.getChild('layer');
+                    if (layer) {
+                        layer.setContent(value);
+                    }
+                }
+            })
+        });
+    function extractDOMProperties(tip, options) {
+        var html = '';
+        var main = tip.main;
+        options.title = options.title || main.getAttribute('title');
+        main.removeAttribute('title');
+        options.content = options.content || main.innerHTML;
+        if (options.icon) {
+            html = '<span class="' + tip.helper.getIconClass(options.icon) + '"></span>';
+        }
+        main.innerHTML = html;
+    }
+    esui.register(Tip);
+    return Tip;
+});
+
 define('esui/Table', [
     'require',
     'eoo',
@@ -23551,7 +24105,8 @@ define('esui/Table', [
     './Control',
     './painters',
     'jquery',
-    './behavior/Mouse'
+    './behavior/Mouse',
+    './Tip'
 ], function (require) {
     var eoo = require('eoo');
     var esui = require('./main');
@@ -23561,6 +24116,7 @@ define('esui/Table', [
     var painters = require('./painters');
     var $ = require('jquery');
     require('./behavior/Mouse');
+    require('./Tip');
     var Table = eoo.create(Control, {
             constructor: function (options) {
                 var protectedProperties = {
@@ -23784,10 +24340,7 @@ define('esui/Table', [
                 var main = this.main;
                 if (main) {
                     this.followDoms = null;
-                    var mark = lib.g(getId(this, 'drag-mark'));
-                    if (mark) {
-                        document.body.removeChild(mark);
-                    }
+                    $('#' + getId(this, 'drag-mark')).remove();
                 }
                 this.rowBuilderList = null;
                 this.headPanel.disposeChildren();
@@ -24120,12 +24673,14 @@ define('esui/Table', [
             head.innerHTML = lib.format('<div id="${id}" data-ui="type:Panel;id:${id};"></div>', { id: headPanelId });
             table.initChildren(head);
             table.headPanel = table.viewContext.get(headPanelId);
-            table.helper.addDOMEvent(head, 'mousemove', headMoveHandler);
-            $(head).mouse({
-                start: u.partial(dragStartHandler, table),
-                drag: u.partial(dragingHandler, table),
-                stop: u.partial(dragEndHandler, table)
-            });
+            if (table.columnResizable) {
+                table.helper.addDOMEvent(head, 'mousemove', 'th', headMoveHandler);
+                $(head).mouse({
+                    start: u.partial(dragStartHandler, table),
+                    drag: u.partial(dragingHandler, table),
+                    stop: u.partial(dragEndHandler, table)
+                });
+            }
         }
         if (table.noHead) {
             head.style.display = 'none';
@@ -24254,9 +24809,7 @@ define('esui/Table', [
         return getId(table, 'foot-cell') + index;
     }
     function isDragging(table) {
-        var head = table.helper.getPart('head');
-        var mouse = $(head).mouse('instance');
-        return !!mouse.mouseStarted;
+        return table.tableHeadDragging;
     }
     function titleOverHandler(element, e) {
         titleOver(this, element);
@@ -24311,7 +24864,7 @@ define('esui/Table', [
     }
     function headMoveHandler(e) {
         var table = this;
-        if (!table.columnResizable || isDragging(table)) {
+        if (isDragging(table)) {
             return;
         }
         var dragClass = 'startdrag';
@@ -24352,9 +24905,6 @@ define('esui/Table', [
         return null;
     }
     function dragStartHandler(table, e) {
-        if (!table.columnResizable) {
-            return false;
-        }
         table.fire('startdrag');
         table.fire('dragstart');
         var dragClass = getClass(table, 'startdrag');
@@ -24366,6 +24916,7 @@ define('esui/Table', [
         if (lib.g(getId(table, 'head')).className.indexOf(dragClass) < 0) {
             return false;
         }
+        table.tableHeadDragging = true;
         table.htmlHeight = document.documentElement.clientHeight;
         table.dragIndex = getAttr(target, 'index');
         table.dragStart = e.pageX || e.clientX + lib.page.getScrollLeft();
@@ -24379,7 +24930,6 @@ define('esui/Table', [
         table.left = tableOffset.left;
     }
     function dragingHandler(table, e) {
-        e = e || window.event;
         showDragMark(table, e.pageX || e.clientX + lib.page.getScrollLeft());
         return false;
     }
@@ -24470,6 +25020,7 @@ define('esui/Table', [
         hideDragMark(table);
         table.fire('enddrag');
         table.fire('dragend');
+        table.tableHeadDragging = false;
         return false;
     }
     function renderBody(table) {
@@ -26094,7 +26645,7 @@ define('esui/extension/TableSubrow', [
         if (!dataLen || index >= dataLen) {
             return;
         }
-        if (!$el.data('subrowopened')) {
+        if ($el.attr('data-subrowopened') !== '1') {
             var dataItem = datasource[index];
             var eventArgs = {
                     index: index,
@@ -31916,7 +32467,7 @@ define('esui/TextLine', [
                 }
                 properties.value = properties.value || '';
                 properties.placeholder = this.main.getAttribute('placeholder') || '';
-                u.extend(properties, options);
+                u.extend(properties, TextLine.defaultProperties, options);
                 if (!properties.hasOwnProperty('title') && this.main.title) {
                     properties.title = this.main.title;
                 }
@@ -31935,17 +32486,22 @@ define('esui/TextLine', [
                 var textArea = this.getTextArea();
                 this.helper.addDOMEvent(textArea, 'scroll', this.resetScroll);
                 this.helper.addDOMEvent(textArea, 'focus', inputFocus);
+                var back = this.helper.getPart('search-back');
+                this.helper.addDOMEvent(back, 'click', u.bind(wrapperChange, this, false));
+                var content = this.helper.getPart('search-content');
+                var clearClass = this.helper.getPartClassName('search-content-clear');
+                this.helper.addDOMEvent(content, 'click', '.' + clearClass, u.bind(deleteItemHandler, this));
             },
             repaint: painters.createRepaint(InputControl.prototype.repaint, {
                 name: 'height',
                 paint: function (textLine, height) {
-                    height = height || 300;
+                    height = height || textLine.height;
                     textLine.main.style.height = height + 'px';
                 }
             }, {
                 name: 'width',
                 paint: function (textLine, width) {
-                    width = width || 300;
+                    width = width || textLine.width;
                     textLine.main.style.width = width + 'px';
                 }
             }, {
@@ -31973,6 +32529,26 @@ define('esui/TextLine', [
                         disabled: !!disabled,
                         readOnly: !!readOnly
                     });
+                }
+            }, {
+                name: 'query',
+                paint: function (textLine, query) {
+                    if (!query) {
+                        wrapperChange.call(textLine, false);
+                        return;
+                    }
+                    wrapperChange.call(textLine, true);
+                    var allList = textLine.getValueRepeatableItems();
+                    var re = u.isString(query) ? new RegExp(query) : query;
+                    var searchList = [];
+                    u.each(allList, function (text, index) {
+                        if (re.test(text)) {
+                            searchList.push(text);
+                        }
+                    });
+                    var numCtr = textLine.helper.getPart('search-hint-text');
+                    numCtr.innerHTML = searchList.length;
+                    renderSearchList.call(textLine, searchList);
                 }
             }),
             resetScroll: function () {
@@ -32015,6 +32591,49 @@ define('esui/TextLine', [
                 return lib.g(textbox.inputId);
             }
         });
+    TextLine.defaultProperties = {
+        beforeNumberText: '\u5171\u627E\u5230',
+        afterNumberText: '\u4E2A',
+        backLinkText: '\u8FD4\u56DE',
+        emptyResultText: '\u641C\u7D22\u7ED3\u679C\u4E3A\u7A7A'
+    };
+    var SEARCH_ITEM_TPL = [
+            '<div class="${lineClass}">',
+            '<span class="${numClass}">${num}</span>',
+            '<span class="${textClass}">${text}</span>',
+            '<span class="${clearClass}" data-value="${text}"></span>',
+            '</div>'
+        ].join('');
+    function renderSearchList(searchList) {
+        var html = [];
+        var controlHelper = this.helper;
+        u.each(searchList, function (val, index) {
+            var data = {
+                    num: index + 1,
+                    text: val,
+                    lineClass: controlHelper.getPartClassName('search-content-line'),
+                    textClass: controlHelper.getPartClassName('search-content-text'),
+                    clearClass: controlHelper.getPartClassName('search-content-clear') + ' ' + controlHelper.getIconClass(),
+                    numClass: controlHelper.getPartClassName('search-content-num')
+                };
+            html.push(lib.format(SEARCH_ITEM_TPL, data));
+        }, this);
+        html = html.join('') || '<div class="' + controlHelper.getPartClassName('empty-text') + '">' + this.emptyResultText + '</div>';
+        this.helper.getPart('search-content').innerHTML = html;
+        var infoHeight = $(this.helper.getPart('search-info')).height();
+        var searchWrapper = $(this.helper.getPart('search-wrapper'));
+        searchWrapper.height(this.height - infoHeight);
+    }
+    function deleteItemHandler(e) {
+        var val = $(e.target).attr('data-value');
+        var query = this.query;
+        this.query = '';
+        this.setProperties({
+            rawValue: u.without(this.getValueRepeatableItems(), val),
+            query: query
+        });
+        this.fire('deleteItem', { item: val });
+    }
     function getMainHTML(textLine) {
         var textareaHTML = [
                 '<div style="width:100%;height:100%;" data-ui-child-name="input"',
@@ -32025,12 +32644,32 @@ define('esui/TextLine', [
             ].join('');
         textareaHTML = lib.format(textareaHTML, { placeholder: textLine.placeholder });
         var html = [
+                textLine.helper.getPartBeginTag('wrapper', 'div'),
                 textLine.helper.getPartBeginTag('num-line', 'div'),
                 '1',
                 textLine.helper.getPartEndTag('num-line', 'div'),
                 textLine.helper.getPartBeginTag('text-container', 'div'),
                 textareaHTML,
-                textLine.helper.getPartEndTag('text-container', 'div')
+                textLine.helper.getPartEndTag('text-container', 'div'),
+                textLine.helper.getPartEndTag('wrapper', 'div'),
+                textLine.helper.getPartBeginTag('search-info', 'div'),
+                textLine.helper.getPartBeginTag('search-hint', 'div'),
+                textLine.beforeNumberText,
+                textLine.helper.getPartBeginTag('search-hint-text', 'span'),
+                '0',
+                textLine.helper.getPartEndTag('search-hint-text', 'span'),
+                textLine.afterNumberText,
+                textLine.helper.getPartEndTag('search-hint', 'div'),
+                textLine.helper.getPartBeginTag('search-back', 'div'),
+                textLine.backLinkText,
+                textLine.helper.getPartEndTag('search-back', 'div'),
+                textLine.helper.getPartEndTag('search-info', 'div'),
+                textLine.helper.getPartBeginTag('search-wrapper', 'div'),
+                textLine.helper.getPartBeginTag('search-num-line', 'div'),
+                textLine.helper.getPartEndTag('search-num-line', 'div'),
+                textLine.helper.getPartBeginTag('search-content', 'div'),
+                textLine.helper.getPartEndTag('search-content', 'div'),
+                textLine.helper.getPartEndTag('search-wrapper', 'div')
             ];
         return html.join('');
     }
@@ -32064,563 +32703,29 @@ define('esui/TextLine', [
         me.addState('focus');
         helper.addDOMEvent(textArea, 'blur', blurEvent);
     }
+    function wrapperChange(isSearch) {
+        var listWrapper = this.helper.getPart('wrapper');
+        var searchInfo = this.helper.getPart('search-info');
+        var searchWrapper = this.helper.getPart('search-wrapper');
+        if (isSearch) {
+            listWrapper.style.display = 'none';
+            searchInfo.style.display = 'block';
+            searchWrapper.style.display = 'block';
+        } else {
+            this.query = '';
+            listWrapper.style.display = 'block';
+            searchInfo.style.display = 'none';
+            searchWrapper.style.display = 'none';
+        }
+    }
     esui.register(TextLine);
     return TextLine;
-});
-
-define('esui/TipLayer', [
-    'require',
-    './Button',
-    './Label',
-    './Panel',
-    'jquery',
-    './behavior/position',
-    'eoo',
-    './main',
-    'underscore',
-    './lib',
-    './Control',
-    './painters',
-    './Layer'
-], function (require) {
-    require('./Button');
-    require('./Label');
-    require('./Panel');
-    var $ = require('jquery');
-    require('./behavior/position');
-    var eoo = require('eoo');
-    var esui = require('./main');
-    var u = require('underscore');
-    var lib = require('./lib');
-    var Control = require('./Control');
-    var painters = require('./painters');
-    var Layer = require('./Layer');
-    var TipLayer = eoo.create(Control, {
-            type: 'TipLayer',
-            initOptions: function (options) {
-                parseMain(options);
-                var properties = {
-                        roles: {},
-                        showMode: 'manual'
-                    };
-                u.extend(properties, TipLayer.defaultProperties, options);
-                this.setProperties(properties);
-            },
-            initStructure: function () {
-                $(this.main).appendTo(this.appendToElement);
-                this.addState('hidden');
-                if (this.title || this.roles.title) {
-                    createHead(this, this.roles.title);
-                }
-                createBF(this, 'body', this.roles.content);
-                if (this.foot || this.roles.foot) {
-                    createBF(this, 'foot', this.roles.foot);
-                }
-            },
-            repaint: painters.createRepaint(Control.prototype.repaint, painters.style('width'), {
-                name: 'title',
-                paint: function (tipLayer, value) {
-                    var head = tipLayer.getHead();
-                    if (value == null) {
-                        if (head) {
-                            tipLayer.removeChild(head);
-                        }
-                    } else {
-                        if (!head) {
-                            head = createHead(tipLayer);
-                        }
-                        head.setText(value);
-                    }
-                }
-            }, {
-                name: 'content',
-                paint: function (tipLayer, value) {
-                    var bfTpl = '' + '<div class="${class}" id="${id}">' + '${content}' + '</div>';
-                    var body = tipLayer.getBody();
-                    var bodyId = tipLayer.helper.getId('body');
-                    var bodyClass = tipLayer.helper.getPartClasses('body');
-                    var data = {
-                            'class': bodyClass.join(' '),
-                            'id': bodyId,
-                            'content': value
-                        };
-                    body.setContent(lib.format(bfTpl, data));
-                }
-            }, {
-                name: 'foot',
-                paint: function (tipLayer, value) {
-                    var bfTpl = '' + '<div class="${class}" id="${id}">' + '${content}' + '</div>';
-                    var footId = tipLayer.helper.getId('foot');
-                    var footClass = tipLayer.helper.getPartClasses('foot');
-                    var foot = tipLayer.getFoot();
-                    if (value == null) {
-                        if (foot) {
-                            tipLayer.removeChild(foot);
-                        }
-                    } else {
-                        var data = {
-                                'class': footClass.join(' '),
-                                'id': footId,
-                                'content': value
-                            };
-                        if (!foot) {
-                            foot = createBF(tipLayer, 'foot');
-                        }
-                        foot.setContent(lib.format(bfTpl, data));
-                    }
-                }
-            }, {
-                name: [
-                    'targetDOM',
-                    'targetControl',
-                    'showMode',
-                    'positionOpt',
-                    'targetPositionOpt',
-                    'delayTime',
-                    'showDuration'
-                ],
-                paint: function (tipLayer, targetDOM, targetControl, showMode, positionOpt, targetPositionOpt) {
-                    var delayTime = arguments[6];
-                    var showDuration = arguments[7];
-                    var options = {
-                            targetDOM: targetDOM,
-                            targetControl: targetControl,
-                            showMode: showMode,
-                            delayTime: delayTime != null ? delayTime : tipLayer.delayTime,
-                            showDuration: showDuration != null ? showDuration : tipLayer.showDuration
-                        };
-                    if (positionOpt) {
-                        positionOpt = positionOpt.split('|');
-                        options.positionOpt = {
-                            top: positionOpt[0] || 'top',
-                            right: positionOpt[1] || 'left'
-                        };
-                    }
-                    if (showMode !== 'manual') {
-                        tipLayer.attachTo(options);
-                    }
-                }
-            }),
-            attachTo: function (options) {
-                var handler = this.getInitHandler(options);
-                if (!handler) {
-                    return;
-                }
-                options.handler = handler;
-                switch (options.showMode) {
-                case 'auto':
-                    this.initAutoMode(options);
-                    break;
-                case 'over':
-                    this.initOverMode(options);
-                    break;
-                case 'click':
-                    this.initClickMode(options);
-                    break;
-                case 'manual':
-                    break;
-                }
-            },
-            getInitHandler: function (options) {
-                var me = this;
-                var positionOpt = options.positionOpt || {
-                        top: 'top',
-                        right: 'left'
-                    };
-                var targetPositionOpt = options.targetPositionOpt || {
-                        top: 'top',
-                        right: 'right'
-                    };
-                var targetElement;
-                if (options.targetDOM) {
-                    targetElement = lib.g(options.targetDOM);
-                } else if (options.targetControl) {
-                    targetElement = getElementByControl(this, options.targetControl);
-                }
-                if (!targetElement) {
-                    return null;
-                }
-                var handler = {
-                        targetElement: targetElement,
-                        layer: {
-                            show: function () {
-                                if (options.showMode === 'over') {
-                                    me.helper.removeDOMEvent(me.main, 'mouseover');
-                                    me.helper.removeDOMEvent(me.main, 'mouseout');
-                                    me.helper.addDOMEvent(me.main, 'mouseover', u.bind(me.show, me, targetElement, {
-                                        targetPositionOpt: targetPositionOpt,
-                                        positionOpt: positionOpt
-                                    }));
-                                    me.helper.addDOMEvent(me.main, 'mouseout', function () {
-                                        handler.layer.hide();
-                                    });
-                                }
-                                delayShow(me, options.delayTime, targetElement, {
-                                    targetPositionOpt: targetPositionOpt,
-                                    positionOpt: positionOpt
-                                });
-                            },
-                            hide: u.partial(delayHide, me, options.delayTime),
-                            bind: function (showEvent, callback) {
-                                showEvent = showEvent || 'mouseup';
-                                me.helper.addDOMEvent(targetElement, showEvent, function (e) {
-                                    handler.layer.show();
-                                    if (typeof callback === 'function') {
-                                        callback();
-                                    }
-                                    e.stopPropagation();
-                                });
-                            },
-                            preventPopMethod: function (e) {
-                                e.stopPropagation();
-                            },
-                            clickOutsideHideHandler: function (e) {
-                                handler.layer.hide();
-                            },
-                            enableOutsideClickHide: function () {
-                                enableOutsideClickHide.call(me, handler);
-                            },
-                            disableOutsideClickHide: function () {
-                                disableOutsideClickHide.call(me, handler);
-                            }
-                        }
-                    };
-                return handler;
-            },
-            initAutoMode: function (options) {
-                var handler = options.handler;
-                handler.layer.show();
-                if (!options.showDuration) {
-                    handler.layer.enableOutsideClickHide();
-                } else {
-                    handler.layer.hide(options.showDuration);
-                }
-                handler.layer.bind('mouseup');
-            },
-            initClickMode: function (options) {
-                var handler = options.handler;
-                handler.layer.bind('mouseup');
-                handler.layer.enableOutsideClickHide();
-            },
-            initOverMode: function (options) {
-                var handler = options.handler;
-                handler.layer.bind('mouseover');
-                this.helper.addDOMEvent(handler.targetElement, 'mouseout', function () {
-                    handler.layer.hide();
-                });
-            },
-            getHead: function () {
-                return this.getChild('title');
-            },
-            getBody: function () {
-                return this.getChild('body');
-            },
-            getFoot: function () {
-                return this.getChild('foot');
-            },
-            show: function (targetElement, options) {
-                var helper = this.helper;
-                if (helper.isInStage('INITED')) {
-                    this.render();
-                } else if (helper.isInStage('DISPOSED')) {
-                    return;
-                }
-                clearTimeout(this.hideTimeout);
-                helper.addDOMEvent(window, 'resize', u.partial(resizeHandler, this, targetElement, options));
-                this.main.style.zIndex = Layer.getZIndex(targetElement);
-                this.removeState('hidden');
-                $(this.main).position({
-                    of: $(targetElement),
-                    at: options.targetPositionOpt.right + ' ' + options.targetPositionOpt.top,
-                    my: options.positionOpt.right + ' ' + options.positionOpt.top
-                });
-                if (this.isShow) {
-                    return;
-                }
-                this.isShow = true;
-                this.fire('show');
-            },
-            hide: function () {
-                if (!this.isShow) {
-                    return;
-                }
-                this.isShow = false;
-                this.addState('hidden');
-                this.fire('hide');
-            },
-            setTitle: function (html) {
-                this.setProperties({ title: html });
-            },
-            setContent: function (content) {
-                this.setProperties({ content: content });
-            },
-            setFoot: function (foot) {
-                this.setProperties({ foot: foot });
-            },
-            dispose: function () {
-                if (this.helper.isInStage('DISPOSED')) {
-                    return;
-                }
-                this.hide();
-                this.roles = null;
-                $(this.main).remove();
-                this.$super(arguments);
-            }
-        });
-    TipLayer.defaultProperties = {
-        delayTime: 0,
-        showDuration: 150,
-        appendToElement: 'body'
-    };
-    function parseMain(options) {
-        var main = options.main;
-        if (!main) {
-            return;
-        }
-        var $els = $(main).children('[data-role]');
-        var roles = {};
-        $els.each(function (idx, element) {
-            var roleName = $(element).attr('data-role');
-            roles[roleName] = element;
-        });
-        options.roles = roles;
-    }
-    function createHead(tipLayer, mainDOM) {
-        if (mainDOM) {
-            tipLayer.title = mainDOM.innerHTML;
-        } else {
-            mainDOM = document.createElement('h3');
-            if (tipLayer.main.firstChild) {
-                lib.insertBefore(mainDOM, tipLayer.main.firstChild);
-            } else {
-                tipLayer.main.appendChild(mainDOM);
-            }
-        }
-        var headClass = tipLayer.helper.getPartClassName('title');
-        $(mainDOM).addClass(headClass);
-        var properties = {
-                main: mainDOM,
-                childName: 'title',
-                title: ''
-            };
-        var label = esui.create('Label', properties);
-        label.render();
-        tipLayer.addChild(label);
-        return label;
-    }
-    function createBF(tipLayer, type, mainDOM) {
-        if (mainDOM) {
-            tipLayer.content = mainDOM.innerHTML;
-        } else {
-            mainDOM = document.createElement('div');
-            if (type === 'body') {
-                var head = tipLayer.getChild('title');
-                if (head) {
-                    lib.insertAfter(mainDOM, head.main);
-                } else if (tipLayer.main.firstChild) {
-                    lib.insertBefore(mainDOM, head, tipLayer.main.firstChild);
-                } else {
-                    tipLayer.main.appendChild(mainDOM);
-                }
-            } else {
-                tipLayer.main.appendChild(mainDOM);
-            }
-        }
-        $(mainDOM).addClass(tipLayer.helper.getPartClassName(type + '-panel'));
-        var properties = {
-                main: mainDOM,
-                renderOptions: tipLayer.renderOptions
-            };
-        var panel = esui.create('Panel', properties);
-        panel.render();
-        tipLayer.addChild(panel, type);
-        return panel;
-    }
-    function resizeHandler(tipLayer, targetElement, options) {
-        if (!tipLayer.isShow) {
-            return;
-        }
-        $(this.main).position({
-            of: $(targetElement),
-            at: options.targetPositionOpt.right + ' ' + options.targetPositionOpt.top,
-            my: options.positionOpt.right + ' ' + options.positionOpt.top
-        });
-    }
-    function delayShow(tipLayer, delayTime, targetElement, options) {
-        if (delayTime) {
-            clearTimeout(tipLayer.showTimeout);
-            clearTimeout(tipLayer.hideTimeout);
-            tipLayer.showTimeout = setTimeout(u.bind(tipLayer.show, tipLayer, targetElement, options), delayTime);
-        } else {
-            tipLayer.show(targetElement, options);
-        }
-    }
-    function delayHide(tipLayer, delayTime) {
-        clearTimeout(tipLayer.showTimeout);
-        clearTimeout(tipLayer.hideTimeout);
-        tipLayer.hideTimeout = setTimeout(u.bind(tipLayer.hide, tipLayer), delayTime);
-    }
-    function getElementByControl(tipLayer, control) {
-        if (typeof control === 'string') {
-            control = tipLayer.viewContext.get(control);
-        }
-        return control.main;
-    }
-    function enableOutsideClickHide(handler) {
-        this.helper.addDOMEvent(document.documentElement, 'mouseup', handler.layer.clickOutsideHideHandler);
-        this.helper.addDOMEvent(this.main, 'mouseup', handler.layer.preventPopMethod);
-    }
-    function disableOutsideClickHide(handler) {
-        this.helper.removeDOMEvent(document.documentElement, 'mouseup', handler.layer.clickOutsideHideHandler);
-        this.helper.removeDOMEvent(this.main, 'mouseup', handler.layer.clickOutsideHideHandler);
-    }
-    TipLayer.onceNotice = function (args) {
-        var tipLayerPrefix = 'tipLayer-once-notice';
-        var okPrefix = 'tipLayer-notice-ok';
-        function btnClickHandler(tipLayer) {
-            var handler = tipLayer.onok;
-            var isFunc = typeof handler === 'function';
-            if (isFunc) {
-                handler(tipLayer);
-            }
-            tipLayer.fire('ok');
-            tipLayer.dispose();
-        }
-        var content = u.escape(args.content) || '';
-        var properties = {
-                type: 'onceNotice',
-                skin: 'onceNotice'
-            };
-        u.extend(properties, args);
-        var main = document.createElement('div');
-        document.body.appendChild(main);
-        var tipLayerId = lib.getGUID(tipLayerPrefix);
-        properties.id = tipLayerId;
-        properties.main = main;
-        properties.type = null;
-        var tipLayer = esui.create('TipLayer', properties);
-        tipLayer.setContent(content);
-        var okText = args.okText || '\u77E5\u9053\u4E86';
-        tipLayer.setFoot(lib.format('<div data-ui="type:Button;childName:okBtn;id:${id}" class="${classes}">' + '${oktext}' + '</div>', {
-            id: tipLayerId + '-' + okPrefix,
-            classes: tipLayer.helper.getPartClasses('once-notice'),
-            okText: okText
-        }));
-        tipLayer.render();
-        var okBtn = tipLayer.getFoot().getChild('okBtn');
-        okBtn.on('click', u.partial(btnClickHandler, tipLayer, 'ok'));
-        var targetDOM = lib.g(args.targetDOM) || tipLayer.viewContext.get(args.targetControl);
-        tipLayer.show(targetDOM, {
-            top: 'top',
-            right: 'left'
-        });
-        return tipLayer;
-    };
-    esui.register(TipLayer);
-    return TipLayer;
-});
-
-define('esui/Tip', [
-    'require',
-    'eoo',
-    './main',
-    'underscore',
-    './Control',
-    './lib',
-    './TipLayer',
-    './painters'
-], function (require) {
-    var eoo = require('eoo');
-    var esui = require('./main');
-    var u = require('underscore');
-    var Control = require('./Control');
-    var lib = require('./lib');
-    require('./TipLayer');
-    var Tip = eoo.create(Control, {
-            type: 'Tip',
-            initOptions: function (options) {
-                var properties = {
-                        title: '',
-                        content: '',
-                        arrow: true,
-                        showMode: 'over',
-                        delayTime: 500,
-                        icon: 'question-circle'
-                    };
-                u.extend(properties, options);
-                if (options.arrow === 'false') {
-                    properties.arrow = false;
-                }
-                extractDOMProperties(this, properties);
-                this.setProperties(properties);
-            },
-            initStructure: function () {
-                var main = document.createElement('div');
-                document.body.appendChild(main);
-                if (this.inheritFont || esui.getConfig('inheritFont')) {
-                    main.style.fontSize = lib.getComputedStyle(this.main, 'fontSize');
-                }
-                var tipLayer = esui.create('TipLayer', {
-                        main: main,
-                        childName: 'layer',
-                        content: this.content,
-                        title: this.title,
-                        arrow: this.arrow,
-                        width: this.layerWidth || 200,
-                        viewContext: this.viewContext,
-                        variants: 'from-tip'
-                    });
-                this.addChild(tipLayer);
-                tipLayer.render();
-                var attachOptions = {
-                        showMode: this.mode || this.showMode,
-                        delayTime: this.delayTime,
-                        targetControl: this.id,
-                        positionOpt: {
-                            top: 'top',
-                            right: 'left'
-                        }
-                    };
-                tipLayer.attachTo(attachOptions);
-            },
-            repaint: require('./painters').createRepaint(Control.prototype.repaint, {
-                name: 'title',
-                paint: function (tip, value) {
-                    var layer = tip.getChild('layer');
-                    if (layer) {
-                        layer.setTitle(value);
-                    }
-                }
-            }, {
-                name: 'content',
-                paint: function (tip, value) {
-                    var layer = tip.getChild('layer');
-                    if (layer) {
-                        layer.setContent(value);
-                    }
-                }
-            })
-        });
-    function extractDOMProperties(tip, options) {
-        var html = '';
-        var main = tip.main;
-        options.title = options.title || main.getAttribute('title');
-        main.removeAttribute('title');
-        options.content = options.content || main.innerHTML;
-        if (options.icon) {
-            html = '<span class="' + tip.helper.getIconClass(options.icon) + '"></span>';
-        }
-        main.innerHTML = html;
-    }
-    esui.register(Tip);
-    return Tip;
 });
 
 define('esui/Toast', [
     'require',
     'eoo',
     './main',
-    './lib',
     './Control',
     'underscore',
     './painters',
@@ -32628,7 +32733,6 @@ define('esui/Toast', [
 ], function (require) {
     var eoo = require('eoo');
     var esui = require('./main');
-    var lib = require('./lib');
     var Control = require('./Control');
     var u = require('underscore');
     var painters = require('./painters');

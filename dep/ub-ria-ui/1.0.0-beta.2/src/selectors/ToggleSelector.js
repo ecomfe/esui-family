@@ -11,7 +11,6 @@ define(
     function (require) {
         var $ = require('jquery');
         var esui = require('esui');
-        var lib = require('esui/lib');
         var u = require('underscore');
         var TogglePanel = require('../TogglePanel');
         var eoo = require('eoo');

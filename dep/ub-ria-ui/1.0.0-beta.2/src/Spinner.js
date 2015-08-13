@@ -16,7 +16,6 @@ define(
         var u = require('underscore');
         var m = require('moment');
         var ui = require('esui');
-        var u = require('underscore');
         var painters = require('esui/painters');
         var $ = require('jquery');
 

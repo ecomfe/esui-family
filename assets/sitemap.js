@@ -4,12 +4,18 @@ define('sitemap', ['jquery'], function ($) {
         var htmlItem = '<li><a href="{link}"><span class="{icon}"></span> {text}</a></li>';
         var items = [
             {
-                link: 'css/index.html',
+                link: '../help/start.html',
+                icon: 'ui-icon-hand-o-right',
+                text: 'Get Started'
+
+            },
+            {
+                link: '../css/index.html',
                 icon: 'ui-icon-css3',
                 text: 'CSS'
             },
             {
-                link: 'controls/index.html',
+                link: '../controls/index.html',
                 icon: 'ui-icon-code',
                 text: 'Controls'
             }
@@ -22,7 +28,7 @@ define('sitemap', ['jquery'], function ($) {
     }
 
     function footer() {
-        var footHtml = '<p class="ui-text-center contrast">HI群：1392158</p>';
+        var footHtml = '<p class="ui-text-center contrast">HI群：1401953</p>';
         $('.footer').html(footHtml);
     }
 
@@ -87,8 +93,16 @@ define('sitemap', ['jquery'], function ($) {
             '<li><a href="?control=Sticky">Sticky <span class="ui-x-small ui-label-slim ui-label-custom ui-label-info">ub-ui</span></a></li>';
 
         function generateNav(id, items) {
-            $(id).html(navItems);
+            $(id).html(items);
             var url = window.location.pathname;
+            if (url.indexOf('help')) {
+                if (url.indexOf('guide.html') > 0) {
+                    $('#navigator-help li:last a').css('color', '#444');
+                }
+                else {
+                    $('#navigator-help li:first a').css('color', '#444');
+                }
+            }
             var filename = getQueryString('control');
             if (!filename) {
                 filename = 'Button';
@@ -117,6 +131,13 @@ define('sitemap', ['jquery'], function ($) {
             '<li><a href="?control=type">Type</a></li>' +
             '<li><a href="?control=wizard">Wizard</a></li>';
         generateNav('#navigator-esf', navItems);
+
+        // get started 导航
+        var startItems = 
+            '<li><a href="start.html">开始使用</a></li>'
+            + '<li><a href="guide.html">使用指南</a></li>';
+        generateNav('#navigator-help', startItems);
+
     }
 
     function getQueryString(name) {

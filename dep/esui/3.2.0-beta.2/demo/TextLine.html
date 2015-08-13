@@ -21,11 +21,29 @@
             </ul>
         </div>
         <div id="main" class="ui-u-4-5">
-            <h2>展示</h2>
+            <h2>搜索</h2>
+            <p></p>
+            <div class="example">
+                <h3>search</h3>
+                <div class="row">
+                    <div data-ui-type="SearchBox" data-ui-id="normal-search" data-ui-width="302" data-ui-button-position="right" ></div>
+                </div>
+                <textarea data-ui="id:searchTextLine;type:TextLine;name:textLine;"></textarea>
+            </div>
+
+            <h2>从TextArea初始化</h2>
+            <p>描述</p>
+            <div class="example">
+                <textarea data-ui="type:TextLine;">line1
+test2
+tst3</textarea>
+            </div>
+
+            <h2>状态</h2>
             <p>描述</p>
             <div class="example">
                 <h3>Error</h3>
-                <div data-ui="type:TextLine;name:textLine;">
+                <div data-ui="type:TextLine;name:textLine;id:errorTextLine">
                 </div>
                 <h3>Disabled</h3>
                 <div data-ui="type:TextLine;name:textLine;disabled:disabled;rawValue:disabled"></div>
@@ -35,16 +53,12 @@
                 <div data-ui="type:TextLine;name:textLine;rawValue:success;states:success"></div>
                 <h3>Warning</h3>
                 <div data-ui="type:TextLine;name:textLine;rawValue:warning;states:warning"></div>
-                <h3>PlaceHolder</h3>
-                <div data-ui="type:TextLine;name:textLine;placeholder:warning;"></div>
             </div>
 
-            <h2>从TextArea初始化</h2>
+            <h2>PlaceHolder</h2>
             <p>描述</p>
             <div class="example">
-                <textarea data-ui="type:TextLine;">line1
-test2
-tst3</textarea>
+                <div data-ui="type:TextLine;name:textLine;placeholder:warning;"></div>
             </div>
         </div>
     </div>
@@ -58,16 +72,34 @@ tst3</textarea>
             'esui',
             'esui/TextLine',
             'esui/Tab',
+            'esui/SearchBox',
             'demo'
         ],
         function (ui) {
             var controls = ui.init();
-            var textLine = controls[0];
+            var search = ui.get('normal-search');
+            var line = ui.get('searchTextLine');
 
-            textLine.setProperties({
-                value: 'value1\nvalue2\nsadf\nsadf\nsadf\nsadf\nsadf\nsadf\nsadf\nsadf\nsadf'
+            search.on('search', function (e) {
+                var value = e.target.getValue();
+                var re = value ? new RegExp('^' + value) : '';
+                line.setProperties({
+                    query: re
+                });
             });
-            textLine.showValidationMessage('invalid', '错误信息！');
+
+            line.setProperties({
+                rawValue: [
+                    '你好',
+                    '世界',
+                    'Hello',
+                    'World',
+                    'Bonjour'
+                ]
+            });
+
+            var error = ui.get('errorTextLine');
+            error.showValidationMessage('invalid', '错误信息！');
         }
     );
     </script>

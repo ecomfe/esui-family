@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>ESF Demo</title>
+    <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+    <link rel="stylesheet" href="../assets/themes/standard.css" />
+</head>
+<body>
+    <div id="header">
+        <div class="ui-navbar ui-navbar-mordern">
+            <h1 id="branding" class="ui-navbar-content">
+                <a class="ui-navbar-content-link" href="../index.html">ESUI Family</a>
+            </h1>
+            <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+            </ul>
+        </div>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator-help" class="ui-nav"></ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>下载</h2>
+            <p>从<a href="https://github.com/ecomfe/esui-family" target="_blank">Github</a>上可以查看整个项目的所有源文件。</p>
+            <a href="https://github.com/ecomfe/esui-family" target="_blank"><button type="button" data-ui="type:Button;variants:primary"><span class="ui-icon-github" style="margin-right:5px"></span>Esui Family</button></a>
+            <a href="https://github.com/ecomfe/esui" target="_blank"><button type="button" data-ui="type:Button;variants:primary"><span class="ui-icon-github" style="margin-right:5px"></span>ESUI</button></a>
+            <a href="https://github.com/ecomfe/ub-ria-ui" target="_blank"><button type="button" data-ui="type:Button;variants:primary"><span class="ui-icon-github" style="margin-right:5px"></span>ub-ria-ui</button></a>
+            <br/>
+            <br/>
+            <h2>EDP安装与使用</h2>
+            <p>EDP通过npm发布到npmjs.org上的，通过命令行<code>npm install -g</code>可以进行安装。-g为全局安装参数，必选。</p>
+            <p>在Linux/Mac平台下，全局安装可能需要sudo.</p>
+            <a href="http://ecomfe.github.io/edp/" target="_blank"><button type="button" data-ui="type:Button;variants:primary">EDP使用指南</button></a>
+            <br/>
+            <br/>
+        </div>
+    </div>
+    <footer class="footer">
+    </footer>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="../assets/config.js"></script>
+    <script src="../assets/build/ui.js"></script>
+    <script src="../assets/sitemap.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script>
+        require(['sitemap','esui','jquery','esui/Button'], function (sitemap, ui, $) {
+            ui.init();
+            sitemap.mainNav();
+            sitemap.renderNav();
+            sitemap.footer();
+            window.prettyPrint();
+
+
+
+        })
+    </script>
+</body>
+</html>
