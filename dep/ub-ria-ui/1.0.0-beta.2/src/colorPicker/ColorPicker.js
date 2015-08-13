@@ -176,7 +176,7 @@ define(
             closeText: '关闭',
             okText: '确定',
             cancelText: '取消'
-        }
+        };
 
         /**
          * 颜色输入框输入事件处理
@@ -248,7 +248,8 @@ define(
 
             var pickerContent = ''
                 + this.helper.getPartBeginTag('head', 'div')
-                +     this.helper.getPartBeginTag('title', 'div') + this.chooseColorText + this.helper.getPartEndTag('title', 'div')
+                +     this.helper.getPartBeginTag('title', 'div') + this.chooseColorText
+                +     this.helper.getPartEndTag('title', 'div')
                 +     this.helper.getPartBeginTag('close-btn', 'div') + this.closeText
                 +     this.helper.getPartEndTag('close-btn', 'div')
                 + this.helper.getPartEndTag('head', 'div')

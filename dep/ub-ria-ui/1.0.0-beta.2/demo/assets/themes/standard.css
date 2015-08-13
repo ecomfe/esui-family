@@ -4642,10 +4642,6 @@ hr {
 .ui-commandmenu-layer {
   position: absolute;
 }
-.ui-layer {
-  position: absolute;
-  margin: 0;
-}
 /**
   * ESUI (Enterprise Simple UI)
   * Copyright 2013 Baidu Inc. All rights reserved.
@@ -4776,6 +4772,10 @@ span.ui-crumb-node {
 }
 .ui-dialog-icon-confirm {
   color: #6bd5ec;
+}
+.ui-layer {
+  position: absolute;
+  margin: 0;
 }
 /**
 * ESUI (Enterprise Simple UI)
@@ -6260,9 +6260,9 @@ span.ui-crumb-node {
   cursor: pointer;
   padding: 0.5em 0.5em 0.5em 2em;
   position: relative;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   border: 1px solid #dddddd;
   background: #f6f6f6;
   color: #666666;
@@ -6302,9 +6302,9 @@ span.ui-crumb-node {
   padding: 1em 1em 1em 1em;
   position: relative;
   margin: 0 0 0.5em 0;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
 .ui-alert-has-icon {
   padding-left: 3.5em;
@@ -6660,6 +6660,26 @@ i.ui-autocomplete-item-char-selected {
 }
 .ui-togglepanel {
   display: block;
+}
+.ui-togglepanel-angle .ui-togglepanel-title {
+  cursor: pointer;
+}
+.ui-togglepanel-angle .ui-togglepanel-title:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f105";
+  width: 1em;
+}
+.ui-togglepanel-angle.state-expanded .ui-togglepanel-title:before {
+  content: "\f107";
+}
+.ui-togglepanel-angle .ui-togglepanel-content {
+  padding: 1em;
 }
 /* 滑动杆控件开始 */
 /* 滑动杆的头 */
@@ -7433,6 +7453,7 @@ i.ui-autocomplete-item-char-selected {
 .main-container {
   margin-top: 2em;
   margin-bottom: 5em;
+  min-height: 40em;
 }
 .footer {
   padding: 1em;

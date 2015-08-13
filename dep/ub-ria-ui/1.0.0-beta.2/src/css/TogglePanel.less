@@ -1,4 +1,22 @@
-
 .@{ui-class-prefix}-togglepanel {
     display: block;
+}
+
+.@{ui-class-prefix}-togglepanel-angle {
+    .@{ui-class-prefix}-togglepanel-title {
+        cursor: pointer;
+    }
+    .@{ui-class-prefix}-togglepanel-title:before {
+        .eicons-font-style();
+        .eicons-icon-content(angle-right);
+        width: 1em;
+    }
+    &.@{ui-state-prefix}-expanded  {
+        .@{ui-class-prefix}-togglepanel-title:before {
+            .eicons-icon-content(angle-down);
+        }
+    }
+    .@{ui-class-prefix}-togglepanel-content {
+        padding: 1em;
+    }
 }

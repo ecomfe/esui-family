@@ -632,8 +632,10 @@ define(
         }
 
         /**
-         *  下面的方法专属delete型table
-         *
+         * 下面的方法专属delete型table
+         * @param {Object} control table
+         * @param {DOMElement} row 行DOM
+         * @param {Object} item 要删除的item
          */
         function actionForDelete(control, row, item) {
             deleteItem(control, item.id);

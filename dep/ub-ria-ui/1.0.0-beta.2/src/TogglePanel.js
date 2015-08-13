@@ -165,11 +165,16 @@ define(
          * @param {Object} titleElem Title的DOM对象
          */
         function initTitle(titleElem) {
-            var titlePanel = esui.create('Panel', {main: titleElem});
+            var options = {
+                main: titleElem,
+                childName: 'title',
+                viewContext: this.viewContext,
+                renderOptions: this.renderOptions
+            };
+            var titlePanel = ui.create('Panel', options);
             this.helper.addPartClasses('title', titlePanel.main);
             this.addChild(titlePanel, 'title');
             titlePanel.render();
-            this.set('title', titleElem && titleElem.innerHTML);
         }
 
         /**
@@ -222,6 +227,10 @@ define(
          * @inner
          */
         function onToggle() {
+            var e = this.fire('beforetoggle');
+            if (e.isDefaultPrevented()) {
+                return;
+            }
             this.toggleContent();
         }
 

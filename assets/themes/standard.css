@@ -4353,6 +4353,10 @@ hr {
 .ui-commandmenu-layer {
   position: absolute;
 }
+.ui-layer {
+  position: absolute;
+  margin: 0;
+}
 /**
   * ESUI (Enterprise Simple UI)
   * Copyright 2013 Baidu Inc. All rights reserved.
@@ -4483,10 +4487,6 @@ span.ui-crumb-node {
 }
 .ui-dialog-icon-confirm {
   color: #6bd5ec;
-}
-.ui-layer {
-  position: absolute;
-  margin: 0;
 }
 /**
  * ESUI (Enterprise Simple UI)
@@ -4620,6 +4620,162 @@ span.ui-crumb-node {
 }
 .ui-monthview-disabled .ui-monthview-month-item {
   cursor: not-allowed;
+}
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 下拉选择样式
+ * @author dbear
+ */
+.ui-select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  outline: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 1em;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  height: 2.5em;
+  line-height: 2.5em;
+  -webkit-transition: background-color 0.3s ease;
+  -moz-transition: background-color 0.3s ease;
+  -ms-transition: background-color 0.3s ease;
+  -o-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+  background: #f6f6f6;
+  color: #666666;
+}
+.ui-select:hover,
+.ui-select:focus {
+  color: #666666;
+  background: #fbfbfb;
+}
+.ui-select.state-read-only,
+.ui-select.state-read-only:hover {
+  background: #f6f6f6;
+}
+.ui-select.state-active {
+  background: #fbfbfb;
+}
+.ui-select.state-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: not-allowed !important;
+}
+.ui-select.state-active .ui-select-arrow {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  -moz-transition: -moz-transform 0.3s ease;
+  -ms-transition: -ms-transform 0.3s ease;
+  -o-transition: -o-transform 0.3s ease;
+  transition: transform 0.3s ease;
+}
+.ui-select-text {
+  padding-right: 2em;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ui-select-arrow {
+  position: absolute;
+  right: 1em;
+  top: 0;
+  line-height: 2.5em;
+  width: 1em;
+  text-align: center;
+}
+.ui-select-arrow:before {
+  content: "\f0d7";
+}
+.ui-select-layer {
+  max-height: 13em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+}
+.ui-select-item-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: not-allowed !important;
+}
+.ui-select-item-disabled:hover {
+  background: none;
+}
+.ui-select-item-selected > :first-child {
+  background: #fbfbfb;
+  color: #666666 !important;
+}
+.ui-select-primary {
+  background: #70ccc0;
+  color: #ffffff;
+}
+.ui-select-primary:hover,
+.ui-select-primary:focus {
+  color: #ffffff;
+  background: #79dacd;
+}
+.ui-select-primary.state-read-only,
+.ui-select-primary.state-read-only:hover {
+  background: #70ccc0;
+}
+.ui-select-primary.state-active {
+  background: #5fb3a8;
+}
+.ui-select-compact {
+  padding: 0 0.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  color: #666666;
+  background: #ffffff;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.ui-select-compact .ui-select-arrow {
+  line-height: 1.5em;
+  right: 0.5em;
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+.ui-select-compact .ui-select-arrow:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+.ui-select-layer-compact li :first-child {
+  padding: 0.3em;
+}
+.ui-select-layer-compact .ui-select-item-selected > :first-child {
+  background: #fbfbfb;
+  color: #666666;
+}
+.ui-select-bordered {
+  color: #666666;
+  background: #ffffff;
+  border: 1px solid #dddddd;
+}
+.ui-select-bordered .ui-select-arrow {
+  opacity: 0.7;
+  filter: alpha(opacity=70);
+}
+.ui-select-bordered .ui-select-arrow:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 /**
 * ESUI (Enterprise Simple UI)
@@ -4974,162 +5130,6 @@ span.ui-crumb-node {
 .ui-richcalendar-month-container {
   float: left;
   margin-right: 0.5em;
-}
-/**
- * ESUI (Enterprise Simple UI)
- * Copyright 2013 Baidu Inc. All rights reserved.
- *
- * @file 下拉选择样式
- * @author dbear
- */
-.ui-select {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-  outline: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0 1em;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  height: 2.5em;
-  line-height: 2.5em;
-  -webkit-transition: background-color 0.3s ease;
-  -moz-transition: background-color 0.3s ease;
-  -ms-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
-  background: #f6f6f6;
-  color: #666666;
-}
-.ui-select:hover,
-.ui-select:focus {
-  color: #666666;
-  background: #fbfbfb;
-}
-.ui-select.state-read-only,
-.ui-select.state-read-only:hover {
-  background: #f6f6f6;
-}
-.ui-select.state-active {
-  background: #fbfbfb;
-}
-.ui-select.state-disabled {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  cursor: not-allowed !important;
-}
-.ui-select.state-active .ui-select-arrow {
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
-  -webkit-transition: -webkit-transform 0.3s ease;
-  -moz-transition: -moz-transform 0.3s ease;
-  -ms-transition: -ms-transform 0.3s ease;
-  -o-transition: -o-transform 0.3s ease;
-  transition: transform 0.3s ease;
-}
-.ui-select-text {
-  padding-right: 2em;
-  display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.ui-select-arrow {
-  position: absolute;
-  right: 1em;
-  top: 0;
-  line-height: 2.5em;
-  width: 1em;
-  text-align: center;
-}
-.ui-select-arrow:before {
-  content: "\f0d7";
-}
-.ui-select-layer {
-  max-height: 13em;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: absolute;
-}
-.ui-select-item-disabled {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  cursor: not-allowed !important;
-}
-.ui-select-item-disabled:hover {
-  background: none;
-}
-.ui-select-item-selected > :first-child {
-  background: #fbfbfb;
-  color: #666666 !important;
-}
-.ui-select-primary {
-  background: #70ccc0;
-  color: #ffffff;
-}
-.ui-select-primary:hover,
-.ui-select-primary:focus {
-  color: #ffffff;
-  background: #79dacd;
-}
-.ui-select-primary.state-read-only,
-.ui-select-primary.state-read-only:hover {
-  background: #70ccc0;
-}
-.ui-select-primary.state-active {
-  background: #5fb3a8;
-}
-.ui-select-compact {
-  padding: 0 0.5em;
-  height: 1.5em;
-  line-height: 1.5em;
-  color: #666666;
-  background: #ffffff;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-}
-.ui-select-compact .ui-select-arrow {
-  line-height: 1.5em;
-  right: 0.5em;
-  opacity: 0.7;
-  filter: alpha(opacity=70);
-}
-.ui-select-compact .ui-select-arrow:hover {
-  opacity: 1;
-  filter: alpha(opacity=100);
-}
-.ui-select-layer-compact li :first-child {
-  padding: 0.3em;
-}
-.ui-select-layer-compact .ui-select-item-selected > :first-child {
-  background: #fbfbfb;
-  color: #666666;
-}
-.ui-select-bordered {
-  color: #666666;
-  background: #ffffff;
-  border: 1px solid #dddddd;
-}
-.ui-select-bordered .ui-select-arrow {
-  opacity: 0.7;
-  filter: alpha(opacity=70);
-}
-.ui-select-bordered .ui-select-arrow:hover {
-  opacity: 1;
-  filter: alpha(opacity=100);
 }
 /**
   * ESUI (Enterprise Simple UI)
@@ -5761,6 +5761,7 @@ span.ui-crumb-node {
 .ui-textline {
   position: relative;
   display: inline-block;
+  overflow: hidden;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -5909,6 +5910,67 @@ span.ui-crumb-node {
 }
 .ui-textline.state-disabled textarea {
   cursor: not-allowed;
+}
+.ui-textline-search-info {
+  background: #fffaee;
+  padding: 0 10px;
+  line-height: 2;
+  overflow: hidden;
+}
+.ui-textline-search-hint {
+  float: left;
+}
+.ui-textline-search-hint-text {
+  color: #f16c6c;
+}
+.ui-textline-search-back {
+  cursor: pointer;
+  float: right;
+}
+.ui-textline-search-wrapper {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+}
+.ui-textline-search-num-line {
+  position: absolute;
+  font-size: 1em;
+  width: 2em;
+  height: 100%;
+  background: #f6f6f6;
+  color: #666666;
+}
+.ui-textline-empty-text {
+  color: #999999;
+  margin-top: 1em;
+  text-align: center;
+}
+.ui-textline-search-content-line span {
+  display: inline-block;
+  line-height: 1.5;
+}
+.ui-textline-search-content-line:hover .ui-textline-search-content-clear {
+  display: inline-block;
+}
+.ui-textline-search-content-clear {
+  display: none;
+  width: 2em;
+  color: #f16c6c;
+  text-align: center;
+  float: right;
+  cursor: pointer;
+}
+.ui-textline-search-content-clear:before {
+  content: "\f00d";
+}
+.ui-textline-search-content-num {
+  text-align: center;
+  width: 2em;
+  z-index: 2;
+  position: relative;
+}
+.ui-textline-search-content-text {
+  margin: 0 0.2em;
 }
 /**
   * ESUI (Enterprise Simple UI)
@@ -6260,9 +6322,9 @@ span.ui-crumb-node {
   cursor: pointer;
   padding: 0.5em 0.5em 0.5em 2em;
   position: relative;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
   border: 1px solid #dddddd;
   background: #f6f6f6;
   color: #666666;
@@ -6302,9 +6364,9 @@ span.ui-crumb-node {
   padding: 1em 1em 1em 1em;
   position: relative;
   margin: 0 0 0.5em 0;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
 .ui-alert-has-icon {
   padding-left: 3.5em;
@@ -6660,6 +6722,26 @@ i.ui-autocomplete-item-char-selected {
 }
 .ui-togglepanel {
   display: block;
+}
+.ui-togglepanel-angle .ui-togglepanel-title {
+  cursor: pointer;
+}
+.ui-togglepanel-angle .ui-togglepanel-title:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  content: "\f105";
+  width: 1em;
+}
+.ui-togglepanel-angle.state-expanded .ui-togglepanel-title:before {
+  content: "\f107";
+}
+.ui-togglepanel-angle .ui-togglepanel-content {
+  padding: 1em;
 }
 /* 滑动杆控件开始 */
 /* 滑动杆的头 */
@@ -7570,6 +7652,25 @@ pre.prettyprint code {
 }
 .highlight {
   margin-left: 20px;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #ED3F5A;
+  background-color: #F6F6F6;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 5px;
+}
+p {
+  font-size: 14px;
+}
+.cal-desc {
+  display: inline-block;
+  width: 120px;
+}
+.edit-form .ui-form-key {
+  width: 6em;
 }
 .ui-loader-bouncers {
   text-align: center;

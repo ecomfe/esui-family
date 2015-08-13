@@ -9,7 +9,6 @@
 
 define(
     function (require) {
-        var lib = require('esui/lib');
         var TreeStrategy = require('esui/TreeStrategy');
         var eoo = require('eoo');
         var u = require('underscore');

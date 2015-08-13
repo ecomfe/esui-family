@@ -5761,6 +5761,7 @@ span.ui-crumb-node {
 .ui-textline {
   position: relative;
   display: inline-block;
+  overflow: hidden;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -5909,6 +5910,67 @@ span.ui-crumb-node {
 }
 .ui-textline.state-disabled textarea {
   cursor: not-allowed;
+}
+.ui-textline-search-info {
+  background: #fffaee;
+  padding: 0 10px;
+  line-height: 2;
+  overflow: hidden;
+}
+.ui-textline-search-hint {
+  float: left;
+}
+.ui-textline-search-hint-text {
+  color: #f16c6c;
+}
+.ui-textline-search-back {
+  cursor: pointer;
+  float: right;
+}
+.ui-textline-search-wrapper {
+  position: relative;
+  height: 100%;
+  overflow-y: auto;
+}
+.ui-textline-search-num-line {
+  position: absolute;
+  font-size: 1em;
+  width: 2em;
+  height: 100%;
+  background: #f6f6f6;
+  color: #666666;
+}
+.ui-textline-empty-text {
+  color: #999999;
+  margin-top: 1em;
+  text-align: center;
+}
+.ui-textline-search-content-line span {
+  display: inline-block;
+  line-height: 1.5;
+}
+.ui-textline-search-content-line:hover .ui-textline-search-content-clear {
+  display: inline-block;
+}
+.ui-textline-search-content-clear {
+  display: none;
+  width: 2em;
+  color: #f16c6c;
+  text-align: center;
+  float: right;
+  cursor: pointer;
+}
+.ui-textline-search-content-clear:before {
+  content: "\f00d";
+}
+.ui-textline-search-content-num {
+  text-align: center;
+  width: 2em;
+  z-index: 2;
+  position: relative;
+}
+.ui-textline-search-content-text {
+  margin: 0 0.2em;
 }
 /**
   * ESUI (Enterprise Simple UI)
@@ -6394,6 +6456,25 @@ pre.prettyprint code {
 }
 .highlight {
   margin-left: 20px;
+}
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #ED3F5A;
+  background-color: #F6F6F6;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 0 5px;
+}
+p {
+  font-size: 14px;
+}
+.cal-desc {
+  display: inline-block;
+  width: 120px;
+}
+.edit-form .ui-form-key {
+  width: 6em;
 }
 .ui-tab-vertical-container-left .ui-tab-vertical {
   width: 8em;
