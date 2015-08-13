@@ -4,18 +4,18 @@ define('sitemap', ['jquery'], function ($) {
         var htmlItem = '<li><a href="{link}"><span class="{icon}"></span> {text}</a></li>';
         var items = [
             {
-                link: '../help/start.html',
+                link: 'help/start.html',
                 icon: 'ui-icon-hand-o-right',
                 text: 'Get Started'
 
             },
             {
-                link: '../css/index.html',
+                link: 'css/index.html',
                 icon: 'ui-icon-css3',
                 text: 'CSS'
             },
             {
-                link: '../controls/index.html',
+                link: 'controls/index.html',
                 icon: 'ui-icon-code',
                 text: 'Controls'
             }
