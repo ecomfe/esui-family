@@ -20373,10 +20373,11 @@ define('ub-ria-ui/TogglePanel', [
                 viewContext: this.viewContext,
                 renderOptions: this.renderOptions
             };
-        var titlePanel = ui.create('Panel', options);
+        var titlePanel = esui.create('Panel', options);
         this.helper.addPartClasses('title', titlePanel.main);
         this.addChild(titlePanel, 'title');
         titlePanel.render();
+        this.set('title', titleElem && titleElem.innerHTML);
     }
     function initContentPanel(contentElem) {
         var options = {
