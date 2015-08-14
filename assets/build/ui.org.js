@@ -18969,10 +18969,6 @@ define('ub-ria-ui/MultiCalendar', [
             });
         }
         if (state === 'render') {
-            var rightArrow = prevMonthView.getChild('monthForward').main;
-            var leftArrow = nextMonthView.getChild('monthBack').main;
-            $(rightArrow).remove();
-            $(leftArrow).remove();
             prevMonthView.on('change', u.bind(syncMonthView, multiCalendar));
             prevMonthView.on('changemonth', u.bind(changePrevMonth, multiCalendar));
             nextMonthView.on('change', u.bind(syncMonthView, multiCalendar));
@@ -19417,8 +19413,10 @@ define('ub-ria-ui/selectors/RichSelector', [
                 return [
                     '<div data-ui="type:Panel;childName:searchBoxArea"',
                     ' class="' + this.helper.getPartClassName('search-wrapper') + '">',
-                    '    <div data-ui="type:SearchBox;childName:itemSearch;" ',
-                    '      data-ui-button-variants="bordered icon"></div>',
+                    '   <div',
+                    '   data-ui="buttonPosition:right;buttonVariants:bordered icon;',
+                    '   type:SearchBox;childName:itemSearch;">',
+                    '   </div>',
                     '</div>'
                 ].join('');
             },
@@ -23371,6 +23369,14 @@ define('esui/CommandMenu', [
                 }
                 element.innerHTML = html;
             },
+            position: function () {
+                var layer = this.getElement();
+                var alignToElement = this.control.alignToElement;
+                if (u.isString(alignToElement)) {
+                    alignToElement = $('#' + alignToElement)[0];
+                }
+                Layer.attachTo(layer, alignToElement || this.control.main, this.dock);
+            },
             initBehavior: function (element) {
                 var helper = this.control.helper;
                 helper.addDOMEvent(element, 'click', '.' + helper.getPrimaryClassName('node'), selectItem);
@@ -23399,6 +23405,7 @@ define('esui/CommandMenu', [
             },
             type: 'CommandMenu',
             itemTemplate: '<span>${text}</span>',
+            alignToElement: null,
             getItemHTML: function (item) {
                 var data = { text: u.escape(item.text) };
                 return lib.format(this.itemTemplate, data);
@@ -23512,15 +23519,17 @@ define('esui/Crumb', [
                 return lib.format(template, data);
             },
             getSeparatorHTML: function () {
+                var separatorClass = this.separatorClass;
                 return lib.format(this.separatorTemplate, {
-                    classes: this.helper.getPartClassName('separator'),
+                    classes: separatorClass + ' ' + this.helper.getPartClassName('separator'),
                     text: u.escape(this.separator)
                 });
             },
             repaint: painters.createRepaint(Control.prototype.repaint, {
                 name: [
                     'path',
-                    'separator'
+                    'separator',
+                    'separatorClass'
                 ],
                 paint: function (crumb, path) {
                     var html = u.map(path, crumb.getNodeHTML, crumb);
@@ -23531,6 +23540,7 @@ define('esui/Crumb', [
         });
     Crumb.defaultProperties = {
         separator: '>',
+        separatorClass: '',
         textNodeTemplate: '<span class="${classes}" data-index="${index}">${text}</span>',
         linkNodeTemplate: '<a class="${classes}" href="${href}" data-index="${index}">${text}</a>',
         separatorTemplate: '<span class="${classes}">${text}</span>'
@@ -32944,7 +32954,7 @@ define('esui/Wizard', [
                         steps: [],
                         activeIndex: 0,
                         nodeTemplate: '<span>${text}</span>',
-                        numberNodeTemplate: '<span class="${numberNodeClass}">${number}</span>' + '<span class="${textNodeClass}">${text}</span>'
+                        numberNodeTemplate: '<span class="${numberNodeClass}"><span>${number}</span></span>' + '<span class="${textNodeClass}">${text}</span>'
                     };
                 var $children = $(this.main).children();
                 if (!options.steps) {

@@ -410,13 +410,6 @@ define(
             }
 
             if (state === 'render') {
-
-                // 移除左侧日历的右向箭头和右侧日历的左向箭头
-                var rightArrow = prevMonthView.getChild('monthForward').main;
-                var leftArrow = nextMonthView.getChild('monthBack').main;
-                $(rightArrow).remove();
-                $(leftArrow).remove();
-
                 prevMonthView.on('change', u.bind(syncMonthView, multiCalendar));
                 prevMonthView.on('changemonth', u.bind(changePrevMonth, multiCalendar));
 

@@ -170,8 +170,10 @@ define(
                         // 搜索区
                         '<div data-ui="type:Panel;childName:searchBoxArea"',
                         ' class="' + this.helper.getPartClassName('search-wrapper') + '">',
-                        '    <div data-ui="type:SearchBox;childName:itemSearch;" ',
-                        '      data-ui-button-variants="bordered icon"></div>',
+                        '   <div',
+                        '   data-ui="buttonPosition:right;buttonVariants:bordered icon;',
+                        '   type:SearchBox;childName:itemSearch;">',
+                        '   </div>',
                         '</div>'
                     ].join('');
                 },

@@ -73,11 +73,10 @@
 .esui-checkbox-virtual-box-indeterminate-theme() {
     &:after {
         border: 1px solid @esui-checkbox-border-active-color;
-
         width: @esui-checkbox-radio-box-size;
         height: @esui-checkbox-radio-box-size;
         background: @esui-checkbox-radio-checked-background-color;
-        .box-shadow(inset 0px 0px 0px 0.2em @esui-checkbox-background-color);
+        .box-shadow(inset 0 0 0 3px @esui-checkbox-background-color);
         top: 0;
         left: 0;
         // IE has indeterminate and checked states at the same time.
@@ -106,9 +105,9 @@
         width: @esui-checkbox-radio-box-size;
         height: @esui-checkbox-radio-box-size;
         background-color: @esui-checkbox-radio-checked-color;
-        .box-shadow(inset 0px 0px 0px 0.3em @esui-checkbox-border-active-color);
         .esui-circular();
-        border: 0;
+        border: .3em solid @esui-checkbox-border-active-color;
+        .transform(none);
     }
 }
 
