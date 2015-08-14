@@ -13,7 +13,7 @@
 @esui-color-picker-color-input-right-margin: .5em;
 @esui-color-picker-alpha-input-width: 3em;
 
-@esui-color-picker-layer-top-margin: 1px;
+@esui-color-picker-layer-padding: .5em;
 
 // 色彩信息描述区
 .@{ui-class-prefix}-colorpicker {
@@ -58,8 +58,8 @@
 
 // 拾色器浮层
 .@{ui-class-prefix}-colorpicker-layer {
-    margin-top: @esui-color-picker-layer-top-margin;
     .esui-colorpicker-layer-theme();
+    padding: @esui-color-picker-layer-padding;
 
     .@{ui-class-prefix}-fullcolorpicker {
         border: none;
@@ -89,9 +89,12 @@
         }
 
         .@{ui-class-prefix}-colorpicker-foot-frame {
-            padding: @esui-color-picker-header-padding-horizontal;
+            padding: 0 @esui-color-picker-header-padding-horizontal;
 
             .@{ui-class-prefix}-colorpicker-foot {
+                padding: @esui-color-picker-header-padding-horizontal 0;
+                border-top: @esui-color-picker-color-block-border;
+                border-top-style: dotted;
                 text-align: right;
             }
         }
