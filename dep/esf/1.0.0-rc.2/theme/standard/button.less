@@ -129,16 +129,19 @@
     &.@{ui-state-prefix}-hover {
         border-color: @esui-button-primary-hover-background-color;
         color: @esui-button-primary-hover-background-color;
+        background: none;
     }
     &:focus,
     &.@{ui-state-prefix}-focus {
-        border-color: @esui-button-primary-hover-background-color;
-        color: @esui-button-primary-hover-background-color;
+        border-color: @esui-button-primary-focus-background-color;
+        color: @esui-button-primary-focus-background-color;
+        background: none;
     }
     &:active,
     &.@{ui-state-prefix}-active {
-        background: @esui-button-primary-active-background-color;
-        color: @esui-button-primary-text-color;
+        border-color: @esui-button-primary-active-background-color;
+        color: @esui-button-primary-active-background-color;
+        background: none;
     }
 }
 
@@ -195,15 +198,15 @@
             @esui-button-bordered-focus-color
         );
     }
+    &:hover,
+    &:active,
+    &:focus {
+        background: @esui-button-bordered-background;
+    }
 }
 
 .esui-button-group-theme() {
-    &.@{ui-class-prefix}-button-group-separated {
-        .@{ui-class-prefix}-button {
-            margin-left: 0;
-            &:not(:last-child) {
-                border-right: 1px solid @esui-button-group-separator-color;
-            }
-        }
+    .@{ui-class-prefix}-button.@{ui-class-prefix}-button-group-separator {
+        border-left: 1px solid @esui-button-group-separator-color;
     }
 }

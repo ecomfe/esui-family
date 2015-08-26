@@ -137,6 +137,33 @@ define(
                             syncValue.call(colorPicker);
                             colorPicker.fire('change');
                         }
+                    },
+                    {
+                        name: ['disabled'],
+                        paint: function (colorPicker, disabled) {
+                            if (disabled) {
+                                colorPicker.helper.disableChildren();
+                            }
+                            else {
+                                colorPicker.helper.enableChildren();
+                            }
+                        }
+                    },
+                    {
+                        name: ['readOnly'],
+                        paint: function (colorPicker, readOnly) {
+                            u.each(
+                                colorPicker.children,
+                                function (child) {
+                                    if (readOnly) {
+                                        child.addState('readOnly');
+                                    }
+                                    else {
+                                        child.removeState('readOnly');
+                                    }
+                                }
+                            );
+                        }
                     }
                 ),
 
@@ -261,9 +288,9 @@ define(
                 + this.helper.getPartBeginTag('foot-frame', 'div')
                 +     this.helper.getPartBeginTag('foot', 'div')
                 +         '<div class="' + this.helper.getPartClassName('ok-btn') + '"'
-                +             'data-ui="type:Button;childName:btnOk;variants:primary">' + this.okText + '</div>'
+                +             'data-ui="type:Button;childName:btnOk;variants:primary wide">' + this.okText + '</div>'
                 +         '<div class="' + this.helper.getPartClassName('cancel-btn') + '"'
-                +             'data-ui="type:Button;childName:btnCancel;variants:link">' + this.cancelText + '</div>'
+                +             'data-ui="type:Button;childName:btnCancel;variants:link wide">' + this.cancelText + '</div>'
                 +     this.helper.getPartEndTag('foot', 'div')
                 + this.helper.getPartEndTag('foot-frame', 'div');
 

@@ -1,7 +1,6 @@
 @esui-color-picker-main-height: 2.5em;
 
 @esui-color-picker-head-height: 2em;
-@esui-color-picker-header-padding-horizontal: 1em;
 
 @esui-color-picker-color-block-border: 1px solid #DDD;
 @esui-color-picker-color-block-width: @esui-color-picker-main-height;
@@ -13,7 +12,7 @@
 @esui-color-picker-color-input-right-margin: .5em;
 @esui-color-picker-alpha-input-width: 3em;
 
-@esui-color-picker-layer-padding: .5em;
+@esui-color-picker-layer-padding: 1em;
 
 // 色彩信息描述区
 .@{ui-class-prefix}-colorpicker {
@@ -21,6 +20,12 @@
     height: @esui-color-picker-main-height;
     line-height: @esui-color-picker-main-height;
     vertical-align: middle;
+    &.@{ui-state-prefix}-disabled {
+        .esui-disabled();
+        .@{ui-class-prefix}-colorpicker-color-block {
+            cursor: inherit;
+        }
+    }
 }
 
 .@{ui-class-prefix}-colorpicker-color-block-frame {
@@ -72,31 +77,26 @@
         }
 
         .@{ui-class-prefix}-colorpicker-head {
-            height: @esui-color-picker-head-height;
-            line-height: @esui-color-picker-head-height;
-            padding: 0 @esui-color-picker-header-padding-horizontal;
+            overflow: hidden;
+            padding-bottom: .5em;
+            border-bottom: @esui-color-picker-color-block-border;
+            margin-bottom: 1em;
         }
 
         .@{ui-class-prefix}-colorpicker-title {
             float: left;
-            text-align: left;
         }
 
         .@{ui-class-prefix}-colorpicker-close-btn {
             float: right;
-            text-align: right;
             cursor: pointer;
         }
 
         .@{ui-class-prefix}-colorpicker-foot-frame {
-            padding: 0 @esui-color-picker-header-padding-horizontal;
-
-            .@{ui-class-prefix}-colorpicker-foot {
-                padding: @esui-color-picker-header-padding-horizontal 0;
-                border-top: @esui-color-picker-color-block-border;
-                border-top-style: dotted;
-                text-align: right;
-            }
+            border-top: @esui-color-picker-color-block-border;
+            border-top-style: dotted;
+            margin-top: 1em;
+            padding-top: 1em;
         }
     }
 

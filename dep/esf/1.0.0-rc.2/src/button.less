@@ -1,7 +1,7 @@
 @import "base.less";
 
 @esui-button-font-family: 'Helvetica Neue', Helvetica, Arial, '宋体', SimSun, sans-serif;
-@esui-button-font-weight: bold;
+@esui-button-font-weight: normal;
 @esui-button-height: 2.4em;
 @esui-button-padding: 0 1em;
 @esui-button-link-color: #6CCDC0;
@@ -9,6 +9,7 @@
 @esui-button-link-hover-color: lighten(#6CCDC0, 15%);
 @esui-button-link-hover-decoration: underline;
 @esui-button-radius: 0;
+@esui-button-wide-padding: 0 2em;
 
 .@{ui-class-prefix}-button {
     .esui-button();
@@ -94,15 +95,19 @@
     .esui-button-bordered-theme();
 }
 
+.@{ui-class-prefix}-button-wide {
+    padding: @esui-button-wide-padding;
+}
+
 .esui-button-group-border() when (@esui-button-radius > 0) {
-    .@{ui-class-prefix}-button:not(:first-child):not(:last-child) {
+    .@{ui-class-prefix}-button {
         .border-radius(0);
     }
-    .@{ui-class-prefix}-button:first-child:not(:last-child) {
-        .border-right-radius(0);
+    .@{ui-class-prefix}-button-group-first {
+        .border-left-radius(@esui-button-radius);
     }
-    .@{ui-class-prefix}-button:last-child:not(:first-child) {
-        .border-left-radius(0);
+    .@{ui-class-prefix}-button-group-last {
+        .border-right-radius(@esui-button-radius);
     }
 }
 
