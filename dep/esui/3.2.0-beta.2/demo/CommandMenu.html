@@ -31,11 +31,11 @@
                         id="list1"
                         class="ui-button ui-button-primary">Command Menu <span class="ui-icon-caret-down"></span></button>
                     </div>
-                    <div id="create-element" class="ui-button-group ui-button-group-separated">
+                    <div id="create-element" class="ui-button-group">
                         <button type="button" class="ui-button ui-button-primary">Split Button</button>
                         <button type="button" 
                         id="list2"
-                        class="ui-button ui-button-primary ui-button-icon ui-icon-caret-down"></button></div>
+                        class="ui-button-group-separator ui-button ui-button-primary ui-button-icon ui-icon-caret-down"></button>
                     </div>
                 </div>
                 <script type="text/sample">
@@ -74,7 +74,7 @@
                 </script>
                 <h2>动态创建</h2>
                 <div class="intro">
-                    <p>使用JS创建<code>CommandMenu</code>。
+                    <p>使用JS创建<code>CommandMenu</code>。</p>
                 </div>
                 <div class="example ui-demo-light-stage">
                     <div id="create-element1" class="row">
@@ -117,6 +117,48 @@
                     });
                     menuCreated2.appendTo(document.getElementById('create-element2'));
                 </script>
+                <h2>自定义列表元素</h2>
+                <div class="intro">
+                    <p>创建控件时加入参数<code>getCustomItemHTML</code>实现列表元素自定义。</p>
+                </div>
+                <div class="example ui-demo-light-stage">
+                    <div class="row">
+                        <button type="button" 
+                        id="test"
+                        class="ui-button ui-button-primary">Command Menu <span class="ui-icon-caret-down"></span></button>
+                    </div>
+                </div>
+                <script type="text/sample">
+                    var data = [
+                        {
+                            text: 'Item 1 Item 1 ',
+                            desc: '我是注释'
+                        },
+                        {
+                            text: 'Item 2 Item 2 ',
+                            desc: '我是注释4'
+                        },
+                        {
+                            text: 'Item 3 Item 3 ',
+                            desc: '我是注释3'
+                        },
+                        {
+                            text: 'Item 4 Item 4 ',
+                            desc: '我是注释4'
+                        }
+                    ];
+                    var options = {
+                        datasource: data,
+                        main: document.getElementById('test'),
+                        getCustomItemHTML: function (item) {
+                            return lib.format('<span>${text}<span '
+                                + 'style="color:#B5B0B0;">'
+                                + '${desc}</span></span>', item);
+                        }
+                    };
+                    var menu = new CommandMenu(options);
+                    menu.render();
+                </script>
             </div>
         </div>
         <script src="assets/loader/esl.js"></script>
@@ -128,27 +170,32 @@
             [
                 'esui',
                 'esui/CommandMenu',
+                'esui/lib',
                 'esui/Tab',
                 'demo'
             ],
-            function (ui, CommandMenu) {
+            function (ui, CommandMenu, lib) {
                 ui.init();
                 var data = [
                     {
-                        text: 'Item 1 Item 1 '
+                        text: 'Item 1 Item 1 ',
+                        desc: '我是注释'
                     },
                     {
                         text: 'Item 2 Item 2 ',
+                        desc: '我是注释4',
                         handler: function () {
                         }
                     },
                     {
                         text: 'Item 3 Item 3 ',
+                        desc: '我是注释3',
                         handler: function () {
                         }
                     },
                     {
                         text: 'Item 4 Item 4 ',
+                        desc: '我是注释4',
                         handler: function () {
                         }
                     }
@@ -164,6 +211,21 @@
                     });
                     menu.render();
                 }
+                function renderTest(id, alignTo) {
+                    var options = {
+                        datasource: data,
+                        main: document.getElementById(id),
+                        alignToElement: alignTo,
+                        getCustomItemHTML: function (item) {
+                            return lib.format('<span>${text}<div '
+                                + 'style="color:#B5B0B0;font-size: .8em">'
+                                + '${desc}</div></span>', item);
+                        }
+                    };
+                    var menu = new CommandMenu(options);
+                    menu.render();
+                }
+                renderTest('test');
                 newMenu('list1');
                 newMenu('list2', 'create-element');
 

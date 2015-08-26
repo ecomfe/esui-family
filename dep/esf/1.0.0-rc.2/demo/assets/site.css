@@ -520,7 +520,7 @@ input[type="search"]::-webkit-search-decoration {
   height: 2.5em;
   padding: 0 1em;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: normal;
   -webkit-transition: background-color 0.3s ease-out, -webkit-box-shadow 0.2s ease, border-color 0.2s ease;
   -moz-transition: background-color 0.3s ease-out, -moz-box-shadow 0.2s ease, border-color 0.2s ease;
   -ms-transition: background-color 0.3s ease-out, -ms-box-shadow 0.2s ease, border-color 0.2s ease;
@@ -548,7 +548,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button:active,
 .ui-button.state-active {
-  background-color: #fbfbfb;
+  background-color: #ebebeb;
 }
 .ui-button:disabled,
 .ui-button.state-disabled {
@@ -594,11 +594,8 @@ input[type="search"]::-webkit-search-decoration {
 .ui-button-group .ui-button:first-child {
   margin-left: 0;
 }
-.ui-button-group.ui-button-group-separated .ui-button {
-  margin-left: 0;
-}
-.ui-button-group.ui-button-group-separated .ui-button:not(:last-child) {
-  border-right: 1px solid #ffffff;
+.ui-button-group .ui-button.ui-button-group-separator {
+  border-left: 1px solid #ffffff;
 }
 .ui-button-primary {
   color: #ffffff;
@@ -626,16 +623,19 @@ input[type="search"]::-webkit-search-decoration {
 .ui-button-primary-inverted.state-hover {
   border-color: #79dacd;
   color: #79dacd;
+  background: none;
 }
 .ui-button-primary-inverted:focus,
 .ui-button-primary-inverted.state-focus {
   border-color: #79dacd;
   color: #79dacd;
+  background: none;
 }
 .ui-button-primary-inverted:active,
 .ui-button-primary-inverted.state-active {
-  background: #5fb3a8;
-  color: #ffffff;
+  border-color: #5fb3a8;
+  color: #5fb3a8;
+  background: none;
 }
 .ui-button-success {
   color: #ffffff;
@@ -652,7 +652,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button-success:active,
 .ui-button-success.state-active {
-  background-color: #85e6a8;
+  background-color: #5fca86;
 }
 .ui-button-info {
   color: #ffffff;
@@ -669,7 +669,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button-info:active,
 .ui-button-info.state-active {
-  background-color: #72dff6;
+  background-color: #40bdd8;
 }
 .ui-button-warning {
   color: #ffffff;
@@ -686,7 +686,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button-warning:active,
 .ui-button-warning.state-active {
-  background-color: #fdb652;
+  background-color: #eb911e;
 }
 .ui-button-danger {
   color: #ffffff;
@@ -703,7 +703,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button-danger:active,
 .ui-button-danger.state-active {
-  background-color: #f77c7c;
+  background-color: #d54648;
 }
 .ui-button-bordered {
   border: 1px solid #dddddd;
@@ -714,6 +714,14 @@ input[type="search"]::-webkit-search-decoration {
   border: 1px solid #70ccc0;
   background: #ffffff;
   color: #666666;
+}
+.ui-button-bordered:hover,
+.ui-button-bordered:active,
+.ui-button-bordered:focus {
+  background: none;
+}
+.ui-button-wide {
+  padding: 0 2em;
 }
 /*
  * 1. Correct inability to style clickable `input` types in iOS.
@@ -1118,7 +1126,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-dropdown > li:hover > :first-child {
   color: #666666;
-  background: #fffaee;
+  background: #fef8e9;
 }
 .ui-dropdown-separator-top {
   border-top: 1px solid #dddddd;
@@ -1918,7 +1926,7 @@ x:-o-prefocus,
 }
 .ui-submenu > li:hover > :first-child {
   color: #666666;
-  background: #fbfbfb;
+  background: #fef8e9;
 }
 .ui-submenu > li:hover > .ui-submenu {
   display: block;
@@ -2059,23 +2067,23 @@ a.ui-text-info:hover {
 .ui-textbox.state-validity-invalid > input {
   border: 1px solid #f16c6c;
   background: #ffffff;
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox.state-error > input:-moz-placeholder,
 .ui-textbox.state-validity-invalid > input:-moz-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox.state-error > input::-moz-placeholder,
 .ui-textbox.state-validity-invalid > input::-moz-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox.state-error > input::-webkit-input-placeholder,
 .ui-textbox.state-validity-invalid > input::-webkit-input-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox.state-error > input:-ms-input-placeholder,
 .ui-textbox.state-validity-invalid > input:-ms-input-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox > input[readonly],
 .ui-textbox > textarea[readonly] {

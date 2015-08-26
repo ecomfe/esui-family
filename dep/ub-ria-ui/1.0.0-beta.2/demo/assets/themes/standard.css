@@ -532,7 +532,7 @@ input[type="search"]::-webkit-search-decoration {
   height: 2.5em;
   padding: 0 1em;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: normal;
   -webkit-transition: background-color 0.3s ease-out, -webkit-box-shadow 0.2s ease, border-color 0.2s ease;
   -moz-transition: background-color 0.3s ease-out, -moz-box-shadow 0.2s ease, border-color 0.2s ease;
   -ms-transition: background-color 0.3s ease-out, -ms-box-shadow 0.2s ease, border-color 0.2s ease;
@@ -560,7 +560,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button:active,
 .ui-button.state-active {
-  background-color: #fbfbfb;
+  background-color: #ebebeb;
 }
 .ui-button:disabled,
 .ui-button.state-disabled {
@@ -606,11 +606,8 @@ input[type="search"]::-webkit-search-decoration {
 .ui-button-group .ui-button:first-child {
   margin-left: 0;
 }
-.ui-button-group.ui-button-group-separated .ui-button {
-  margin-left: 0;
-}
-.ui-button-group.ui-button-group-separated .ui-button:not(:last-child) {
-  border-right: 1px solid #ffffff;
+.ui-button-group .ui-button.ui-button-group-separator {
+  border-left: 1px solid #ffffff;
 }
 .ui-button-primary {
   color: #ffffff;
@@ -638,16 +635,19 @@ input[type="search"]::-webkit-search-decoration {
 .ui-button-primary-inverted.state-hover {
   border-color: #79dacd;
   color: #79dacd;
+  background: none;
 }
 .ui-button-primary-inverted:focus,
 .ui-button-primary-inverted.state-focus {
   border-color: #79dacd;
   color: #79dacd;
+  background: none;
 }
 .ui-button-primary-inverted:active,
 .ui-button-primary-inverted.state-active {
-  background: #5fb3a8;
-  color: #ffffff;
+  border-color: #5fb3a8;
+  color: #5fb3a8;
+  background: none;
 }
 .ui-button-success {
   color: #ffffff;
@@ -664,7 +664,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button-success:active,
 .ui-button-success.state-active {
-  background-color: #85e6a8;
+  background-color: #5fca86;
 }
 .ui-button-info {
   color: #ffffff;
@@ -681,7 +681,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button-info:active,
 .ui-button-info.state-active {
-  background-color: #72dff6;
+  background-color: #40bdd8;
 }
 .ui-button-warning {
   color: #ffffff;
@@ -698,7 +698,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button-warning:active,
 .ui-button-warning.state-active {
-  background-color: #fdb652;
+  background-color: #eb911e;
 }
 .ui-button-danger {
   color: #ffffff;
@@ -715,7 +715,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-button-danger:active,
 .ui-button-danger.state-active {
-  background-color: #f77c7c;
+  background-color: #d54648;
 }
 .ui-button-bordered {
   border: 1px solid #dddddd;
@@ -726,6 +726,14 @@ input[type="search"]::-webkit-search-decoration {
   border: 1px solid #70ccc0;
   background: #ffffff;
   color: #666666;
+}
+.ui-button-bordered:hover,
+.ui-button-bordered:active,
+.ui-button-bordered:focus {
+  background: #ffffff;
+}
+.ui-button-wide {
+  padding: 0 2em;
 }
 /*
  * 1. Correct inability to style clickable `input` types in iOS.
@@ -933,7 +941,7 @@ input[type="search"]::-webkit-search-decoration {
   -ms-transition: color 0.2s ease;
   -o-transition: color 0.2s ease;
   transition: color 0.2s ease;
-  color: rgba(102, 102, 102, 0.9);
+  color: #666666;
 }
 .esui-checkbox-style-base label:hover,
 .esui-checkbox-style-base ~ label:hover,
@@ -1130,7 +1138,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-dropdown > li:hover > :first-child {
   color: #666666;
-  background: #fffaee;
+  background: #fef8e9;
 }
 .ui-dropdown-separator-top {
   border-top: 1px solid #dddddd;
@@ -1930,7 +1938,7 @@ x:-o-prefocus,
 }
 .ui-submenu > li:hover > :first-child {
   color: #666666;
-  background: #fbfbfb;
+  background: #fef8e9;
 }
 .ui-submenu > li:hover > .ui-submenu {
   display: block;
@@ -2071,23 +2079,23 @@ a.ui-text-info:hover {
 .ui-textbox.state-validity-invalid > input {
   border: 1px solid #f16c6c;
   background: #ffffff;
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox.state-error > input:-moz-placeholder,
 .ui-textbox.state-validity-invalid > input:-moz-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox.state-error > input::-moz-placeholder,
 .ui-textbox.state-validity-invalid > input::-moz-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox.state-error > input::-webkit-input-placeholder,
 .ui-textbox.state-validity-invalid > input::-webkit-input-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox.state-error > input:-ms-input-placeholder,
 .ui-textbox.state-validity-invalid > input:-ms-input-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox > input[readonly],
 .ui-textbox > textarea[readonly] {
@@ -4131,7 +4139,7 @@ hr {
   height: 2.5em;
   padding: 0 1em;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: normal;
   -webkit-transition: background-color 0.3s ease-out, -webkit-box-shadow 0.2s ease, border-color 0.2s ease;
   -moz-transition: background-color 0.3s ease-out, -moz-box-shadow 0.2s ease, border-color 0.2s ease;
   -ms-transition: background-color 0.3s ease-out, -ms-box-shadow 0.2s ease, border-color 0.2s ease;
@@ -4159,10 +4167,10 @@ hr {
 }
 .ui-boxgroup-button-style label:active,
 .ui-boxgroup-button-style label.state-active {
-  background-color: #fbfbfb;
+  background-color: #ebebeb;
 }
 .ui-boxgroup-button-style .ui-boxgroup-wrapper-checked label {
-  background: #fbfbfb;
+  background: #ebebeb;
 }
 .ui-boxgroup-button-style-primary label {
   color: #ffffff;
@@ -4199,10 +4207,10 @@ hr {
 }
 .ui-boxgroup-button-style-success label:active,
 .ui-boxgroup-button-style-success label.state-active {
-  background-color: #85e6a8;
+  background-color: #5fca86;
 }
 .ui-boxgroup-button-style-success .ui-boxgroup-wrapper-checked label {
-  background: #85e6a8;
+  background: #5fca86;
 }
 .ui-boxgroup-button-style-info label {
   color: #ffffff;
@@ -4219,10 +4227,10 @@ hr {
 }
 .ui-boxgroup-button-style-info label:active,
 .ui-boxgroup-button-style-info label.state-active {
-  background-color: #72dff6;
+  background-color: #40bdd8;
 }
 .ui-boxgroup-button-style-info .ui-boxgroup-wrapper-checked label {
-  background: #72dff6;
+  background: #40bdd8;
 }
 .ui-boxgroup-button-style-warning label {
   color: #ffffff;
@@ -4239,10 +4247,10 @@ hr {
 }
 .ui-boxgroup-button-style-warning label:active,
 .ui-boxgroup-button-style-warning label.state-active {
-  background-color: #fdb652;
+  background-color: #eb911e;
 }
 .ui-boxgroup-button-style-warning .ui-boxgroup-wrapper-checked label {
-  background: #fdb652;
+  background: #eb911e;
 }
 .ui-boxgroup-button-style-danger label {
   color: #ffffff;
@@ -4259,10 +4267,10 @@ hr {
 }
 .ui-boxgroup-button-style-danger label:active,
 .ui-boxgroup-button-style-danger label.state-active {
-  background-color: #f77c7c;
+  background-color: #d54648;
 }
 .ui-boxgroup-button-style-danger .ui-boxgroup-wrapper-checked label {
-  background: #f77c7c;
+  background: #d54648;
 }
 .ui-boxgroup {
   display: block;
@@ -4309,7 +4317,7 @@ hr {
   color: #70ccc0;
 }
 .ui-calendar.state-active {
-  background: #fbfbfb;
+  background: #ebebeb;
 }
 .ui-calendar.state-read-only {
   color: #999999;
@@ -4344,6 +4352,147 @@ hr {
 }
 .ui-calendar-layer .ui-monthview {
   vertical-align: top;
+}
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ * 
+ * @file 对话框样式
+ * @author dbear
+ */
+.ui-commandmenu-layer {
+  position: absolute;
+}
+/**
+  * ESUI (Enterprise Simple UI)
+  * Copyright 2013 Baidu Inc. All rights reserved.
+  * 
+  * @file Breadcrumbs样式
+  * @author yankun01
+*/
+.ui-crumb {
+  padding: 0;
+  line-height: 1.3;
+  vertical-align: middle;
+  display: block;
+}
+.ui-crumb-separator {
+  margin: 0 0.5em;
+  color: #666666;
+}
+span.ui-crumb-node {
+  color: #666666;
+}
+.ui-crumb-nav-container {
+  background: #f6f6f6;
+}
+.ui-crumb-nav {
+  display: inline-block;
+  height: 4em;
+  line-height: 4em;
+  overflow: hidden;
+}
+.ui-crumb-nav .ui-crumb-node {
+  padding: 0 20px;
+}
+.ui-crumb-nav span.ui-crumb-node {
+  color: #70ccc0;
+}
+.ui-crumb-nav a.ui-crumb-node {
+  color: #666666;
+  text-decoration: none;
+}
+.ui-crumb-nav a.ui-crumb-node:hover {
+  color: #666666;
+  text-decoration: underline;
+}
+.ui-crumb-nav .ui-crumb-separator {
+  margin: 0 0.5em;
+  color: #999999;
+}
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 对话框样式
+ * @author dbear
+ */
+.ui-dialog {
+  position: absolute;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  z-index: 1203;
+  width: 600px;
+  display: block;
+  background: #ffffff;
+  border: none;
+  -webkit-box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
+}
+.ui-dialog-head {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #666666;
+  font-weight: bold;
+}
+.ui-dialog-close-icon {
+  position: absolute;
+  right: 1em;
+  top: 0.75em;
+  cursor: pointer;
+  color: #999999;
+}
+.ui-dialog-close-icon:hover {
+  color: #666666;
+}
+.ui-dialog-title {
+  line-height: 2.5em;
+  padding: 0 1em;
+}
+.ui-dialog-body {
+  padding: 0.5em 1em;
+}
+.ui-dialog-foot-panel {
+  padding: 1em;
+  margin: 0;
+  border-top: none;
+}
+.ui-dialog-draggable .ui-dialog-head {
+  cursor: move;
+}
+.ui-dialog-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.ui-dialog-mask {
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}
+.ui-dialog-text {
+  min-height: 4em;
+}
+.ui-dialog-alert .ui-dialog-body,
+.ui-dialog-confirm .ui-dialog-body {
+  overflow: auto;
+}
+.ui-dialog-icon {
+  float: left;
+  margin-right: 1em;
+}
+.ui-dialog-icon span {
+  font-size: 4em;
+}
+.ui-dialog-icon-warning {
+  color: #f16c6c;
+}
+.ui-dialog-icon-confirm {
+  color: #6bd5ec;
 }
 .ui-layer {
   position: absolute;
@@ -4411,7 +4560,7 @@ hr {
   text-align: center;
 }
 .ui-monthview-month-title-selected {
-  background: #fbfbfb;
+  background: #ebebeb;
 }
 .ui-monthview-month-item {
   width: 2.5em;
@@ -4425,7 +4574,7 @@ hr {
   font-family: Arial, '微软雅黑', 'Microsoft YaHei', '华文细黑', STXihei, sans-serif;
 }
 .ui-monthview-month-item:hover {
-  background: #fffaee;
+  background: #fef8e9;
 }
 .ui-monthview-month-item-today {
   color: #70ccc0;
@@ -4483,6 +4632,354 @@ hr {
   cursor: not-allowed;
 }
 /**
+* ESUI (Enterprise Simple UI)
+* Copyright 2013 Baidu Inc. All rights reserved.
+*
+* @file 翻页样式
+* @author shenbin langxingjian
+*/
+.ui-pager {
+  display: block;
+  overflow: auto;
+}
+.ui-pager-select-wrapper {
+  display: inline-block;
+}
+.ui-pager-label {
+  display: inline-block;
+  color: #666666;
+  text-align: center;
+}
+.ui-pager-main {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.ui-pager-main li {
+  margin: 0 0 0 0.5em;
+  padding: 0 0.2em;
+  min-width: 1.2em;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  color: #666666;
+}
+.ui-pager-main a {
+  display: inline-block;
+  color: #666666 !important;
+  text-decoration: none !important;
+}
+.ui-pager-item-current {
+  cursor: default;
+  font-weight: bold;
+  color: #ffffff !important;
+  background: #cacaca;
+}
+.ui-pager-item-extend {
+  color: #000000;
+  font-weight: bold;
+  background-color: none;
+}
+.ui-pager-alignLeft,
+.ui-pager-alignLeftReverse {
+  float: left;
+}
+.ui-pager-alignLeftReverse .ui-pager-select-wrapper {
+  float: right;
+}
+.ui-pager-alignRight,
+.ui-pager-alignRightReverse {
+  float: right;
+}
+.ui-pager-alignRightReverse .ui-pager-select-wrapper {
+  float: right;
+}
+.ui-pager-distributed .ui-pager-main {
+  float: right;
+}
+.ui-pager-distributedReverse .ui-pager-select-wrapper {
+  float: right;
+}
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 区间日历样式
+ * @author dbear
+ */
+.ui-rangecalendar {
+  height: 2.4em;
+  line-height: 2.4em;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  vertical-align: middle;
+  padding: 0 1em;
+  position: relative;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background: #f6f6f6;
+  color: #666666;
+}
+.ui-rangecalendar:hover {
+  background: #fbfbfb;
+}
+.ui-rangecalendar:hover .ui-rangecalendar-arrow {
+  color: #70ccc0;
+}
+.ui-rangecalendar.state-active,
+.ui-rangecalendar:active {
+  background: #ebebeb;
+}
+.ui-rangecalendar.state-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: not-allowed !important;
+}
+.ui-rangecalendar.state-disabled .ui-rangecalendar-arrow {
+  color: #666666;
+}
+.ui-rangecalendar.state-read-only {
+  color: #999999;
+}
+.ui-rangecalendar.state-read-only .ui-rangecalendar-arrow {
+  color: #666666;
+}
+.ui-rangecalendar-text {
+  display: inline-block;
+  padding-right: 2em;
+}
+.ui-rangecalendar-arrow {
+  position: absolute;
+  top: 0;
+  right: 1em;
+  display: inline-block;
+}
+.ui-rangecalendar-layer {
+  position: absolute;
+  background: #fbfbfb;
+  border-top: 3px solid #ebebeb;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  padding: 1em;
+}
+.ui-rangecalendar-body:before,
+.ui-rangecalendar-body:after {
+  display: table;
+  content: "";
+}
+.ui-rangecalendar-body:after {
+  clear: both;
+}
+.ui-rangecalendar-foot {
+  padding: 1em 0 0 0;
+}
+.ui-rangecalendar-close-icon-container {
+  position: absolute;
+  right: 11px;
+  top: 0;
+  padding: 0;
+}
+.ui-rangecalendar-label {
+  padding: 1em 0;
+  overflow: hidden;
+}
+.ui-rangecalendar-label h3 {
+  float: left;
+  margin: 0;
+  font-weight: normal;
+  font-size: 1em;
+}
+.ui-rangecalendar-label .ui-checkbox {
+  float: right;
+}
+.ui-rangecalendar-begin,
+.ui-rangecalendar-end {
+  float: left;
+}
+.ui-rangecalendar-begin {
+  margin-right: 1em;
+}
+.ui-rangecalendar-shortcut-item {
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+  text-decoration: none;
+  cursor: pointer;
+  border-left: 1px solid #999999;
+  color: #70ccc0;
+}
+.ui-rangecalendar-shortcut-item-first {
+  border-left: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.ui-rangecalendar-shortcut-item-selected {
+  cursor: default;
+  color: #666666;
+  font-weight: bold;
+  text-decoration: none;
+}
+.ui-rangecalendar-shortcut-disabled .ui-rangecalendar-shortcut-item,
+.ui-rangecalendar-shortcut-item-disabled {
+  cursor: default;
+  color: #999999;
+  text-decoration: none;
+}
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 地域选择样式
+ * @author dbear
+ */
+.ui-region {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.ui-region-country-check {
+  padding: 0.5em;
+  background: #f6f6f6;
+  color: #666666;
+}
+.ui-region-region-box0 {
+  padding: 0 0.5em;
+}
+.ui-region-region-box1 {
+  padding: 0 0.5em;
+  background: #fbfbfb;
+}
+.ui-region-region-check,
+.ui-region-province-box {
+  float: left;
+}
+.ui-region-region-check {
+  width: 7em;
+  padding: 0.5em 0;
+}
+.ui-region-text {
+  position: relative;
+  padding: 0.5em 0 0.5em 0.5em;
+  float: left;
+}
+.ui-region-text-over {
+  background: #fef8e9;
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+.ui-region-province-box {
+  width: 40em;
+}
+.ui-region-province-item {
+  width: 8em;
+  float: left;
+}
+.ui-region-locator {
+  float: left;
+}
+.ui-region-locator b {
+  display: block;
+  padding: 0;
+  margin: 0.6em 0 0 0;
+  line-height: 1.2;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background: #70ccc0;
+  color: #ffffff;
+}
+.ui-region-city-box {
+  position: absolute;
+  padding: 0.5em 0.5em 0 0.5em;
+  z-index: 998;
+  background: #fef8e9;
+  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+.ui-region-city-box td {
+  white-space: nowrap;
+}
+.ui-region-city {
+  padding: 0 0.5em 0.5em;
+}
+.ui-region-single {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  border: none;
+}
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 多月份多选日历
+ * @author dbear
+ */
+.ui-richcalendar {
+  display: inline-block;
+  position: relative;
+  padding: 1em;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background: #f6f6f6;
+}
+.ui-richcalendar.state-validity-invalid {
+  border: 0;
+}
+.ui-richcalendar.state-validity-invalid textarea {
+  border: 1px solid #f16c6c;
+  background: #ffffff;
+  color: #d54648;
+}
+.ui-richcalendar .ui-button-link {
+  padding: 0;
+  line-height: 1.3em;
+  height: 1.3em;
+  min-height: 1.3em;
+}
+.ui-richcalendar-general-info {
+  line-height: 1;
+}
+.ui-richcalendar-general-info label {
+  vertical-align: middle;
+}
+.ui-richcalendar-total-num {
+  color: #70ccc0;
+}
+.ui-richcalendar-text {
+  margin-top: 1em;
+}
+.ui-richcalendar-text .ui-button {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+.ui-richcalendar-layer {
+  padding: 0;
+  position: absolute;
+  border: none;
+  background: transparent;
+}
+.ui-richcalendar-month-container {
+  float: left;
+  margin-right: 0.5em;
+}
+/**
  * ESUI (Enterprise Simple UI)
  * Copyright 2013 Baidu Inc. All rights reserved.
  *
@@ -4526,7 +5023,7 @@ hr {
   background: #f6f6f6;
 }
 .ui-select.state-active {
-  background: #fbfbfb;
+  background: #ebebeb;
 }
 .ui-select.state-disabled {
   opacity: 0.5;
@@ -4663,501 +5160,6 @@ hr {
   filter: alpha(opacity=100);
 }
 /**
- * ESUI (Enterprise Simple UI)
- * Copyright 2013 Baidu Inc. All rights reserved.
- * 
- * @file 对话框样式
- * @author dbear
- */
-.ui-commandmenu-layer {
-  position: absolute;
-}
-/**
-  * ESUI (Enterprise Simple UI)
-  * Copyright 2013 Baidu Inc. All rights reserved.
-  * 
-  * @file Breadcrumbs样式
-  * @author yankun01
-*/
-.ui-crumb {
-  padding: 0;
-  line-height: 1.3;
-  vertical-align: middle;
-  display: block;
-}
-.ui-crumb-separator {
-  margin: 0 0.5em;
-  color: #666666;
-}
-span.ui-crumb-node {
-  color: #666666;
-}
-.ui-crumb-nav-container {
-  background: #f6f6f6;
-}
-.ui-crumb-nav {
-  display: inline-block;
-  height: 4em;
-  line-height: 4em;
-  overflow: hidden;
-}
-.ui-crumb-nav .ui-crumb-node {
-  padding: 0 20px;
-}
-.ui-crumb-nav span.ui-crumb-node {
-  color: #70ccc0;
-}
-.ui-crumb-nav a.ui-crumb-node {
-  color: #666666;
-  text-decoration: none;
-}
-.ui-crumb-nav a.ui-crumb-node:hover {
-  color: #666666;
-  text-decoration: underline;
-}
-.ui-crumb-nav .ui-crumb-separator {
-  margin: 0 0.5em;
-  color: #999999;
-}
-/**
- * ESUI (Enterprise Simple UI)
- * Copyright 2013 Baidu Inc. All rights reserved.
- *
- * @file 对话框样式
- * @author dbear
- */
-.ui-dialog {
-  position: absolute;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  z-index: 1203;
-  width: 600px;
-  display: block;
-  background: #ffffff;
-  border: none;
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-.ui-dialog-head {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  color: #666666;
-  font-weight: bold;
-}
-.ui-dialog-close-icon {
-  position: absolute;
-  right: 0.5em;
-  top: 0.75em;
-  cursor: pointer;
-  color: #999999;
-}
-.ui-dialog-close-icon:hover {
-  color: #666666;
-}
-.ui-dialog-title {
-  line-height: 2.5em;
-  padding: 0 0.5em;
-}
-.ui-dialog-body {
-  padding: 0.5em;
-}
-.ui-dialog-foot-panel {
-  padding: 0.5em;
-  margin: 0;
-  border-top: none;
-}
-.ui-dialog-draggable .ui-dialog-head {
-  cursor: move;
-}
-.ui-dialog-dragging {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.ui-dialog-mask {
-  opacity: 0.2;
-  filter: alpha(opacity=20);
-}
-.ui-dialog-text {
-  min-height: 4em;
-}
-.ui-dialog-alert .ui-dialog-body,
-.ui-dialog-confirm .ui-dialog-body {
-  overflow: auto;
-}
-.ui-dialog-icon {
-  float: left;
-  margin-right: 1em;
-}
-.ui-dialog-icon span {
-  font-size: 4em;
-}
-.ui-dialog-icon-warning {
-  color: #f16c6c;
-}
-.ui-dialog-icon-confirm {
-  color: #6bd5ec;
-}
-/**
-* ESUI (Enterprise Simple UI)
-* Copyright 2013 Baidu Inc. All rights reserved.
-*
-* @file 翻页样式
-* @author shenbin langxingjian
-*/
-.ui-pager {
-  display: block;
-  overflow: auto;
-}
-.ui-pager-select-wrapper {
-  display: inline-block;
-}
-.ui-pager-label {
-  display: inline-block;
-  font-family: "Heiti SC Light", "Heiti SC";
-  color: #666666;
-  text-align: center;
-}
-.ui-pager-main {
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-}
-.ui-pager-main li {
-  margin: 0 0 0 0.5em;
-  padding: 0 0.2em;
-  min-width: 1.2em;
-  text-align: center;
-  display: inline-block;
-  cursor: pointer;
-  color: #666666;
-}
-.ui-pager-main a {
-  display: inline-block;
-  color: #666666 !important;
-  text-decoration: none !important;
-}
-.ui-pager-item-current {
-  cursor: default;
-  font-weight: bold;
-  color: #ffffff !important;
-  background: #cacaca;
-}
-.ui-pager-item-extend {
-  color: #000000;
-  font-weight: bold;
-  background-color: none;
-}
-.ui-pager-alignLeft,
-.ui-pager-alignLeftReverse {
-  float: left;
-}
-.ui-pager-alignLeftReverse .ui-pager-select-wrapper {
-  float: right;
-}
-.ui-pager-alignRight,
-.ui-pager-alignRightReverse {
-  float: right;
-}
-.ui-pager-alignRightReverse .ui-pager-select-wrapper {
-  float: right;
-}
-.ui-pager-distributed .ui-pager-main {
-  float: right;
-}
-.ui-pager-distributedReverse .ui-pager-select-wrapper {
-  float: right;
-}
-/**
- * ESUI (Enterprise Simple UI)
- * Copyright 2013 Baidu Inc. All rights reserved.
- *
- * @file 区间日历样式
- * @author dbear
- */
-.ui-rangecalendar {
-  height: 2.4em;
-  line-height: 2.4em;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  display: inline-block;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  vertical-align: middle;
-  padding: 0 1em;
-  position: relative;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background: #f6f6f6;
-  color: #666666;
-}
-.ui-rangecalendar:hover {
-  background: #fbfbfb;
-}
-.ui-rangecalendar:hover .ui-rangecalendar-arrow {
-  color: #70ccc0;
-}
-.ui-rangecalendar.state-active,
-.ui-rangecalendar:active {
-  background: #fbfbfb;
-}
-.ui-rangecalendar.state-disabled {
-  opacity: 0.5;
-  filter: alpha(opacity=50);
-  cursor: not-allowed !important;
-}
-.ui-rangecalendar.state-disabled .ui-rangecalendar-arrow {
-  color: #666666;
-}
-.ui-rangecalendar.state-read-only {
-  color: #999999;
-}
-.ui-rangecalendar.state-read-only .ui-rangecalendar-arrow {
-  color: #666666;
-}
-.ui-rangecalendar-text {
-  display: inline-block;
-  padding-right: 2em;
-}
-.ui-rangecalendar-arrow {
-  position: absolute;
-  top: 0;
-  right: 1em;
-  display: inline-block;
-}
-.ui-rangecalendar-layer {
-  position: absolute;
-  background: #fbfbfb;
-  border-top: 3px solid #fbfbfb;
-  border-bottom: none;
-  border-left: none;
-  border-right: none;
-  padding: 1em;
-}
-.ui-rangecalendar-body:before,
-.ui-rangecalendar-body:after {
-  display: table;
-  content: "";
-}
-.ui-rangecalendar-body:after {
-  clear: both;
-}
-.ui-rangecalendar-foot {
-  padding: 1em 0 0 0;
-}
-.ui-rangecalendar-close-icon-container {
-  position: absolute;
-  right: 11px;
-  top: 0;
-  padding: 0;
-}
-.ui-rangecalendar-label {
-  padding: 1em 0;
-  overflow: hidden;
-}
-.ui-rangecalendar-label h3 {
-  float: left;
-  margin: 0;
-  font-weight: normal;
-  font-size: 1em;
-}
-.ui-rangecalendar-label .ui-checkbox {
-  float: right;
-}
-.ui-rangecalendar-begin,
-.ui-rangecalendar-end {
-  float: left;
-}
-.ui-rangecalendar-begin {
-  margin-right: 1em;
-}
-.ui-rangecalendar-shortcut-item {
-  margin-left: 0.5em;
-  padding-left: 0.5em;
-  text-decoration: none;
-  cursor: pointer;
-  border-left: 1px solid #999999;
-  color: #70ccc0;
-}
-.ui-rangecalendar-shortcut-item-first {
-  border-left: none;
-  margin-left: 0;
-  padding-left: 0;
-}
-.ui-rangecalendar-shortcut-item-selected {
-  cursor: default;
-  color: #666666;
-  font-weight: bold;
-  text-decoration: none;
-}
-.ui-rangecalendar-shortcut-disabled .ui-rangecalendar-shortcut-item,
-.ui-rangecalendar-shortcut-item-disabled {
-  cursor: default;
-  color: #999999;
-  text-decoration: none;
-}
-/**
- * ESUI (Enterprise Simple UI)
- * Copyright 2013 Baidu Inc. All rights reserved.
- *
- * @file 地域选择样式
- * @author dbear
- */
-.ui-region {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-.ui-region-shadow {
-  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-}
-.ui-region-country-check {
-  padding: 0.5em;
-  background: #f6f6f6;
-  color: #666666;
-}
-.ui-region-region-box0 {
-  padding: 0 0.5em;
-}
-.ui-region-region-box1 {
-  padding: 0 0.5em;
-  background: #fbfbfb;
-}
-.ui-region-region-check,
-.ui-region-province-box {
-  float: left;
-}
-.ui-region-region-check {
-  width: 7em;
-  padding: 0.5em 0;
-}
-.ui-region-text {
-  position: relative;
-  padding: 0.5em 0 0.5em 0.5em;
-  float: left;
-}
-.ui-region-text-over {
-  background: #fffaee;
-  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-}
-.ui-region-province-box {
-  width: 40em;
-}
-.ui-region-province-item {
-  width: 8em;
-  float: left;
-}
-.ui-region-locator {
-  float: left;
-}
-.ui-region-locator b {
-  display: block;
-  padding: 0;
-  margin: 0.6em 0 0 0;
-  line-height: 1.2;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background: #70ccc0;
-  color: #ffffff;
-}
-.ui-region-city-box {
-  position: absolute;
-  padding: 0.5em;
-  z-index: 998;
-  background: #fffaee;
-  -webkit-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-}
-.ui-region-city-box td {
-  white-space: nowrap;
-}
-.ui-region-city {
-  padding: 0.1em 0.5em;
-}
-.ui-region-single {
-  margin: 0;
-  padding: 0;
-  width: auto;
-  border: none;
-}
-/**
- * ESUI (Enterprise Simple UI)
- * Copyright 2013 Baidu Inc. All rights reserved.
- *
- * @file 多月份多选日历
- * @author dbear
- */
-.ui-richcalendar {
-  display: inline-block;
-  position: relative;
-  padding: 1em;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background: #f6f6f6;
-}
-.ui-richcalendar.state-validity-invalid {
-  border: 0;
-}
-.ui-richcalendar.state-validity-invalid textarea {
-  border: 1px solid #f16c6c;
-  background: #ffffff;
-  color: #f77c7c;
-}
-.ui-richcalendar .ui-button-link {
-  padding: 0;
-  line-height: 1.3em;
-  height: 1.3em;
-  min-height: 1.3em;
-}
-.ui-richcalendar-general-info {
-  line-height: 1;
-}
-.ui-richcalendar-general-info label {
-  vertical-align: middle;
-}
-.ui-richcalendar-total-num {
-  color: #70ccc0;
-}
-.ui-richcalendar-text {
-  margin-top: 1em;
-}
-.ui-richcalendar-text .ui-button {
-  position: absolute;
-  top: 1em;
-  right: 1em;
-}
-.ui-richcalendar-layer {
-  padding: 0;
-  position: absolute;
-  border: none;
-  background: transparent;
-}
-.ui-richcalendar-month-container {
-  float: left;
-  margin-right: 0.5em;
-}
-/**
   * ESUI (Enterprise Simple UI)
   * Copyright 2013 Baidu Inc. All rights reserved.
   *
@@ -5229,6 +5231,10 @@ span.ui-crumb-node {
   text-align: center;
   float: left;
 }
+.ui-schedule-time-head:last-child {
+  width: auto;
+  margin-left: 1em;
+}
 .ui-schedule-day-head {
   float: left;
   width: 3em;
@@ -5273,7 +5279,7 @@ span.ui-crumb-node {
 }
 .ui-schedule-time-hover {
   border: 1px solid #dddddd;
-  background: #fffaee;
+  background: #fef8e9;
 }
 .ui-schedule-shortcut-item-tip,
 .ui-schedule-timeitem-tip {
@@ -5292,8 +5298,8 @@ span.ui-crumb-node {
   left: 0px;
   display: none;
   z-index: 49;
-  border: 1px dotted #ffdc88;
-  background: #fffaee;
+  border: 1px dotted #fad987;
+  background: #fef8e9;
 }
 .ui-schedule-continue-covertimes {
   height: 2em;
@@ -5324,30 +5330,40 @@ span.ui-crumb-node {
 }
 .ui-searchbox .ui-textbox-icon {
   cursor: pointer;
+  text-indent: 2.5em;
+  overflow: hidden;
+  visibility: hidden;
+}
+.ui-searchbox .ui-textbox-icon,
+.ui-searchbox .ui-button-bordered {
+  color: #dddddd;
   -webkit-transition: all 0.2s linear;
   -moz-transition: all 0.2s linear;
   -ms-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
   transition: all 0.2s linear;
-  text-indent: 2.5em;
-  overflow: hidden;
-  visibility: hidden;
-  color: #dddddd;
 }
-.ui-searchbox .ui-textbox-icon:hover,
-.ui-searchbox .ui-textbox-icon:active {
-  color: #666666;
-}
-.ui-searchbox.state-focus .ui-textbox-icon {
+.ui-searchbox.state-focus .ui-textbox-icon,
+.ui-searchbox.state-focus .ui-button-bordered {
   color: #666666;
 }
 .ui-searchbox.state-searched .ui-textbox-icon {
   text-indent: 0;
   visibility: visible;
 }
-.ui-textbox-icon {
-  text-indent: 0;
-  visibility: visible;
+.ui-searchbox-hide-searched-button.state-searched .ui-textbox-addon .ui-button {
+  display: none;
+}
+.ui-searchbox-clear-border .ui-textbox-addon:first-child .ui-button,
+.ui-searchbox-clear-border .ui-textbox:first-child input {
+  border-right-width: 0;
+}
+.ui-searchbox-clear-border .ui-textbox-addon:last-child .ui-button,
+.ui-searchbox-clear-border .ui-textbox:last-child input {
+  border-left-width: 0;
+}
+.ui-searchbox-clear-border.ui-searchbox-hide-searched-button.state-searched .ui-textbox input {
+  border-width: 1px;
 }
 .ui-tab {
   display: block;
@@ -5556,7 +5572,7 @@ span.ui-crumb-node {
 }
 .ui-table-hcell-sort-hover {
   cursor: pointer;
-  background: #fffaee;
+  background: #fef8e9;
 }
 .ui-table-hsort {
   margin: 0 0 0 0.5em;
@@ -5582,7 +5598,7 @@ span.ui-crumb-node {
   border-width: 0 0 1px;
 }
 .ui-table-row-hover {
-  background: #fffaee;
+  background: #fef8e9;
 }
 .ui-table-row-hover .ui-table-cell-editable {
   position: relative;
@@ -5754,7 +5770,7 @@ span.ui-crumb-node {
 .ui-textbox.state-validity-invalid textarea {
   border: 1px solid #f16c6c;
   background: #ffffff;
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textbox-placeholder-hidden {
   display: none;
@@ -5809,19 +5825,19 @@ span.ui-crumb-node {
 }
 .ui-textline.state-validity-invalid textarea {
   background: #ffffff;
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textline.state-validity-invalid textarea:-moz-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textline.state-validity-invalid textarea::-moz-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textline.state-validity-invalid textarea::-webkit-input-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textline.state-validity-invalid textarea:-ms-input-placeholder {
-  color: #f77c7c;
+  color: #d54648;
 }
 .ui-textline.state-read-only {
   border: 1px solid #dddddd;
@@ -5938,7 +5954,7 @@ span.ui-crumb-node {
   cursor: not-allowed;
 }
 .ui-textline-search-info {
-  background: #fffaee;
+  background: #fef8e9;
   padding: 0 10px;
   line-height: 2;
   overflow: hidden;
@@ -6160,7 +6176,8 @@ span.ui-crumb-node {
   color: #666666;
 }
 .ui-tree-content-wrapper-selected .ui-tree-item-content {
-  font-weight: bold;
+  font-weight: normal;
+  color: #333333;
 }
 .ui-tree-content-wrapper-selected .ui-tree-item-content label:before {
   background: #70ccc0;
@@ -6243,7 +6260,7 @@ span.ui-crumb-node {
   content: '';
 }
 .ui-tree-hoverable .ui-tree-content-wrapper:hover {
-  background: #fffaee;
+  background: #fef8e9;
 }
 /**
  * ESUI (Enterprise Simple UI)
@@ -6493,7 +6510,7 @@ span.ui-crumb-node {
   overflow: auto;
 }
 .ui-autocomplete-item-hover {
-  background: #fffaee;
+  background: #fef8e9;
   color: #666666;
 }
 i.ui-autocomplete-item-char-selected {
@@ -7052,14 +7069,14 @@ i.ui-autocomplete-item-char-selected {
   border: 1px solid #dddddd;
 }
 .ui-richselector-head {
-  line-height: 2em;
+  line-height: 2.5em;
   padding: 0 0.75em;
   border-bottom: none;
-  background: #f6f6f6;
+  background: #ebebeb;
 }
 .ui-richselector-head .ui-richselector-head-title {
-  font-weight: bold;
-  color: #666666;
+  font-weight: normal;
+  color: #333333;
 }
 .ui-richselector-head .ui-richselector-head-count {
   font-weight: bold;
@@ -7151,11 +7168,11 @@ i.ui-autocomplete-item-char-selected {
   padding: 0 0 0 0.75em;
   line-height: 2.5em;
   background: none;
-  font-weight: bold;
+  font-weight: normal;
 }
 .ui-tablerichselector .ui-richselector-query-list table td {
   padding: 0 0 0 0.75em;
-  line-height: 2em;
+  line-height: 2.5em;
   vertical-align: middle;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -7174,7 +7191,7 @@ i.ui-autocomplete-item-char-selected {
   cursor: pointer;
 }
 .ui-tablerichselector .ui-richselector-row:hover {
-  background: #fffaee;
+  background: #fef8e9;
 }
 .ui-tablerichselector .ui-richselector-row-selected {
   cursor: default;
@@ -7218,6 +7235,14 @@ i.ui-autocomplete-item-char-selected {
   line-height: 2.5em;
   vertical-align: middle;
 }
+.ui-colorpicker.state-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  cursor: not-allowed !important;
+}
+.ui-colorpicker.state-disabled .ui-colorpicker-color-block {
+  cursor: inherit;
+}
 .ui-colorpicker-color-block-frame {
   float: left;
   margin: 0 0.5em 0 0;
@@ -7254,7 +7279,7 @@ i.ui-autocomplete-item-char-selected {
 .ui-colorpicker-layer {
   background: #ffffff;
   border: 1px solid #dddddd;
-  padding: 0.5em;
+  padding: 1em;
 }
 .ui-colorpicker-layer .ui-fullcolorpicker {
   border: none;
@@ -7264,27 +7289,23 @@ i.ui-autocomplete-item-char-selected {
   padding-bottom: 0;
 }
 .ui-colorpicker-layer.ui-overlay-dialog .ui-colorpicker-head {
-  height: 2em;
-  line-height: 2em;
-  padding: 0 1em;
+  overflow: hidden;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 1em;
 }
 .ui-colorpicker-layer.ui-overlay-dialog .ui-colorpicker-title {
   float: left;
-  text-align: left;
 }
 .ui-colorpicker-layer.ui-overlay-dialog .ui-colorpicker-close-btn {
   float: right;
-  text-align: right;
   cursor: pointer;
 }
 .ui-colorpicker-layer.ui-overlay-dialog .ui-colorpicker-foot-frame {
-  padding: 0 1em;
-}
-.ui-colorpicker-layer.ui-overlay-dialog .ui-colorpicker-foot-frame .ui-colorpicker-foot {
-  padding: 1em 0;
   border-top: 1px solid #dddddd;
   border-top-style: dotted;
-  text-align: right;
+  margin-top: 1em;
+  padding-top: 1em;
 }
 .ui-colorpicker-layer.ui-overlay-attached .ui-colorpicker-head,
 .ui-colorpicker-layer.ui-overlay-attached .ui-colorpicker-foot-frame {
@@ -7349,9 +7370,6 @@ i.ui-autocomplete-item-char-selected {
 .ui-fullcolorpicker.ui-fullcolorpicker-simple .ui-fullcolorpicker-advanced-section {
   display: none;
 }
-.ui-fullcolorpicker.ui-fullcolorpicker-simple .ui-fullcolorpicker-simple-section {
-  border-bottom: none;
-}
 .ui-fullcolorpicker.ui-fullcolorpicker-advanced .ui-fullcolorpicker-simple-section {
   display: none;
 }
@@ -7359,11 +7377,6 @@ i.ui-autocomplete-item-char-selected {
   padding-bottom: 0;
   margin-bottom: 0;
   border-bottom: none;
-}
-.ui-fullcolorpicker .ui-fullcolorpicker-simple-section,
-.ui-fullcolorpicker .ui-fullcolorpicker-advanced-section {
-  padding-bottom: 1em;
-  border-bottom: 1px dotted #c9c9c9;
 }
 .ui-fullcolorpicker .ui-fullcolorpicker-advanced-section {
   margin-bottom: 1em;
@@ -7373,7 +7386,9 @@ i.ui-autocomplete-item-char-selected {
 }
 .ui-fullcolorpicker .ui-fullcolorpicker-mode-switch {
   margin-top: 1em;
-  width: 100%;
+  line-height: 1.3em;
+  min-height: 1.3em;
+  height: 1.3em;
 }
 /**
  * 高级模式拾色器，基于Hue，Bright，Saturation调节
@@ -7573,7 +7588,7 @@ i.ui-autocomplete-item-char-selected {
 }
 .ui-nav .ui-nav-item-header {
   padding: .3em 2em;
-  color: #ACB6C0;
+  color: #333;
 }
 .ui-nav a {
   padding: .3em 3em;

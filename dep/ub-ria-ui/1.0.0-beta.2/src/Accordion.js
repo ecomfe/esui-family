@@ -276,7 +276,7 @@ define(
          */
         function collapseAccordion() {
             var $elements = $(this.main).children();
-            var $panel = $elements.get(this.activeIndex);
+            var $panel = $elements.eq(this.activeIndex);
             var controlHelper = this.helper;
             var panelHeaderIconClass = controlHelper.getPartClassName('content');
             var panelHiddenClass = controlHelper.getPartClassName('content-hidden');
