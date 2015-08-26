@@ -282,6 +282,11 @@ define(
             var panelHiddenClass = controlHelper.getPartClassName('content-hidden');
             var activePanelClass = controlHelper.getPartClassName('panel-active');
             var $content = $panel.children('.' + panelHeaderIconClass);
+            var panelHeaderIconClass = controlHelper.getPartClassName('header-icon');
+            var activeIconClass = this.activeHeaderIcon;
+            var iconClass = this.headerIcon;
+
+            $panel.find('.' + panelHeaderIconClass).removeClass(activeIconClass).addClass(iconClass);
 
             if ($content.size() > 0) {
                 $content.addClass(panelHiddenClass);
