@@ -95,14 +95,6 @@ define('sitemap', ['jquery'], function ($) {
         function generateNav(id, items) {
             $(id).html(items);
             var url = window.location.pathname;
-            if (url.indexOf('help')) {
-                if (url.indexOf('guide.html') > 0) {
-                    $('#navigator-help li:last a').css('color', '#444');
-                }
-                else {
-                    $('#navigator-help li:first a').css('color', '#444');
-                }
-            }
             var filename = getQueryString('control');
             if (!filename) {
                 filename = 'Button';
@@ -135,7 +127,8 @@ define('sitemap', ['jquery'], function ($) {
         // get started 导航
         var startItems = 
             '<li><a href="start.html">开始使用</a></li>'
-            + '<li><a href="guide.html">使用指南</a></li>';
+            + '<li><a href="guide.html">使用指南</a></li>'
+            + '<li><a href="tool.html">工具</a></li>';
         generateNav('#navigator-help', startItems);
 
     }
