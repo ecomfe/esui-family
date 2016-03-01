@@ -117,7 +117,10 @@ define(
                     {
                         // 激活的panel下标
                         name: 'activeIndex',
-                        paint: activateAccordion
+                        paint: function (accordion, index) {
+                            accordion.fire('change');
+                            activateAccordion(accordion, index);
+                        }
                     }
                 ),
 
@@ -151,6 +154,10 @@ define(
                 getActivePanel: function () {
                     var elements = $(this.main).children().toArray();
                     return elements[this.get('activeIndex')];
+                },
+
+                getSize: function () {
+                    return $(this.main).children().length;
                 }
             }
         );
@@ -278,10 +285,10 @@ define(
             var $elements = $(this.main).children();
             var $panel = $elements.eq(this.activeIndex);
             var controlHelper = this.helper;
-            var panelHeaderIconClass = controlHelper.getPartClassName('content');
+            var panelContentIconClass = controlHelper.getPartClassName('content');
             var panelHiddenClass = controlHelper.getPartClassName('content-hidden');
             var activePanelClass = controlHelper.getPartClassName('panel-active');
-            var $content = $panel.children('.' + panelHeaderIconClass);
+            var $content = $panel.children('.' + panelContentIconClass);
             var panelHeaderIconClass = controlHelper.getPartClassName('header-icon');
             var activeIconClass = this.activeHeaderIcon;
             var iconClass = this.headerIcon;

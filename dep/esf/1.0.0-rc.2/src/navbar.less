@@ -34,15 +34,6 @@
     float: right;
 }
 
-.@{ui-class-prefix}-navbar-content {
-    &:before {
-        content: '';
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-    }
-}
-
 .@{ui-class-prefix}-navbar-content-text,
 .@{ui-class-prefix}-navbar-content-link,
 .@{ui-class-prefix}-navbar-content-icon {
@@ -78,6 +69,7 @@
             line-height: @esui-navbar-nav-item-line-height;
             font-size: @esui-navbar-nav-item-font-size;
             font-weight: @esui-navbar-nav-item-font-weight;
+            outline: none;
             .esui-navbar-nav-item-theme();
         }
         &:hover,
@@ -90,7 +82,7 @@
             }
         }
         &:active,
-        &.@{ui-class-prefix}-active {
+        &.@{ui-class-prefix}-navbar-item-active {
             > a {
                 .esui-navbar-nav-item-active-theme();
             }

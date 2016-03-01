@@ -10,6 +10,7 @@ define(
     function (require) {
         var esui = require('esui');
         var lib = require('esui/lib');
+        var util = require('../helper/util');
         var u = require('underscore');
         var eoo = require('eoo');
         var painters = require('esui/painters');
@@ -51,12 +52,14 @@ define(
                         // 已选的数据
                         selectedData: [],
                         // 字段，含义与Table相同，searchScope表示这个字段对搜索关键词是全击中还是部分击中
+                        // caseSensitive表示大小写敏感，默认不敏感
                         fields: [
                             {
                                 field: 'name',
                                 title: '名称',
                                 content: 'name',
                                 searchScope: 'partial',
+                                caseSensitive: false,
                                 isDefaultSearchField: true
                             }
                         ],
@@ -91,11 +94,10 @@ define(
                     RichSelector.prototype.repaint,
                     {
                         name: ['datasource', 'selectedData', 'disabledData', 'fields'],
-                        paint:
-                            function (control, datasource, selectedData, disabledData, fields) {
-                                control.refresh();
-                                control.fire('change');
-                            }
+                        paint: function (control, datasource, selectedData, disabledData, fields) {
+                            control.refresh();
+                            control.fire('change');
+                        }
                     }
                 ),
 
@@ -112,11 +114,18 @@ define(
                  * @override
                  */
                 adaptData: function () {
+                    // 适配id/value的值
+                    u.each(
+                        this.datasource,
+                        function (item) {
+                            item.id = item.id || item.value;
+                        }
+                    );
                     this.allData = lib.deepClone(this.datasource);
                     // 先构建indexData，把数据源里的选择状态清除
                     var indexData = {};
                     u.each(this.allData, function (item, index) {
-                        indexData[item.id] = {index: index};
+                        indexData[item.id] = {index: index, isSelected: item.isSelected};
                     });
 
                     // 把选择状态merge进indexData的数据项中
@@ -130,21 +139,23 @@ define(
                         }
                         // 如果是数组，保存第一个值为当前选值
                         else if (selectedData.length) {
-                            this.currentSelectedId = selectedData[0].id;
+                            this.currentSelectedId = selectedData[0].id || selectedData[0];
                         }
                     }
 
                     u.each(selectedData, function (item, index) {
+                        var id = item.id !== undefined ? item.id : item;
                         // 有可能出现已选的数据在备选中已经被删除的情况
-                        if (indexData[item.id] !== undefined) {
-                            indexData[item.id].isSelected = true;
+                        if (indexData[id] !== undefined) {
+                            indexData[id].isSelected = true;
                         }
                     });
 
                     var disabledData = this.disabledData || [];
                     u.each(disabledData, function (item, index) {
-                        if (indexData[item.id] !== undefined) {
-                            indexData[item.id].isDisabled = true;
+                        var id = item.id !== undefined ? item.id : item;
+                        if (indexData[id] !== undefined) {
+                            indexData[id].isDisabled = true;
                         }
                     });
 
@@ -192,6 +203,10 @@ define(
                     htmlArray.push(this.createTableContent(data));
 
                     var queryList = this.getQueryList();
+                    // 选择状态当使用手动触发时，panel的content属性并不会同步更改，
+                    // 如果此时新的content恰好与初始的content相同，则panel不会重置
+                    // 因此现执行一下置空
+                    queryList.setContent('');
                     queryList.setContent(htmlArray.join(''));
                 },
 
@@ -396,13 +411,12 @@ define(
                             expectValue = lib.trim(expectValue);
                         }
 
-                        // 部分击中
-                        if (this.fieldsIndex[field].searchScope === 'partial') {
-                            if (data[field].indexOf(expectValue) !== -1) {
-                                hit = true;
-                            }
-                        }
-                        else if (data[field] === expectValue) {
+                        var config = {
+                            isPartial: this.fieldsIndex[field].searchScope === 'partial',
+                            caseSensitive: this.fieldsIndex[field].caseSensitive
+                        };
+
+                        if (util.compare(data[field], expectValue, config)) {
                             hit = true;
                         }
                         return hit;
@@ -521,17 +535,19 @@ define(
                     ? content.call(control, item, index, i)
                     : u.escape(item[content]));
 
+                var textContent = field.textContent ? field.textContent.call(control, item, index, i) : innerHTML;
+
                 // IE不支持tr.innerHTML，所以这里要使用insertCell
                 if (tr) {
                     var td = tr.insertCell(i);
                     td.style.width = field.width + 'px';
-                    td.title = innerHTML;
+                    td.title = textContent;
                     td.innerHTML = innerHTML;
                 }
                 else {
                     var contentHtml = ''
                         + '<td class="' + fieldClasses
-                        + '" title="' + innerHTML
+                        + '" title="' + textContent
                         + '" style="width:' + field.width + 'px;">'
                         + innerHTML
                         + '</td>';

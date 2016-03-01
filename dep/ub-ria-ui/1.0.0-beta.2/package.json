@@ -1,6 +1,6 @@
 {
     "name": "ub-ria-ui",
-    "version": "1.0.0-beta.1",
+    "version": "1.0.0-beta.2",
     "description": "UI components for UB RIA applications",
     "dependencies": {},
     "author": "otakustay@gmail.com",
@@ -15,14 +15,15 @@
         "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
         "dependencies": {
             "esui": "~3.2.0-beta",
-            "esf": "~1.0.0-beta",
+            "esf": "~1.0.0-rc",
             "eicons": "~1.0.0-beta",
             "eoo": "0.1.x",
             "est": "~1.3.0",
             "etpl": "~3.0.0",
             "moment": "~2.7.0",
             "underscore": "~1.5.2",
-            "jquery": "~1.9.1"
+            "jquery": "~1.x",
+            "mini-event": "~1.0.2"
         }
     }
 }

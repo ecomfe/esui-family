@@ -40,12 +40,12 @@ define(
 
         exports.initOptions = function (options) {
             var properties = {
-                multi: true
+                multi: true,
+                sourceData: [],
+                sourceSelectedData: []
             };
 
             u.extend(properties, options);
-            u.parseBoolean(properties);
-
             this.$super([properties]);
         };
 
@@ -69,10 +69,13 @@ define(
             );
 
             // 绑事件
-            this.filter.on(
+            this.filter && this.filter.on(
                 'load',
                 function (e) {
                     var event = this.fire('load', {item: e.item});
+                    if (event.isDefaultPrevented()) {
+                        return;
+                    }
                     var data = event.data;
                     // 从data中筛选出已选择的，勾选上
                     var selectedItems = u.filter(
@@ -88,49 +91,59 @@ define(
                 this
             );
 
-            this.source.on(
+            this.source && this.source.on(
                 'add',
                 function (e) {
-                    var newSelecteItems;
-                    // 这里做一个强制的约定，如果有target，就一定是支持分组多选的
-                    // 选择的结果要叠加
-                    if (this.target) {
-                        // 获取原始的已选值
-                        newSelecteItems = u.deepClone(this.getRawValue()) || [];
-                        // 单选
-                        if (e.item) {
-                            // 添加
-                            if (e.status) {
-                                var selectedItem = u.omit(e.item, e.item.isSelected);
-                                // 追加
-                                newSelecteItems.push(selectedItem);
+                    var items = e.target.getSelectedItems();
+                    if (items.length) {
+                        var event = this.fire('add', {items: items});
+                        // 外部有自己的添加处理逻辑
+                        if (event.isDefaultPrevented()) {
+                            return;
+                        }
+                        // 默认的处理：
+                        // 条件：默认source是TableRichSelector
+                        // 情景1：有target，则分组多选，选择的结果要叠加
+                        // 情景2：没有target，则分组单选，结果不叠加
+                        var newSelecteItems;
+                        // 情景1
+                        if (this.target) {
+                            // 获取原始的已选值
+                            newSelecteItems = u.clone(this.getRawValue()) || [];
+                            // 单选
+                            if (e.item) {
+                                // 添加
+                                if (e.status) {
+                                    var selectedItem = u.omit(e.item, e.item.isSelected);
+                                    // 追加
+                                    newSelecteItems.push(selectedItem);
+                                }
+                                // 反选删除
+                                else {
+                                    // 过滤
+                                    newSelecteItems = u.filter(
+                                        newSelecteItems,
+                                        function (item) {
+                                            item.id !== e.item.id;
+                                        }
+                                    );
+                                }
                             }
-                            // 反选删除
+                            // 批量添加
                             else {
-                                // 过滤
-                                newSelecteItems = u.filter(
-                                    newSelecteItems,
-                                    function (item) {
-                                        item.id !== e.item.id;
-                                    }
-                                );
+                                // 选择源当前选择项
+                                var selectedItems = e.target.getSelectedItems();
+                                newSelecteItems = u.union(newSelecteItems, selectedItems);
                             }
+                            this.target.setProperties({datasource: newSelecteItems});
                         }
-                        // 批量添加
+                        // 情景2
                         else {
-                            // 选择源当前选择项
-                            var selectedItems = e.target.getSelectedItems();
-                            newSelecteItems = u.union(newSelecteItems, selectedItems);
+                            newSelecteItems = this.source.getSelectedItems();
                         }
-                        this.target.setProperties({datasource: newSelecteItems});
+                        this.rawValue = newSelecteItems;
+                        this.fire('change');
                     }
-                    // 如果没有target，说明是分组单选，结果不叠加
-                    else {
-                        newSelecteItems = this.source.getSelectedItems();
-                    }
-                    this.rawValue = newSelecteItems;
-                    this.fire('add');
-                    this.fire('change');
                 },
                 this
             );
@@ -139,8 +152,12 @@ define(
                 'delete',
                 function (arg) {
                     var items = arg.items;
+                    var event = this.fire('delete', {items: items});
+                    if (event.isDefaultPrevented()) {
+                        return;
+                    }
+                    // 默认将source中的指定数据取消选择
                     this.source && this.source.selectItems(items, false);
-                    this.fire('delete');
                     this.fire('change');
                 },
                 this
@@ -166,6 +183,13 @@ define(
                 name: 'filterData',
                 paint: function (control, filterData) {
                     control.filter && control.filter.setProperties({datasource: filterData});
+                }
+            },
+            {
+                name: ['sourceData', 'sourceSelectedData'],
+                paint: function (control, sourceData, sourceSelectedData) {
+                    var properties = {datasource: sourceData, selectedData: sourceSelectedData};
+                    control.source && control.source.setProperties(properties);
                 }
             }
         );

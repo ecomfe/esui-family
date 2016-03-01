@@ -23,6 +23,7 @@ define(
 
         var u = require('underscore');
         var ui = require('../main');
+        var $ = require('jquery');
 
         /**
          * @override Helper
@@ -100,6 +101,17 @@ define(
             var me = this;
             var ctrl = me.control;
 
+            // 移除元素上的组件痕迹
+            var jqMain = $(ctrl.main);
+            jqMain.removeAttr(
+                ui.getConfig('instanceAttr')
+            ).removeAttr(
+                ui.getConfig('viewContextAttr')
+            );
+
+            var cls = me.getPartClasses();
+            jqMain.removeClass(cls.join(' '));
+
             // 移除所有扩展
             u.invoke(ctrl.extensions, 'dispose');
             ctrl.extensions = null;
@@ -109,7 +121,7 @@ define(
 
             // 移除自身行为
             u.each(ctrl.domEvents, function ($ele) {
-                me.removeDOMEvent($ele, '.' + ctrl.type);
+                me.removeDOMEvent($ele, '.' + ctrl.getUniqueId());
             });
             ctrl.domEvents = [];
 
@@ -121,6 +133,7 @@ define(
             // 从视图环境移除
             if (ctrl.viewContext) {
                 ctrl.viewContext.remove(ctrl);
+                
             }
 
             ctrl.renderOptions = null;

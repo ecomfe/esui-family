@@ -74,9 +74,9 @@ define(
                     var treeStrategy = this;
                     tree.on(
                         'select',
-                        function (e, data) {
+                        function (e) {
                             var canSelect = true;
-                            var isLeafNode = treeStrategy.isLeafNode(data.node);
+                            var isLeafNode = treeStrategy.isLeafNode(e.node);
                             if (treeStrategy.mode !== 'load') {
                                 // 只有叶子节点可以点的时候，其余节点都别点了
                                 if (treeStrategy.onlyLeafSelect && !isLeafNode) {
@@ -91,15 +91,15 @@ define(
                             }
 
                             if (canSelect) {
-                                this.selectNode(data.node.id);
+                                this.selectNode(e.node.id);
                             }
                         }
                     );
                     tree.on(
                         'unselect',
-                        function (e, data) {
+                        function (e) {
                             if (tree.get('allowUnselectNode')) {
-                                tree.unselectNode(data.node.id);
+                                tree.unselectNode(e.node.id);
                             }
                         }
                     );

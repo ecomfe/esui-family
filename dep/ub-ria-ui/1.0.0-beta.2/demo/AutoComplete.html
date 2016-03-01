@@ -5,10 +5,10 @@
         <title>AutoComplete - ESUI Demo</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
         <link rel="stylesheet" href="assets/themes/standard.css" />
         <!--[if lt IE 9]>
-        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/ie8.css"/>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
         <![endif]-->
     </head>
 <body>
@@ -41,10 +41,10 @@
             </div>
         </div>
     </div>
-    <script src="../dep/esui/3.2.0-beta.1/demo/assets/loader/esl.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
     <script src="config.js"></script>
-    <script src="../dep/esui/3.2.0-beta.1/demo/demo.js"></script>
-    <script src="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
     <script id="main-js">
     require(
         [
@@ -59,7 +59,10 @@
             window.ui = ui;
             var controls = ui.init();
             var data = [
-                'actionScript',
+                {
+                    text: 'actionScript',
+                    id: '1'
+                },
                 'AppleScript',
                 'Asp',
                 'BASIC',
@@ -119,9 +122,18 @@
                 else {
                     datasource = data;
                 }
-                controls[i].setProperties({
+
+                control.setProperties({
                     datasource: datasource
                 });
+
+                control.on(
+                    'targetselect',
+                    function (e) {
+                        console.log('value: ' + e.value);
+                        console.log('id: ' + e.id);
+                    }
+                );
             }
         }
     );

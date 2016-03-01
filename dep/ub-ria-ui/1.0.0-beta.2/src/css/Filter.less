@@ -1,7 +1,7 @@
 @esui-filter-line-height: 2;
 
 @esui-filter-item-padding: .3em .5em;
-@esui-filter-item-margin: 0 0.5em;
+@esui-filter-item-margin: 0 .5em;
 @esui-filter-item-color: #333;
 
 @esui-filter-item-hover-color: #FFF;
@@ -9,6 +9,8 @@
 
 @esui-filter-item-active-background: #698496;
 @esui-filter-item-active-color: #FFF;
+
+@esui-filter-remove-color: @esui-palette-muted-color;
 
 @esui-filter-cmd-color: #FFF;
 @esui-filter-cmd-hover-color: #FFF;
@@ -23,16 +25,22 @@
 
 .@{ui-class-prefix}-filter-items-panel,
 .@{ui-class-prefix}-filterresult-items-panel {
-    display: inline-block;
+    .inline-block();
+}
+
+.@{ui-class-prefix}-filter-item,
+.@{ui-class-prefix}-filterresult-item,
+.@{ui-class-prefix}-filter-item-cmd {
+    .inline-block();
+    cursor: pointer;
+    margin: @esui-filter-item-margin;
+    padding: @esui-filter-item-padding;
+    line-height: 1em;
+    white-space: nowrap;
 }
 
 .@{ui-class-prefix}-filter-item,
 .@{ui-class-prefix}-filterresult-item {
-    margin: @esui-filter-item-margin;
-    padding: @esui-filter-item-padding;
-    text-decoration: none !important;
-    white-space: nowrap;
-
     color: @esui-filter-item-color;
     &:hover {
         background: @esui-filter-item-hover-background;
@@ -42,16 +50,15 @@
 
 .@{ui-class-prefix}-filter-item-active,
 .@{ui-class-prefix}-filterresult-item {
-    background: @esui-filter-item-active-background !important;
-    color: @esui-filter-item-active-color !important;
+    background: @esui-filter-item-active-background;
+    color: @esui-filter-item-active-color;
+    &:hover {
+        background: @esui-filter-item-active-background;
+        color: @esui-filter-item-active-color;
+    }
 }
 
 .@{ui-class-prefix}-filter-item-cmd {
-    text-decoration: none;
-    margin: 0 0.5em;
-    padding: 0.25em;
-    white-space: nowrap;
-
     background: @esui-filter-cmd-background;
     color: @esui-filter-cmd-color;
     &:hover {
@@ -61,9 +68,43 @@
     }
 }
 
+.@{ui-class-prefix}-filter-remove {
+    &:before {
+        .eicons-icon-content(remove);
+        margin-left: .5em;
+        color: @esui-filter-remove-color;
+    }
+}
+
+.@{ui-class-prefix}-filter-item {
+    &:hover {
+        .@{ui-class-prefix}-filter-remove {
+            &:before {
+                color: @esui-filter-item-color;
+            }
+        }
+    }
+}
+
+.@{ui-class-prefix}-filter-item-active {
+    .@{ui-class-prefix}-filter-remove {
+        &:before {
+            color: @esui-filter-item-active-color;
+        }
+    }
+
+    &:hover {
+        .@{ui-class-prefix}-filter-remove {
+            &:before {
+                color: @esui-filter-item-active-color;
+            }
+        }
+    }
+}
+
 .@{ui-class-prefix}-filterresult-remove {
     &:before {
         .eicons-icon-content(remove);
-        margin-left: 0.2em;
+        margin-left: .2em;
     }
 }

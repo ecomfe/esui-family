@@ -4,10 +4,17 @@
 @esui-table-richselector-td-line-height: 2.5em;
 
 .@{ui-class-prefix}-tablerichselector {
+    .@{ui-class-prefix}-table table {
+        table-layout: auto;
+    }
+    .@{ui-class-prefix}-table-row {
+        border: 0;
+    }
     .@{ui-class-prefix}-richselector-query-list {
         table {
             border-collapse: collapse;
             width: 100%;
+            table-layout: fixed;
 
             th {
                 text-align: left;
@@ -27,26 +34,31 @@
     }
 
     .@{ui-class-prefix}-richselector-row-action-icon {
-        display: none;
-        text-align: right;
+        text-align: center;
+        display: inline-block;
+        width: 1.2em;
+        line-height: 2.4em;
         &:before {
-            margin-right: 1em;
+            visibility: hidden;
         }
         .esui-table-richselector-action-icon-theme();
     }
 
-    .@{ui-class-prefix}-richselector-row {
+    .@{ui-class-prefix}-richselector-row,
+    .@{ui-class-prefix}-table-row {
         cursor: pointer;
         &:hover {
             .esui-table-richselector-table-row-hover-theme();
         }
     }
 
-    .@{ui-class-prefix}-richselector-row-selected {
-        cursor: default;
+    .@{ui-class-prefix}-richselector-row-selected,
+    .@{ui-class-prefix}-table-row-selected {
         .@{ui-class-prefix}-richselector-row-action-icon {
-            display: block;
             .eicons-icon(check) !important;
+            &:before {
+                visibility: visible;
+            }
         }
     }
 
@@ -56,20 +68,26 @@
 
     // 添加
     &.@{ui-state-prefix}-add {
-        .@{ui-class-prefix}-richselector-row:hover {
+        .@{ui-class-prefix}-richselector-row:hover,
+        .@{ui-class-prefix}-table-row:hover {
             .@{ui-class-prefix}-richselector-row-action-icon {
                 .eicons-icon(arrow-right);
-                display: block;
+                &:before {
+                    visibility: visible;
+                }
             }
         }
     }
 
     // 删除型
     &.@{ui-state-prefix}-delete {
-        .@{ui-class-prefix}-richselector-row:hover {
+        .@{ui-class-prefix}-richselector-row:hover,
+        .@{ui-class-prefix}-table-row:hover {
             .@{ui-class-prefix}-richselector-row-action-icon {
                 .eicons-icon(close);
-                display: block;
+                &:before {
+                    visibility: visible;
+                }
                 .esui-table-richselector-delete-icon-theme();
             }
         }

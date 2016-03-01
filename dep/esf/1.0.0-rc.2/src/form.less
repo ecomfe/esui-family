@@ -1,6 +1,8 @@
 @import "base.less";
 
 @esui-form-row-bottom-margin: 1em;
+@esui-form-row-height: 2.5em;
+@esui-form-row-default-line-height: 1.3;
 
 @esui-form-hint-font-size: 1em;
 @esui-form-hint-font-color: #999;
@@ -13,6 +15,9 @@
 @esui-form-fieldset-padding: .35em .625em .75em;
 @esui-form-fieldset-margin: 0 .2em;
 @esui-form-fieldset-border-color: #ddd;
+
+@esui-form-field-delimiter: 1em;
+@esui-form-field-delimiter-color: #ddd;
 
 .@{ui-class-prefix}-form {
     margin-bottom: 1em;
@@ -38,16 +43,46 @@
     margin-bottom: @esui-form-row-bottom-margin;
 }
 
+.@{ui-class-prefix}-form-field-delimiter,
+.@{ui-class-prefix}-form-field-delimiter-border,
+.@{ui-class-prefix}-form-key {
+    line-height: @esui-form-row-height;
+}
+
+.@{ui-class-prefix}-form-field-delimiter,
+.@{ui-class-prefix}-form-field-delimiter-border {
+    margin: 0 @esui-form-field-delimiter;
+}
+
+.@{ui-class-prefix}-form-field-delimiter-border:before {
+    content: '|';
+    color: @esui-form-field-delimiter-color;
+}
+
 .@{ui-class-prefix}-form-key {
     padding-right: 1em;
-    .box-sizing(border-box);
 }
 
 .@{ui-class-prefix}-form-field,
+.@{ui-class-prefix}-form-field-delimiter,
+.@{ui-class-prefix}-form-field-delimiter-border,
 .@{ui-class-prefix}-form-key,
 .@{ui-class-prefix}-form-value {
     display: inline-block;
     vertical-align: top;
+    min-height: @esui-form-row-height;
+    .box-sizing(border-box);
+}
+
+.@{ui-class-prefix}-form-normal-line-height {
+    .@{ui-class-prefix}-form-field,
+    .@{ui-class-prefix}-form-field-delimiter,
+    .@{ui-class-prefix}-form-field-delimiter-border,
+    .@{ui-class-prefix}-form-key,
+    .@{ui-class-prefix}-form-value {
+        line-height: @esui-form-row-default-line-height;
+        min-height: initial;
+    }
 }
 
 .@{ui-class-prefix}-form-required {
@@ -55,18 +90,21 @@
     &:after {
         content: '*';
         color: @esui-form-validity-font-color;
-        display: block;
+        display: inline-block;
         right: 0;
-        top: 50%;
+        top: 0;
         position: absolute;
-        line-height: 1;
+        line-height: @esui-form-row-height;
         padding-right: .5em;
     }
 }
 
-.@{ui-class-prefix}-form-key,
 .@{ui-class-prefix}-form-valign {
-    padding-top: .5em;
+    line-height: @esui-form-row-height;
+}
+
+.@{ui-class-prefix}-form-reset-line-height {
+    line-height: @esui-form-row-default-line-height !important;
 }
 
 .@{ui-class-prefix}-form-hint {

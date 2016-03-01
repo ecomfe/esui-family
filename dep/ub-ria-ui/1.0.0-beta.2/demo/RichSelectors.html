@@ -5,10 +5,10 @@
         <title>RichSelector - ESUI Demo</title>
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
         <link rel="stylesheet" href="assets/themes/standard.css" />
         <!--[if lt IE 9]>
-        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.1/demo/assets/ie8.css"/>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
         <![endif]-->
     </head>
 <body>
@@ -77,6 +77,39 @@
                 <esui-label data-ui-id="cas-slots-result"></esui-label>
             </div>
 
+            <h2>Disabled</h2>
+            <p>Disabled</p>
+            <div class="example">
+                <div class="row">
+                    <h3>双向Table Rich Selector</h3>
+                    <div
+                        data-ui-type="RichSelectorGroup"
+                        data-ui-id="cas-slots-disabled"
+                        data-ui-name="cas-slots"
+                        data-ui-disabled="true">
+                        <esui-table-rich-selector
+                            data-ui-child-name="source"
+                            data-ui-title="全部有效"
+                            data-ui-has-head="true"
+                            data-ui-has-search-box="true"
+                            data-ui-need-batch-action="true"
+                            data-ui-allow-unselect-node="true"
+                            data-ui-batch-action-label="选择全部">
+                        </esui-table-rich-selector>
+                        <esui-table-rich-selector
+                            data-ui-child-name="target"
+                            data-ui-title="已选择"
+                            data-ui-mode="delete"
+                            data-ui-need-batch-action="true"
+                            data-ui-batch-action-label="删除全部"
+                            data-ui-empty-text="请从左侧选择要添加的">
+                        </esui-table-rich-selector>
+                    </div>
+                </div>
+                <esui-button data-ui-id="get-cas-slots">获取选值</esui-button>
+                <esui-label data-ui-id="cas-slots-result"></esui-label>
+            </div>
+            
             <h2>左右选择Tree Selector</h2>
             <p>右两个树表型富选择器组成，支持从左侧添加到右侧，支持从右侧删除。</p>
             <div class="example">
@@ -94,6 +127,38 @@
                             data-ui-only-leaf-select="false"
                             data-ui-need-batch-action="true"
                             data-ui-allow-unselect-node="true"
+                            data-ui-case-sensitive="true"
+                            data-ui-batch-action-label="选择全部">
+                        </div>
+                        <div data-ui-type="TreeRichSelector"
+                            data-ui-child-name="target"
+                            data-ui-mode="delete"
+                            data-ui-has-search-box="false"
+                            data-ui-title="已分配"
+                            data-ui-empty-text="请从左侧选择要添加的"
+                            data-ui-has-foot="false"
+                            data-ui-need-batch-action="true"
+                            data-ui-batch-action-label="删除全部"
+                            data-ui-hold-state="true"
+                            data-ui-only-leaf-select="false"
+                            data-ui-validity-label="slot-validity">
+                        </div>
+                    </div>
+                    <h3>Disabled</h3>
+                    <div
+                        data-ui-type="RichSelectorGroup"
+                        data-ui-id="cas-apps2"
+                        data-ui-name="cas-apps2"
+                        data-ui-disabled="true">
+                        <div data-ui-type="TreeRichSelector"
+                            data-ui-child-name="source"
+                            data-ui-title="全部有效"
+                            data-ui-hold-state="true"
+                            data-ui-has-foot="false"
+                            data-ui-only-leaf-select="false"
+                            data-ui-need-batch-action="true"
+                            data-ui-allow-unselect-node="true"
+                            data-ui-case-sensitive="true"
                             data-ui-batch-action-label="选择全部">
                         </div>
                         <div data-ui-type="TreeRichSelector"
@@ -116,10 +181,10 @@
             </div>
         </div>
     </div>
-    <script src="../dep/esui/3.2.0-beta.1/demo/assets/loader/esl.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
     <script src="config.js"></script>
-    <script src="../dep/esui/3.2.0-beta.1/demo/demo.js"></script>
-    <script src="../dep/esui/3.2.0-beta.1/demo/assets/google-code-prettify/prettify.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
     <script id="main-js">
     require(
         [
@@ -135,9 +200,9 @@
             var arrayDatasource = [];
             for (var i = 0; i < 20; i++) {
                 arrayDatasource.push({
-                    text: '选项' + (i + 1),
-                    name: '选项' + (i + 1),
-                    prop: '属性' + (i + 1),
+                    text: '选项a' + (i + 1),
+                    name: '选项b' + (i + 1),
+                    prop: '属性c' + (i + 1),
                     id: i + 1
                 });
             }
@@ -155,7 +220,8 @@
                         searchScope: 'partial',
                         width: 200,
                         isDefaultSearchField: true,
-                        title: '名称'
+                        title: '名称',
+                        caseSensitive: false
                     }
                 ]
             });
@@ -214,6 +280,57 @@
                 ]
             });
 
+            var cascadingDisabled = ui.get('cas-slots-disabled');
+            casSource = cascadingDisabled.getChild('source');
+            casTarget = cascadingDisabled.getChild('target');
+
+            casSource.setProperties({
+                datasource: arrayDatasource,
+                fields: [
+                    {
+                        field: 'name',
+                        content: function (item) {
+                            return item.name;
+                        },
+                        searchScope: 'partial',
+                        width: 100,
+                        isDefaultSearchField: true,
+                        title: '名称'
+                    },
+                    {
+                        field: 'value',
+                        content: function (item) {
+                            return item.prop;
+                        },
+                        width: 35,
+                        title: '值'
+                    }
+                ]
+            });
+            casTarget.setProperties({
+                fields: [
+                    {
+                        field: 'name',
+                        content: function (item) {
+                            return item.name;
+                        },
+                        isDefaultSearchField: true,
+                        searchScope: 'partial',
+                        width: 120,
+                        title: '名称'
+                    },
+                    {
+                        field: 'value',
+                        content: function (item) {
+                            return item.prop;
+                        },
+                        width: 35,
+                        title: '值'
+                    }
+                ]
+            });
+
+            
             ui.get('get-cas-slots').on('click', function () {
                 ui.get('cas-slots-result').setText(cascading.getValue());
             });
@@ -226,8 +343,8 @@
             var children = treeDatasource.children;
             for (var j = 0; j < 2; j++) {
                 children.push({
-                    text: '选项' + (j + 1),
-                    name: '选项' + (j + 1),
+                    text: '选项a' + (j + 1),
+                    name: '选项b' + (j + 1),
                     id: j + 1
                 });
             }
@@ -236,14 +353,14 @@
                 var node = children[i];
                 node.children = [
                     {
-                        text: '子节点' + i + 1,
-                        name: '子节点' + i + 1,
+                        text: '子节点a' + i + 1,
+                        name: '子节点b' + i + 1,
                         id: (i + 1) * 100 + 1,
                         isSelected: true
                     },
                     {
-                        text: '子节点' + i + 2,
-                        name: '子节点' + i + 2,
+                        text: '子节点a' + i + 2,
+                        name: '子节点b' + i + 2,
                         id: (i + 1) * 100 + 2
                     }
                 ];
@@ -256,6 +373,12 @@
             var treeData = leftTree.getSelectedTree();
             rightTree.setProperties({datasource: treeData});
 
+            appTree = ui.get('cas-apps2');
+            leftTree = appTree.getChild('source');
+            rightTree = appTree.getChild('target');
+            leftTree.setProperties({datasource: treeDatasource});
+            treeData = leftTree.getSelectedTree();
+            rightTree.setProperties({datasource: treeData});
 
             ui.get('get-cas-apps').on('click', function () {
                 ui.get('cas-apps-result').setText(appTree.getValue());

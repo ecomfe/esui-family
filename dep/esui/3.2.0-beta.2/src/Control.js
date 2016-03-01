@@ -13,7 +13,7 @@ define(
         var ui = require('./main');
         var Helper = require('./Helper');
         var eoo = require('eoo');
-        var EventTarget = require('./EventTarget');
+        var EventTarget = require('mini-event/EventTarget');
         var $ = require('jquery');
 
         /**
@@ -74,6 +74,12 @@ define(
                  */
                 if (!this.id && !options.id) {
                     this.id = lib.getGUID();
+                    // 为组件生成一个唯一的id
+                    // 确保移除事件能够只移除自己的
+                    this.uniqueId = this.id;
+                }
+                else {
+                    this.uniqueId = lib.getGUID();
                 }
 
                 this.initOptions(options);
@@ -116,6 +122,15 @@ define(
              */
             getCategory: function () {
                 return 'control';
+            },
+
+            /**
+             * 获取控件的唯一标识
+             *
+             * @return {string} unique Id
+             */
+            getUniqueId: function () {
+                return this.uniqueId;
             },
 
             /**

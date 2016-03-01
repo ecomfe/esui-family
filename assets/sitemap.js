@@ -27,7 +27,11 @@ define('sitemap', ['jquery'], function ($) {
         ];
         var html = [];
         $.each(items, function (idx, item) {
-            html.push(htmlItem.replace('{link}', path + item.link).replace('{icon}', item.icon).replace('{text}', item.text));
+            var fullLink = item.link;
+            if (fullLink.indexOf('http://') !== 0) {
+                fullLink = path + fullLink;
+            }
+            html.push(htmlItem.replace('{link}', fullLink).replace('{icon}', item.icon).replace('{text}', item.text));
         });
         $('#global-nav').html(html.join(''));
     }
