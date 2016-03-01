@@ -30,6 +30,9 @@
     width: @esui-richselector-width;
 
     .esui-richselector-theme();
+    &.@{ui-state-prefix}-disabled {
+        .esui-disabled();
+    }
 }
 
 .@{ui-class-prefix}-richselector-head {
@@ -79,12 +82,21 @@
     line-height: @esui-richselector-foot-line-height;
     padding: @esui-richselector-foot-padding;
 
+    // 腿部的link
+    button {
+        float: right;
+        height: @esui-richselector-foot-line-height;
+        line-height: @esui-richselector-foot-line-height;
+        min-height: @esui-richselector-foot-line-height;
+    }
+
     .esui-richselector-foot-theme();
 }
 
 // 暂时把group的定义放在这里
 .@{ui-class-prefix}-richselectorgroup {
     white-space: nowrap;
+    display: inline-block;
 }
 
 .esui-richselector-theme() {}

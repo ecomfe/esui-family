@@ -152,13 +152,28 @@ define(
                  * @return {string}
                  */
                 getFootHTML: function () {
-                    return [
-                        '<div data-ui="type:Panel;childName:foot;"',
-                        ' class="' + this.helper.getPartClassName('foot') + '">',
-                        '<span data-ui="type:Label;childName:totalCount">',
-                        '</span>',
+                    var tpl = [
+                        '<div data-ui="type:Panel;childName:foot;" class="${classes}">',
+                        '   <span data-ui="type:Label;childName:totalCount"></span>',
+                        '   ${footButton}',
                         '</div>'
                     ].join('\n');
+
+                    var footButton = '';
+
+                    if (this.footButtonText) {
+                        footButton = '<button data-ui="type:Button;childName:button;variants:link;">'
+                            + this.footButtonText
+                            + '</button>';
+                    }
+
+                    return lib.format(
+                        tpl,
+                        {
+                            classes: this.helper.getPartClassName('foot'),
+                            footButton: footButton
+                        }
+                    );
                 },
 
                 /**
@@ -172,7 +187,8 @@ define(
                         ' class="' + this.helper.getPartClassName('search-wrapper') + '">',
                         '   <div',
                         '   data-ui="buttonPosition:right;buttonVariants:bordered icon;',
-                        '   type:SearchBox;childName:itemSearch;variants:clear-border hide-searched-button">',
+                        '   type:SearchBox;childName:itemSearch;variants:clear-border',
+                        '   hide-searched-button;searchMode:instant;">',
                         '   </div>',
                         '</div>'
                     ].join('');
@@ -215,7 +231,6 @@ define(
                             footInfo: this.hasFoot ? this.getFootHTML() : ''
                         }
                     );
-
                     this.initChildren();
 
                     // 初始化模式状态
@@ -247,6 +262,26 @@ define(
                         'click',
                         u.bind(this.eventDispatcher, this)
                     );
+                },
+
+                /**
+                 * @override
+                 */
+                initEvents: function () {
+                    this.$super(arguments);
+
+                    var foot = this.getChild('foot');
+                    var button = foot && foot.getChild('button');
+                    if (button) {
+                        button.on(
+                            'click',
+                            function (e) {
+                                e.preventDefault();
+                                this.fire('footclick');
+                            },
+                            this
+                        );
+                    }
                 },
 
                 /**
@@ -542,10 +577,22 @@ define(
                     InputControl.prototype.repaint,
                     {
                         name: 'title',
-                        paint: function (control, title) {
-                            var head = control.getChild('head');
+                        paint: function (me, title) {
+                            var head = me.getChild('head');
                             var titleLabel = head && head.getChild('title');
                             titleLabel && titleLabel.setText(title);
+                        }
+                    },
+                    {
+                        name: 'disabled',
+                        paint: function (me, disabled) {
+                            var serachbox = me.getSearchBox();
+                            if (disabled) {
+                                serachbox && serachbox.disable();
+                            }
+                            else {
+                                serachbox && serachbox.enable();
+                            }
                         }
                     },
                     painters.style('width')

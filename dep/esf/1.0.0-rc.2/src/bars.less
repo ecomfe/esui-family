@@ -1,0 +1,46 @@
+@import "base.less";
+
+@esui-bars-title-font-size: 1.5em;
+
+.@{ui-class-prefix}-bars {
+    display: inline-block;
+    position: relative;
+    white-space: nowrap;
+    font-size: 0;
+    span {
+        &:first-child {
+            margin: 0;
+        }
+        display: inline-block;
+        margin: 0 0 0 1px;
+        vertical-align: bottom;
+        width: 6px;
+        .esui-bars-bar-theme();
+    }
+}
+
+.@{ui-class-prefix}-bars-label {
+    display: inline-block;
+    margin-left: .2em;
+}
+
+.@{ui-class-prefix}-bars-title {
+    font-size: @esui-bars-title-font-size;
+    .esui-bars-title-theme();
+}
+
+.@{ui-class-prefix}-bars-sub-title {
+    .esui-bars-sub-title-theme();
+}
+
+.@{ui-class-prefix}-bars-wrapper {
+    display: inline-block;
+    .@{ui-class-prefix}-bars,
+    .@{ui-class-prefix}-bars-label {
+        vertical-align: bottom;
+    }
+}
+
+.esui-bars-bar-theme() {}
+.esui-bars-title-theme() {}
+.esui-bars-sub-title-theme() {}

@@ -18,11 +18,20 @@ define('sitemap', ['jquery'], function ($) {
                 link: 'controls/index.html',
                 icon: 'ui-icon-code',
                 text: 'Controls'
+            },
+            {
+                link: 'http://ecomfe.github.io/eicons/demo/demo.html',
+                icon: 'ui-icon-send',
+                text: 'ICONS'
             }
         ];
         var html = [];
         $.each(items, function (idx, item) {
-            html.push(htmlItem.replace('{link}', path + item.link).replace('{icon}', item.icon).replace('{text}', item.text));
+            var fullLink = item.link;
+            if (fullLink.indexOf('http://') !== 0) {
+                fullLink = path + fullLink;
+            }
+            html.push(htmlItem.replace('{link}', fullLink).replace('{icon}', item.icon).replace('{text}', item.text));
         });
         $('#global-nav').html(html.join(''));
     }

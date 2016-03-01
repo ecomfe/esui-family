@@ -1,0 +1,38 @@
+.ui-paging-tree-richselector.ui-tree-richselector {
+    .ui-richselector-query-list {
+        .ui-tree-content-wrapper {
+            .ui-tree-item-content {
+                cursor: pointer;
+            }
+        }
+
+        .ui-tree-content-wrapper-selected + ul {
+            .ui-tree-item-content {
+                cursor: default;
+                &:after {
+                    content: "";
+                }
+            }
+        }
+
+        .ui-tree-content-wrapper-disabled {
+            .ui-tree-item-content {
+                color: #ccc;
+                cursor: default;
+                &:after {
+                    content: "";
+                }
+            }
+        }
+
+        .ui-tree-content-wrapper.ui-tree-content-wrapper-row-more {
+            .ui-tree-item-content {
+                color: @rich-selector-batch-action-link-color;
+                cursor: pointer;
+                &:after {
+                    content: "";
+                }
+            }
+        }
+    }
+}

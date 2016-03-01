@@ -2,24 +2,24 @@
 
 @esui-progress-height: 1.5em;
 @esui-progress-border-radius: 0;
+@esui-progress-mini-height: .5em;
 @esui-progress-small-height: 1em;
 @esui-progress-large-height: 2em;
-@esui-progress-margin-bottom: 1em;
+@esui-progress-marker-width: .2em;
 
 .@{ui-class-prefix}-progress {
-    margin-bottom: @esui-progress-margin-bottom;
-    overflow: hidden;
     .esui-border-radius(
         @esui-progress-border-radius,
         @esui-progress-border-radius
     );
+    &:extend(.esui-clearfix all);
+    position: relative;
     .esui-progress-theme();
 }
 
 .@{ui-class-prefix}-progress-bar {
     float: left;
     width: 0;
-    font-size: @esui-progress-bar-font-size;
     line-height: @esui-progress-height;
     height: @esui-progress-height;
     text-align: center;
@@ -27,15 +27,40 @@
     .esui-progress-bar-theme();
 }
 
-// Sizes
-.@{ui-class-prefix}-progress-bar-small {
-    height: @esui-progress-small-height;
-    line-height: @esui-progress-small-height;
+.@{ui-class-prefix}-progress-marker {
+    width: @esui-progress-marker-width;
+    margin-left: -@esui-progress-marker-width/2;
+    height: @esui-progress-height;
+    left: 0;
+    position: absolute;
+    .esui-progress-marker-theme();
 }
-.@{ui-class-prefix}-progress-bar-large {
-    height: @esui-progress-large-height;
-    line-height: @esui-progress-large-height;
+
+// Sizes
+.@{ui-class-prefix}-progress-mini {
+    .@{ui-class-prefix}-progress-bar,
+    .@{ui-class-prefix}-progress-marker {
+        height: @esui-progress-mini-height;
+        line-height: @esui-progress-mini-height;
+    }
+}
+
+.@{ui-class-prefix}-progress-small {
+    .@{ui-class-prefix}-progress-bar,
+    .@{ui-class-prefix}-progress-marker {
+        height: @esui-progress-small-height;
+        line-height: @esui-progress-small-height;
+    }
+}
+
+.@{ui-class-prefix}-progress-large {
+    .@{ui-class-prefix}-progress-bar,
+    .@{ui-class-prefix}-progress-marker {
+        height: @esui-progress-large-height;
+        line-height: @esui-progress-large-height;
+    }
 }
 
 .esui-progress-theme() {}
 .esui-progress-bar-theme() {}
+.esui-progress-marker-theme() {}

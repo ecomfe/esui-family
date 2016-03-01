@@ -12,6 +12,7 @@ define(function (require) {
     var Control = require('esui/Control');
     var painters = require('esui/painters');
     var $ = require('jquery');
+    var previewHelper = require('./helper/previewHelper');
     require('./helper/swfHelper');
 
     require('esui/Dialog');
@@ -21,6 +22,8 @@ define(function (require) {
         {
 
             /**
+             * 资源预览弹出框控件
+             *
              * @extends Control
              * @constructor
              */
@@ -191,6 +194,7 @@ define(function (require) {
 
             /**
              * 显示图片/视频对话框容器
+             *
              * @param {Object} args 显示对话框时传入的参数
              * @protected
              */
@@ -212,6 +216,7 @@ define(function (require) {
 
             /**
              * 填充内容
+             *
              * @param {Array} list 图片或视频数据列表
              * @protected
              */
@@ -284,12 +289,15 @@ define(function (require) {
 
             /**
              * 预览图片
+             *
              * @param {Object} options 图片数据
              * @protected
              */
             previewImage: function (options) {
                 var me = this;
-                var img = new Image();
+                options.width += 'px';
+                options.height += 'px';
+                var img = previewHelper.preview(options);
                 img.onload = function () {
                     me.hideLoading();
                     me.mediaContainer().innerHTML = '';
@@ -304,22 +312,16 @@ define(function (require) {
                     img.onload = img.onerror = null;
                     me.dialog.show();
                 };
-                img.src = options.url;
-                if (options.width) {
-                    img.style.width = options.width + 'px';
-                }
-                if (options.height) {
-                    img.style.height = options.height + 'px';
-                }
             },
 
             /**
              * 预览Flash
+             *
              * @param {Object} options flash数据
              * @protected
              */
             previewFlash: function (options) {
-                var html = getFlashHtml(options);
+                var html = previewHelper.preview(options);
                 this.hideLoading();
                 this.mediaContainer().innerHTML = '';
                 this.mediaContainer().appendChild(html);
@@ -328,6 +330,7 @@ define(function (require) {
 
             /**
              * 预览视频
+             *
              * @param {Object} options 视频数据
              * @protected
              */
@@ -335,11 +338,13 @@ define(function (require) {
                 var url = options.url;
                 var html = '';
                 if (/\.flv/.test(url)) {
-                    html = getFlvHtml(options, this.swfPath);
+                    options.type = 'flv';
                 }
                 else if (/\.mp4|\.mov/.test(url)) {
-                    html = getVideoHtml(options, this);
+                    options.type = 'video';
                 }
+                options.swfPath = this.swfPath;
+                html = previewHelper.preview(options);
                 var $container = $(this.mediaContainer());
                 this.hideLoading();
                 $container.html('');
@@ -394,72 +399,8 @@ define(function (require) {
 
     LightBox.defaultProperties = {
         NOT_SUPPORT_MESSAGE: '暂不支持该格式预览',
-        VIDEO_TPL: [
-            '<video id="${id}" title="${title}" width="${width}" height="${height}" src="${src}" autoplay="autoplay">',
-            '该浏览器暂不支持此格式视频预览',
-            '</video>'
-        ].join(''),
         LOAD_FAILED_TPL: '<div class="${loadFailedStyle}">加载图片失败</div>'
     };
-
-    /**
-     * 获取预览Flash
-     * @param {Object} options flash数据
-     * @private
-     * @return {string}
-     */
-    function getFlashHtml(options) {
-        return $.flash.create(
-            {
-                id: options.id || 'preview-fla',
-                swf: options.url,
-                width: options.width,
-                height: options.height,
-                wmode: 'transparent'
-            }
-        );
-    }
-
-    /**
-     * 获取预览视频
-     *
-     * @private
-     * @param {Object} options flv数据
-     * @param {string} swfPath flash播放器地址
-     * @return {string}
-     */
-    function getFlvHtml(options, swfPath) {
-        return $.flash.create(
-            {
-                id: options.id || 'preview-flv',
-                swf: swfPath,
-                width: options.width,
-                height: options.height,
-                wmode: 'transparent',
-                flashvars: 'play_url=' + options.url
-            }
-        );
-    }
-
-    /**
-     * 获取预览视频 - html5
-     * @param {Object} options 视频数据
-     * @param {Object} me lightbox
-     * @private
-     * @return {string}
-     */
-    function getVideoHtml(options, me) {
-        return lib.format(
-            me.VIDEO_TPL,
-            {
-                id: options.id || 'preview-video',
-                title: options.title,
-                src: options.url,
-                width: options.width,
-                height: options.height
-            }
-        );
-    }
 
     esui.register(LightBox);
     return LightBox;

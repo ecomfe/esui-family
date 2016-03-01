@@ -15,6 +15,7 @@ define(
         var eoo = require('eoo');
 
         var u = require('underscore');
+        var util = require('../helper/util');
         var lib = require('esui/lib');
         var RichSelector = require('./RichSelector');
         var TreeStrategy = require('./SelectorTreeStrategy');
@@ -64,7 +65,9 @@ define(
                         // 选择父节点不代表其下的子节点全被选中；选择全部子节点也不代表父节点选中
                         needSyncParentChild: true,
                         // 树样式
-                        treeVariants: 'icon angle hoverable'
+                        treeVariants: 'icon angle hoverable',
+                        // 大小写是否敏感。默认无视大小写
+                        caseSensitive: false
                     };
 
                     u.extend(properties, options);
@@ -97,19 +100,32 @@ define(
                     RichSelector.prototype.repaint,
                     {
                         name: 'datasource',
-                        paint: function (control, datasource) {
-                            control.refresh();
+                        paint: function (me, datasource) {
+                            me.refresh();
+                            toggleTreeState(me, me.disabled);
                         }
                     },
                     {
                         name: 'selectedData',
                         paint: function (control, selectedData) {
                             // 如果没有传selectedData，就别取消了。
-                            if (selectedData == null) {
+                            if (u.isEmpty(selectedData)) {
                                 return;
                             }
+
                             // 先取消选择
                             var allData = control.allData;
+
+                            // 因为取值也不会取根节点，赋值如果等于根节点
+                            // 避免所有子孙都被选中，这里无视
+                            if (allData && selectedData.length === 1) {
+                                var selectedItem = selectedData[0];
+                                selectedItem = selectedItem.id || selectedItem.value || selectedItem;
+                                if (selectedItem === allData.id) {
+                                    return;
+                                }
+                            }
+
                             if (allData && allData.children) {
                                 var oldSelectedData = control.getSelectedItems();
                                 control.selectItems(oldSelectedData, false);
@@ -117,6 +133,12 @@ define(
                                 control.fire('add');
                                 control.fire('change');
                             }
+                        }
+                    },
+                    {
+                        name: 'disabled',
+                        paint: function (me, disabled) {
+                            toggleTreeState(me, disabled);
                         }
                     }
                 ),
@@ -152,11 +174,14 @@ define(
                     // 一个扁平化的索引
                     // 其中包含父节点信息，以及节点选择状态
                     var indexData = {};
-                    if (this.allData && this.allData.children) {
+                    var allData = this.allData;
+                    if (allData && allData.children) {
                         this.walkTree(
-                            this.allData,
-                            this.allData.children,
+                            allData,
+                            allData.children,
                             function (parent, child) {
+                                parent.id = parent.id || parent.value;
+                                child.id = child.id || child.value;
                                 indexData[child.id] = {
                                     parentId: parent.id,
                                     node: child,
@@ -170,6 +195,12 @@ define(
                                 }
                             }
                         );
+                        // 把根节点也加上
+                        indexData[allData.id] = {
+                            parentId: null,
+                            node: allData,
+                            isSelected: false
+                        };
                     }
                     this.indexData = indexData;
 
@@ -191,6 +222,7 @@ define(
 
                 /**
                  * 刷新备选区
+                 *
                  * @override
                  */
                 refreshContent: function () {
@@ -239,17 +271,17 @@ define(
                         var control = this;
                         tree.on(
                             'selectnode',
-                            function (e, data) {
-                                var node = data.node;
+                            function (e) {
+                                var node = e.node;
                                 control.handlerAfterClickNode(node);
                             }
                         );
 
                         tree.on(
                             'unselectnode',
-                            function (e, data) {
+                            function (e) {
                                 // control.setItemState(e.node.id, 'isSelected', false);
-                                control.handlerAfterClickNode(data.node);
+                                control.handlerAfterClickNode(e.node);
                             }
                         );
                     }
@@ -294,6 +326,7 @@ define(
 
                 /**
                  * 点击触发，选择或删除节点
+                 *
                  * @param {Object} node 节点对象
                  * @ignore
                  */
@@ -532,6 +565,7 @@ define(
                         copyData,
                         copyData.children,
                         function (parent, child) {
+                            // 找出所有选中节点或父节点状态为`isSomeSelected`, 即该节点存在选中的子孙节点
                             var selectedChildren = getSelectedNodesUnder(child, control);
                             if (selectedChildren.length) {
                                 child.children = selectedChildren;
@@ -591,7 +625,7 @@ define(
                     // Tree就只定位一个关键词字段
                     var keyword = filters[0].value;
                     var filteredTreeData = [];
-                    filteredTreeData = queryFromNode(keyword, this.allData);
+                    filteredTreeData = queryFromNode.call(this, keyword, this.allData);
                     // 更新状态
                     this.queriedData = {
                         id: getTopId(this), text: '符合条件的结果', children: filteredTreeData
@@ -693,6 +727,7 @@ define(
 
         /**
          * 撤销选择当前项
+         *
          * @param {ui.TreeRichSelector} control 类实例
          * @ignore
          */
@@ -707,6 +742,7 @@ define(
         /**
          * 同步一个节点的父节点和子节点选择状态
          * 比如：父节点选中与子节点全部选中的状态同步
+         *
          * @param {ui.TreeRichSelector} control 类实例
          * @param {Object} item 保存在indexData中的item
          * @param {boolean} toBeSelected 目标状态 true是选择，false是取消
@@ -721,6 +757,7 @@ define(
 
         /**
          * 同步一个节点的父节点选择状态
+         *
          * @param {ui.TreeRichSelector} control 类实例
          * @param {Object} item 保存在indexData中的item
          * @param {boolean} toBeSelected 目标状态 true是选择，false是取消
@@ -738,6 +775,7 @@ define(
 
         /**
          * 同步一个节点的子节点选择状态
+         *
          * @param {ui.TreeRichSelector} control 类实例
          * @param {Object} item 保存在indexData中的item
          * @param {boolean} toBeSelected 目标状态 true是选择，false是取消
@@ -756,6 +794,20 @@ define(
                         return !control.getItemState(brother.id, 'isSelected');
                     }
                 );
+                // 如果子节点部分选中，则标记父节点`isSomeSelected`为true
+                var someSelected = u.some(
+                    brothers,
+                    function (brother) {
+                        return control.getItemState(brother.id, 'isSelected')
+                            || control.getItemState(brother.id, 'isSomeSelected');
+                    }
+                );
+                if (!allSelected && someSelected) {
+                    control.setItemState(parentId, 'isSomeSelected', true);
+                }
+                else {
+                    control.setItemState(parentId, 'isSomeSelected', false);
+                }
                 selectItem(control, parentId, allSelected);
                 trySyncParentStates(control, parentItem, allSelected);
             }
@@ -804,7 +856,8 @@ define(
             return u.filter(
                 children,
                 function (node) {
-                    return this.getItemState(node.id, 'isSelected');
+                    return this.getItemState(node.id, 'isSelected')
+                        || this.getItemState(node.id, 'isSomeSelected');
                 },
                 control
             );
@@ -826,12 +879,18 @@ define(
                 function (data, key) {
                     var filteredData;
                     // 命中节点，先保存副本，之后要修改children
-                    if (data.text.indexOf(keyword) !== -1) {
+
+                    var config = {
+                        caseSensitive: this.caseSensitive,
+                        isPartial: true
+                    };
+
+                    if (util.compare(data.text, keyword, config)) {
                         filteredData = u.clone(data);
                     }
 
                     if (data.children && data.children.length) {
-                        var filteredChildren = queryFromNode(keyword, data);
+                        var filteredChildren = queryFromNode.call(this, keyword, data);
                         // 如果子节点有符合条件的，那么只把符合条件的子结点放进去
                         if (filteredChildren.length > 0) {
                             if (!filteredData) {
@@ -851,7 +910,8 @@ define(
                     if (filteredData) {
                         filteredTreeData.push(filteredData);
                     }
-                }
+                },
+                this
             );
             return filteredTreeData;
         }
@@ -899,6 +959,16 @@ define(
          */
         function getTopId(control) {
             return control.datasource.id;
+        }
+
+        function toggleTreeState(selector, disabled) {
+            var queryList = selector.getQueryList();
+            var tree = queryList.getChild('tree');
+
+            if (!tree) {
+                return;
+            }
+            disabled ? tree.disable() : tree.enable();
         }
 
         esui.register(TreeRichSelector);

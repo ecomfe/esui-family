@@ -93,6 +93,12 @@ a {
             @esui-type-body-text-color
         );
     }
+    &.@{ui-class-prefix}-link-plain {
+        .esui-make-link(
+            @esui-type-link-color,
+            @esui-type-link-hover-color
+        );
+    }
 }
 
 // dfn underline and cusor
@@ -213,10 +219,19 @@ dd {
 .@{ui-class-prefix}-divider,
 hr {
     border: 0;
-    border-top: 1px solid @esui-type-hr-color;
+    border-top: .1em solid @esui-type-hr-color;
     height: 0;
     overflow:hidden;
     color: @esui-type-hr-color;
+    &.@{ui-class-prefix}-divider-thick {
+        border-top-width: .3em;
+    }
+    &.@{ui-class-prefix}-divider-dotted {
+        border-top-style: dotted;
+    }
+    &.@{ui-class-prefix}-divider-dashed {
+        border-top-style: dashed;
+    }
 }
 
 .@{ui-class-prefix}-list-unstyled,

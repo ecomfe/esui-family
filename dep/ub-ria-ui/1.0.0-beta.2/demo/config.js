@@ -23,7 +23,7 @@ require.config({
         },
         {
             'name': 'esui',
-            'location': '../dep/esui/3.2.0-beta.1/src',
+            'location': '../dep/esui/3.2.0-beta.2/src',
             'main': 'main'
         },
         {
@@ -48,11 +48,16 @@ require.config({
         },
         {
             'name': 'esf',
-            'location': '../dep/esf/1.0.0-rc.1/src'
+            'location': '../dep/esf/1.0.0-rc.2/src'
         },
         {
             'name': 'est',
             'location': '../dep/est/1.3.0/src'
+        },
+        {
+            'name': 'mini-event',
+            'location': '../dep/mini-event/1.0.2/src',
+            'main': 'main'
         }
     ]
 });

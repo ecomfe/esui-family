@@ -10,19 +10,17 @@
 
 @import "Variable.less";
 
-@esui-table-line-height: 1.4;
-
-@esui-table-head-zIndex: 1000;
+@esui-table-head-zIndex: 10;
 @esui-table-head-cell-font-family: 'Helvetica Neue', Helvetica, Arial, '微软雅黑', 'Microsoft YaHei', '黑体', SimHei, sans-serif;
-@esui-table-head-cell-text-padding: .5em;
+@esui-table-head-cell-text-padding: 1em;
 @esui-table-head-cell-line-height: 2.5em;
 @esui-table-head-cell-tip-margin: 0 .5em 0 0;
 @esui-table-head-cell-hsort-margin: 0 0 0 .5em;
 
-@esui-table-cell-text-padding: .5em;
+@esui-table-cell-text-padding: 1em;
 @esui-table-cell-icon-width: 1.4em;
 
-@esui-table-subrow-padding: 0 0 0 2em;
+// @esui-table-subrow-padding: 0 0 0 2em;
 
 @esui-table-editor-padding: .5em;
 @esui-table-editor-buttons-margin: .5em 0;
@@ -31,7 +29,6 @@
 // table
 .@{ui-class-prefix}-table {
     overflow-x: auto;
-    line-height: @esui-table-line-height;
     display: block;
     &.@{ui-state-prefix}-disabled {
         .esui-disabled();
@@ -117,8 +114,12 @@
     .esui-table-row-theme();
 }
 
+.@{ui-class-prefix}-table-striped .@{ui-class-prefix}-table-row-odd {
+    .esui-table-row-striped-theme();
+}
+
 // 行表格移上
-.@{ui-class-prefix}-table-row-hover {
+.@{ui-class-prefix}-table .@{ui-class-prefix}-table-row-hover {
     .esui-table-row-hover-theme();
 }
 
@@ -128,7 +129,7 @@
 }
 
 // Table Row选中
-.@{ui-class-prefix}-table-row-selected table {
+.@{ui-class-prefix}-table-row-selected {
     .esui-table-row-selected-theme();
 }
 
@@ -251,7 +252,6 @@
 }
 
 .@{ui-class-prefix}-table-subrow {
-    padding: @esui-table-subrow-padding;
     .esui-table-subrow-theme();
 }
 
@@ -288,6 +288,7 @@
 .esui-table-row-theme() {}
 .esui-table-row-hover-theme() {}
 .esui-table-row-selected-theme() {}
+.esui-table-striped-row-theme() {}
 .esui-table-subrow-theme() {}
 .esui-table-table-cell-theme() {}
 .esui-table-cell-editentry-theme() {}

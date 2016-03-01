@@ -34,6 +34,11 @@ require.config({
             'name': 'jquery',
             'location': '../dep/jquery/1.9.1/src',
             'main': 'jquery.min'
+        },
+        {
+            'name': 'mini-event',
+            'location': '../dep/mini-event/1.0.2/src',
+            'main': 'main'
         }
     ]
 });

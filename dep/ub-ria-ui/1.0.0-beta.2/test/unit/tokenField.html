@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>TokenField Unit Test</title>
+    <link rel="stylesheet" href="../asset/css/test.css">
+    <link rel="stylesheet" href="../../demo/assets/themes/standard.less">
+    <script src="../third-party/jquery-1.11.3.min.js"></script>
+    <script src="../third-party/esl.js"></script>
+    <script src="../third-party/jasmine-2.3.4/jasmine.js"></script>
+    <script src="../third-party/jasmine-2.3.4/jasmine-html.js"></script>
+    <script src="../third-party/jasmine-2.3.4/boot.js"></script>
+    <script src="../third-party/jasmine-jquery.js"></script>
+    <script src="../asset/js/config.js"></script>
+    <script src="../asset/js/test.js"></script>
+</head>
+<body>
+    <div id="container">
+        <input data-ui-type="TokenField" data-ui-tokens="yankun01,lisijin,maoquan+liwei" data-ui-limit="5" data-ui-delimiter="," data-ui-width="600" />
+    </div>
+    <script>
+        window.require(
+            ['unit/tokenField'],
+            function () {
+                jasmineStart();
+            }
+        );
+    </script>
+</body>
+</html>

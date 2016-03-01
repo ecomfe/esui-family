@@ -163,10 +163,18 @@ define(
                  * @return {string} 返回HTML片段
                  */
                 getContentHTML: function (config, allowClose) {
+                    var contentHtml = '';
+                    if (config.url) {
+                        contentHtml = '<a href="${url}">' + this.contentTemplate + '</a>';
+                    }
+                    else {
+                        contentHtml = this.contentTemplate;
+                    }
                     var html = lib.format(
-                        this.contentTemplate,
+                        contentHtml,
                         {
-                            title: u.escape(config.title)
+                            title: u.escape(config.title),
+                            url: u.escape(config.url)
                         }
                     );
                     if (allowClose) {
@@ -432,6 +440,17 @@ define(
                  */
                 getActiveTab: function () {
                     return this.get('tabs')[this.get('activeIndex')];
+                },
+
+                /**
+                 * 修改指定Tab标题
+                 *
+                 * @param {string} panelId tab对应的panelId
+                 * @param {string} title 新标题
+                 */
+                updateTabTitle: function (panelId, title) {
+                    var tabTitle = getTabTitle.call(this, panelId);
+                    tabTitle.innerHTML = this.getContentHTML({title: title}, this.allowClose);
                 }
             }
         );
@@ -457,7 +476,8 @@ define(
                 var tab = children[i];
                 var config = {
                     title: $(tab).text(),
-                    panel: $(tab).attr('data-for')
+                    panel: $(tab).attr('data-for'),
+                    url: $(tab).attr('data-url')
                 };
 
                 if (tab.className) {
@@ -514,9 +534,22 @@ define(
                 tab.helper.addPartClasses('item-active', element);
             }
 
+            element.id = tab.helper.getId('tab-title-for-panel-' + config.panel);
+
             element.innerHTML = tab.getContentHTML(config, allowClose);
 
             return element;
+        }
+
+        /**
+         * 获取指定的tab标题元素
+         *
+         * @param {string} panelId 指定的panelId
+         * @return {Element}
+         * @ignore
+         */
+        function getTabTitle(panelId) {
+            return lib.g(this.helper.getId('tab-title-for-panel-' + panelId));
         }
 
         /**

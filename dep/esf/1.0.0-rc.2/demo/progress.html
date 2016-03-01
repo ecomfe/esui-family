@@ -17,6 +17,7 @@
                 <ul id="navigator-features" class="ui-list-unstyled">
                     <li><a href="#default">Default progress bar</a></li>
                     <li><a href="#with-label">With label</a></li>
+                    <li><a href="#with-marker">With marker</a></li>
                     <li><a href="#low-percentages">Low percentages</a></li>
                     <li><a href="#contextual">Contextual alternatives</a></li>
                     <li><a href="#striped">Striped</a></li>
@@ -44,30 +45,50 @@
                             <div class="ui-progress-bar" style="width: 60%;">60%</div>
                         </div>
                     </div>
-                    
-                    <h2 id="low-percentages">Low percentages</h2>
+
+                    <h2 id="with-marker">With marker</h2>
                     <div class="example">
                         <div class="ui-progress">
-                            <div class="ui-progress-bar">0%</div>
+                            <div class="ui-progress-bar" style="width: 60%;">60%</div>
+                            <div class="ui-progress-marker" style="left: 50%;"></div>
                         </div>
-                        <div class="ui-progress">
-                            <div class="ui-progress-bar" style="width: 2%;">2%</div>
+                    </div>
+
+                    <h2 id="low-percentages">Low percentages</h2>
+                    <div class="example">
+                        <div class="row">
+                            <div class="ui-progress">
+                                <div class="ui-progress-bar">0%</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="ui-progress">
+                                <div class="ui-progress-bar" style="width: 2%;">2%</div>
+                            </div>
                         </div>
                     </div>
                     
                     <h2 id="contextual">Contextual alternatives</h2>
                     <div class="example">
+                        <div class="row">
                         <div class="ui-progress">
                             <div class="ui-progress-bar ui-progress-bar-success" style="width: 40%;"></div>
                         </div>
-                        <div class="ui-progress">
-                            <div class="ui-progress-bar ui-progress-bar-info" style="width: 50%;"></div>
                         </div>
-                        <div class="ui-progress">
-                            <div class="ui-progress-bar ui-progress-bar-warning" style="width: 20%;"></div>
+                        <div class="row">
+                            <div class="ui-progress">
+                                <div class="ui-progress-bar ui-progress-bar-info" style="width: 50%;"></div>
+                            </div>
                         </div>
-                        <div class="ui-progress">
-                            <div class="ui-progress-bar ui-progress-bar-danger" style="width: 90%;"></div>
+                        <div class="row">
+                            <div class="ui-progress">
+                                <div class="ui-progress-bar ui-progress-bar-warning" style="width: 20%;"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="ui-progress">
+                                <div class="ui-progress-bar ui-progress-bar-danger" style="width: 90%;"></div>
+                            </div>
                         </div>
                     </div>
                     
@@ -87,14 +108,29 @@
                     
                     <h2 id="size">Size modifiers</h2>
                     <div class="example">
-                        <div class="ui-progress">
-                            <div class="ui-progress-bar ui-progress-bar-small ui-progress-bar-striped ui-progress-bar-animated" style="width: 20%;">20%</div>
+                        <div class="row">
+                            <div class="ui-progress ui-progress-mini">
+                                <div class="ui-progress-bar ui-progress-bar-success" style="width: 20%;"></div>
+                                <div class="ui-progress-marker" style="left: 50%;"></div>
+                            </div>
                         </div>
-                         <div class="ui-progress">
-                            <div class="ui-progress-bar ui-progress-bar-striped ui-progress-bar-animated" style="width: 30%;">30%</div>
+                        <div class="row">
+                            <div class="ui-progress ui-progress-small">
+                                <div class="ui-progress-bar ui-progress-bar-success" style="width: 20%;"></div>
+                                <div class="ui-progress-marker" style="left: 50%;"></div>
+                            </div>
                         </div>
-                         <div class="ui-progress">
-                            <div class="ui-progress-bar ui-progress-bar-large ui-progress-bar-striped ui-progress-bar-animated" style="width: 50%;">50%</div>
+                        <div class="row">
+                            <div class="ui-progress">
+                                <div class="ui-progress-bar ui-progress-bar-success" style="width: 20%;"></div>
+                                <div class="ui-progress-marker" style="left: 10%;"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="ui-progress ui-progress-large">
+                                <div class="ui-progress-bar ui-progress-bar-success" style="width: 20%;"></div>
+                                <div class="ui-progress-marker" style="left: 100%;"></div>
+                            </div>
                         </div>
                     </div>
                     

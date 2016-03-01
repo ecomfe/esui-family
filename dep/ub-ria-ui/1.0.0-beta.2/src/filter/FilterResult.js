@@ -107,6 +107,8 @@ define(function (require) {
                     'click',
                     'a',
                     function (e) {
+                        e.preventDefault();
+
                         var $target = $(e.currentTarget);
 
                         var value = $target.attr('data-value');

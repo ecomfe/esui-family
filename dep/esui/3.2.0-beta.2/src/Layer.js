@@ -13,7 +13,7 @@ define(
         var lib = require('./lib');
         var esui = require('./main');
         var eoo = require('eoo');
-        var EventTarget = require('./EventTarget');
+        var EventTarget = require('mini-event/EventTarget');
         var $ = require('jquery');
         require('./behavior/position');
 
@@ -78,6 +78,10 @@ define(
 
                 prepareLayer: function (element) {
                     $(element).addClass(esui.getConfig('uiClassPrefix') + '-layer');
+
+                    // 给layer一个初始的TOP/LEFT值
+                    // 否则在定位时，jquery的offset首次计算存在问题
+                    $(element).css('top', -1000).css('left', -1000);
 
                     // 这里添加variant信息到layer上以方便定义variant样式。
                     var variants = this.control.variants;
@@ -244,6 +248,7 @@ define(
                 dispose: function () {
                     var element = this.getElement(false);
                     this.autoCloseExcludeElements = [];
+                    $(document).off('mousedown', this.docClickHandler);
                     if (element) {
                         $(element).remove();
                     }

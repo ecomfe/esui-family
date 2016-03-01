@@ -352,9 +352,6 @@ define(
                         me.appendTo(lib.g(me.container));
                     }
 
-                    // 插入节点，引起渲染
-                    me.insertBefore(ref);
-
                     // toggle效果实现
                     controlHelper.addPartClasses('toggle', 'container');
 
