@@ -18,6 +18,11 @@ define('sitemap', ['jquery'], function ($) {
                 link: 'controls/index.html',
                 icon: 'ui-icon-code',
                 text: 'Controls'
+            },
+            {
+                link: 'http://ecomfe.github.io/eicons/demo/demo.html',
+                icon: 'ui-icon-send',
+                text: 'ICONS'
             }
         ];
         var html = [];
