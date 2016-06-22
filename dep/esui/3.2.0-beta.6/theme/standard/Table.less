@@ -1,0 +1,145 @@
+@import "../../src/css/Table.less";
+@import "Layer.less";
+
+// theme variables
+@esui-table-head-background: @esui-palette-neutral-color;
+@esui-table-head-hover-background: @esui-palette-light-bg-hightlight-color;
+@esui-table-head-table-border-color: @esui-palette-border;
+@esui-table-head-table-border-style: solid;
+
+@esui-table-row-background: @esui-palette-white;
+@esui-table-row-hover-background: @esui-palette-light-bg-hightlight-color;
+@esui-table-row-selected-background: @esui-palette-neutral-highlight-color;
+@esui-table-row-striped-background: @esui-palette-neutral-highlight-color;
+
+@esui-table-head-table-cell-color: @esui-palette-dark-color;
+@esui-table-head-table-cell-font-weight: normal;
+
+@esui-table-foot-background: @esui-palette-neutral-highlight-color;
+@esui-table-foot-table-cell-font-weight: normal;
+@esui-table-foot-table-cell-color: @esui-palette-dark-color;
+
+@esui-table-editable-cell-hover-background: @esui-palette-neutral-highlight-color;
+@esui-table-cell-editentry-color: @esui-palette-primary-color;
+
+@esui-table-editor-layer-background: @esui-palette-white;
+@esui-table-editor-layer-border: 1px solid @esui-palette-border;
+
+@esui-table-mark-background: @esui-palette-black;
+
+.esui-table-head-theme() {
+    
+}
+
+.esui-table-body-theme() {}
+
+.esui-table-head-sortable-cell-hover-theme() {
+    background: @esui-table-head-hover-background;
+}
+
+.esui-table-head-table-theme() {
+    background: @esui-table-head-background;
+    border-color: @esui-table-head-table-border-color;
+    border-style: @esui-table-head-table-border-style;
+    border-width: 0;
+}
+
+.esui-table-body-table-theme() {
+    border-color: @esui-table-head-table-border-color;
+    border-style: @esui-table-head-table-border-style;
+    border-width: 0;
+}
+
+.esui-table-foot-table-theme() {
+    border-color: @esui-table-head-table-border-color;
+    border-style: @esui-table-head-table-border-style;
+    border-width: 0;
+}
+
+.esui-table-foot-theme() {
+    background: @esui-table-foot-background;
+}
+
+.esui-table-head-table-cell-theme() {
+    border-color: @esui-table-head-table-border-color;
+    border-style: @esui-table-head-table-border-style;
+    font-weight: @esui-table-head-table-cell-font-weight;
+    color: @esui-table-head-table-cell-color;
+    border-width: 0;
+}
+
+.esui-table-table-cell-theme() {
+    border-color: @esui-table-head-table-border-color;
+    border-style: @esui-table-head-table-border-style;
+    border-width: 0;
+}
+
+.esui-table-foot-table-cell-theme() {
+    border-color: @esui-table-head-table-border-color;
+    border-style: @esui-table-head-table-border-style;
+    font-weight: @esui-table-foot-table-cell-font-weight;
+    color: @esui-table-foot-table-cell-color;
+    border-width: 0;
+}
+
+.esui-table-row-theme() {
+    >table {
+        border-color: @esui-table-head-table-border-color;
+        border-style: @esui-table-head-table-border-style;
+        background: @esui-table-row-background;
+        border-width: 0 0 1px;
+    }
+}
+
+.esui-table-row-hover-theme() {
+    >table {
+        background: @esui-table-row-hover-background;
+    }
+}
+
+.esui-table-row-selected-theme() {
+    >table {
+        background: @esui-table-row-selected-background;
+    }
+}
+
+.esui-table-row-striped-theme() {
+    >table {
+        background: @esui-table-row-striped-background;
+    }
+}
+
+.esui-table-row-unfolded-theme() {
+    >table {
+        background: @esui-table-row-selected-background;
+    }
+}
+
+.esui-table-body-nodata-theme() {
+    border-color: @esui-table-head-table-border-color;
+    border-style: @esui-table-head-table-border-style;
+    border-width: 0;
+}
+
+.esui-table-editable-cell-text-hover-theme() {
+    
+}
+
+.esui-table-cell-editentry-theme() {
+    color: @esui-table-cell-editentry-color;
+}
+
+.esui-table-editor-theme() {
+    background: @esui-table-editor-layer-background;
+    border: @esui-table-editor-layer-border;
+}
+
+.esui-table-mark-theme() {
+    background: @esui-table-mark-background;
+}
+
+.esui-table-subrow-theme() {
+    border-color: @esui-table-head-table-border-color;
+    border-style: @esui-table-head-table-border-style;
+    border-width: 0 0 1px 0;
+}

@@ -1,0 +1,42 @@
+@import "../../src/css/Region.less";
+
+@esui-region-background: @esui-palette-white;
+
+@esui-region-country-check-background: @esui-palette-neutral-color;
+@esui-region-country-check-color: @esui-palette-color;
+
+@esui-region-city-hover-background: @esui-palette-light-bg-hightlight-color;
+@esui-region-city-hover-drop-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+
+@esui-region-city-number-background: @esui-palette-primary-color;
+@esui-region-city-number-color: @esui-palette-contrast-color;
+
+@esui-region-region-box1-background: @esui-palette-neutral-highlight-color;
+
+.esui-region-theme() {
+    background: @esui-region-background;
+}
+
+.esui-region-country-check-theme() {
+    background: @esui-region-country-check-background;
+    color: @esui-region-country-check-color;
+}
+
+.esui-region-region-box1-theme() {
+    background: @esui-region-region-box1-background;
+}
+
+.esui-region-text-over-theme() {
+    background: @esui-region-city-hover-background;
+    .box-shadow(@esui-region-city-hover-drop-shadow);
+}
+
+.esui-region-city-box-theme() {
+    background: @esui-region-city-hover-background;
+    .box-shadow(@esui-region-city-hover-drop-shadow);
+}
+
+.esui-region-city-number-theme() {
+    background: @esui-region-city-number-background;
+    color: @esui-region-city-number-color;
+}

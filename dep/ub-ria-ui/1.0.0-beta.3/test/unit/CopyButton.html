@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CopyButton - Test</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../asset/css/test.css">
+    <link rel="stylesheet" href="../../demo/assets/themes/standard.less">
+</head>
+<body>
+    <div id="container">
+        <div id="copybuttontest" class="ui-button ui-button-primary">
+            <span class="ui-icon-copy"></span> Copy
+        </div>
+    </div>
+    <script src="../third-party/jquery-1.11.3.min.js"></script>
+    <script src="../third-party/esl.js"></script>
+    <script src="../third-party/jasmine-2.3.4/jasmine.js"></script>
+    <script src="../third-party/jasmine-2.3.4/jasmine-html.js"></script>
+    <script src="../third-party/jasmine-2.3.4/boot.js"></script>
+    <script src="../third-party/jasmine-jquery.js"></script>
+    <script src="../asset/js/config.js"></script>
+    <script src="../asset/js/test.js"></script>
+    <script>
+    /* globals jasmineStart */
+    window.require(
+        ['unit/CopyButton'],
+        function () {
+            jasmineStart();
+        }
+    );
+    </script>
+</body>
+</html>

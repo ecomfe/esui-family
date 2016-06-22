@@ -1,0 +1,123 @@
+// import est
+@import "../../../dep/est/1.3.0/src/all.less";
+
+.global-normalize();
+
+// import esf
+@import "../../../dep/esf/1.0.0/theme/standard/main.less";
+
+// import eicons
+@import "../../../dep/eicons/1.0.0/src/main.less";
+
+// 设置font文件地址
+@eicons-font-path: "../../../dep/eicons/1.0.0/fonts";
+
+@esui-type-headings-font-weight: normal;
+
+// import esui
+@import "../../../theme/standard/Main.less";
+
+@import "site.less";
+
+// demo page
+.@{ui-class-prefix}-tab-vertical-container-left {
+   .esui-vertical-tab-def(
+       8em,
+       300px,
+       left
+   );
+}
+
+.@{ui-class-prefix}-tab-vertical-container-right {
+   .esui-vertical-tab-def(
+       8em,
+       300px,
+       right
+   );
+}
+
+@esui-tab-content-border: 2px solid @esui-tab-item-border-color;
+
+.@{ui-class-prefix}-tab-content-border {
+    border: @esui-tab-content-border;
+}
+
+.@{ui-class-prefix}-tab-content-top-border {
+    border-top: @esui-tab-content-border;
+}
+
+.@{ui-class-prefix}-tab-content-bottom-border {
+    border-bottom: @esui-tab-content-border;
+}
+
+.@{ui-class-prefix}-tab-content-left-border {
+    border-left: @esui-tab-content-border;
+}
+
+.@{ui-class-prefix}-tab-content-right-border {
+    border-right: @esui-tab-content-border;
+}
+
+.@{ui-class-prefix}-tab-invert-content-top-border {
+    border-top: 1px solid @esui-tab-invert-item-border-color;
+    margin-top: -1px;
+}
+
+// form.html
+.edit-form .ui-form-key {
+    width: 8em;
+}
+
+// BehaviorSelectable
+.ui-widget-content {
+    border: 1px solid #aaaaaa;
+    color: #222222;
+}
+.ui-state-default {
+    border: 1px solid #d3d3d3;
+    font-weight: normal;
+    color: #555555;
+}
+#selectable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 450px;
+}
+#selectable li {
+    margin: 3px;
+    padding: 1px;
+    float: left;
+    width: 100px;
+    height: 80px;
+    font-size: 4em;
+    text-align: center;
+}
+
+#selectable-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+}
+#selectable-list li {
+    margin: 3px;
+    padding: 0.4em;
+    font-size: 1.4em;
+    height: 18px;
+}
+
+#selectable-demo {
+    .ui-selectable-selecting {
+        background: #FECA40;
+    }
+
+    .ui-selectable-selected {
+        background: #F39814;
+        color: white;
+    }
+    
+    .ui-selectable-helper {
+        border: 1px dotted #666;
+    }
+}

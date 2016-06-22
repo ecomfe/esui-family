@@ -1,0 +1,12 @@
+{
+    "--title": "mini-event",
+    "--output": "../doc/",
+    "--categories": "categories.json",
+    "--": [
+        "../src/Event.js",
+        "../src/EventQueue.js",
+        "../src/EventTarget.js",
+        "../src/main.js",
+        "../src/lib.js"
+    ]
+}

@@ -1,0 +1,302 @@
+/*
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * path:    Table.less
+ * desc:    表格控件样式
+ * author:  wurongyao
+ * date:    $Date$
+ */
+
+@import "Variable.less";
+
+@esui-table-head-zIndex: 10;
+@esui-table-head-cell-font-family: 'Helvetica Neue', Helvetica, Arial, '微软雅黑', 'Microsoft YaHei', '黑体', SimHei, sans-serif;
+@esui-table-head-cell-text-padding: 1em;
+@esui-table-head-cell-line-height: 2.5em;
+@esui-table-head-cell-tip-margin: 0 .5em 0 0;
+@esui-table-head-cell-hsort-margin: 0 0 0 .5em;
+
+@esui-table-cell-text-padding: 1em;
+@esui-table-cell-icon-width: 1.4em;
+
+// @esui-table-subrow-padding: 0 0 0 2em;
+
+@esui-table-editor-padding: .5em;
+@esui-table-editor-buttons-margin: .5em 0;
+@esui-table-editor-border-radius: 0;
+
+// table
+.@{ui-class-prefix}-table {
+    overflow-x: auto;
+    display: block;
+    &.@{ui-state-prefix}-disabled {
+        .esui-disabled();
+    }
+}
+
+.@{ui-class-prefix}-table table {
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.@{ui-class-prefix}-table-body-nodata {
+    text-align: center;
+    padding: @esui-table-cell-text-padding;
+    .esui-table-body-nodata-theme();
+}
+
+// table head开始
+.@{ui-class-prefix}-table-head {
+    z-index: @esui-table-head-zIndex;
+    .esui-table-head-theme();
+}
+
+.@{ui-class-prefix}-table-head table {
+    .esui-table-head-table-theme();
+}
+
+// 表头单元格
+.@{ui-class-prefix}-table-hcell {
+    font-family: @esui-table-head-cell-font-family;
+    .esui-table-head-table-cell-theme();
+}
+
+// 表头单元格DIV容器
+.@{ui-class-prefix}-table-hcell-text {
+    overflow: hidden;
+    padding: @esui-table-head-cell-text-padding;
+    text-align: left;
+}
+
+// Checkbox选择单元格
+.@{ui-class-prefix}-table-hcell-sel {
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+// Tooltip表头单元格提示
+.@{ui-class-prefix}-table-htip {
+    margin: @esui-table-head-cell-tip-margin;
+}
+
+// 可排序列的表头样式Hover
+.@{ui-class-prefix}-table-hcell-sort-hover{
+    cursor: pointer;
+    .esui-table-head-sortable-cell-hover-theme();
+}
+
+// 表头单元格排序标识
+.@{ui-class-prefix}-table-hsort {
+    margin: @esui-table-head-cell-hsort-margin;
+    .eicons-icon(sort);
+}
+
+.@{ui-class-prefix}-table-hcell-asc .@{ui-class-prefix}-table-hsort {
+    .eicons-icon(sort-asc);
+}
+
+.@{ui-class-prefix}-table-hcell-desc .@{ui-class-prefix}-table-hsort {
+    .eicons-icon(sort-desc);
+}
+
+// Table主体
+.@{ui-class-prefix}-table-body {
+    .esui-table-body-theme();
+}
+
+.@{ui-class-prefix}-table-body table {
+    .esui-table-body-table-theme();
+}
+
+// table行样式
+.@{ui-class-prefix}-table-row {
+    .esui-table-row-theme();
+}
+
+.@{ui-class-prefix}-table-striped .@{ui-class-prefix}-table-row-odd {
+    .esui-table-row-striped-theme();
+}
+
+// 行表格移上
+.@{ui-class-prefix}-table .@{ui-class-prefix}-table-row-hover {
+    .esui-table-row-hover-theme();
+}
+
+.@{ui-class-prefix}-table-row-hover .@{ui-class-prefix}-table-cell-editable {
+    position: relative;
+    .esui-table-editable-cell-text-hover-theme();
+}
+
+// Table Row选中
+.@{ui-class-prefix}-table-row-selected {
+    .esui-table-row-selected-theme();
+}
+
+// Table Row展开
+.@{ui-class-prefix}-table-row-unfolded {
+    .esui-table-row-unfolded-theme();
+}
+.esui-table-row-unfolded-theme() {}
+
+// 表格内容单元格
+.@{ui-class-prefix}-table-cell {
+    .esui-table-table-cell-theme();
+}
+
+// 表格内容单元格容器
+.@{ui-class-prefix}-table-cell-text {
+    padding: @esui-table-cell-text-padding;
+    text-align: left;
+}
+
+// 居中checkbox
+.@{ui-class-prefix}-table-cell-sel {
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+.@{ui-class-prefix}-table-foot {
+    .esui-table-foot-theme();
+}
+
+.@{ui-class-prefix}-table-foot table {
+    .esui-table-foot-table-theme();
+}
+
+// 表尾单元格
+.@{ui-class-prefix}-table-fcell {
+    .esui-table-foot-table-cell-theme();
+}
+
+// 表尾单元格DIV容器
+.@{ui-class-prefix}-table-fcell-text {
+    text-align: left;
+    padding: @esui-table-cell-text-padding;
+}
+
+.@{ui-class-prefix}-table-cell-align-left .@{ui-class-prefix}-table-cell-text,
+.@{ui-class-prefix}-table-cell-align-left .@{ui-class-prefix}-table-hcell-text {
+    text-align: left;
+}
+.@{ui-class-prefix}-table-cell-align-right .@{ui-class-prefix}-table-cell-text,
+.@{ui-class-prefix}-table-cell-align-right .@{ui-class-prefix}-table-hcell-text,
+.@{ui-class-prefix}-table-cell-align-right .@{ui-class-prefix}-table-fcell-text {
+    text-align: right;
+}
+.@{ui-class-prefix}-table-cell-align-center .@{ui-class-prefix}-table-cell-text,
+.@{ui-class-prefix}-table-cell-align-center .@{ui-class-prefix}-table-hcell-text {
+    text-align: center;
+}
+
+.@{ui-class-prefix}-table-cell-break .@{ui-class-prefix}-table-cell-text,
+.@{ui-class-prefix}-table-cell-break .@{ui-class-prefix}-table-hcell-text{
+    word-wrap: break-word;
+    word-break: break-all;
+    height: auto;
+}
+
+// 定义拖拽鼠标指针
+.@{ui-class-prefix}-table .@{ui-class-prefix}-table-startdrag,
+.@{ui-class-prefix}-table .@{ui-class-prefix}-table-startdrag .@{ui-class-prefix}-table-thcntr {
+    cursor: col-resize;
+}
+
+// 拖拽显示的竖线
+.@{ui-class-prefix}-table-mark {
+    height: 400px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute;
+    .esui-table-mark-theme();
+}
+
+.@{ui-class-prefix}-table-cell-align-right .@{ui-class-prefix}-table-cell-editentry {
+    right: auto;
+}
+
+.@{ui-class-prefix}-table-subentryfield table {
+    border: 0;
+}
+
+.@{ui-class-prefix}-table-cell-editentry {
+    display: none !important;
+    top: 50%;
+    right: 0;
+    margin-top: -.5em;
+    cursor: pointer;
+    position: absolute;
+    .eicons-icon(edit);
+    text-align: center;
+    width: @esui-table-cell-icon-width;
+    .esui-table-cell-editentry-theme();
+}
+
+.@{ui-class-prefix}-table-cell:hover .@{ui-class-prefix}-table-cell-editentry {
+    display: block !important;
+}
+
+.@{ui-class-prefix}-table-subentry,
+.@{ui-class-prefix}-table-subentry-opened {
+    cursor: pointer;
+    width: @esui-table-cell-icon-width;
+    text-align: center;
+}
+
+.@{ui-class-prefix}-table-subentry {
+    .eicons-icon(angle-right);
+}
+
+.@{ui-class-prefix}-table-subentry-opened {
+    .eicons-icon(angle-down);
+}
+
+.@{ui-class-prefix}-table-subrow {
+    .esui-table-subrow-theme();
+}
+
+// 弹出editor层
+.@{ui-class-prefix}-table-editor {
+    padding: @esui-table-editor-padding;
+    .esui-border-radius(
+        @esui-table-editor-border-radius,
+        @esui-table-editor-border-radius
+    );
+    .esui-table-editor-theme();
+}
+
+.@{ui-class-prefix}-table-editor-error {
+    label {
+        margin-left: 0;
+    }
+}
+
+.@{ui-class-prefix}-table-editor .@{ui-class-prefix}-table-editor-buttons {
+    margin: @esui-table-editor-buttons-margin;
+    text-align: center;
+}
+
+.esui-table-body-nodata-theme() {}
+
+.esui-table-head-theme() {}
+.esui-table-head-table-theme() {}
+.esui-table-head-table-cell-theme() {}
+.esui-table-head-sortable-cell-hover-theme() {}
+
+.esui-table-body-theme() {}
+.esui-table-body-table-theme() {}
+.esui-table-row-theme() {}
+.esui-table-row-hover-theme() {}
+.esui-table-row-selected-theme() {}
+.esui-table-striped-row-theme() {}
+.esui-table-subrow-theme() {}
+.esui-table-table-cell-theme() {}
+.esui-table-cell-editentry-theme() {}
+.esui-table-editable-cell-text-hover-theme() {}
+.esui-table-editor-theme() {}
+
+.esui-table-foot-theme() {}
+.esui-table-foot-table-theme() {}
+.esui-table-foot-table-cell-theme() {}
+
+.esui-table-mark-theme() {}

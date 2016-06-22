@@ -1,0 +1,41 @@
+/**
+  * UB-RIA-UI 1.0
+  * Copyright 2015 Baidu Inc. All rights reserved.
+  *
+  * @ignore
+  * @file 自定义列表
+  * @author lisijin ibadplum@gmail.com
+  */
+
+@esui-customfield-width: 56em;
+@esui-customfield-head-height: 2.5em;
+@esui-customfield-item-width: 10em;
+
+.@{ui-class-prefix}-customfield-wrapper {
+    .box-sizing(border-box);
+    width: @esui-customfield-width;
+    padding: 1em 2em;
+}
+
+.@{ui-class-prefix}-customfield-head {
+    .clearfix();
+    height: @esui-customfield-head-height;
+    line-height: @esui-customfield-head-height;
+    margin-bottom: 0.5em;
+}
+
+.@{ui-class-prefix}-customfield-title {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+.@{ui-class-prefix}-customfield-restore {
+    cursor: pointer;
+    margin-right: @esui-customfield-head-height;
+}
+.@{ui-class-prefix}-customfield-selected {
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+}
+

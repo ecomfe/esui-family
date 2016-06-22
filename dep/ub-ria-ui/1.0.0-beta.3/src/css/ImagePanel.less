@@ -1,0 +1,110 @@
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2015 Baidu Inc. All rights reserved.
+ *
+ * @ignore
+ * @file 图标列表样式文件
+ * @author hongfeng(homfen@outlook.com)
+ */
+
+@esui-imagepanel-empty-text-padding: 5em;
+@esui-imagepanel-image-item-margin: 1em;
+@esui-imagepanel-image-wrapper-shadow: 0 0 0 1px #cccccc;
+@esui-imagepanel-image-wrapper-active-shadow: 0 0 0 3px #4E97FA;
+@esui-imagepanel-image-operate-size: .85em;
+@esui-imagepanel-image-operate-color: #ffffff;
+@esui-imagepanel-image-operate-background-color: #66cc00;
+@esui-imagepanel-image-check-color: #ffffff;
+@esui-imagepanel-image-check-background-color: #4E97FA;
+
+.@{ui-class-prefix}-imagepanel,
+.@{ui-class-prefix}-imagelist {
+    display: block;
+}
+
+.@{ui-class-prefix}-imagepanel-image-noneTip {
+    text-align: center;
+    padding: @esui-imagepanel-empty-text-padding 0;
+}
+
+.@{ui-class-prefix}-imagepanel-image-row {
+    &:extend(.esui-clearfix all);
+}
+
+.@{ui-class-prefix}-imagepanel-image-item {
+    float: left;
+    margin: 0 @esui-imagepanel-image-item-margin @esui-imagepanel-image-item-margin 0;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.@{ui-class-prefix}-imagepanel-image-wrapper {
+    position: relative;
+    .box-shadow(@esui-imagepanel-image-wrapper-shadow);
+    .box-sizing(border-box);
+
+    &:hover {
+        .box-shadow(@esui-imagepanel-image-wrapper-active-shadow);
+
+        .@{ui-class-prefix}-imagepanel-image-operate {
+            display: inline-block;
+        }
+    }
+}
+
+.@{ui-class-prefix}-imagepanel-selected {
+    .box-shadow(@esui-imagepanel-image-wrapper-active-shadow);
+
+    .@{ui-class-prefix}-imagepanel-image-check {
+        display: block;
+    }
+}
+
+.@{ui-class-prefix}-imagepanel-image {
+    width: 100%;
+    display: block;
+}
+
+.@{ui-class-prefix}-imagepanel-image-operates {
+    position: absolute;
+    top: 0;
+    right: 0;
+    .size(100%);
+}
+
+.@{ui-class-prefix}-imagepanel-image-operate,
+.@{ui-class-prefix}-imagepanel-image-check {
+    width: @esui-imagepanel-image-operate-size * 1.2;
+    line-height: 1;
+    font-size: @esui-imagepanel-image-operate-size;
+    text-align: center;
+    display: none;
+}
+
+.@{ui-class-prefix}-imagepanel-image-operate {
+    float: right;
+    color: @esui-imagepanel-image-operate-color;
+    background-color: @esui-imagepanel-image-operate-background-color;
+    cursor: pointer;
+}
+
+.@{ui-class-prefix}-imagepanel-image-check {
+    position: absolute;
+    color: @esui-imagepanel-image-check-color;
+    background-color: @esui-imagepanel-image-check-background-color;
+    bottom: 0;
+    right: 0;
+}
+
+.@{ui-class-prefix}-imagepanel-caption-wrapper {
+    margin-top: .5em;
+
+    p {
+        margin: 0;
+        padding: 0;
+        font-size: .75em;
+        word-break: break-all;
+    }
+}

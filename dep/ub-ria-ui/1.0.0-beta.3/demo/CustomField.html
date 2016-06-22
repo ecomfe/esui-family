@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>CustomField - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI CustomField</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>CustomField</h2>
+            <p>CustomField描述</p>
+            <div class="example">
+                <div data-ui="type:TogglePanel;id:panel">
+                    <button type="button" class="ui-button ui-icon-gear ui-button-icon"></button>
+                    <div>
+                         <div data-ui="type:CustomField;id:custom"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/TogglePanel',
+            'ub-ria-ui/CustomField',
+            'esui/TextBox',
+            'demo',
+            'esui/Tab'
+        ],
+        function (ui, CustomField) {
+            window.ui = ui;
+            var datasource = [
+                {
+                    value: 'base',
+                    text: '基本信息',
+                    children: [
+                        {
+                            value: 'showDate',
+                            text: '日期'
+                        }
+                    ]
+                },
+                {
+                    value: 'main',
+                    text: '基本数据',
+                    children: [
+                        {
+                            value: 'srchs',
+                            text: '展现次数',
+                            disabled: true
+                        },
+                        {
+                            value: 'clks',
+                            text: '点击次数',
+                            disabled: true
+                        },
+                        {
+                            value: 'ctr',
+                            text: '点击率'
+                        },
+                        {
+                            value: 'cocur',
+                            text: '平均独立访客点击价格'
+                        },
+                        {
+                            value: 'acp',
+                            text: '平均点击价格'
+                        },
+                        {
+                            value: 'cpm',
+                            text: '千次展现成本'
+                        },
+                        {
+                            value: 'cost',
+                            text: '总费用'
+                        }
+                    ]
+                }
+            ];
+
+            ui.init(
+                document.body,
+                {
+                    properties : {
+                        custom: {
+                            datasource: datasource,
+                            defaultValue: [
+                                'ctr', 'acp'
+                            ],
+                            value: [
+                                'srchs', 'ctr', 'acp', 'cpm'
+                            ]
+                        }
+                    }
+                }
+            );
+            ui.get('custom').on(
+                'ok',
+                function (e) {
+                    ui.get('panel').toggleContent();
+                }
+            );
+            ui.get('custom').on(
+                'cancel',
+                function (e) {
+                    ui.get('panel').toggleContent();
+                }
+            );
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

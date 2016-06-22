@@ -1,0 +1,160 @@
+ /**
+  * ESUI (Enterprise Simple UI)
+  * Copyright 2013 Baidu Inc. All rights reserved.
+  *
+  * @file 带行号输入框
+  * @author dbear
+  */
+
+@import "Variable.less";
+
+@esui-textline-border-radius: 0;
+@esui-textline-line-height: 1.5;
+@esui-textline-number-column-width: 2em;
+@esui-textline-number-column-font-size: 1em;
+@esui-textline-search-info-padding: 0 10px;
+@esui-textline-search-info-background: #fdfae9;
+@esui-textline-search-info-line-height: 2;
+@esui-textline-search-hint-number-color: #f00;
+@esui-textline-empty-text-color: #999;
+@esui-textline-empty-text-top-margin: 1em;
+@esui-textline-search-content-clear-color: #f00;
+@esui-textline-search-content-clear-width: 2em;
+@esui-textline-search-content-text-margin: 0 .2em;
+
+.@{ui-class-prefix}-textline {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+
+    .esui-border-radius(
+        @esui-textline-border-radius,
+        @esui-textline-border-radius
+    );
+    .esui-textline-theme();
+
+    // 取出textarea focus边框
+    .@{ui-class-prefix}-textbox {
+        > textarea {
+            border: none;
+        }
+    }
+}
+
+.@{ui-class-prefix}-textline-num-line {
+    line-height: @esui-textline-line-height;
+    text-align: center;
+    width: @esui-textline-number-column-width;
+    font-size: @esui-textline-number-column-font-size;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    .esui-border-left-radius(
+        @esui-textline-border-radius,
+        @esui-textline-border-radius
+    );
+    .esui-textline-numbers-theme();
+}
+
+.@{ui-class-prefix}-textline-text-container {
+    position: absolute;
+    left: @esui-textline-number-column-width + 0.2em;
+    right: 0;
+    top: 0;
+    bottom: 0;
+
+    textarea {
+        position: absolute;
+        .size(100%);
+        line-height: @esui-textline-line-height;
+        padding: 0;
+        margin: 0;
+        border: 0 none;
+        outline: none;
+        resize: none;
+        //background: none;
+        color: inherit;
+    }
+}
+
+.@{ui-class-prefix}-textline.@{ui-state-prefix}-disabled textarea {
+    cursor: not-allowed;
+}
+
+.@{ui-class-prefix}-textline-search-info {
+    background: @esui-textline-search-info-background;
+    padding: @esui-textline-search-info-padding;
+    line-height: @esui-textline-search-info-line-height;
+    overflow: hidden;
+}
+
+.@{ui-class-prefix}-textline-search-hint {
+    float: left;
+}
+
+.@{ui-class-prefix}-textline-search-hint-text {
+    color: @esui-textline-search-hint-number-color;
+}
+
+.@{ui-class-prefix}-textline-search-clear-link,
+.@{ui-class-prefix}-textline-search-back {
+    cursor: pointer;
+    float: right;
+}
+
+.@{ui-class-prefix}-textline-search-clear-link {
+    margin-right: 1em;
+}
+
+.@{ui-class-prefix}-textline-search-wrapper {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.@{ui-class-prefix}-textline-search-num-line {
+    position: absolute;
+    font-size: @esui-textline-number-column-font-size;
+    width: @esui-textline-number-column-width;
+    height: 100%;
+    .esui-textline-numbers-theme();
+}
+
+.@{ui-class-prefix}-textline-empty-text {
+    color: @esui-textline-empty-text-color;
+    margin-top: @esui-textline-empty-text-top-margin;
+    text-align: center;
+}
+
+.@{ui-class-prefix}-textline-search-content-line {
+    span {
+        display: inline-block;
+        line-height: @esui-textline-line-height;
+    }
+    &:hover .@{ui-class-prefix}-textline-search-content-remove {
+        display: inline-block;
+    }
+}
+
+.@{ui-class-prefix}-textline-search-content-remove {
+    display: none;
+    width: @esui-textline-search-content-clear-width;
+    color: @esui-textline-search-content-clear-color;
+    text-align: center;
+    float: right;
+    cursor: pointer;
+    .eicons-icon(close);
+}
+
+.@{ui-class-prefix}-textline-search-content-num {
+    text-align: center;
+    width: @esui-textline-number-column-width;
+    z-index: 2;
+    position: relative;
+}
+
+.@{ui-class-prefix}-textline-search-content-text {
+    margin: @esui-textline-search-content-text-margin;
+}

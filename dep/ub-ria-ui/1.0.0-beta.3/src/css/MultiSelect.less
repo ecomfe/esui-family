@@ -1,0 +1,109 @@
+/**
+ * ESUI (Enterprise Simple UI)
+ * Copyright 2013 Baidu Inc. All rights reserved.
+ *
+ * @file 下拉选择样式
+ * @author dbear
+ */
+
+// multiselect
+@esui-multiselect-radius: 0;
+@esui-multiselect-line-height: 2.5em;
+@esui-multiselect-horizontal-padding: 1em;
+@esui-multiselect-text-right-padding: 2em;
+
+// Layer
+@esui-multiselect-layer-wrapper-max-height: 11em;
+@esui-multiselect-layer-item-height: 2em;
+@esui-multiselect-layer-item-padding: 1.8em;
+@esui-multiselect-layer-footer-height: 4em;
+
+
+.@{ui-class-prefix}-multiselect {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    .box-sizing(border-box);
+    padding: 0 @esui-multiselect-horizontal-padding;
+    .esui-border-radius(
+        @esui-multiselect-radius,
+        @esui-multiselect-radius
+    );
+    height: @esui-multiselect-line-height;
+    line-height: @esui-multiselect-line-height;
+    .esui-transition(background-color 0.3s ease);
+    .esui-multiselect-theme();
+    &.@{ui-state-prefix}-disabled {
+        .esui-disabled();
+    }
+}
+
+.@{ui-class-prefix}-multiselect.@{ui-state-prefix}-active {
+    .@{ui-class-prefix}-multiselect-arrow {
+        .transform(rotate(180deg));
+        .transition(transform 0.3s ease);
+    }
+}
+
+.@{ui-class-prefix}-multiselect-text {
+    padding-right: @esui-multiselect-text-right-padding;
+    display: block;
+    .ellipsis();
+}
+
+.@{ui-class-prefix}-multiselect-arrow {
+    position: absolute;
+    right: @esui-multiselect-horizontal-padding;
+    top: 0;
+    line-height: @esui-multiselect-line-height;
+    width: 1em;
+    text-align: center;
+    .eicons-icon(caret-down);
+}
+
+.@{ui-class-prefix}-multiselect-layer {
+    position: absolute;
+    .@{ui-class-prefix}-multiselect-wrapper {
+        max-height: @esui-multiselect-layer-wrapper-max-height;
+        overflow-y: auto;
+        .@{ui-class-prefix}-multiselect-item {
+            display: block;
+            height: @esui-multiselect-layer-item-height;
+            line-height: @esui-multiselect-layer-item-height;
+            padding-left: @esui-multiselect-layer-item-padding;
+            label {
+                padding-left: 1.5em;
+            }
+            &:hover {
+                .esui-multiselect-item-checked-theme();
+            }
+        }
+    }
+}
+.@{ui-class-prefix}-multiselect-item-disabled {
+    .esui-disabled();
+    &:hover {
+        background: none;
+    }
+}
+
+.@{ui-class-prefix}-multiselect-item-header {
+    padding-left: @esui-multiselect-layer-item-padding;
+    font-weight: bold;
+}
+
+.@{ui-class-prefix}-multiselect-layer-footer {
+    text-align: center;
+    line-height: @esui-multiselect-layer-footer-height;
+    height: @esui-multiselect-layer-footer-height;
+}
+
+// variants
+.@{ui-class-prefix}-multiselect-primary {
+    .esui-multiselect-primary-theme();
+}
+
+// hooks
+.esui-multiselect-theme() {}
+.esui-multiselect-primary-theme() {}

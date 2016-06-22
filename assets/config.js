@@ -17,12 +17,12 @@ require.config({
         },
         {
             'name': 'esui',
-            'location': '../dep/esui/3.2.0-beta.2/src',
+            'location': '../dep/esui/3.2.0-beta.6/src',
             'main': 'main'
         },
         {
             'name': 'ub-ria-ui',
-            'location': '../dep/ub-ria-ui/1.0.0-beta.2/src',
+            'location': '../dep/ub-ria-ui/1.0.0-beta.3/src',
             'main': 'main'
         },
         {
@@ -34,6 +34,21 @@ require.config({
             'name': 'jquery',
             'location': '../dep/jquery/1.9.1/src',
             'main': 'jquery.min'
+        },
+        {
+            'name': 'mini-event',
+            'location': '../dep/mini-event/1.0.2/src',
+            'main': 'main'
+        },
+        {
+            'name': 'echarts',
+            'location': '../dep/echarts/2.2.7/src',
+            'main': 'echarts'
+        },
+        {
+            'name': 'zrender',
+            'location': '../dep/zrender/2.1.1/src',
+            'main': 'zrender'
         }
     ]
 });

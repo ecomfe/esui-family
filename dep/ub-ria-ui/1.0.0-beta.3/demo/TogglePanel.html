@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>TogglePanel - Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">Toggle Panel</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>皮肤</h2>
+            <div class="example" id="container">
+                <h3>默认关闭</h3>
+                <div class="row">
+                    <div
+                        data-ui-type="TogglePanel"
+                        data-ui-position="fixed"
+                        data-ui-variants="angle">
+                        <div>展开区域</div>
+                        <div>
+                            展开区域内容
+                        </div>
+                    </div>
+                </div>
+                <h3>默认展开的</h3>
+                <div class="row">
+                    <div
+                        data-ui-type="TogglePanel"
+                        data-ui-position="fixed"
+                        data-ui-variants="angle"
+                        data-ui-expanded="true">
+                        <div>展开区域</div>
+                        <div>
+                            展开区域内容
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>下拉选择控件</h2>
+            <p>下拉选择</p>
+            <div class="example" id="container">
+                <h3>占位展开</h3>
+                <div class="row">
+                    <div
+                        data-ui-type="TogglePanel"
+                        data-ui-position="fixed">
+                        <button type="button" class="ui-button">Panel</button>
+                        <div>
+                            test
+                        </div>
+                    </div>
+                </div>
+                <h3>弹出浮层</h3>
+                <div class="row">
+                    <div
+                        data-ui-type="TogglePanel">
+                        <button type="button" class="ui-button">Panel</button>
+                        <div>
+                            test
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/TogglePanel',
+            'demo',
+            'esui/Tab'
+        ],
+        function (ui) {
+            ui.init(document.body);
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>
