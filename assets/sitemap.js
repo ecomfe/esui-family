@@ -20,7 +20,7 @@ define('sitemap', ['jquery'], function ($) {
                 text: 'Controls'
             },
             {
-                link: 'eicons/demo/demo.html',
+                link: '../eicons/demo/demo.html',
                 icon: 'ui-icon-send',
                 text: 'ICONS'
             }
