@@ -133,6 +133,7 @@ define(
             // 从视图环境移除
             if (ctrl.viewContext) {
                 ctrl.viewContext.remove(ctrl);
+                
             }
 
             ctrl.renderOptions = null;

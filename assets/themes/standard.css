@@ -451,6 +451,8 @@ input[type="search"]::-webkit-search-decoration {
 .esui-clearfix:after,
 .ui-navbar:before,
 .ui-navbar:after,
+.ui-progress:before,
+.ui-progress:after,
 .ui-region-region-box0:before,
 .ui-region-region-box0:after,
 .ui-region-region-box1:before,
@@ -466,6 +468,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .esui-clearfix:after,
 .ui-navbar:after,
+.ui-progress:after,
 .ui-region-region-box0:after,
 .ui-region-region-box1:after,
 .ui-schedule-body:after,
@@ -774,6 +777,7 @@ input[type="search"]::-webkit-search-decoration {
 .ui-checkbox-switch-round label {
   display: inline-block;
   padding-left: 1.5em;
+  vertical-align: baseline;
 }
 .esui-checkbox-style-base .ui-checkbox-box:before,
 .esui-checkbox-style-base label:before,
@@ -938,7 +942,7 @@ input[type="search"]::-webkit-search-decoration {
 .ui-checkbox-switch-round label,
 .ui-checkbox-switch-round ~ label {
   cursor: pointer;
-  vertical-align: middle;
+  vertical-align: baseline;
   -webkit-transition: color 0.2s ease;
   -moz-transition: color 0.2s ease;
   -ms-transition: color 0.2s ease;
@@ -1175,17 +1179,41 @@ input[type="search"]::-webkit-search-decoration {
 .ui-form-row {
   margin-bottom: 1em;
 }
+.ui-form-field-delimiter,
+.ui-form-field-delimiter-border,
+.ui-form-key {
+  line-height: 2.5em;
+}
+.ui-form-field-delimiter,
+.ui-form-field-delimiter-border {
+  margin: 0 1em;
+}
+.ui-form-field-delimiter-border:before {
+  content: '|';
+  color: #dddddd;
+}
 .ui-form-key {
   padding-right: 1em;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
 }
 .ui-form-field,
+.ui-form-field-delimiter,
+.ui-form-field-delimiter-border,
 .ui-form-key,
 .ui-form-value {
   display: inline-block;
   vertical-align: top;
+  min-height: 2.5em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ui-form-normal-line-height .ui-form-field,
+.ui-form-normal-line-height .ui-form-field-delimiter,
+.ui-form-normal-line-height .ui-form-field-delimiter-border,
+.ui-form-normal-line-height .ui-form-key,
+.ui-form-normal-line-height .ui-form-value {
+  line-height: 1.3;
+  min-height: initial;
 }
 .ui-form-required {
   position: relative;
@@ -1195,14 +1223,16 @@ input[type="search"]::-webkit-search-decoration {
   color: #F16C6C;
   display: block;
   right: 0;
-  top: 50%;
+  top: 0;
   position: absolute;
-  line-height: 1;
+  line-height: 2.5em;
   padding-right: .5em;
 }
-.ui-form-key,
 .ui-form-valign {
-  padding-top: .5em;
+  line-height: 2.5em;
+}
+.ui-form-reset-line-height {
+  line-height: 1.3 !important;
 }
 .ui-form-hint {
   display: inline-block;
@@ -1626,12 +1656,6 @@ input[type="search"]::-webkit-search-decoration {
 .ui-navbar-pull-right {
   float: right;
 }
-.ui-navbar-content:before {
-  content: '';
-  display: inline-block;
-  height: 100%;
-  vertical-align: middle;
-}
 .ui-navbar-content-text,
 .ui-navbar-content-link,
 .ui-navbar-content-icon {
@@ -1745,11 +1769,10 @@ input[type="search"]::-webkit-search-decoration {
   color: #666;
 }
 .ui-progress {
-  margin-bottom: 1em;
-  overflow: hidden;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+  position: relative;
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
@@ -1758,7 +1781,6 @@ input[type="search"]::-webkit-search-decoration {
 .ui-progress-bar {
   float: left;
   width: 0;
-  font-size: 1em;
   line-height: 1.5em;
   height: 1.5em;
   text-align: center;
@@ -1800,11 +1822,26 @@ input[type="search"]::-webkit-search-decoration {
   -o-animation: esui-progress-bar-stripes 2s linear infinite;
   animation: esui-progress-bar-stripes 2s linear infinite;
 }
-.ui-progress-bar-small {
+.ui-progress-marker {
+  width: 0.2em;
+  margin-left: -0.1em;
+  height: 1.5em;
+  left: 0;
+  position: absolute;
+  background: #f9ad42;
+}
+.ui-progress-mini .ui-progress-bar,
+.ui-progress-mini .ui-progress-marker {
+  height: 0.5em;
+  line-height: 0.5em;
+}
+.ui-progress-small .ui-progress-bar,
+.ui-progress-small .ui-progress-marker {
   height: 1em;
   line-height: 1em;
 }
-.ui-progress-bar-large {
+.ui-progress-large .ui-progress-bar,
+.ui-progress-large .ui-progress-marker {
   height: 2em;
   line-height: 2em;
 }
@@ -1981,11 +2018,29 @@ x:-o-prefocus,
 .ui-text-right {
   text-align: right;
 }
+.ui-text {
+  color: #666666;
+}
+a.ui-text:hover {
+  color: #666666;
+}
+.ui-text-em {
+  color: #333333;
+}
+a.ui-text-em:hover {
+  color: #333333;
+}
 .ui-text-muted {
   color: #999;
 }
 a.ui-text-muted:hover {
   color: #999;
+}
+.ui-text-primary {
+  color: #70ccc0;
+}
+a.ui-text-primary:hover {
+  color: #79dacd;
 }
 .ui-text-success {
   color: #80DDA1;
@@ -2268,6 +2323,14 @@ a.ui-link-static:hover {
   color: #666;
   text-decoration: none;
 }
+a.ui-link-plain {
+  color: #70ccc0;
+  text-decoration: none;
+}
+a.ui-link-plain:hover {
+  color: #79dacd;
+  text-decoration: none;
+}
 abbr[title],
 dfn[title] {
   cursor: help;
@@ -2376,6 +2439,18 @@ hr {
   overflow: hidden;
   color: #ddd;
 }
+.ui-divider.ui-divider-thick,
+hr.ui-divider-thick {
+  border-top-width: .3em;
+}
+.ui-divider.ui-divider-dotted,
+hr.ui-divider-dotted {
+  border-top-style: dotted;
+}
+.ui-divider.ui-divider-dashed,
+hr.ui-divider-dashed {
+  border-top-style: dashed;
+}
 .ui-list-unstyled,
 .ui-list-inline {
   padding-left: 0;
@@ -2457,9 +2532,6 @@ hr {
   list-style-type: none;
   display: inline-block;
 }
-.ui-wizard-node span {
-  vertical-align: middle;
-}
 .ui-wizard-node-number {
   width: 1.5em;
   height: 1.5em;
@@ -2504,6 +2576,40 @@ hr {
 }
 .ui-wizard-node.ui-wizard-node-last:after {
   display: none !important;
+}
+.ui-bars {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  font-size: 0;
+}
+.ui-bars span {
+  display: inline-block;
+  margin: 0 0 0 1px;
+  vertical-align: bottom;
+  width: 6px;
+  background: #70ccc0;
+}
+.ui-bars span:first-child {
+  margin: 0;
+}
+.ui-bars-label {
+  display: inline-block;
+  margin-left: .2em;
+}
+.ui-bars-title {
+  font-size: 1.5em;
+  color: #333333;
+}
+.ui-bars-sub-title {
+  color: #999999;
+}
+.ui-bars-wrapper {
+  display: inline-block;
+}
+.ui-bars-wrapper .ui-bars,
+.ui-bars-wrapper .ui-bars-label {
+  vertical-align: bottom;
 }
 [class*='ui-icon'] {
   font-family: EIcons,FontAwesome;
@@ -7842,8 +7948,8 @@ i.ui-autocomplete-item-char-selected {
  * UB-RIA UI Library
  * Copyright 2014 Baidu Inc. All rights reserved.
  *
- * @file Spinner样式
- * @author maoquan(maoquan@baidu.com), jiangyuan(jiangyuan01@baidu.com)
+ * @file MediaPreview样式
+ * @author chuzhenyang(chuzhenyang@baidu.com)
  */
 .ui-spinner-up,
 .ui-spinner-down {
@@ -8778,10 +8884,6 @@ i.ui-autocomplete-item-char-selected {
 .ui-multiselect-text {
   padding-right: 2em;
   display: block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -o-text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .ui-multiselect-arrow {
   position: absolute;

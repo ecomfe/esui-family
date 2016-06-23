@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>ESF Demo</title>
+    <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+    <link rel="stylesheet" href="../assets/themes/standard.css" />
+</head>
+<body>
+    <div id="header">
+        <div class="ui-navbar ui-navbar-mordern">
+            <h1 id="branding" class="ui-navbar-content">
+                <a class="ui-navbar-content-link" href="../index.html">ESUI Family</a>
+            </h1>
+            <ul class="ui-navbar-nav ui-navbar-pull-right" id="global-nav">
+            </ul>
+        </div>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator-help" class="ui-nav"></ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>HTML 2 JS String</h2>
+            <h3>Paste HTML Block</h3>
+            <div class="row">
+                <div class="ui-textbox ui-textbox-fluid">
+                    <textarea id="txtRaw" rows="15"></textarea>
+                </div>
+            </div>
+            <fieldset class="row">
+                <legend>Output options</legend>
+                <div class="row">
+                    <label>Max Length Per Line</label>
+                    <div class="ui-textbox ui-textbox-size3">
+                        <input id="maxLength" type="input"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <label>Var Name</label>
+                    <div class="ui-textbox ui-textbox-size3">
+                        <input id="varname" type="input"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="ui-checkbox-custom">
+                        <input type="checkbox" id="doubleQuote">
+                        <label for="doubleQuote">Use Double Quote</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="ui-checkbox-custom">
+                        <input type="checkbox" id="tabIndent">
+                        <label for="tabIndent">Use Tab Indent</label>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row ui-text-center">
+                <input class="ui-button-primary ui-button" type="button" id="cmdGenerate" value="Convert to JavaScript syntax">
+            </div>
+            <h3>Outut</h3>
+            <div class="row">
+                <div class="ui-textbox ui-textbox-fluid">
+                    <textarea id="txtGenerated" rows="15"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+    </footer>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="../assets/config.js"></script>
+    <script src="../assets/build/ui.js"></script>
+    <script src="../assets/sitemap.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script>
+        require(['sitemap','esui','jquery','esui/Button'], function (sitemap, ui, $) {
+            ui.init();
+            sitemap.mainNav('../');
+            sitemap.renderNav();
+            sitemap.footer();
+            window.prettyPrint();
+            $('#cmdGenerate').click(function() {
+                var r = $('#txtRaw').val();
+                var strVar = $('#varname').val() || 'strVar';
+                var maxLength = +$('#maxLength').val();
+                var g = '';
+                var arr = r.split('\n');
+                var quote = $('#doubleQuote').prop('checked') ? '"' : '\'';
+                var indtent = $('#tabIndent').prop('checked') ? '\u0009' : '    ';
+                var regQuote = new RegExp(quote, 'g');
+                var regSlash = new RegExp('\/', 'g');
+                function splitArrString(arr) {
+                    var arr2 = [];
+                    $.each(arr, function (indx) {
+                        var str = this;
+                        if (str.length > maxLength) {
+                            var reg = new RegExp('.{1,' + maxLength + '}', 'g');
+                            var subArr = str.match(reg);
+                            $.each(subArr, function () {
+                                arr2.push(this);
+                            });
+                        }
+                        else {
+                            arr2.push(str);
+                        }
+                    });
+                    return arr2;
+                }
+
+                if (maxLength > 0) {
+                    arr = splitArrString(arr);
+                }
+
+                g += 'var ' + strVar + ' = ' + quote + quote + '\n';
+
+                var l;
+                var len = arr.length;
+                for (var i = 0; i < len; i++) {
+                    l = '';
+                    l += indtent + '+ ' + quote;
+                    l += arr[i].replace(regQuote, '\/' + quote).replace(regSlash, '\\/');
+                    l += quote + (i === len - 1 ? '' : '\n');
+                    g += l;
+                }
+                g += ';'
+                $("#txtGenerated").val(g);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -12,16 +12,16 @@ define(
         var PART_REGEX = /<([\w-]+)#([\w-]+)>/;
 
         var FILTERS = {
-            'id': function (part, instance) {
-                return instance.helper.getId(part);
+            'id': function (part) {
+                return this.helper.getId(part);
             },
 
-            'class': function (part, instance) {
-                return instance.helper.getPartClassName(part);
+            'class': function (part) {
+                return this.helper.getPartClassName(part);
             },
 
-            'part': function (part, nodeName, instance) {
-                return instance.helper.getPartHTML(part, nodeName);
+            'part': function (part, nodeName) {
+                return this.helper.getPartHTML(part, nodeName);
             }
         };
 
@@ -62,9 +62,11 @@ define(
          * @protected
          */
         helper.initializeTemplateEngineExtension = function () {
+            var me = this;
             u.each(
                 FILTERS,
                 function (filter, name) {
+                    filter = u.bind(filter, me.control);
                     this.addFilter(name, filter);
                 },
                 this.templateEngine
@@ -172,7 +174,6 @@ define(
          * 需要注意，使用此方法时，仅满足以下所有条件时，才可以使用内置的过滤器：
          *
          * - `data`对象仅一层属性，即不能使用`${user.name}`这一形式访问深层的属性
-         * - `data`对象不能包含名为`instance`的属性，此属性会强制失效
          *
          * 另外此方法存在微小的几乎可忽略不计的性能损失，
          * 但如果需要大量使用模板同时又不需要内置的过滤器，可以使用以下代码代替：

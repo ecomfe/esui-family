@@ -19,6 +19,7 @@
                     <li><a href="#form-horizontal">横向表单（Horizontal Form）</a></li>
                     <li><a href="#form-stacked">堆叠表单（Stacked Form）</a></li>
                     <li><a href="#form-fieldset">字段组合（FieldSet）</a></li>
+                    <li><a href="#form-readonly">只读字段</a></li>
                 </ul>
             </div>
             <div class="ui-u-4-5">
@@ -37,7 +38,7 @@
                         <form class="ui-form">
                             <div class="ui-form-row">
                                 <div class="ui-form-field">
-                                    <div class="ui-form-key ui-form-valign ui-form-required">
+                                    <div class="ui-form-key ui-form-required">
                                         <label for="email">邮箱：</label>
                                     </div>
                                     <div class="ui-form-value ui-form-wrap-hint">
@@ -48,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="ui-form-field">
-                                    <div class="ui-form-key ui-form-valign">
+                                    <div class="ui-form-key">
                                         <label for="password">密码：</label>
                                     </div>
                                     <div class="ui-form-value ui-form-wrap-hint">
@@ -322,6 +323,52 @@
                             </fieldset>
                             <div class="ui-form-buttons">
                                 <button type="submit" class="ui-button">登录</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <h2 id="form-readonly">Readonly</h2>
+                    <div class="example">
+                        <form class="ui-form">
+                            <div class="ui-form-row">
+                                <div class="ui-form-field">
+                                    <label class="ui-form-key">Brief:</label>
+                                    <div class="ui-form-value ui-form-valign">
+                                        <span>客户名称</span> <a href="#" class="ui-link-plain ui-icon-pencil ui-text-primary"></a>
+                                    </div>
+                                </div>
+                                <div class="ui-form-field-delimiter"></div>
+                                <div class="ui-form-field ui-form-field-lspace">
+                                    <label class="ui-form-key">Brief:</label>
+                                    <div class="ui-form-value ui-form-valign">
+                                        <span>客户名称</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="ui-form-field">
+                                    <label class="ui-form-key">ID:</label>
+                                    <div class="ui-form-value ui-form-valign">
+                                        <span>123456</span>
+                                    </div>
+                                </div>
+                                <div class="ui-form-field-delimiter-border"></div>
+                                <div class="ui-form-field">
+                                    <label class="ui-form-key">预算:</label>
+                                    <div class="ui-form-value ui-form-valign">
+                                        <span class="ui-text-warning">123456</span>
+                                    </div>
+                                </div>
+                                <div class="ui-form-field-delimiter-border"></div>
+                                <div class="ui-form-field">
+                                    <label class="ui-form-key">进度:</label>
+                                    <div class="ui-form-value ui-form-valign">
+                                        <div class="ui-progress ui-progress-mini" style="width: 100px;display: inline-block;">
+                                            <div class="ui-progress-bar ui-progress-bar-success" style="width: 20%;"></div>
+                                            <div class="ui-progress-marker" style="left: 50%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>

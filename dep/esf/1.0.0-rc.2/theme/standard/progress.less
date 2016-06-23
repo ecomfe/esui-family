@@ -13,6 +13,7 @@
 @esui-progress-bar-info-background: @esui-palette-info-color;
 @esui-progress-bar-warning-background: @esui-palette-warning-color;
 @esui-progress-bar-danger-background: @esui-palette-danger-color;
+@esui-progress-bar-marker-background: @esui-palette-warning-color;
 
 .esui-progress-theme() {
     .box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
@@ -51,6 +52,10 @@
     &.@{ui-class-prefix}-progress-bar-animated {
         .animation(esui-progress-bar-stripes 2s linear infinite);
     }
+}
+
+.esui-progress-marker-theme() {
+    background: @esui-progress-bar-marker-background;
 }
 
 @-webkit-keyframes esui-progress-bar-stripes {

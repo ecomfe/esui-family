@@ -1,0 +1,25 @@
+.ui-paging-table-richselector {
+    .ui-richselector-row-loading-icon {
+        &:after {
+            .eicons-font-style();
+        }
+    }
+
+    .ui-richselector-query-list {
+        .ui-richselector-row-more {
+            color: @rich-selector-batch-action-link-color;
+        }
+    }
+
+    .ui-richselector-row-loading {
+        .ui-richselector-row-loading-icon {
+            display: block;
+            position: relative;
+            &:after {
+                color: @table-rich-selector-operate-color;
+                .eicons-icon-content(spinner);
+                .font-icon-position(center, 0, center, 0);
+            }
+        }
+    }
+}
