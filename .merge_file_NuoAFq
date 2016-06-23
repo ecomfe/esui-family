@@ -1,0 +1,100 @@
+@eicons-small-font-size:                          150%;
+@eicons-medium-font-size:                         200%;
+@eicons-large-font-size:                          250%;
+
+@eicons-small-vertical-align:                     -10%;
+@eicons-medium-vertical-align:                    -16%;
+@eicons-large-vertical-align:                     -22%;
+
+// sizes
+.@{eicons-css-prefix}-eicons-small:before {
+    .eicons-icon-size(@eicons-small-font-size, @eicons-small-vertical-align);
+}
+
+.@{eicons-css-prefix}-eicons-medium:before {
+    .eicons-icon-size(@eicons-medium-font-size, @eicons-medium-vertical-align);
+}
+
+.@{eicons-css-prefix}-eicons-large:before { 
+    .eicons-icon-size(@eicons-large-font-size, @eicons-large-vertical-align);
+}
+
+// fixed width
+.@{eicons-css-prefix}-eicons-fw {
+    width: (18em / 14);
+    text-align: center;
+}
+
+// spinning animation
+.@{eicons-css-prefix}-eicons-spin {
+    .eicons-animation(eicons-spin 2s infinite linear);
+}
+
+// flip and rotate
+.@{eicons-css-prefix}-eicons-rotate-90 {
+    .eicons-rotate(90deg, 1);
+}
+
+.@{eicons-css-prefix}-eicons-rotate-180 {
+    .eicons-rotate(180deg, 2);
+}
+
+.@{eicons-css-prefix}-eicons-rotate-270 {
+    .eicons-rotate(270deg, 3);
+}
+
+.@{eicons-css-prefix}-eicons-flip-horizontal {
+    .eicons-flip(-1, 1, 0);
+}
+
+.@{eicons-css-prefix}-eicons-flip-vertical {
+    .eicons-flip(1, -1, 2);
+}
+
+// mixins
+.eicons-icon-size(@font-size, @font-vAlign) {
+    font-size: @font-size;
+    vertical-align: @font-vAlign;
+}
+
+.eicons-animation(@animation, ...) {
+    @animations: ~`(function() { var args = "@{arguments}".replace(/[[\]]/g, ""); if(!args.match(/[^,]\s+[^,]/)) { args = args.replace(/,(?=[^()]*\))/g, "%est%").replace(/,/g, "").replace(/%est%/g, ","); } return args;})()`;
+    -webkit-animation: @animations;
+       -moz-animation: @animations;
+        -ms-animation: @animations;
+         -o-animation: @animations;
+            animation: @animations;
+}
+
+.eicons-rotate(@degrees, @rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=@rotation);
+  -webkit-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees);
+          transform: rotate(@degrees);
+}
+
+.eicons-flip(@horiz, @vert, @rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=@rotation, mirror=1);
+  -webkit-transform: scale(@horiz, @vert);
+      -ms-transform: scale(@horiz, @vert);
+          transform: scale(@horiz, @vert);
+}
+
+// frames definition
+@-webkit-keyframes eicons-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+  }
+}
+
+@keyframes eicons-spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(359deg);
+    }
+}

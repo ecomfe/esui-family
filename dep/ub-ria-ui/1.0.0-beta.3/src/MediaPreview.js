@@ -253,7 +253,18 @@ define(function (require) {
 
         // 获取body节点
         var bodyElement = $(this.helper.getPart('body'));
-        bodyElement.html(html);
+        bodyElement.html('');
+        if (typeof html === 'string') {
+            bodyElement.html(html);
+        }
+        else {
+            if (html.appendTo) {
+                html.appendTo(bodyElement[0]);
+            }
+            else {
+                bodyElement.append(html);
+            }
+        }
     }
 
     /**

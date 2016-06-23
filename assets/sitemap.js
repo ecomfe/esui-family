@@ -44,7 +44,6 @@ define('sitemap', ['jquery'], function ($) {
     function renderNav() {
         function render(data) {
             var ubUIIcon = ' <span class="ui-x-small ui-label-slim ui-label-custom ui-label-info">ub-ui</span>';
-            //var newIcon = ' <span class="ui-icon-star" title="New"></span>';
             var newIcon = ' <span class="ui-x-small ui-label-slim ui-label-custom ui-label-warning">new</span>';
             var html = '';
             for (var i = 0, len = data.length; i < len; i++) {
@@ -73,10 +72,15 @@ define('sitemap', ['jquery'], function ($) {
                 }
             }
             var control = getQueryString('control');
+            var isUbUI = getQueryString('isUbUI');
+            var ubUI = '';
+            if (isUbUI) {
+                ubUI = '&isUbUI=true';
+            }
             if (!control) {
                 control = 'Button';
             }
-            $(id + ' a[href*="control=' + control + '"]').parent().addClass('ui-nav-item-active');
+            $(id + ' a[href="?control=' + control + ubUI + '"]').parent().addClass('ui-nav-item-active');
         }
 
         // JS 组件列表
@@ -104,7 +108,7 @@ define('sitemap', ['jquery'], function ($) {
             {type: 'control', value: 'Select', isUbUI: false, isNew: false},
             {type: 'control', value: 'SearchBox', isUbUI: false, isNew: false},
             {type: 'control', value: 'Slider', isUbUI: true, isNew: false},
-            {type: 'control', value: 'Spinner', isUbUI: false, isNew: false},
+            {type: 'control', value: 'Spinner', isUbUI: true, isNew: false},
             {type: 'control', value: 'Schedule', isUbUI: false, isNew: false},
             {type: 'control', value: 'Textbox', isUbUI: false, isNew: false},
             {type: 'control', value: 'TextLine', isUbUI: false, isNew: false},
@@ -114,7 +118,6 @@ define('sitemap', ['jquery'], function ($) {
             {type: 'header', value: '表单日历'},
             {type: 'control', value: 'Calendar', isUbUI: false, isNew: false},
             {type: 'control', value: 'MonthView', isUbUI: false, isNew: false},
-            {type: 'control', value: 'MultiCalendar', isUbUI: true, isNew: false},
             {type: 'control', value: 'RangeCalendar', isUbUI: false, isNew: false},
             {type: 'control', value: 'RichCalendar', isUbUI: false, isNew: false},
             {type: 'header', value: '导航'},

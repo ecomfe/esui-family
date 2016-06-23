@@ -36,7 +36,7 @@ define(
                  */
                 initOptions: function (options) {
                     var properties = {
-                        swf: '',
+                        url: '',
                         flashvars: '',
                         width: 214,
                         height: 137,
@@ -72,13 +72,14 @@ define(
                          *
                          * 是否带提示图标
                          */
-                        name: ['url', 'flashvars', 'width', 'height'],
-                        paint: function (flash, url, flashvars, width, height) {
+                        name: ['url', 'flashvars', 'width', 'height', 'wmode'],
+                        paint: function (flash, url, flashvars, width, height, wmode) {
                             flash.main.innerHTML = flash.helper.renderTemplate('FlashObject', {
-                                swf: url,
+                                url: url,
                                 flashvars: flashvars,
                                 width: width,
-                                height: height
+                                height: height,
+                                wmode: wmode
                             });
                         }
                     }

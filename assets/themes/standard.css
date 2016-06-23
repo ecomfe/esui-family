@@ -1190,7 +1190,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 .ui-form-field-delimiter-border:before {
   content: '|';
-  color: #dddddd;
+  color: #ddd;
 }
 .ui-form-key {
   padding-right: 1em;
@@ -1221,7 +1221,7 @@ input[type="search"]::-webkit-search-decoration {
 .ui-form-required:after {
   content: '*';
   color: #F16C6C;
-  display: block;
+  display: inline-block;
   right: 0;
   top: 0;
   position: absolute;
@@ -1698,6 +1698,7 @@ input[type="search"]::-webkit-search-decoration {
   line-height: 60px;
   font-size: 20px;
   font-weight: bold;
+  outline: none;
   color: #fff;
   text-decoration: none;
 }
@@ -1711,7 +1712,7 @@ input[type="search"]::-webkit-search-decoration {
   display: block;
 }
 .ui-navbar-nav > li:active > a,
-.ui-navbar-nav > li.ui-active > a {
+.ui-navbar-nav > li.ui-navbar-item-active > a {
   background: #5FB3A8;
   color: #fff;
 }
@@ -1828,7 +1829,7 @@ input[type="search"]::-webkit-search-decoration {
   height: 1.5em;
   left: 0;
   position: absolute;
-  background: #f9ad42;
+  background: #F9AD42;
 }
 .ui-progress-mini .ui-progress-bar,
 .ui-progress-mini .ui-progress-marker {
@@ -2019,16 +2020,16 @@ x:-o-prefocus,
   text-align: right;
 }
 .ui-text {
-  color: #666666;
+  color: #666;
 }
 a.ui-text:hover {
-  color: #666666;
+  color: #666;
 }
 .ui-text-em {
-  color: #333333;
+  color: #333;
 }
 a.ui-text-em:hover {
-  color: #333333;
+  color: #333;
 }
 .ui-text-muted {
   color: #999;
@@ -2037,10 +2038,10 @@ a.ui-text-muted:hover {
   color: #999;
 }
 .ui-text-primary {
-  color: #70ccc0;
+  color: #70CCC0;
 }
 a.ui-text-primary:hover {
-  color: #79dacd;
+  color: #79DACD;
 }
 .ui-text-success {
   color: #80DDA1;
@@ -2324,11 +2325,11 @@ a.ui-link-static:hover {
   text-decoration: none;
 }
 a.ui-link-plain {
-  color: #70ccc0;
+  color: #70CCC0;
   text-decoration: none;
 }
 a.ui-link-plain:hover {
-  color: #79dacd;
+  color: #79DACD;
   text-decoration: none;
 }
 abbr[title],
@@ -2434,7 +2435,7 @@ dd {
 .ui-divider,
 hr {
   border: 0;
-  border-top: 1px solid #ddd;
+  border-top: 0.1em solid #ddd;
   height: 0;
   overflow: hidden;
   color: #ddd;
@@ -2588,7 +2589,7 @@ hr.ui-divider-dashed {
   margin: 0 0 0 1px;
   vertical-align: bottom;
   width: 6px;
-  background: #70ccc0;
+  background: #70CCC0;
 }
 .ui-bars span:first-child {
   margin: 0;
@@ -2599,10 +2600,10 @@ hr.ui-divider-dashed {
 }
 .ui-bars-title {
   font-size: 1.5em;
-  color: #333333;
+  color: #333;
 }
 .ui-bars-sub-title {
-  color: #999999;
+  color: #999;
 }
 .ui-bars-wrapper {
   display: inline-block;
@@ -5209,27 +5210,41 @@ span.ui-crumb-node {
  * @file 对话框样式
  * @author dbear
  */
+body.hasDialog {
+  overflow: hidden;
+}
 .ui-dialog {
-  position: absolute;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 1203;
-  width: 600px;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: block;
+}
+.ui-dialog-inner-wrapper {
+  position: relative;
+  width: 600px;
   background: #fff;
   border: none;
   -webkit-box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0px 6px rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
 }
-.ui-dialog-head {
+.ui-dialog-head-panel {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   color: #666;
   font-weight: bold;
+  line-height: 2.5em;
+  padding: 0 1em;
 }
 .ui-dialog-close-icon {
   position: absolute;
@@ -5241,11 +5256,7 @@ span.ui-crumb-node {
 .ui-dialog-close-icon:hover {
   color: #666;
 }
-.ui-dialog-title {
-  line-height: 2.5em;
-  padding: 0 1em;
-}
-.ui-dialog-body {
+.ui-dialog-body-panel {
   padding: 0.5em 1em;
 }
 .ui-dialog-foot-panel {
@@ -7948,8 +7959,8 @@ i.ui-autocomplete-item-char-selected {
  * UB-RIA UI Library
  * Copyright 2014 Baidu Inc. All rights reserved.
  *
- * @file MediaPreview样式
- * @author chuzhenyang(chuzhenyang@baidu.com)
+ * @file Spinner样式
+ * @author maoquan(maoquan@baidu.com), jiangyuan(jiangyuan01@baidu.com)
  */
 .ui-spinner-up,
 .ui-spinner-down {
@@ -8884,6 +8895,10 @@ i.ui-autocomplete-item-char-selected {
 .ui-multiselect-text {
   padding-right: 2em;
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .ui-multiselect-arrow {
   position: absolute;

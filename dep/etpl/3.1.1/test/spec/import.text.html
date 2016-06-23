@@ -1,0 +1,177 @@
+::name::
+etpl
+::tpl-para::
+<!-- target: importPara --><p><!-- import: import/Hello --></p>
+<!-- target: import/Hello -->Hello, I am ${name}!
+::expect-para::
+<p>Hello, I am etpl!</p>
+
+::tpl-hasclose::
+<!-- target: importHasClose -->
+    <!-- import: importHasCloseHeader -->
+    <div class="main">Hello ${name}!</div>
+    <!-- import: importHasCloseFooter -->
+<!-- /target -->
+
+<!--: importHasCloseHeader --><header>Header Content</header><!-- /target -->
+
+<!-- target: importHasCloseFooter --><footer>Footer Content</footer><!-- /target -->
+::expect-hasclose::
+
+    <header>Header Content</header>
+    <div class="main">Hello etpl!</div>
+    <footer>Footer Content</footer>
+
+::tpl-inif::
+<!-- : importInIf -->
+<!-- if: ${name} --><!-- import: importInIfHello --> In if.<!-- /if -->
+<!-- target: importInIfHello -->Hello ${name}!
+::expect-inif::
+
+Hello etpl! In if.
+
+::tpl-infor::
+<!-- var: arr = new Array(3) -->
+<!-- for: ${arr} as ${item}, ${index}--><!--import: importInFor --> in for|<!--/for-->
+<!-- :importInFor -->${index}
+::expect-infor::
+
+0 in for|1 in for|2 in for|
+
+::tpl-miss::
+<!-- :importMiss -->
+<!-- var: arr = new Array(3) -->
+<!-- for: ${arr} as ${item}, ${index}--><!--import: importMissInFor --> in for|<!--/for-->
+::tpl-master::
+<!-- target: importFromMaster(master=importMaster) -->
+<!-- block: header --><!-- import: importFromMasterHello --><!-- /block -->
+<!-- target: importMaster -->
+<header><!-- block: header --><!-- /block --></header>
+<footer><!-- import: importFromMasterCopy --></footer>
+<!-- target: importFromMasterHello -->Hello, I am ${name}!<!-- target: importFromMasterCopy -->Copyright ${name}
+::expect-master::
+
+<header>Hello, I am etpl!</header>
+<footer>Copyright etpl</footer>
+
+::tpl-unready-begin::
+<!-- target: importUnready(master=importUnreadyMaster) -->
+<!-- block: header --><!-- import: importUnreadyHello --><!-- /block -->
+<!-- target: importUnreadyMaster -->
+<header><!-- block: header --><!-- /block --></header>
+<footer><!-- import: importUnreadCopy --></footer>
+
+::tpl-unready-then::
+<!-- target: importUnreadyHello -->Hello, ${name}!<!-- target: importUnreadCopy -->Copyright ${name} 2013
+::expect-unready::
+
+<header>Hello, etpl!</header>
+<footer>Copyright etpl 2013</footer>
+
+::tpl-block::
+<!-- target: import/biz -->
+<!-- import: import/header -->
+<!-- import: import/main --><!-- block: main -->
+<!-- import: import/list --><!-- block: list -->biz list<!-- /block --><!-- /import -->
+<!-- import: import/pager --><!-- block: pager -->biz pager<!-- /block --><!-- /import -->
+<!-- /block --><!-- /import -->
+
+<!-- target: import/header --><header><!-- block: header -->default header<!-- /block --></header>
+<!-- target: import/main --><div><!-- block: main -->default main<!-- /block --></div>
+<!-- target: import/footer -->
+<footer><!-- block: footer -->default footer<!-- /block --></footer>
+<!-- target: import/filter --><div class="filter"><!-- block: filter -->default filter<!-- /block --></div>
+<!-- target: import/list --><div class="list"><!-- block: list -->default list<!-- /block --></div>
+<!-- target: import/pager --><div class="pager"><!-- block: pager -->default pager<!-- /block --></div>
+::expect-block::
+
+<header>default header</header>
+
+<div>
+<div class="list">biz list</div>
+
+<div class="pager">biz pager</div>
+</div>
+
+
+
+::tpl-mix::
+<!--target:importMixTarget(master=importMixMaster)-->
+<!--block:head-->target head<!--/block-->
+<!--block:foot-->target foot<!--/block-->
+<!--target:importMixMaster-->
+<header><!--block:head-->master head<!--/block--></header>
+<div><!--block:body--><!--import:importMixHello--><!--block:content-->master hello<!--/block--><!--/import--><!--/block--></div>
+<footer><!--block:foot--><!--import:importMixCopy--><!--/block--></footer>
+<!--target:importMixHello--><b><!--block:content-->default hello<!--/block--></b>
+<!--target:importMixCopy--><p><!--import:importMixCopyRight--></p><!--target:importMixCopyRight-->CopyRight Etpl
+::expect-mix-target::
+
+<header>target head</header>
+<div><b>master hello</b>
+</div>
+<footer>target foot</footer>
+
+::expect-mix-master::
+
+<header>master head</header>
+<div><b>master hello</b>
+</div>
+<footer><p>CopyRight Etpl</p></footer>
+
+::tpl-nested::
+<!-- target: importNested -->
+<!-- import: importNestedPage -->
+<!-- block: crumb --><!-- import: importNestedCrumb --><!-- /block -->
+<!-- block: main -->World<!-- /block -->
+<!-- /import -->
+
+<!-- target: importNestedCrumb -->
+<!-- import: importNestedAbstractCrumb -->
+<!-- block: path --><span>example</span><!-- /block -->
+<!-- /import -->
+
+<!-- target: importNestedPage -->
+<header>
+<!-- block: crumb --><!-- /block -->
+<!-- block: tip --><!-- /block -->
+</header>
+<main><!-- block: main --><!-- /block --></main>
+
+<!-- target: importNestedAbstractCrumb -->
+<div class="crumb"><!-- block: path --><!-- /block --></div>
+::expect-nested::
+
+
+<header>
+
+
+<div class="crumb"><span>example</span></div>
+
+
+
+</header>
+<main>World</main>
+
+
+
+
+::tpl-miss-nested::
+<!-- target: importMissNested -->
+<!-- import: importMissNestedPage -->
+<!-- block: crumb --><!-- import: importMissNestedCrumb --><!-- /block -->
+<!-- block: main -->World<!-- /block -->
+<!-- /import -->
+
+<!-- target: importMissNestedCrumb -->
+<!-- import: importMissNestedAbstractCrumb -->
+<!-- block: path --><span>example</span><!-- /block -->
+<!-- /import -->
+
+<!-- target: importMissNestedPage -->
+<header>
+<!-- block: crumb --><!-- /block -->
+<!-- block: tip --><!-- /block -->
+</header>
+<main><!-- block: main --><!-- /block --></main>
+::eof::

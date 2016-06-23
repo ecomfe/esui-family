@@ -12,7 +12,7 @@ require.config({
         },
         {
             'name': 'etpl',
-            'location': '../dep/etpl/3.0.0/src',
+            'location': '../dep/etpl/3.1.1/src',
             'main': 'main'
         },
         {

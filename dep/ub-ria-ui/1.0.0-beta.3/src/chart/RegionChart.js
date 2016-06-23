@@ -14,7 +14,7 @@ define(
         var lib = require('esui/lib');
         var painter = require('esui/painters');
         var Control = require('esui/Control');
-        var util = require('ub-ria-ui/helper/util');
+        var util = require('../helper/util');
         var u = require('underscore');
         var BaseChart = require('./BaseChart');
         var $ = require('jquery');

@@ -1,0 +1,15 @@
+{
+    "name": "eicons",
+    "version": "1.0.0-beta.1",
+    "main": "main.less",
+    "description": "EICONS定义了图标规范。定义了图标的名称。可以选择多种font进行适配。默认提供Font Awesome的实现。",
+    "homepage": "https://github.com/ecomfe/eicons",
+    "edp": {
+        "wwwroot": "/",
+        "depDir": "dep",
+        "srcDir": "src",
+        "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
+        "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
+        "dependencies": {}
+    }
+}

@@ -70,14 +70,12 @@ define(
                  */
                 initStructure: function () {
                     var helper = this.helper;
-                    this.flashId = helper.getId('flash');
                     var jqFlashWrapper = $('<span id="' + helper.getId('flash-wrapper') + '"></span>');
                     var jqMainElement = $(this.main);
 
                     // 创建Flash页面元素
                     var flashObj = esui.create('FlashObject', {
-                        id: this.flashId,
-                        swf: swfPath,
+                        url: swfPath,
                         width: '100%',
                         height: '100%',
                         wmode: 'transparent'
@@ -169,7 +167,7 @@ define(
          */
         function checkFlashState(callback) {
             var me = this;
-            var flash = $('#' + me.flashId)[0];
+            var flash = this.getChild('flashObj').main.firstElementChild;
             if (flash && flash.flashInit && flash.flashInit()) {
                 flash.setHandCursor(me.setHandCursor);
                 flash.setContentFuncName(me.copyScriptFun);

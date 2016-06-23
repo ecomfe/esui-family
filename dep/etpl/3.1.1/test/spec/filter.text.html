@@ -1,0 +1,44 @@
+::tpl-simple::
+<!-- target: filterSimpleTarget -->
+<!-- filter: html() --><b>Hello etpl!</b><!-- /filter -->
+::expect-simple::
+
+&lt;b&gt;Hello etpl!&lt;/b&gt;
+::tpl-nested::
+<!-- target: filterNestedTarget -->
+<!-- filter: html() --><b>Hello <!--filter: url() --><em>etpl&er</em><!-- /filter -->!</b><!-- /filter -->
+::expect-nested::
+
+&lt;b&gt;Hello %3Cem%3Eetpl%26er%3C%2Fem%3E!&lt;/b&gt;
+::tpl-param::
+<!-- target: filterParamTarget -->
+<!-- filter: filter-lower -->ETPL<!-- /filter --> <!-- filter: filter-lower(true) -->ETPL<!-- /filter -->
+::tpl-param-variable::
+<!-- target: filterParamVariableTarget --><!-- var: arg = 1 -->
+<!-- filter: filter-lower -->ETPL<!-- /filter --> <!-- filter: filter-lower(!!${arg}) -->ETPL<!-- /filter -->
+::tpl-param-variable-filter::
+<!-- target: filterParamVariableFilterTarget --><!-- var: arg = 1 -->
+<!-- filter: filter-lower -->ETPL<!-- /filter --> <!-- filter: filter-lower(!${arg | filter-not}) -->ETPL<!-- /filter -->
+::tpl-param-break-line::
+<!-- target: filterParamTargetBreakLine -->
+<!-- filter: filter-lower -->ETPL<!-- /filter --> <!-- filter:
+    filter-lower(
+        true
+    )
+-->ETPL<!-- /filter -->
+::expect-param::
+
+etpl Etpl
+::tpl-block::
+<!-- target: filterBlockTarget(master = filterBlockMaster) -->
+<!--block:etpl-->ETPL<!--/block-->
+<!--block:er-->ER<!--/block-->
+<!-- target: filterBlockMaster -->
+<!-- filter: filter-lower --><!--if:${prod}=='etpl'--><!--block:etpl--><!--/block--><!--elif: ${prod}=='er'--><!--block:er--><!--/block--><!--/if--><!-- /filter -->
+::expect-block-etpl::
+
+etpl
+::expect-block-er::
+
+er
+::eof::

@@ -1,0 +1,131 @@
+@import "Variable.less";
+
+@esui-tab-radius: 0;
+@esui-tab-padding-horizontal: 0 1em;
+@esui-tab-padding-vertical: 1em 0;
+
+@esui-tab-item-height: 2.8em;
+@esui-tab-item-padding: 0 1em;
+@esui-tab-item-min-width: 8em;
+@esui-tab-item-space: .4em;
+
+.@{ui-class-prefix}-tab {
+    display: block;
+}
+
+// 总体样式
+.@{ui-class-prefix}-tab-navigator {
+    margin: 0;
+    padding:0;
+    list-style: none;
+}
+
+.@{ui-class-prefix}-tab-item {
+    cursor: pointer;
+    text-align: center;
+    line-height: @esui-tab-item-height;
+    min-width: @esui-tab-item-min-width;
+    .box-sizing(border-box);
+
+    .esui-tab-item-theme();
+}
+
+.@{ui-class-prefix}-tab-item-active {
+    cursor: default;
+    .esui-tab-item-active-theme();
+}
+
+// 横向tab
+.@{ui-class-prefix}-tab-horizontal {
+    .@{ui-class-prefix}-tab-navigator {
+        padding: @esui-tab-padding-horizontal;
+    }
+
+    .@{ui-class-prefix}-tab-item {
+        display: inline-block;
+        .esui-border-top-radius(@esui-tab-radius, @esui-tab-radius);
+        margin-right: @esui-tab-item-space;
+        border-bottom: none;
+    }
+
+    .@{ui-class-prefix}-tab-item-active {
+        cursor: default;
+    }
+}
+
+.@{ui-class-prefix}-tab-horizontal-flip {
+    .@{ui-class-prefix}-tab-item {
+        .esui-border-top-radius(0, @esui-tab-radius);
+        .esui-border-bottom-radius(@esui-tab-radius, @esui-tab-radius);
+        .esui-tab-horizontal-flip-item-theme();
+    }
+}
+
+.@{ui-class-prefix}-tab-align-left {
+    .@{ui-class-prefix}-tab-navigator {
+        text-align: left;
+    }
+}
+
+.@{ui-class-prefix}-tab-align-center {
+    .@{ui-class-prefix}-tab-navigator {
+        text-align: center;
+    }
+}
+
+.@{ui-class-prefix}-tab-align-right {
+    .@{ui-class-prefix}-tab-navigator {
+        text-align: right;
+    }
+}
+
+.@{ui-class-prefix}-tab-content {
+    .box-sizing(border-box);
+}
+
+// 暴露给外部调用的mixin
+.esui-vertical-tab-def(@tabWidth, @areaHeight, @align) {
+    .@{ui-class-prefix}-tab-vertical {
+        width: @tabWidth;
+        height: @areaHeight;
+    }
+
+    .@{ui-class-prefix}-tab-content {
+        height: @areaHeight;
+        margin-left: @tabWidth;
+    }
+}
+
+// 纵向tab
+.@{ui-class-prefix}-tab-vertical {
+    float: left;
+    .@{ui-class-prefix}-tab-navigator {
+        padding: @esui-tab-padding-vertical;
+    }
+    .@{ui-class-prefix}-tab-item {
+        display: block;
+        .esui-border-right-radius(0, @esui-tab-radius);
+        .esui-border-left-radius(@esui-tab-radius, @esui-tab-radius);
+        margin-bottom: @esui-tab-item-space;
+        border-right: none;
+    }
+}
+
+.@{ui-class-prefix}-tab-invert {
+    .@{ui-class-prefix}-tab-navigator {
+        padding: 0;
+    }
+    .@{ui-class-prefix}-tab-item {
+        .esui-tab-invert-item-theme();
+    }
+
+    .@{ui-class-prefix}-tab-item-active {
+        .esui-tab-invert-item-active-theme();
+    }
+}
+
+.esui-tab-item-theme() {}
+.esui-tab-item-active-theme() {}
+.esui-tab-horizontal-flip-item-theme() {}
+.esui-tab-invert-item-theme() {}
+.esui-tab-invert-item-active-theme() {}
