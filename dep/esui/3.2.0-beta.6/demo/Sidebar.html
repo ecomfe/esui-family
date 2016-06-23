@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sidebar - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="assets/google-code-prettify/prettify.css" />
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="assets/ie8.css" />
+        <![endif]-->
+    </head>
+    <body>
+    <div class="header">
+        <h1 id="branding">ESUI - Button</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h3>普通</h3>
+            <button id="btn">changeMode</button>
+            <button id="btn1">setContent</button>
+            <div class="main" style="border-top: 1px solid #666;margin-top:10px">
+                <esui-sidebar data-ui="id:mySide;mode:autohide;float:left" data-ui-type="Sidebar" data-ui-margin-left="20%" data-ui-margin-bottom="100">
+                    <div data-role="head">我的标题</div>
+                    <div data-role="body">
+                        <div data-ui-type="Tree" data-ui-variants='hoverable icon angle' data-ui-id="testTree"></div>
+                    </div>
+                </esui-sidebar>
+                <esui-sidebar data-ui="id:mySide2;mode:autohide;float:right" data-ui-type="Sidebar" data-ui-margin-left="20%" data-ui-margin-bottom="100">
+                    <div data-role="head">我的标题</div>
+                    <div data-role="body">
+                        <p>content</p>
+                        <p>content</p>
+                        <p>content</p>
+                        <p>content</p>
+                    </div>
+                </esui-sidebar>
+            </div>
+        </div>
+    </div>
+    <script src="assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="demo.js"></script>
+    <script src="assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+        require(
+            [
+                'esui',
+                'esui/Tree',
+                'esui/TreeStrategy',
+                'esui/Link',
+                'esui/Sidebar',
+                'demo'
+            ],
+            function (ui ,Tree , TreeStrategy, Link) {
+                var lib = require('esui/lib');
+                var datasource = {
+                    id: '1',
+                    text: '百度',
+                    children:[
+                        {
+                            id: '2',
+                            text: '联盟研发部',
+                            children: [
+                                { id: '21', text: 'RD' },
+                                { id: '21', text: 'FE' },
+                                { id: '21', text: 'QA' },
+                                { id: '21', text: 'PM' }
+                            ]
+                        },
+                        {
+                            id: '3',
+                            text: '贴吧事业部',
+                            children: [
+                                { id: '31', text: 'RD' },
+                                { id: '31', text: 'FE' },
+                                { id: '31', text: 'QA' },
+                                { id: '31', text: 'PM' }
+                            ]
+                        },
+                        {
+                            id: '4',
+                            text: '一半吃肉一般吃素'
+                        }
+                    ]
+                };
+                ui.init(document.body, {
+                    properties: {
+                        testTree: {
+                            datasource: datasource,
+                            strategy: new TreeStrategy()
+                        }
+                    }
+                });
+
+                ui.get('mySide').onmodechange = function (e) {
+                };
+
+                ui.get('mySide').onresize = function () {
+                    console.info('onresize');
+                };
+
+                document.getElementById('btn').onclick = function () {
+                    var mode = ui.get('mySide').getMode();
+                    var curMode = mode == 'fixed' ? 'autohide' : 'fixed';
+                    ui.get('mySide').setMode(curMode);
+                }
+                document.getElementById('btn1').onclick = function () {
+                    var side = ui.get('mySide');
+
+                    side.setContent('<a data-ui-type="Link" data-ui-href="http://www.baidu.com" data-ui-target="_blank">www.baidu.com</a>');
+                }
+            }
+        );
+    </script>
+    <script src="sitemap.js"></script>
+    </body>
+</html>

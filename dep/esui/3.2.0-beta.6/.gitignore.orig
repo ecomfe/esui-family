@@ -1,0 +1,5 @@
+dep/
+doc/api
+output/
+.idea/
+.*.swp

@@ -1,0 +1,71 @@
+@import "../../src/css/MultiSelect.less";
+
+@esui-multiselect-color: @esui-palette-color;
+@esui-multiselect-background: @esui-palette-neutral-color;
+@esui-multiselect-hover-background: @esui-palette-neutral-highlight-color;
+@esui-multiselect-active-background: @esui-palette-neutral-shadow-color;
+
+@esui-multiselect-primary-color: @esui-palette-contrast-color;
+@esui-multiselect-primary-background: @esui-palette-primary-color;
+@esui-multiselect-primary-hover-background: @esui-palette-primary-highlight-color;
+@esui-multiselect-primary-active-background: @esui-palette-primary-shadow-color;
+
+@esui-multiselect-item-multiselected-color: @esui-palette-color;
+@esui-multiselect-item-multiselected-background: @esui-palette-neutral-highlight-color;
+
+.esui-multiselect-theme() {
+    .esui-multiselect-variant(
+        @esui-multiselect-background,
+        @esui-multiselect-hover-background,
+        @esui-multiselect-color,
+        @esui-multiselect-color,
+        @esui-multiselect-background,
+        @esui-multiselect-color,
+        @esui-multiselect-active-background
+    );
+}
+
+.esui-multiselect-primary-theme() {
+    .esui-multiselect-variant(
+        @esui-multiselect-primary-background,
+        @esui-multiselect-primary-hover-background,
+        @esui-multiselect-primary-color,
+        @esui-multiselect-primary-color,
+        @esui-multiselect-primary-background,
+        @esui-multiselect-primary-color,
+        @esui-multiselect-primary-active-background
+    );
+}
+
+.esui-multiselect-item-checked-theme() {
+    background: @esui-multiselect-item-multiselected-background;
+    color: @esui-multiselect-item-multiselected-color !important;
+}
+
+.esui-multiselect-variant(
+    @multiselect-background,
+    @multiselect-hover-background,
+    @multiselect-color,
+    @multiselect-hover-color,
+    @multiselect-readonly-background,
+    @multiselect-readonly-color,
+    @multiselect-active-color
+) {
+    background: @multiselect-background;
+    color: @multiselect-color;
+
+    &:hover,
+    &:focus {
+        color: @multiselect-hover-color;
+        background: @multiselect-hover-background;
+    }
+
+    &.@{ui-state-prefix}-read-only,
+    &.@{ui-state-prefix}-read-only:hover {
+        background: @multiselect-readonly-background;
+    }
+
+    &.@{ui-state-prefix}-active {
+        background: @multiselect-active-color;
+    }
+}

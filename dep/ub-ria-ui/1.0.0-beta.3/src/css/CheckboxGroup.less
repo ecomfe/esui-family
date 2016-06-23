@@ -1,0 +1,34 @@
+@esui-checkboxgroup-item-width: 10em;
+
+.@{ui-class-prefix}-checkboxgroup {
+    .@{ui-class-prefix}-checkbox {
+        width: @esui-checkboxgroup-item-width;
+        margin-bottom: 1em;
+    }
+}
+
+.@{ui-class-prefix}-checkboxgroup-selectAll ~ 
+.@{ui-class-prefix}-checkboxgroup-body {
+    padding-left: 1.5em;
+}
+
+.@{ui-class-prefix}-checkboxgroup-dimension-groupWrap {
+    font-size: 1em;
+    padding-left: 1.5em;
+    margin-top: 0;
+}
+
+.@{ui-class-prefix}-checkboxgroup-dimension-groupLabel {
+    padding-right: .5em;
+}
+
+.@{ui-class-prefix}-checkboxgroup-dimension-groupLabel,
+.@{ui-class-prefix}-checkboxgroup-dimension-groupBody {
+    display: table-cell;
+    vertical-align: top;
+
+    .@{ui-class-prefix}-checkbox {
+        display: block;
+        float: left;
+    }
+}

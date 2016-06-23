@@ -1,0 +1,82 @@
+.esui-progress {
+    display: block;
+}
+
+.@{ui-class-prefix}-progress {
+    width: 400px;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.@{ui-class-prefix}-progress-file-info {
+    line-height: 30px;
+    .@{ui-class-prefix}-progress-file-size {
+        float: right;
+        color: #999;
+        margin-right: 30px;
+    }
+}
+
+.@{ui-class-prefix}-progress-status-info {
+    .inline-block();
+    vertical-align: middle;
+    width: 240px;
+}
+
+.@{ui-class-prefix}-progress-status-operation {
+    .inline-block();
+    vertical-align: middle;
+}
+
+// 进度条
+.@{ui-class-prefix}-progress-bar-container {
+    // 这个因为esf把progress bar设置为float，得清除下浮动
+    .clearfix();
+    .@{ui-class-prefix}-progress-server-error & ,
+    .@{ui-class-prefix}-progress-client-error & ,
+    .@{ui-class-prefix}-progress-done &,
+    .@{ui-class-prefix}-progress-general & {
+        display: none;
+    }
+}
+
+// 结果提示
+.@{ui-class-prefix}-progress-result {
+    line-height: 36px;
+    display: none;
+
+    .@{ui-class-prefix}-progress-client-error &,
+    .@{ui-class-prefix}-progress-server-error & {
+        display: block;
+        color: #f00;
+    }
+    .@{ui-class-prefix}-progress-done &,
+    .@{ui-class-prefix}-progress-general & {
+        display: block;
+        color: #00f;
+    }
+}
+
+// 取消上传按钮
+.@{ui-class-prefix}-progress-cancel {
+    display: none;
+
+    // 错误时和上传进行中时显示
+    .@{ui-class-prefix}-progress-server-error &,
+    .@{ui-class-prefix}-progress-client-error &,
+    .@{ui-class-prefix}-progress-progressing & {
+        .inline-block();
+    }
+}
+
+// 重新上传按钮
+.@{ui-class-prefix}-progress-restart {
+    display: none;
+
+    // 错误时显示
+    .@{ui-class-prefix}-progress-server-error & {
+        .inline-block();
+    }
+}
+

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>IconList- ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI IconList</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>IconList</h2>
+            <p>IconList，包含IconPanel和pager</p>
+            <h3>所有配置:</h3>
+            <pre>
+                <code style="margin-left:-100px;">
+datasource: [],         // 数据源
+row: 2,                 // 行数
+column: 5,              // 列数
+width: 0,               // 宽度，单位px
+async: false            // 是否异步
+                </code>
+            </pre>
+            <div class="example">
+                 <div data-ui="type:ImageList;id:imageList"></div>
+            </div>
+            <h3>Large</h3>
+            <div class="example">
+                 <div data-ui="type:ImageList;id:imageListLarge"></div>
+            </div>
+            <h3>Column</h3>
+            <div class="example">
+                 <div data-ui="type:ImageList;id:imageListColumn"></div>
+            </div>
+            <h3>异步</h3>
+            <div class="example">
+                 <div data-ui="type:ImageList;id:imageListAsync"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/ImageList',
+            'esui/Tab',
+            'demo',
+        ],
+        function (ui, ImageList) {
+            var imageDatasource = [
+                {
+                    imageId: 1,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用1'
+                    ]
+                },
+                {
+                    imageId: 2,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用10'
+                    ]
+                },
+                {
+                    imageId: 3,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                },
+                {
+                    imageId: 4,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用1000'
+                    ]
+                },
+                {
+                    imageId: 5,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用10000'
+                    ]
+                },
+                {
+                    imageId: 6,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100000'
+                    ]
+                },
+                {
+                    imageId: 7,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                },
+                {
+                    imageId: 8,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                },
+                {
+                    imageId: 9,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                },
+                {
+                    imageId: 10,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                },
+                {
+                    imageId: 11,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                },
+                {
+                    imageId: 12,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                },
+                {
+                    imageId: 13,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                }
+            ];
+
+            ui.init(
+                document.body,
+                {
+                    properties : {
+                        imageList: {
+                            datasource: imageDatasource,
+                            operates: [
+                                {name: 'download', title: '下载'},
+                                {name: 'close', title: '删除'}
+                            ]
+                        },
+                        imageListLarge: {
+                            datasource: imageDatasource,
+                            imageWidth: 100,
+                            operates: [
+                                {name: 'download', title: '下载'},
+                                {name: 'close', title: '删除'}
+                            ]
+                        },
+                        imageListColumn: {
+                            datasource: imageDatasource,
+                            imageWidth: 100,
+                            column: 4
+                        },
+                        imageListAsync: {
+                            datasource: [],
+                            async: true 
+                        }
+                    }
+                }
+            );
+
+            var asyncList = ui.get('imageListAsync');
+            var pager = asyncList.getPager();
+            var count = imageDatasource.length;
+            var pageSize = pager.get('pageSize');
+            var firstPageDS = imageDatasource.slice(0,pageSize);
+            asyncList.setDatasource(firstPageDS, count, 1);
+            asyncList.on('pagerchange', function (e) {
+                var page = e.page;
+                var pageSize = e.pageSize;
+                var ds = imageDatasource.slice((page - 1) * pageSize, page * pageSize);
+                asyncList.setDatasource(ds, count, page);
+            });
+            asyncList.on('filter', function (e) {
+                console.log(e);
+            });
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

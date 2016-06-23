@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>InlineEdit - Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css"/>
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">InlineEdit</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>InlineEdit</h2>
+            <p>InlineEdit描述</p>
+            <div class="example">
+                <esui-panel data-ui-id="test-panel"
+                    data-ui-hidden="hidden"
+                    style="border:1px solid #eee;padding:5px;background-color:#fff;">
+                    <esui-text-box data-ui-child-name="test" data-ui-height="24"></esui-text-box>
+                    <div style="margin-top:10px;">
+                        <esui-button data-ui-child-name="submit" data-ui-height="20" style="min-height:20px;">确定</esui-button>
+                        <esui-button data-ui-child-name="cancel" data-ui-height="20" style="min-height:20px;">取消</esui-button>
+                    </div>
+                </esui-panel>
+                <div class="row">
+                <esui-label data-ui-id="default-text-0">这是默认文字0</esui-label>
+                <esui-inline-edit data-ui-id="test-0" data-ui-target-id="test-panel">
+                    <i class="ui-icon-pencil"></i>
+                </esui-inline-edit>
+                </div>
+                <div class="row">
+                <esui-label data-ui-id="default-text-1">这是默认文字1</esui-label>
+                <esui-inline-edit data-ui-id="test-1" data-ui-target-id="test-panel">
+                    <i class="ui-icon-pencil"></i>
+                </esui-inline-edit>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+        require(
+            [
+                'underscore',
+                'esui',
+                'esui/Label',
+                'esui/Panel',
+                'esui/TextBox',
+                'esui/Button',
+                'ub-ria-ui/InlineEdit'
+            ],
+            function (u, ui, panel, inlineEdit) {
+                function onSubmit(e) {
+                    this.fire('action@entitysave', {args: this.getChild('test').getValue()});
+                }
+
+                function onCancel() {
+                    this.fire('action@cancel');
+                }
+
+                function onModify(e) {
+                    var defaultText = controls[1];
+                    defaultText.setText(e.args);
+                }
+                function onModifyAnother(e) {
+                    var defaultText = controls[3];
+                    defaultText.setText(e.args);
+                }
+
+                var controls = ui.init();
+
+                var panel = controls[0];
+
+                panel.getChild('submit').on('click', u.bind(onSubmit, panel));
+                panel.getChild('cancel').on('click', u.bind(onCancel, panel));
+
+                controls[2].on('modify', onModify);
+                controls[4].on('modify', onModifyAnother);
+            }
+        );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

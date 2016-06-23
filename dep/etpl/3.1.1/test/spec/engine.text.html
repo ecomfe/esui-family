@@ -1,0 +1,123 @@
+::default-tpl::
+<!-- target: engineTarget -->default engine
+::myengine-tpl::
+<!-- target: engineTarget -->my engine
+::variable-tpl::
+<!-- target: engineVariableTarget -->Hello ${info.name}!
+::repeat-tpl::
+<!-- target: engineRepeatTarget -->default engine
+::repeat-tpl-ignore-first::
+<!-- target: engineRepeatIgnoreTarget -->ignore
+::repeat-tpl-ignore-second::
+<!-- target: engineRepeatIgnoreTarget -->override
+::repeat-tpl-override-first::
+<!-- target: engineRepeatOverrideTarget -->ignore
+::repeat-tpl-override-second::
+<!-- target: engineRepeatOverrideTarget -->override
+::data-tpl::
+<!-- target: engineDataTarget -->Hello ${info.name} by ${info.contributor.name}[${info.contributor.email}]!
+::strip-tpl::
+<!-- target: engineStripTarget -->
+    <ul>
+    <!-- for: ${persons} as ${person}, ${index} -->
+        <!-- if: ${index} > 0 -->
+        <li>${person}</li>
+        <!-- /if -->
+    <!-- /for -->
+    </ul>
+<!-- target: engineStripTargetIf -->
+<!-- var: lang = 1--><!-- if: ${lang} -->
+lang
+<!-- /if -->
+<!-- target: engineStripTargetSimple -->
+Hello World!
+::strip-data::
+({persons:['erik', 'firede', 'leeight']})
+::strip-expect::
+    <ul>
+        <li>firede</li>
+        <li>leeight</li>
+    </ul>
+
+::strip-simple-expect::
+Hello World!
+::strip-if-expect::
+lang
+
+::custom-filter-tpl::
+<!-- target: engineCustomFilterTarget -->Hello ${name}!
+::custom-filter-tpl2::
+<!-- target: engineCustomFilterTarget2 -->Hello ${name}!
+::upper-tpl::
+<!-- target: engineUpperTarget -->Hello ${name|engine-upper}!
+::upper-tpl2::
+<!-- target: engineUpperTarget2 -->Hello ${name|engine-upper2()}! Hello ${name | engine-upper2(true)}!
+::data::
+({
+    info: {
+        name: 'etpl',
+        contributor: {
+            name:'errorrik',
+            email:'errorrik@gmail.com'
+        }
+    }
+})
+::data-getter::
+({
+    get: function (name){
+        if ( name == 'info.name' ) {
+            return 'etpl';
+        }
+        if ( name == 'info.contributor.name' ) {
+            return 'errorrik';
+        }
+        if ( name == 'info.contributor.email' ) {
+            return 'errorrik@gmail.com';
+        }
+    }
+})
+::custom-syntax::
+<% var arr = new Array(5) %>
+<% for {{arr}} as {{item}}, {{index}} %><li<% if {{index}} % 2 %> class="odd"<% /if %>>{{index}}</li>
+<% /for %>
+::expect-custom-syntax::
+
+<li>0</li>
+<li class="odd">1</li>
+<li>2</li>
+<li class="odd">3</li>
+<li>4</li>
+
+::custom-options::
+<% target: engineCustomTarget %><!-- import: a -->
+::expect-default::
+default engine
+::expect-myengine::
+my engine
+::expect-custom-options::
+<!-- import: a -->
+::custom-variable::
+<!-- target: engineCustomVariable --><!-- var: name = "etpl" --><!-- var: yes = true -->
+Hello {{name}}! Hello {{name | engine-upper}}! Hello {{name | engine-upper2( {{yes}} )}}!
+<!--if: {{yes}}-->Hello <!--filter: engine-upper2({{yes}})-->{{name}}<!--/filter-->!<!--/if-->
+::expect-custom-variable::
+
+Hello etpl! Hello ETPL! Hello Etpl!
+Hello Etpl!
+::custom-command-variable::
+<% target: engineCustomCommandVariable %><% var: name = "etpl" %><% var: yes = true %>
+Hello {{name}}! Hello {{name | engine-upper}}! Hello {{name | engine-upper2( {{yes}} )}}!
+<%if: {{yes}}%>Hello <%filter: engine-upper2({{yes}})%>{{name}}<%/filter%>!<%/if%>
+::expect-custom-command-variable::
+
+Hello etpl! Hello ETPL! Hello Etpl!
+Hello Etpl!
+::expect-custom-filter-raw::
+Hello <b>etpl</b>!
+::expect-custom-filter-html::
+Hello &lt;b&gt;etpl&lt;/b&gt;!
+::expect-engineUpperTarget::
+Hello ETPL!
+::expect-engineUpperTarget2::
+Hello ETPL! Hello Etpl!
+::eof::
