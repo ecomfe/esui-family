@@ -1,0 +1,188 @@
+::tpl-closed-manually::
+<!-- target:targetClosedManually -->
+abcdefg
+<!-- /target -->
+::expect-closed-manually::
+
+abcdefg
+
+::tpl-autoclose::
+<!-- target:targetAutoClose -->
+abcdefg
+
+::expect-autoclose::
+
+abcdefg
+
+::tpl-shorthand::
+<!-- :targetShorthand -->
+shorthand
+
+::expect-shorthand::
+
+shorthand
+
+::tpl-many::
+<!-- target: targetMany1 -->
+manyTargets-1
+<!-- target: targetMany2 -->
+manyTargets-2
+<!-- target: targetMany3 -->
+manyTargets-3
+<!-- /target -->
+::expect-many1::
+
+manyTargets-1
+
+::expect-many2::
+
+manyTargets-2
+
+::expect-many3::
+
+manyTargets-3
+
+::tpl-simple-master::
+<!-- target:targetFromMasterSimple( master = targetMasterSimple ) -->
+<!-- block:content1 -->abc<!-- /block -->
+
+<!-- target:targetMasterSimple --><!-- block:content1 --><!--/block-->def
+
+::expect-simple-master::
+abcdef
+
+::tpl-simple-master2::
+<!-- target:targetFromMasterSimple2( master = targetMasterSimple2 ) -->
+<!-- block:header -->header<!-- /block -->
+<!-- block:body -->body<!-- /block -->
+<!-- block:footer -->footer<!-- /block -->
+<!--
+target:targetFromMasterSimple2Breakline(
+    master = targetMasterSimple2
+)
+-->
+<!-- block:header -->header<!-- /block -->
+<!-- block:body -->body<!-- /block -->
+<!-- block:footer -->footer<!-- /block -->
+<!-- target:targetMasterSimple2 -->
+<header><!-- block: header --><!-- /block --></header>
+<div><!-- block: body --><!-- /block --></div>
+<footer><!-- block: footer --><!-- /block --></footer>
+::expect-simple-master2::
+
+<header>header</header>
+<div>body</div>
+<footer>footer</footer>
+::tpl-master-default-block::
+<!-- target:targetDefaultBlock/Master -->
+<div class="header"><!-- block:header -->header<!-- /block --></div>
+<div class="body"><!-- block:body -->body<!-- /block --></div>
+<!-- target:targetFromDefaultBlock/Master(master=targetDefaultBlock/Master) -->
+<!-- block:body -->body2<!-- /block -->
+
+::expect-master-default-block::
+
+<div class="header">header</div>
+<div class="body">body2</div>
+
+::tpl-ntier-master::
+<!-- target:targetNTierRoot -->
+<div class="header"><!-- block:header -->header<!-- /block --></div>
+<div class="body"><!-- block:body -->body<!-- /block --></div>
+<!--
+    target:
+        targetNTierLevel1
+        (
+            master = targetNTierRoot
+        )
+-->
+<!-- block: header -->child header<!-- /block -->
+<!-- block: body -->
+    <!-- block:body-head -->child head<!-- /block -->
+    <!-- block:body-main -->child body<!-- /block -->
+<!-- /block -->
+
+<!-- target:targetNTierNoContent(master=targetNTierLevel1) -->
+<!-- target:targetNTierBodyContent(master=targetNTierLevel1) -->
+<!-- block: body-main -->child body2<!-- /block -->
+<!-- target:targetNTierBHContent(master=targetNTierLevel1) -->
+<!-- block: body-head -->child head2<!-- /block -->
+::expect-ntier-nocontent::
+
+<div class="header">child header</div>
+<div class="body">
+    child head
+    child body
+</div>
+
+::expect-ntier-bodycontent::
+
+<div class="header">child header</div>
+<div class="body">
+    child head
+    child body2
+</div>
+
+::expect-ntier-bhcontent::
+
+<div class="header">child header</div>
+<div class="body">
+    child head2
+    child body
+</div>
+
+::tpl-lazy-target::
+<!-- target:targetFromLazyMaster(master=targetLazy/Master) -->
+<!-- block: content -->content<!--/block-->
+::tpl-lazy-master::
+<!-- target:targetLazy/Master --><!-- block: content --><!--/block-->
+::expect-lazy::
+content
+::tpl-miss-master::
+<!-- target:targetMissMaster(master=targetMissMaster/MasterT) -->
+<!-- block: content -->content<!--/block-->
+<!-- target:targetMissMaster/MasterT(master=targetMissMaster/Master/Master) --><!-- block: content -->heiheihei<!--/block-->
+::tpl-nested-block::
+<!-- target: targetFromNestedBlock(master = targetNestedBlock) -->
+<!-- block: body-main -->body main<!-- /block -->
+<!-- block: body-side -->body side<!-- /block -->
+<!-- block: header -->header<!-- /block -->
+
+<!-- target: targetFromNestedBlockNoHeader(master = targetNestedBlock) -->
+<!-- block: body-main -->body main<!-- /block -->
+<!-- block: body-side -->body side<!-- /block -->
+<!-- block: header-wrap --><!-- /block -->
+
+<!-- target: targetFromNestedBlockCustomBody(master = targetNestedBlock) -->
+<!-- block: body -->
+    <div><!-- block: body-main -->body main<!-- /block --></div>
+<!-- /block -->
+<!-- block: header -->header<!-- /block -->
+
+<!-- target: targetNestedBlock -->
+<!-- block: header-wrap --><header><!-- block: header --><!-- /block --></header><!-- /block -->
+<!-- block: body-wrap --><div class="body"><!-- block: body -->
+    <aside><!-- block: body-side --><!-- /block --></aside>
+    <div><!-- block: body-main --><!-- /block --></div>
+<!-- /block --></div><!-- /block -->
+::expect-nested-block::
+
+<header>header</header>
+<div class="body">
+    <aside>body side</aside>
+    <div>body main</div>
+</div>
+::expect-nested-block-noheader::
+
+
+<div class="body">
+    <aside>body side</aside>
+    <div>body main</div>
+</div>
+::expect-nested-block-custombody::
+
+<header>header</header>
+<div class="body">
+    <div>body main</div>
+</div>
+::eof::

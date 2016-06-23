@@ -1,0 +1,43 @@
+<!-- target: ImagePanel -->
+<!-- if: ${datasource.length} === 0 -->
+<div class="${classPrefix}-image-noneTip">${noneTip}</div>
+<!-- else -->
+    <!-- for: ${datasource} as ${image}, ${index} -->
+        <!-- if: ${index} % ${column} === 0 -->
+        <div class="${classPrefix}-image-row">
+        <!-- /if -->
+            <div class="${classPrefix}-image-item" data="${image.imageId}" style="width:${imageWidth}px;">
+                <!-- if: ${imageId} == ${image.imageId} -->
+                <div class="${classPrefix}-image-wrapper ${classPrefix}-selected">
+                <!-- else -->
+                <div class="${classPrefix}-image-wrapper">
+                <!-- /if -->
+                    <!-- if: ${image.imageType} !== "flash" -->
+                    <img class="${classPrefix}-image" src="${image.imageUrl}" alt="" data="${image.imageId}" data-type="${image.imageType}">
+                    <!-- else -->
+                    <embed class="${classPrefix}-image" name="${image.flashName}" errormessage="${image.errorMessage}" wmode="transparent" ver="9.0.0" align="middle" valign="middle" movie="${image.imageUrl}" src="${image.imageUrl}" data="${image.imageId}" data-type="${image.imageType}">
+                    <!-- /if -->
+                    <div class="${classPrefix}-image-operates">
+                        <!-- if: !${image.noOperate} && ${operates.length} -->
+                        <!-- for: ${operates} as ${operate} -->
+                        <span data-name="${operate.name}" title="${operate.title || operate.name}" class="${classPrefix}-image-operate ${iconPrefix}-${operate.name}"></span>
+                        <!-- /for -->
+                        <!-- /if -->
+                    </div>
+                    <!-- if: ${canSelect} -->
+                    <span class="${classPrefix}-image-check ${iconPrefix}-check"></span>
+                    <!-- /if -->
+                </div>
+                <!-- if: ${needDesc} -->
+                <div class="${classPrefix}-caption-wrapper">
+                    <!-- for: ${image.desc} as ${desc} -->
+                        <p>${desc}</p>
+                    <!-- /for -->
+                </div>
+                <!-- /if -->
+            </div>
+        <!-- if: ${index} % ${column} === ${column}-1 || ${index} === ${datasource.length}-1 -->
+        </div>
+        <!-- /if -->
+    <!-- /for -->
+<!-- /if -->

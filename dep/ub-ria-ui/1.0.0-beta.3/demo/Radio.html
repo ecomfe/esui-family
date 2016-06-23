@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <title>Radio - ESUI Demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+    <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/themes/standard.css"/>
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="assets/ie8.css" />
+    <![endif]-->
+</head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI - Radio</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>Radio</h2>
+            <div class="intro">
+                <p>相同的<code>name</code>为一组</p>
+                <p>添加属性<code>data-ui-selected-value</code>来指定初始化时默认选中的值</p>
+            </div>
+            <div class="example ui-demo-light-stage">
+                <input type="radio" name="test" value="1" data-label="Radio1" data-ui-type="Radio" data-ui-selected-value="1" data-ui-id="radioTest1" />
+                <input type="radio" name="test" value="2" data-label="Radio2"/>
+                <input type="radio" name="test" value="3" data-label="Radio3"/>
+            </div>
+            <div class="example ui-demo-light-stage">
+                <input type="radio" name="test2" value="1" data-label="Radio1" data-ui-type="Radio" data-ui-selected-value="2" data-ui-id="radioTest2" />
+                <br/>
+                <div data-name="test2" data-value="1" style="display:none;">
+                    content for Radio1
+                </div>
+                <input type="radio" name="test2" value="2" data-label="Radio2"/>
+                <br/>
+                <div data-name="test2" data-value="2">
+                    content for Radio2
+                </div>
+                <input type="radio" name="test2" value="3" data-label="Radio3"/>
+                <br/>
+                <div data-name="test2" data-value="3" style="display:none;">
+                    content for Radio3
+                </div>
+            </div>
+            <div class="example ui-demo-light-stage">
+                <input type="radio" name="test3" value="1" data-label="Radio1 Disabled" data-ui-type="Radio" data-ui-id="radioTest3" data-ui-disabled="disabled" />
+                <input type="radio" name="test3" value="2" data-label="Radio2 Disabled" />
+                <input type="radio" name="test3" value="3" data-label="Radio3 Disabled" />
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'jquery',
+            'ub-ria-ui/Radio',
+            'demo'
+        ],
+        function (ui, $) {
+            ui.init();
+            var radioTest1 = ui.get('radioTest1');
+            var radioTest2 = ui.get('radioTest2');
+            radioTest2.on('change', function () {
+                var name = radioTest2.name;
+                var value = radioTest2.getValue(); 
+                var divs = $('div[data-name="' + name + '"]');
+                divs.hide();
+                divs.filter('[data-value="' + value + '"]').show();
+            });
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+    </body>
+</html>

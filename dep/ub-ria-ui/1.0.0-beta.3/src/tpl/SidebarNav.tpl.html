@@ -1,0 +1,34 @@
+<!-- target: SidebarNav -->
+<ul class="${typeCls}-list">
+    <!-- for: ${datasource} as ${item} -->
+        <!-- if: !${item.hide} -->
+            <!-- if: ${item.header} -->
+                <li class="${typeCls}-header-item">
+                    <span class="${typeCls}-header-item-icon ${item.icon}"></span>
+                    <span class="${typeCls}-header-item-text">${item.text}</span>
+                </li>
+            <!-- else -->
+                <li class="${typeCls}-item ${item.itemClass}<!-- if: !${item.items.length} --> ${typeCls}-item-leaf<!-- /if -->" id="${item.domID}">
+                    <a href="${item.url}" target="${item.target}"><span class="${typeCls}-item-icon ${item.icon}"></span><span class="${typeCls}-item-text">${item.text}</span>
+                        <!-- if: ${item.items.length}-->
+                        <span class="${iconCls} ${typeCls}-item-expander"></span>
+                        <!-- /if -->
+                    </a>
+                    <span class="${typeCls}-item-select"></span>
+                    <!-- if: ${item.items.length}-->
+                        <ul class="${typeCls}-sub-menu">
+                            <!-- for: ${item.items} as ${subItem} -->
+                            <!-- if: !${subItem.hide} -->
+                            <li class="${typeCls}-item ${typeCls}-item-leaf<!--if: ${subItem.active} --> ${typeCls}-item-active<!-- /if -->" id="${subItem.domID}">
+                                <a href="${subItem.url}" target="${subItem.target}"><span class="${typeCls}-item-text">${subItem.text}</span><span class="${typeCls}-item-select"></span>
+                                </a>
+                            </li>
+                            <!-- /if -->
+                            <!-- /for -->
+                        </ul>
+                    <!-- /if -->
+                </li>
+            <!-- /if -->
+        <!-- /if -->
+    <!-- /for -->
+</ul>

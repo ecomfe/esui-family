@@ -1,0 +1,79 @@
+::name::
+<b>ecom&fe</b>
+::info-repos::
+https://github.com/ecomfe/etpl
+::info-contributor-name::
+erik
+::info-contributor-email::
+errorrik@gmail.com
+::address::
+baidu
+::first::
+0
+::end::
+10
+::date::
+(function() {return new Date(2011, 10, 11);})()
+::tpl::
+<!-- target: variableSubstitution-filters -->
+Hello ${name|html|url}!
+<!-- target: variableSubstitution-normal -->
+Hello ${name}!
+<!-- target: variableSubstitution-raw -->
+Hello ${name|raw}!
+<!-- target: variableSubstitution-rawvalue -->
+Date: ${*date|vs-dateFormat}
+<!-- target: variableSubstitution-filter-arg -->
+Hello ${name | vs-slice( ${first}+3 + 6 - 2 - 4, ${end} - 3 + 5 - 2 ) }!
+<!-- target: variableSubstitution-filter-filter --><!--var:a=1-->
+Hello ${name | vs-slice( ${first | vs-add(${a}, ${a | vs-add(3, ${a})}) } - 3, ${end} ) }!
+<!-- target: variableSubstitution-property-accessor -->
+Repos: ${info.repos}
+Contributor: ${info.contributor.name}[${info.contributor.email}]
+<!-- target: variableSubstitution-property-accessor2 -->
+Repos: ${info["repos"]}
+Contributor: ${contributors[0].name}[${contributors[0]['email']}]
+Contributor: ${info['contributor'].name}[${info["contributor"]["email"]}]
+<!-- target: variableSubstitution-mix -->
+Hello ${name} in ${address}! Bye ${name}! Raw is ${name|raw}!
+
+::expect-normal::
+
+Hello &lt;b&gt;ecom&amp;fe&lt;/b&gt;!
+
+::expect-raw::
+
+Hello <b>ecom&fe</b>!
+
+::expect-rawvalue::
+
+Date: 2011-11-11
+
+::expect-filters::
+
+Hello %26lt%3Bb%26gt%3Becom%26amp%3Bfe%26lt%3B%2Fb%26gt%3B!
+
+::expect-filter-arg::
+
+Hello ecom&fe!
+
+::expect-filter-filter::
+
+Hello ecom&fe!
+
+::expect-mix::
+
+Hello &lt;b&gt;ecom&amp;fe&lt;/b&gt; in baidu! Bye &lt;b&gt;ecom&amp;fe&lt;/b&gt;! Raw is <b>ecom&fe</b>!
+
+::expect-property-accessor::
+
+Repos: https://github.com/ecomfe/etpl
+Contributor: erik[errorrik@gmail.com]
+
+::expect-property-accessor2::
+
+Repos: https://github.com/ecomfe/etpl
+Contributor: erik[errorrik@gmail.com]
+Contributor: erik[errorrik@gmail.com]
+
+::eof::

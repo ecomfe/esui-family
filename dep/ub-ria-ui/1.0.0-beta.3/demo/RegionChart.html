@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>RegionChart - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI RegionChart</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>RegionChart</h2>
+            <p>RegionChart描述</p>
+            <div class="example">
+                <h3>Icon on Left Side</h3>
+                <div class="row">
+                    <div id="chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/chart/RegionChart',
+            'esui/TextBox',
+            'demo',
+            'esui/Tab'
+        ],
+        function (ui) {
+            ui.init();
+
+            var chart = ui.create('RegionChart', {
+                id: 'chart',
+                main: document.getElementById('chart'),
+                name: '',
+                type: 'map',
+                mapData: [
+                    {name: '北京',value: Math.round(Math.random()*1000)},
+                    {name: '天津',value: Math.round(Math.random()*1000)},
+                    {name: '上海',value: Math.round(Math.random()*1000)}
+                ]
+            });
+            chart.render();
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

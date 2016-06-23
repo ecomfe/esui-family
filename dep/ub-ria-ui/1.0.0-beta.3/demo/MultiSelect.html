@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <title>Select - ESUI Demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+    <link rel="stylesheet" href="assets/themes/standard.css" />
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="assets/ie8.css" />
+    <![endif]-->
+</head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI - Select</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>单选Radio</h2>
+            <div class="example ui-demo-light-stage">
+                <div class="row">
+                    <select data-ui-type="MultiSelect" data-ui-id="selectRadio" data-ui-width="200" name="selectRadio" multiple="multiple">
+                        <option value="1">选项 1</option>
+                        <option value="2">选项 2</option>
+                        <option value="3">选项 3</option>
+                        <option value="1" >选项 4</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <select data-ui-variants="primary"
+                             data-ui-type="MultiSelect"
+                             data-ui-id="language" data-ui-width="200" name="language">
+                        
+                        <option value="ActionScript">ActionScript</option>
+                        <option value="AppleScript">AppleScript</option>
+                        <option value="Asp">Asp</option>
+                        <option value="BASIC">BASIC</option>
+                        <option value="C">C</option>
+                        <option value="C++">C++</option>
+                        <option value="Clojure">Clojure</option>
+                        <option value="COBOL">COBOL</option>
+                        <option value="ColdFusion">ColdFusion</option>
+                        <option value="Erlang">Erlang</option>
+                        <option value="Fortran">Fortran</option>
+                        <option value="Groovy">Groovy</option>
+                        <option value="Haskell">Haskell</option>
+                    </select>
+                </div>
+            </div>
+            <h2>多选checkbox</h2>
+            <div class="example ui-demo-light-stage">
+                <div class="row">
+                    <select data-ui-type="MultiSelect" data-ui-multi="true" data-ui-id="selectCheckbox" data-ui-width="200" name="selectCheckbox">
+                        <option value="1">选项 1</option>
+                        <option value="2">选项 2</option>
+                        <option value="3">选项 3</option>
+                        <option value="4">选项 4</option>
+                        <option value="5">选项 5</option>
+                        <option value="6">选项 6</option>
+                        <option value="7">选项 7</option>
+                        <option value="8">选项 8</option>
+                        <option value="9">选项 9</option>
+                        <option value="0">选项 0</option>
+                    </select>
+                </div>
+            </div>
+            <h2>设置显示文字</h2>
+            <div class="example ui-demo-light-stage">
+                <div class="row">
+                    <div id="displayText"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/MultiSelect',
+            'esui/lib',
+            'underscore',
+            'esui/TextBox',
+            'esui/Tab',
+            'demo'
+        ],
+        function (ui, MultiSelect, lib, u) {
+            ui.init(null, {
+                properties: {
+                    custom: {
+                        getCustomItemHTML: function(item) {
+                            var data = {
+                                text: u.escape(item.name || item.text),
+                                value: u.escape(item.value)
+                            };
+                            return lib.format('<span>${text}</span>', data);
+                        },
+                        getCustomDisplayHTML: function(item) {
+                            var data = {
+                                text: u.escape(item.name || item.text),
+                                value: u.escape(item.value)
+                            };
+                            return lib.format('<span>${text}</span>', data);
+                        }
+                    }
+                } 
+            });
+            var data = [
+                {
+                    name: "选项1",
+                    value: '1'
+                },
+                {
+                    name: "选项2",
+                    value: '2'
+                },
+                {
+                    name: "选项3",
+                    value: '3',
+                    disabled: true
+                },
+                {
+                    name: "选项4",
+                    value: '4'
+                },
+                {
+                    name: "选项5",
+                    value: '5'
+                }
+            ];
+            var displayTextOption = {
+                datasource: data,
+                main: document.getElementById('displayText'),
+                name: 'displayText',
+                displayText: '设置显示文字',
+                footer: true
+            }
+
+            function renderSelect(options) {
+                var select = new MultiSelect(options);
+                select.render();
+            }
+            renderSelect(displayTextOption);            
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

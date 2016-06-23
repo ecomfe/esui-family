@@ -1,0 +1,119 @@
+::tpl::
+<!-- target:ifNumTarget -->
+<!-- if: ${num} > 0 -->${num}<!--elif: ${num} == 0
+    && true
+-->zero<!--else-->invalid<!-- /if -->
+<!-- target:ifUnaryTarget -->
+<!-- if: ${num} -->1<!--/if-->
+<!-- if: !${unknown} -->1<!--/if-->
+<!-- if: ${unknown} -->1<!--else-->2<!--/if-->
+<!-- target:ifBinaryTarget -->
+<!-- if: ${num} || 1 -->1<!--/if-->
+<!-- if: ${num} && 1 -->1<!--/if-->
+<!-- if: ${num} == ${str} -->1<!--/if-->
+<!-- if: ${num} === ${str} -->1<!--else-->2<!--/if-->
+<!-- if: ${str} == "1" -->${str}<!--else-->2<!--/if-->
+<!-- if: ${str} === 1 -->${str}<!--else-->2<!--/if-->
+<!-- target:ifComplexTarget -->
+<!-- if: !( 0 && 0 ) -->1<!--else-->2<!--/if-->
+<!-- if: !0 && 0 -->1<!--else-->2<!--/if-->
+<!-- target:ifComplexTargetBreakLine -->
+<!-- if: !(
+        0
+        && 0
+    )
+-->1<!--else-->2<!--/if-->
+<!-- if:
+    !0
+    && 0
+-->1<!--else-->2<!--/if-->
+<!--target:ifComplexPropertyAccessTarget-->
+<!-- if: ${level1[1]['num']} -->1<!--else-->2<!--/if-->
+<!-- if: ${level1[0].num} -->1<!--else-->2<!--/if-->
+<!-- target: ifBlockMaster -->
+<!-- if: ${cond} === 'if' --><!--block: if--><!--/block--><!--elif: ${cond}==='elif'--><!--block: elif--><!--/block--><!--else--><!--block: else--><!--/block--><!--/if-->
+<!-- target: ifBlockTarget(master=ifBlockMaster) -->
+<!--block: if-->if<!--/block-->
+<!--block: elif-->elif<!--/block-->
+<!--block: else-->else<!--/block-->
+<!-- target:ifNestedTarget -->
+<!-- if: ${num} == ${str} -->
+    <!-- if: ${num} === ${str} -->same type<!-- else -->different type<!-- /if -->
+<!-- else -->
+    different value
+<!--/if-->
+
+::expect-ifUnaryTarget::
+
+1
+1
+2
+
+::expect-ifBinaryTarget::
+
+1
+1
+1
+2
+1
+2
+
+::expect-ifComplexTarget::
+
+1
+2
+
+::expect-ifComplexTarget::
+
+1
+2
+
+::expect-ifNestedTarget-samevalue::
+
+
+    different type
+
+
+::expect-ifNestedTarget-differentvalue::
+
+
+    different value
+
+
+::expect-number-1::
+
+1
+
+::expect-number-0::
+
+zero
+
+::expect-number-invalid::
+
+invalid
+
+::tpl-variable-filter-if::
+<!-- target:ifVariableFilterIfTarget --><!--var:myNum=10--><!--var:myNum2=6-->
+<!-- if: ${myNum | if-sum(9, 8, 7, ${myNum2 | if-sum(5, 4)}, 3, 2, 1)} * 2 === 11 * 10 -->ok<!--else-->not ok<!-- /if -->
+::expect-variable-filter-if::
+
+ok
+::tpl-variable-filter-elif::
+<!-- target:ifVariableFilterElifTarget --><!--var:myNum=10--><!--var:myNum2=6-->
+<!-- if: 1>2 -->not ok<!-- elif: ${*myNum | if-sum(9, 8, 7, ${*myNum2 | if-sum(5, 4)}, 3, 2, 1)} * 2 === 11 * 10 -->ok<!--else-->not ok<!-- /if -->
+::expect-variable-filter-elif::
+
+ok
+::expect-ifBlockTarget-if::
+
+if
+
+::expect-ifBlockTarget-elif::
+
+elif
+
+::expect-ifBlockTarget-else::
+
+else
+
+::eof::
