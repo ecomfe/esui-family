@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>MediaPreview - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI MediaPreview</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>MediaPreview</h2>
+            <p>MediaPreview</p>
+            <div class="example">
+                <div data-ui-type="Button" data-ui-group="previewGroup" data-ui-source-url="../css/assets/img/image1.jpg" data-ui-source-type="image">图片1</div>
+                <div data-ui-type="Button" data-ui-group="previewGroup" data-ui-source-url="../css/assets/img/image2.jpg" data-ui-source-type="image">图片2</div>
+                <div data-ui-type="Button" data-ui-group="previewGroup" data-ui-source-url="../css/assets/img/image3.jpg" data-ui-source-type="image">图片3</div>
+                <div data-ui-type="Button" data-ui-group="previewGroup" data-ui-source-url="assets/coco_tree.swf" data-ui-source-type="flash">Flash</div>
+                <div data-ui-type="Button" data-ui-group="previewGroup" data-ui-source-url="../controls/assets/video.flv" data-ui-source-type="flv">Video</div>
+
+                <div data-ui-type="MediaPreview" data-ui-width="300" data-ui-height="400" data-ui-tool-role="refresh,search" data-ui-id="previewControl" data-ui-swf-path="../resource/video-preview-player.swf"></div>
+                <div data-ui-type="LightBox"
+                    data-ui-id="box3"
+                    data-ui-width="400px"
+                    data-ui-height="500px"
+                    data-ui-swf-path="../resource/video-preview-player.swf"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'underscore',
+            'ub-ria-ui/MediaPreview',
+            'ub-ria-ui/LightBox',
+            'demo',
+            'esui/Button'
+        ],
+        function (ui, u) {
+            ui.init();
+
+            var mediaPreview = ui.get('previewControl');
+            var lightBox = ui.get('box3');
+
+            u.each(ui.getViewContext().getGroup('previewGroup'), function (button) {
+                button.on('click', function (e) {
+                    mediaPreview.setProperties({sourceURL: button.sourceUrl, sourceType: button.sourceType});
+                });
+            }, ui);
+
+            mediaPreview.on('iconclick', function (event) {
+                if (event.roleName === 'search' && mediaPreview.sourceURL) {
+                    lightBox.setContent([{
+                        url: mediaPreview.sourceURL
+                    }]);
+                    lightBox.show();
+                }
+                else if (event.roleName === 'refresh') {
+                    var index = Math.floor((Math.random() * 5));
+                    var button = ui.getViewContext().getGroup('previewGroup')[index];
+                    mediaPreview.setProperties({sourceURL: button.sourceUrl, sourceType: button.sourceType});
+                }
+            });
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

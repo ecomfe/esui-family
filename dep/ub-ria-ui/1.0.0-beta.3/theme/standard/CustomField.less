@@ -1,0 +1,21 @@
+@import "../../src/css/CustomField.less";
+
+@esui-customfield-border: 1px solid @esui-palette-border;
+@esui-customfield-background: @esui-palette-neutral-color;
+@esui-customfield-btn-color: @esui-palette-color;
+@esui-customfield-warning-color: @esui-palette-danger-color;
+
+.@{ui-class-prefix}-customfield-head {
+    .@{ui-class-prefix}-customfield-warning {
+        color: @esui-customfield-warning-color;
+    }
+}
+
+.@{ui-class-prefix}-customfield-wrapper {
+    border: @esui-customfield-border;
+    background: @esui-customfield-background;
+}
+
+.@{ui-class-prefix}-customfield-restore {
+    color: @esui-customfield-btn-color;
+}

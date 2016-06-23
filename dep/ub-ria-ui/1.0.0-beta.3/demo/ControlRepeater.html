@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <title>ControlRepeater - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css">
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI ControlRepeater</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>ControlRepeater</h2>
+            <div class="example">
+                <form class="edit-form"
+                    data-ui-type="Form"
+                    data-ui-id="form"
+                    data-ui-auto-validate="true"
+                    data-ui-submit-button="submit-button,submit-and-continue-button">
+                    <div class="ui-form-row">
+                        <div class="ui-form-key"><label>多类型控件：</label></div>
+                        <div data-ui-type="ControlRepeater" data-ui-id="controlsAddDevice" data-ui-max-count="8" data-ui-width="500" data-ui-name="addName">
+                        <script type="esui-template">
+                            <span class="ui-icon-remove" data-role="remove" style="cursor:pointer;color:#EA0404;"></span>
+                            <div class="ui-form-row">
+                                <div class="ui-form-key">
+                                    <label>文本：</label>
+                                </div>
+                                <div data-ui-type="TextBox" data-ui-width="300" data-ui-child-name="testBox" data-ui-required="true"></div>
+                            </div>
+                            <div class="ui-form" data-ui-type="Panel"  data-ui-variants="custom">
+                                <div class="ui-panel-body">
+                                    testPanel
+                                    <div data-ui-type="TextBox" data-ui-width="300" data-ui-child-name="testPanelBox" data-ui-required="true"></div>
+                                </div>
+                            </div>
+                            <div class="ui-form" data-ui-type="Panel" data-ui-variants="custom">
+                                <div class="ui-panel-body">
+                                    第一层panel
+                                    <div class="ui-form" data-ui-type="Panel" data-ui-variants="custom">
+                                        <div class="ui-panel-body">
+                                            第二层panel
+                                            <div class="ui-form" data-ui-type="Panel" data-ui-variants="custom">
+                                                <div class="ui-panel-body">
+                                                    第三层panel
+                                                    <div data-ui-type="TextBox" data-ui-width="300" data-ui-child-name="testLevelPanelBox" data-ui-required="true"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="ui-form-row">
+                                <div class="ui-form-key"><label>textLine：</label></div>
+                                <textarea data-ui="type:TextLine;childName:testTextLine;required:true;"></textarea>
+                            </div>
+                        </script>
+
+                        </div>
+                    </div>
+                    <div class="ui-form-buttons">
+                        <p>保存的值是<div id="result"></div></p>
+                        <div data-ui-type="Button" data-ui-id="submit-button" data-ui-variants="primary">保存</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/ControlRepeater',
+            'demo',
+            'esui/Form',
+            'esui/Panel',
+            'esui/TextBox',
+            'esui/TextLine',
+            'esui/Button',
+            'esui/validator/RequiredRule'
+        ],
+        function (ui) {
+            ui.init(
+                document.body,
+                {
+                    properties: {
+                        controlsAddDevice: {
+                            rawValue: [{
+                                testBox: 'value1',
+                                testTextLine: [1, 2, 3, 4, 5, 6],
+                                testLevelPanelBox: '深层levelValue'
+                            }, {
+                                testBox: 'value2',
+                                testTextLine: [11, 22, 33, 44],
+                                testPanelBox: ['aaaa', 'bbbbb', 'ccccc']
+                            }]
+                        }
+                    }
+                }
+            );
+            ui.get('submit-button').onclick = function () {
+                console.log(ui.get('form').getData());
+                document.getElementById('result').innerHTML = ui.get('form').getDataAsString();
+            };
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+
+</body>
+</html>

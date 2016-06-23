@@ -1,0 +1,15 @@
+{
+    "name": "eicons",
+    "version": "1.0.0",
+    "main": "main.less",
+    "description": "EICONS以FontAwsome为基础，提供了一组业务项目中常用的图标集合。",
+    "homepage": "https://github.com/ecomfe/eicons",
+    "edp": {
+        "wwwroot": "/",
+        "depDir": "dep",
+        "srcDir": "src",
+        "loaderAutoConfig": "js,htm,html,tpl,vm,phtml",
+        "loaderUrl": "http://s1.bdstatic.com/r/www/cache/ecom/esl/1-8-2/esl.js",
+        "dependencies": {}
+    }
+}

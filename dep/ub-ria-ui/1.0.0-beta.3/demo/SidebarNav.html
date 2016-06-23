@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>SidebarNav - ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI SidebarNav</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>SearchTree</h2>
+            <p>SearchTree描述</p>
+            <div class="example">
+                <div class="row">
+                    <div style="width: 20em" data-ui="type:SidebarNav;id:nav"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/SidebarNav'
+        ],
+        function (esui) {
+            var reportData = [
+                {
+                    id: 'report',
+                    header: true,
+                    icon: 'ui-icon-anchor-alt'
+                },
+                {
+                    id: 'report',
+                    text: '主页',
+                    icon: 'ui-icon-home',
+                    url: '#'
+                },
+                {
+                    id: 'report',
+                    text: '结案报告',
+                    icon: 'ui-icon-anchor-alt',
+                    expanded: true,
+                    items: [
+                        {
+                            id: 'total',
+                            text: '账户概况',
+                            url: '#/report/total',
+                            auth: 'CASE_REPORT_ACCOUNT',
+                            icon: 'ui-icon-anchor-alt'
+                        },
+                        {
+                            id: 'contract',
+                            text: 'Contract类报告',
+                            url: '#/report/po',
+                            auth: 'CASE_REPORT_CONTRACT',
+                            icon: 'ui-icon-anchor-alt'
+                        },
+                        {
+                            id: 'spot-buy',
+                            text: 'Spot-buy类报告',
+                            url: '#/report/spot-buy',
+                            auth: 'CASE_REPORT_SPOTBUY',
+                            icon: 'ui-icon-anchor-alt'
+                        }
+                    ]
+                },
+                {
+                    id: 'DIY',
+                    text: '自定义报告',
+                    url: '#/report/DIY',
+                    auth: 'CUSTOMIZED_REPORT_MENU',
+                    icon: 'ui-icon-anchor-alt',
+                    items: [
+                        {
+                            id: 'total2',
+                            text: '账户概况',
+                            url: '#/report/total',
+                            auth: 'CASE_REPORT_ACCOUNT',
+                            icon: 'ui-icon-anchor-alt'
+                        },
+                        {
+                            id: 'contract2',
+                            text: 'Contract类报告',
+                            url: '#/report/po',
+                            auth: 'CASE_REPORT_CONTRACT',
+                            icon: 'ui-icon-anchor-alt'
+                        },
+                        {
+                            id: 'spot-buy2',
+                            text: 'Spot-buy类报告',
+                            url: '#/report/spot-buy',
+                            auth: 'CASE_REPORT_SPOTBUY',
+                            icon: 'ui-icon-anchor-alt'
+                        }
+                    ]
+                }
+            ];
+            esui.init(
+                document.body,
+                {
+                    properties : {
+                        nav: {
+                            datasource: reportData
+                        }
+                    }
+                }
+            );
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>

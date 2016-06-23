@@ -1,0 +1,41 @@
+esui-image-previewer {
+    display: block;
+}
+
+.@{ui-class-prefix}-imagepreviewer {
+    .@{ui-class-prefix}-imagepreviewer-img-container {
+        border: 1px dashed #ddd;
+        position: relative;
+
+        .@{ui-class-prefix}-imagepreviewer-img-mask {
+            background: #000;
+            .opacity(50);
+            display: none;
+        }
+
+        .@{ui-class-prefix}-imagepreviewer-img-operation {
+            display: none;
+            color: #fff;
+            position: absolute;
+            width: 100%;
+            top: 0;
+        }
+
+        &:hover {
+            .@{ui-class-prefix}-imagepreviewer-img-mask,
+            .@{ui-class-prefix}-imagepreviewer-img-operation {
+                display: block;
+            }
+        }
+    }
+}
+
+.@{ui-class-prefix}-imagepreviewer-multi {
+    width: 600px;
+    .clearfix();
+
+    .@{ui-class-prefix}-imagepreviewer-img-container {
+        float: left;
+        margin: 5px;
+    }
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8" />
+        <title>IconPanel- ESUI Demo</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.css"/>
+        <link rel="stylesheet" href="assets/themes/standard.css" />
+        <!--[if lt IE 9]>
+        <link rel="stylesheet" href="../dep/esui/3.2.0-beta.2/demo/assets/ie8.css"/>
+        <![endif]-->
+    </head>
+<body>
+    <div class="header">
+        <h1 id="branding">ESUI IconPanel</h1>
+    </div>
+    <div class="ui-g main-container">
+        <div id="side-bar" class="ui-u-1-5">
+            <ul id="navigator" class="ui-nav">
+            </ul>
+        </div>
+        <div id="main" class="ui-u-4-5">
+            <h2>IconPanel</h2>
+            <p>IconPanel，支持image或者flash类型的icon。</p>
+
+            <h3>自定义操作按钮</h3>
+            <p>通过<code>operates</code>属性定义操作按钮。</p>
+            <div class="example">
+                 <div data-ui="type:ImagePanel;id:imagePanel"></div>
+            </div>
+
+            <h3>Custom Desc</h3>
+            <p>自定义模板</p>
+            <div class="example">
+                <script type="text/template" id="descTpl">
+<!-- for: ${image.desc} as ${desc} -->
+<p><a href="javascipt:;">${desc}</a></p> 
+<!-- /for -->
+                </script>
+                <div data-ui="type:ImagePanel;id:customDesc"></div>
+            </div>
+
+            <h3>Flash</h3>
+            <p>引用Flash 文件</p>
+            <div class="example">
+                 <div data-ui="type:ImagePanel;id:flashPanel"></div>
+            </div>
+
+            <h3>没有任何图片</h3>
+            <div class="example">
+                 <div data-ui="type:ImagePanel;id:noneTip"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/loader/esl.js"></script>
+    <script src="config.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/demo.js"></script>
+    <script src="../dep/esui/3.2.0-beta.2/demo/assets/google-code-prettify/prettify.js"></script>
+    <script id="main-js">
+    require(
+        [
+            'esui',
+            'ub-ria-ui/ImagePanel',
+            'esui/Tab',
+            'demo',
+        ],
+        function (ui, CheckboxGroup) {
+            var imageDatasource = [
+                {
+                    imageId: 1,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用1'
+                    ]
+                },
+                {
+                    imageId: 2,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用10'
+                    ]
+                },
+                {
+                    imageId: 3,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100'
+                    ]
+                },
+                {
+                    imageId: 4,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用1000'
+                    ]
+                },
+                {
+                    imageId: 5,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用10000'
+                    ]
+                },
+                {
+                    imageId: 6,
+                    imageUrl: 'assets/avatar.png',
+                    desc: [
+                        '软件游戏',
+                        '软件',
+                        '使用100000'
+                    ]
+                }
+            ];
+
+            var flashDatasource = [
+                {
+                    imageId: 1,
+                    imageType: 'flash',
+                    imageUrl: 'assets/coco_tree.swf'
+                },
+                {
+                    imageId: 2,
+                    imageType: 'flash',
+                    imageUrl: 'assets/coco_tree.swf'
+                }
+            ];
+
+            ui.init(
+                document.body,
+                {
+                    properties : {
+                        imagePanel: {
+                            datasource: imageDatasource,
+                            operates: [
+                                {name: 'download', title: '下载'},
+                                {name: 'close', title: '删除'}
+                            ],
+                            imageWidth: 100
+                        },
+                        customDesc: {
+                            datasource: imageDatasource,
+                            operates: [
+                                {name: 'download', title: '下载'},
+                                {name: 'close', title: '删除'}
+                            ],
+                            itemCaptionTpl: '#descTpl'
+                        },
+                        flashPanel: {
+                            datasource: flashDatasource,
+                            imageType: 'flash',
+                            imageWidth: 200
+                        },
+                        noneTip: {
+                        }
+                    }
+                }
+            );
+        }
+    );
+    </script>
+    <script src="sitemap.js"></script>
+</body>
+</html>
