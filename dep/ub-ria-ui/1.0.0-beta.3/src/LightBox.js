@@ -291,6 +291,10 @@ define(function (require) {
 
                     type = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
                     (this['preview' + type] || this.previewNotSupported).call(this, options);
+                    // 预览图片需要在onload之后调整尺寸，故作特殊处理
+                    if (type !== 'Image') {
+                        this.dialog.resize();
+                    }
                 }
             },
 
@@ -310,6 +314,7 @@ define(function (require) {
                     me.mediaContainer().innerHTML = '';
                     me.mediaContainer().appendChild(img);
                     me.dialog.show();
+                    me.dialog.resize();
                     img.onload = img.onerror = null;
                 };
 
