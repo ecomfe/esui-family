@@ -106,8 +106,6 @@
                         </esui-table-rich-selector>
                     </div>
                 </div>
-                <esui-button data-ui-id="get-cas-slots">获取选值</esui-button>
-                <esui-label data-ui-id="cas-slots-result"></esui-label>
             </div>
             
             <h2>左右选择Tree Selector</h2>
@@ -196,6 +194,7 @@
             'demo'
         ],
         function (ui) {
+console.log(1111);
             ui.init();
             var arrayDatasource = [];
             for (var i = 0; i < 20; i++) {
@@ -209,6 +208,7 @@
 
             var single = ui.get('single-slots');
             var singleSource = single.getChild('source');
+console.log(single, singleSource);
             singleSource.setProperties({
                 datasource: arrayDatasource,
                 fields: [
