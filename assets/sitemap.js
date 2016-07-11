@@ -231,8 +231,8 @@ define('sitemap', ['jquery'], function ($) {
                 if (window.location.pathname.indexOf('css') > 0) {
                     var esfMainScript = $ele.find('#main-js').html();
                     $('<script></script>').html(
-                        'require(["jquery", "esui", "esui/Tab"], function ($, esui) {'
-                        + esfMainScript + ';esui.init();});'
+                        //'require(["jquery", "esui", "esui/Tab"], function ($, esui) {'
+                        + esfMainScript // + ';esui.init();});'
                     ).appendTo('body');
                 }
                 else {
